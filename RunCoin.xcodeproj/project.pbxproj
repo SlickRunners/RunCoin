@@ -8,20 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D7F220503DA600491C39 /* AppDelegate.swift */; };
-		B023D7F520503DA600491C39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D7F420503DA600491C39 /* ViewController.swift */; };
+		B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D7F420503DA600491C39 /* EmailLogInViewController.swift */; };
 		B023D7F820503DA600491C39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B023D7F620503DA600491C39 /* Main.storyboard */; };
 		B023D7FA20503DA600491C39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D7F920503DA600491C39 /* Assets.xcassets */; };
 		B023D7FD20503DA600491C39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B023D7FB20503DA600491C39 /* LaunchScreen.storyboard */; };
+		B023D8092050418100491C39 /* SplashScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D8082050418100491C39 /* SplashScreen.xcassets */; };
+		B023D81F2050442D00491C39 /* nunito in Resources */ = {isa = PBXBuildFile; fileRef = B023D81E2050442D00491C39 /* nunito */; };
+		B023D82120508BB200491C39 /* ProfileScreenAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D82020508BB200491C39 /* ProfileScreenAssets.xcassets */; };
+		B023D82320508DA100491C39 /* LoginScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D82220508DA100491C39 /* LoginScreen.xcassets */; };
+		B023D82520509D6500491C39 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D82420509D6500491C39 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B023D7EF20503DA600491C39 /* RunCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B023D7F220503DA600491C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B023D7F420503DA600491C39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B023D7F420503DA600491C39 /* EmailLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLogInViewController.swift; sourceTree = "<group>"; };
 		B023D7F720503DA600491C39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B023D7F920503DA600491C39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B023D7FC20503DA600491C39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B023D7FE20503DA600491C39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B023D8082050418100491C39 /* SplashScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SplashScreen.xcassets; sourceTree = "<group>"; };
+		B023D81E2050442D00491C39 /* nunito */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nunito; sourceTree = "<group>"; };
+		B023D82020508BB200491C39 /* ProfileScreenAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ProfileScreenAssets.xcassets; sourceTree = "<group>"; };
+		B023D82220508DA100491C39 /* LoginScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LoginScreen.xcassets; sourceTree = "<group>"; };
+		B023D82420509D6500491C39 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				B023D7F120503DA600491C39 /* RunCoin */,
-				B023D7F020503DA600491C39 /* Products */,
+				B023D8062050412A00491C39 /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -49,19 +59,57 @@
 				B023D7EF20503DA600491C39 /* RunCoin.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		B023D7F120503DA600491C39 /* RunCoin */ = {
 			isa = PBXGroup;
 			children = (
-				B023D7F220503DA600491C39 /* AppDelegate.swift */,
-				B023D7F420503DA600491C39 /* ViewController.swift */,
-				B023D7F620503DA600491C39 /* Main.storyboard */,
-				B023D7F920503DA600491C39 /* Assets.xcassets */,
-				B023D7FB20503DA600491C39 /* LaunchScreen.storyboard */,
+				B023D8072050415500491C39 /* Views */,
+				B023D8052050410600491C39 /* StroyBoards */,
+				B023D804205040EF00491C39 /* Image Assets */,
 				B023D7FE20503DA600491C39 /* Info.plist */,
 			);
 			path = RunCoin;
+			sourceTree = "<group>";
+		};
+		B023D804205040EF00491C39 /* Image Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B023D81E2050442D00491C39 /* nunito */,
+				B023D7F920503DA600491C39 /* Assets.xcassets */,
+				B023D8082050418100491C39 /* SplashScreen.xcassets */,
+				B023D82020508BB200491C39 /* ProfileScreenAssets.xcassets */,
+				B023D82220508DA100491C39 /* LoginScreen.xcassets */,
+			);
+			path = "Image Assets";
+			sourceTree = "<group>";
+		};
+		B023D8052050410600491C39 /* StroyBoards */ = {
+			isa = PBXGroup;
+			children = (
+				B023D7F620503DA600491C39 /* Main.storyboard */,
+				B023D7FB20503DA600491C39 /* LaunchScreen.storyboard */,
+			);
+			path = StroyBoards;
+			sourceTree = "<group>";
+		};
+		B023D8062050412A00491C39 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B023D7F020503DA600491C39 /* Products */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B023D8072050415500491C39 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B023D7F220503DA600491C39 /* AppDelegate.swift */,
+				B023D7F420503DA600491C39 /* EmailLogInViewController.swift */,
+				B023D82420509D6500491C39 /* LoginViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,8 +171,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B023D82320508DA100491C39 /* LoginScreen.xcassets in Resources */,
+				B023D81F2050442D00491C39 /* nunito in Resources */,
+				B023D8092050418100491C39 /* SplashScreen.xcassets in Resources */,
 				B023D7FD20503DA600491C39 /* LaunchScreen.storyboard in Resources */,
 				B023D7FA20503DA600491C39 /* Assets.xcassets in Resources */,
+				B023D82120508BB200491C39 /* ProfileScreenAssets.xcassets in Resources */,
 				B023D7F820503DA600491C39 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,7 +188,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B023D7F520503DA600491C39 /* ViewController.swift in Sources */,
+				B023D82520509D6500491C39 /* LoginViewController.swift in Sources */,
+				B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */,
 				B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
