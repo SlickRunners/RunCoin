@@ -105,12 +105,12 @@ class LoginViewController: UIViewController {
         facebookLoginPressed.layer.shadowOpacity = 0.5
         facebookLoginPressed.layer.shadowRadius = 1.0
         
-        // eMail button attributes
+        
+        //email login button attributes
         emailLoginPressed.layer.shadowRadius = 1.0
         emailLoginPressed.layer.shadowColor = UIColor.black.cgColor
         emailLoginPressed.layer.masksToBounds = false
         emailLoginPressed.layer.shadowOpacity = 0.5
-        emailLoginPressed.layer.cornerRadius = 24
         emailLoginPressed.layer.backgroundColor = UIColor.coral.cgColor
         emailLoginPressed.setTitleColor(UIColor.white, for: .normal)
         emailLoginPressed.layer.shadowColor = UIColor.black.cgColor

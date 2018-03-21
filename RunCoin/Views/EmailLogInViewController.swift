@@ -8,6 +8,16 @@
 
 import UIKit
 
+extension UILabel {
+    func addCharacterSpacing() {
+        if let labelText = text, labelText.count > 0 {
+            let attributedString = NSMutableAttributedString(string: labelText)
+            attributedString.addAttribute(NSAttributedStringKey.kern, value: 4.0, range: NSRange(location: 0, length: attributedString.length - 1))
+            attributedText = attributedString
+        }
+    }
+}
+
 class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //variables
@@ -15,6 +25,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
+    @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     @IBAction func doneButtonPressed(_ sender: UIButton) {
     }
@@ -25,6 +36,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //pickerview setup
         let myPickerView = UIPickerView()
         genderTextField.inputView = myPickerView
@@ -36,35 +48,34 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         emailTextField.layer.shadowRadius = 1.0
         emailTextField.layer.shadowOpacity = 0.5
         emailTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         emailTextField.adjustsFontSizeToFitWidth = true
         
-        //textfield height properties
-        emailTextField.widthAnchor.constraint(equalToConstant: 287).isActive = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 34).isActive = true
-        emailTextField.frame.size.height = 75
-        userNameTextField.frame.size.height = 75
-        genderTextField.frame.size.height = 75
-        birthdayTextField.frame.size.height = 75
+        userNameTextField.layer.shadowColor = UIColor.googleGrey.cgColor
+        userNameTextField.layer.masksToBounds = false
+        userNameTextField.layer.shadowRadius = 1.0
+        userNameTextField.layer.shadowOpacity = 0.5
+        userNameTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
+        userNameTextField.borderStyle = UITextBorderStyle.roundedRect
+        userNameTextField.adjustsFontSizeToFitWidth = true
         
-        emailTextField.frame.size.width = 300
-        userNameTextField.frame.size.width = 300
-        genderTextField.frame.size.width = 300
-        birthdayTextField.frame.size.width = 300
+        birthdayTextField.layer.shadowColor = UIColor.googleGrey.cgColor
+        birthdayTextField.layer.masksToBounds = false
+        birthdayTextField.layer.shadowRadius = 1.0
+        birthdayTextField.layer.shadowOpacity = 0.5
+        birthdayTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
+        birthdayTextField.borderStyle = UITextBorderStyle.roundedRect
+        birthdayTextField.adjustsFontSizeToFitWidth = true
         
-        emailTextField.center.x = self.view.center.x
-        userNameTextField.center.x = self.view.center.x
-        userNameTextField.center.x = self.view.center.x
-        genderTextField.center.x = self.view.center.x
-        birthdayTextField.center.x = self.view.center.x
+        genderTextField.layer.shadowColor = UIColor.googleGrey.cgColor
+        genderTextField.layer.masksToBounds = false
+        genderTextField.layer.shadowRadius = 1.0
+        genderTextField.layer.shadowOpacity = 0.5
+        genderTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
+        genderTextField.borderStyle = UITextBorderStyle.roundedRect
         
         //done button attributes
-        doneButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        doneButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         doneButton.backgroundColor = UIColor.coral
-        doneButton.layer.cornerRadius = 30
-        
     }
     
     //MARK: -- PickerView DataSource
