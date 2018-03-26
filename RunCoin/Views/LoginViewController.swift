@@ -85,6 +85,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Nav attributes
+        title = String("RunCoin")
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         //Google button attributes
         googleLoginPressed.setTitleColor(UIColor.googleGrey, for: .normal)
         googleLoginPressed.layer.shadowRadius = 3.0

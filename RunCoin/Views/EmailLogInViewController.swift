@@ -8,16 +8,6 @@
 
 import UIKit
 
-extension UILabel {
-    func addCharacterSpacing() {
-        if let labelText = text, labelText.count > 0 {
-            let attributedString = NSMutableAttributedString(string: labelText)
-            attributedString.addAttribute(NSAttributedStringKey.kern, value: 4.0, range: NSRange(location: 0, length: attributedString.length - 1))
-            attributedText = attributedString
-        }
-    }
-}
-
 class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     //variables
@@ -28,6 +18,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToPhotoPage", sender: self)
     }
     
     
@@ -36,6 +27,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Nav attributes
+        title = String("Set Up Your Profile")
+        navigationItem.largeTitleDisplayMode = .never
         
         //pickerview setup
         let myPickerView = UIPickerView()
@@ -43,6 +37,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         myPickerView.delegate = self
         
         //textfield style properties
+        emailTextField.adjustsFontSizeToFitWidth = true
         emailTextField.layer.shadowColor = UIColor.googleGrey.cgColor
         emailTextField.layer.masksToBounds = false
         emailTextField.layer.shadowRadius = 1.0
