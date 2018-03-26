@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10688EA52A1D9203C4DCDA82 /* Pods_RunCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2324BC8B30C64FD6A5212EAB /* Pods_RunCoin.framework */; };
 		B00C2A162062BBA90074AD44 /* EnterPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */; };
 		B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D7F220503DA600491C39 /* AppDelegate.swift */; };
 		B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D7F420503DA600491C39 /* EmailLogInViewController.swift */; };
@@ -19,9 +20,13 @@
 		B023D82320508DA100491C39 /* LoginScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D82220508DA100491C39 /* LoginScreen.xcassets */; };
 		B023D82520509D6500491C39 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D82420509D6500491C39 /* LoginViewController.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
+		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2324BC8B30C64FD6A5212EAB /* Pods_RunCoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C9014EC65EEF13400AF0360 /* Pods-RunCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunCoin.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin.release.xcconfig"; sourceTree = "<group>"; };
+		A35DA6827AD14EB3CD371AD2 /* Pods-RunCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunCoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin.debug.xcconfig"; sourceTree = "<group>"; };
 		B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhotoViewController.swift; sourceTree = "<group>"; };
 		B023D7EF20503DA600491C39 /* RunCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B023D7F220503DA600491C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +41,7 @@
 		B023D82220508DA100491C39 /* LoginScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LoginScreen.xcassets; sourceTree = "<group>"; };
 		B023D82420509D6500491C39 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
+		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10688EA52A1D9203C4DCDA82 /* Pods_RunCoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +61,8 @@
 			children = (
 				B023D7F120503DA600491C39 /* RunCoin */,
 				B023D8062050412A00491C39 /* Supporting Files */,
+				C925BFAC59CEB415C7F80017 /* Pods */,
+				EBDE6746ABE11891CD485317 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +82,7 @@
 				B023D8052050410600491C39 /* StroyBoards */,
 				B023D804205040EF00491C39 /* Image Assets */,
 				B023D7FE20503DA600491C39 /* Info.plist */,
+				B07A7D062069612E00DE33DE /* GoogleService-Info.plist */,
 			);
 			path = RunCoin;
 			sourceTree = "<group>";
@@ -118,6 +128,23 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		C925BFAC59CEB415C7F80017 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A35DA6827AD14EB3CD371AD2 /* Pods-RunCoin.debug.xcconfig */,
+				3C9014EC65EEF13400AF0360 /* Pods-RunCoin.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EBDE6746ABE11891CD485317 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2324BC8B30C64FD6A5212EAB /* Pods_RunCoin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,9 +152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B023D80120503DA600491C39 /* Build configuration list for PBXNativeTarget "RunCoin" */;
 			buildPhases = (
+				063DE0E9D3EDC5E1088CD5EE /* [CP] Check Pods Manifest.lock */,
 				B023D7EB20503DA600491C39 /* Sources */,
 				B023D7EC20503DA600491C39 /* Frameworks */,
 				B023D7ED20503DA600491C39 /* Resources */,
+				269FC42937B8B65FF9FC956B /* [CP] Embed Pods Frameworks */,
+				F7817B4B2622E876EEF47F4D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -184,10 +214,73 @@
 				B023D7FA20503DA600491C39 /* Assets.xcassets in Resources */,
 				B023D82120508BB200491C39 /* ProfileScreenAssets.xcassets in Resources */,
 				B023D7F820503DA600491C39 /* Main.storyboard in Resources */,
+				B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		063DE0E9D3EDC5E1088CD5EE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RunCoin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		269FC42937B8B65FF9FC956B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7817B4B2622E876EEF47F4D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B023D7EB20503DA600491C39 /* Sources */ = {
@@ -333,6 +426,7 @@
 		};
 		B023D80220503DA600491C39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A35DA6827AD14EB3CD371AD2 /* Pods-RunCoin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -347,6 +441,7 @@
 		};
 		B023D80320503DA600491C39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C9014EC65EEF13400AF0360 /* Pods-RunCoin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

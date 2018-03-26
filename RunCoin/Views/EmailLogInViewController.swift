@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -17,8 +18,18 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "GoToPhotoPage", sender: self)
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            if error != nil {
+                print(error!)
+            }
+            else {
+                print("registration success!")
+                self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
+            }
+        }
     }
     
     
@@ -37,14 +48,19 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         myPickerView.delegate = self
         
         //textfield style properties
-        emailTextField.adjustsFontSizeToFitWidth = true
         emailTextField.layer.shadowColor = UIColor.googleGrey.cgColor
         emailTextField.layer.masksToBounds = false
         emailTextField.layer.shadowRadius = 1.0
         emailTextField.layer.shadowOpacity = 0.5
         emailTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
-        emailTextField.adjustsFontSizeToFitWidth = true
+
+        passwordTextField.layer.shadowColor = UIColor.googleGrey.cgColor
+        passwordTextField.layer.masksToBounds = false
+        passwordTextField.layer.shadowRadius = 1.0
+        passwordTextField.layer.shadowOpacity = 0.5
+        passwordTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
+        passwordTextField.borderStyle = UITextBorderStyle.roundedRect
         
         userNameTextField.layer.shadowColor = UIColor.googleGrey.cgColor
         userNameTextField.layer.masksToBounds = false
