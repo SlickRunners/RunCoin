@@ -19,18 +19,31 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb1578908008895765</string>
+				<string>com.googleusercontent.apps.230205021227-3gr9kdh99ulppjna4mgaje8i42jutvl2</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1578908008895765</string>
+	<key>FacebookDisplayName</key>
+	<string>RunCoin</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow RunCoin to access your phone&apos;s camera.</string>
+	<string>Allow RunCoin to access your phone's camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow RunCoin to import a photo for your profile.</string>
 	<key>UIAppFonts</key>
@@ -71,17 +84,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>FacebookAppID</key>
-	<string>1578908008895765</string>
-	<key>FacebookDisplayName</key>
-	<string>RunCoin</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
-		<string>fbauth2</string>
-		<string>fbshareextension</string>
 	</array>
 </dict>
 </plist>

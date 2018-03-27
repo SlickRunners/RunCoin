@@ -43,7 +43,7 @@
         <!--Login View Controller-->
         <scene sceneID="fkh-XZ-nFG">
             <objects>
-                <viewController id="XJY-18-pOe" customClass="LoginViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScreen" id="XJY-18-pOe" customClass="LoginViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RnQ-Q1-TEV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,6 +124,7 @@
                         <outlet property="facebookLoginPressed" destination="r0O-Uz-dng" id="O4k-V9-QXK"/>
                         <outlet property="googleLoginPressed" destination="BOT-Ho-2kd" id="hUe-eI-Wqv"/>
                         <segue destination="1BT-5h-lSE" kind="show" identifier="GoToEmailSignIn" id="4He-Ze-Wxn"/>
+                        <segue destination="meH-zH-njO" kind="presentation" identifier="GoToHomeScreen" id="CsK-Z0-Qsp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23Y-iV-Qb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -487,10 +488,10 @@
             </objects>
             <point key="canvasLocation" x="2671" y="156"/>
         </scene>
-        <!--Start Run View Controller-->
+        <!--HomeViewController-->
         <scene sceneID="XLN-D4-SfX">
             <objects>
-                <viewController id="meH-zH-njO" customClass="StartRunViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" title="HomeViewController" id="meH-zH-njO" customClass="StartRunViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1AN-HH-o2j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -501,7 +502,7 @@
                                     <constraint firstAttribute="height" constant="713" id="dlV-NO-fvn"/>
                                 </constraints>
                             </imageView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="Sdl-tj-jgX">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" mapType="satellite" translatesAutoresizingMaskIntoConstraints="NO" id="Sdl-tj-jgX">
                                 <rect key="frame" x="25" y="60" width="325" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="6eK-yg-BWv"/>
@@ -634,11 +635,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.16862745098039217" green="0.44313725490196076" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="neV-XU-dIP" firstAttribute="centerX" secondItem="IgX-Nj-bxd" secondAttribute="centerX" id="9kM-HZ-q7p"/>
                                     <constraint firstAttribute="bottom" secondItem="neV-XU-dIP" secondAttribute="bottom" constant="9" id="GBZ-Ht-Ycf"/>
                                     <constraint firstItem="neV-XU-dIP" firstAttribute="top" secondItem="IgX-Nj-bxd" secondAttribute="top" constant="9" id="LYJ-pS-L4e"/>
-                                    <constraint firstAttribute="trailing" secondItem="neV-XU-dIP" secondAttribute="trailing" constant="162" id="Mw7-oa-txp"/>
                                     <constraint firstAttribute="height" constant="68" id="Qrm-gx-9oJ"/>
-                                    <constraint firstItem="neV-XU-dIP" firstAttribute="leading" secondItem="IgX-Nj-bxd" secondAttribute="leading" constant="163" id="vxv-86-krY"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -669,7 +669,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XrD-Bu-UQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3668" y="126.38680659670166"/>
+            <point key="canvasLocation" x="1028" y="1296"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fmh-Ax-o3X">

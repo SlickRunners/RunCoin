@@ -84,15 +84,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBAction func googleLoginPressed(_ sender: GIDSignInButton) {
         GIDSignIn.sharedInstance().signIn()
+        performSegue(withIdentifier: "GoToHomeScreen", sender: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Facebook login
-//        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
-//        loginButton.delegate = self
-//        view.addSubview(loginButton)
-        
         //Google login
         GIDSignIn.sharedInstance().uiDelegate = self
             //Configure the sign-in button look/feel

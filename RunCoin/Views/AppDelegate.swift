@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // ...
         if let error = error {
             print(error.localizedDescription)
+            print("ERROR MOTHER FUCKER")
             return
         }
         guard let authentication = user.authentication else { return }
@@ -28,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
+                GIDSignIn.sharedInstance().signOut()
                 return
             }
             // User is signed in
@@ -37,12 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // Perform any operations on signed in user here.
         }
     }
-    
-//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-//        // Perform any operations when the user disconnects from app here.
-//        // ...
-//    }
-    // END google sign in methods
     
     
     @available(iOS 9.0, *)
