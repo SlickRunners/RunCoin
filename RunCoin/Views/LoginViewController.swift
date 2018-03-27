@@ -9,6 +9,8 @@
 import UIKit
 import GoogleSignIn
 import Firebase
+import FacebookLogin
+import FBSDKLoginKit
 
 
 extension UIColor {
@@ -69,11 +71,10 @@ extension UIColor {
 
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
+    //Buttons
     @IBOutlet weak var emailLoginPressed: UIButton!
     @IBOutlet weak var googleLoginPressed: GIDSignInButton!
     @IBOutlet weak var facebookLoginPressed: UIButton!
-    
-    //MARK -- Buttons & Variables
     @IBAction func emailLoginPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEmailSignIn", sender: self)
     }
@@ -87,11 +88,17 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Facebook login
+//        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
+//        loginButton.delegate = self
+//        view.addSubview(loginButton)
+        
+        //Google login
         GIDSignIn.sharedInstance().uiDelegate = self
-        //Configure the sign-in button look/feel
+            //Configure the sign-in button look/feel
         googleLoginPressed.style = .wide
-        // Uncomment to automatically sign in the user.
-        //GIDSignIn.sharedInstance().signInSilently()
+            // Uncomment to automatically sign in the user.
+            //GIDSignIn.sharedInstance().signInSilently()
         
         //Nav attributes
         title = String("RunCoin")

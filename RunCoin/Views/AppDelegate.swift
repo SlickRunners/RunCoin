@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // END google sign in methods
     
     
-    
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
         -> Bool {
