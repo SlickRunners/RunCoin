@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleSignIn
+import Firebase
 
 
 extension UIColor {
@@ -66,9 +68,9 @@ extension UIColor {
 }
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var emailLoginPressed: UIButton!
-    @IBOutlet weak var googleLoginPressed: UIButton!
+    @IBOutlet weak var googleLoginPressed: GIDSignInButton!
     @IBOutlet weak var facebookLoginPressed: UIButton!
     
     //MARK -- Buttons & Variables
@@ -79,46 +81,26 @@ class LoginViewController: UIViewController {
     @IBAction func facebookLoginPressed(_ sender: UIButton) {
     }
     
-    @IBAction func googleLoginPressed(_ sender: UIButton) {
-
+    @IBAction func googleLoginPressed(_ sender: GIDSignInButton) {
+        GIDSignIn.sharedInstance().signIn()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance().uiDelegate = self
+        //Configure the sign-in button look/feel
+        googleLoginPressed.style = .wide
+        // Uncomment to automatically sign in the user.
+        //GIDSignIn.sharedInstance().signInSilently()
+        
         //Nav attributes
         title = String("RunCoin")
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        //Google button attributes
-        googleLoginPressed.setTitleColor(UIColor.googleGrey, for: .normal)
-        googleLoginPressed.layer.shadowRadius = 3.0
-        googleLoginPressed.layer.shadowColor = UIColor.black.cgColor
-        googleLoginPressed.layer.backgroundColor = UIColor.white.cgColor
-        googleLoginPressed.layer.shadowColor = UIColor.black.cgColor
-        googleLoginPressed.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        googleLoginPressed.layer.masksToBounds = false
-        googleLoginPressed.layer.shadowRadius = 1.0
-        googleLoginPressed.layer.shadowOpacity = 0.5
-        
-        //Facebook button attributes
-        facebookLoginPressed.layer.shadowRadius = 3.0
-        facebookLoginPressed.layer.shadowColor = UIColor.black.cgColor
-        facebookLoginPressed.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        facebookLoginPressed.layer.masksToBounds = false
-        facebookLoginPressed.layer.shadowRadius = 1.0
-        facebookLoginPressed.layer.shadowOpacity = 0.5
-        facebookLoginPressed.layer.shadowRadius = 1.0
-        
-        
         //email login button attributes
-        emailLoginPressed.layer.shadowRadius = 1.0
-        emailLoginPressed.layer.shadowColor = UIColor.black.cgColor
         emailLoginPressed.layer.masksToBounds = false
-        emailLoginPressed.layer.shadowOpacity = 0.5
         emailLoginPressed.layer.backgroundColor = UIColor.coral.cgColor
         emailLoginPressed.setTitleColor(UIColor.white, for: .normal)
-        emailLoginPressed.layer.shadowColor = UIColor.black.cgColor
-        emailLoginPressed.layer.shadowOffset = CGSize(width: 0, height: 2)
     }
     
 }

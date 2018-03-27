@@ -51,20 +51,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runCoinDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Wx1-3H-cD4">
                                 <rect key="frame" x="13" y="64" width="349" height="647"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDZ-MW-8oi">
-                                <rect key="frame" x="45" y="500" width="285" height="47"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="47" id="NvN-GD-EGK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Black" family="Nunito" pointSize="14"/>
-                                <state key="normal" title="Sign Up With Google">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="googleLoginPressed:" destination="XJY-18-pOe" eventType="touchUpInside" id="gYA-3d-yGl"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdH-lQ-2xR">
                                 <rect key="frame" x="45" y="570" width="285" height="47"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,23 +87,33 @@
                                     <action selector="facebookLoginPressed:" destination="XJY-18-pOe" eventType="touchUpInside" id="CVn-Iw-IWM"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOT-Ho-2kd" customClass="GIDSignInButton">
+                                <rect key="frame" x="45" y="500" width="285" height="47"/>
+                                <color key="backgroundColor" red="0.23529411759999999" green="0.62352941179999999" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="47" id="YUx-Cl-AnT"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="googleLoginPressed:" destination="XJY-18-pOe" eventType="touchUpInside" id="gHg-gp-ptv"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottomMargin" secondItem="r0O-Uz-dng" secondAttribute="bottom" constant="189" id="3Ah-Ri-rWj"/>
+                            <constraint firstItem="mdH-lQ-2xR" firstAttribute="top" secondItem="BOT-Ho-2kd" secondAttribute="bottom" constant="23" id="ENz-kL-H1c"/>
                             <constraint firstItem="r0O-Uz-dng" firstAttribute="leading" secondItem="isU-f5-5wO" secondAttribute="leading" constant="45" id="Emf-iW-drK"/>
                             <constraint firstItem="Wx1-3H-cD4" firstAttribute="top" secondItem="isU-f5-5wO" secondAttribute="top" id="Hzi-rY-aAN"/>
                             <constraint firstItem="r0O-Uz-dng" firstAttribute="top" secondItem="ojy-I1-NKC" secondAttribute="bottom" constant="65" id="Kge-wC-o0M"/>
                             <constraint firstItem="Wx1-3H-cD4" firstAttribute="centerX" secondItem="RnQ-Q1-TEV" secondAttribute="centerX" id="WTQ-nY-ZKk"/>
                             <constraint firstItem="mdH-lQ-2xR" firstAttribute="leading" secondItem="isU-f5-5wO" secondAttribute="leading" constant="45" id="YYe-sH-VoD"/>
-                            <constraint firstItem="WDZ-MW-8oi" firstAttribute="top" secondItem="r0O-Uz-dng" secondAttribute="bottom" constant="22" id="fGP-0y-VuG"/>
-                            <constraint firstItem="isU-f5-5wO" firstAttribute="trailing" secondItem="WDZ-MW-8oi" secondAttribute="trailing" constant="45" id="gDL-kn-0Ai"/>
+                            <constraint firstItem="BOT-Ho-2kd" firstAttribute="leading" secondItem="isU-f5-5wO" secondAttribute="leading" constant="45" id="g85-pi-1AD"/>
                             <constraint firstItem="isU-f5-5wO" firstAttribute="trailing" secondItem="mdH-lQ-2xR" secondAttribute="trailing" constant="45" id="gP0-1R-B8w"/>
                             <constraint firstItem="isU-f5-5wO" firstAttribute="trailing" secondItem="r0O-Uz-dng" secondAttribute="trailing" constant="45" id="grV-vl-JhH"/>
-                            <constraint firstItem="WDZ-MW-8oi" firstAttribute="leading" secondItem="isU-f5-5wO" secondAttribute="leading" constant="45" id="mtG-pY-uPK"/>
-                            <constraint firstItem="mdH-lQ-2xR" firstAttribute="top" secondItem="WDZ-MW-8oi" secondAttribute="bottom" constant="23" id="niZ-RK-Rp0"/>
                             <constraint firstItem="isU-f5-5wO" firstAttribute="trailing" secondItem="ojy-I1-NKC" secondAttribute="trailing" constant="120" id="onT-P6-Xd5"/>
+                            <constraint firstItem="isU-f5-5wO" firstAttribute="trailing" secondItem="BOT-Ho-2kd" secondAttribute="trailing" constant="45" id="qFq-1C-Qmy"/>
                             <constraint firstItem="ojy-I1-NKC" firstAttribute="leading" secondItem="isU-f5-5wO" secondAttribute="leading" constant="119" id="s7K-us-bIr"/>
+                            <constraint firstItem="BOT-Ho-2kd" firstAttribute="top" secondItem="r0O-Uz-dng" secondAttribute="bottom" constant="22" id="yUJ-49-fS2"/>
                             <constraint firstItem="ojy-I1-NKC" firstAttribute="top" secondItem="isU-f5-5wO" secondAttribute="top" constant="81" id="zZG-rL-IcW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="isU-f5-5wO"/>
@@ -126,7 +122,7 @@
                     <connections>
                         <outlet property="emailLoginPressed" destination="mdH-lQ-2xR" id="cwv-UN-PI8"/>
                         <outlet property="facebookLoginPressed" destination="r0O-Uz-dng" id="O4k-V9-QXK"/>
-                        <outlet property="googleLoginPressed" destination="WDZ-MW-8oi" id="kYR-1X-ZaT"/>
+                        <outlet property="googleLoginPressed" destination="BOT-Ho-2kd" id="hUe-eI-Wqv"/>
                         <segue destination="1BT-5h-lSE" kind="show" identifier="GoToEmailSignIn" id="4He-Ze-Wxn"/>
                     </connections>
                 </viewController>

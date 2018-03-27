@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -21,11 +22,13 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        SVProgressHUD.show()
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if error != nil {
                 print(error!)
             }
             else {
+                SVProgressHUD.dismiss()
                 print("registration success!")
                 self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
             }
