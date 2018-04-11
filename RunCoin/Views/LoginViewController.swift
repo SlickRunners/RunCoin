@@ -70,6 +70,7 @@ import UIKit
 import GoogleSignIn
 import Firebase
 import FBSDKLoginKit
+import FacebookLogin
 
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
@@ -77,41 +78,50 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     //Buttons
     @IBOutlet weak var emailLoginPressed: UIButton!
     @IBOutlet weak var googleLoginPressed: GIDSignInButton!
-    @IBOutlet weak var facebookLoginPressed: UIButton!
+    @IBOutlet weak var facebookLoginPressed: FBSDKLoginButton!
     @IBAction func emailLoginPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEmailSignIn", sender: self)
     }
     //Facebook button
-    @IBAction func facebookLoginPressed(_ sender: UIButton) {
-        let FBLoginButton = FBSDKLoginButton()
-        facebookLoginPressed = FBLoginButton
+    @IBAction func facebookLoginPressed(_ sender: FBSDKLoginButton) {
+        let loginButton = FBSDKLoginButton()
+        loginButton.delegate = self
+        let FBAccessToken = FBSDKAccessToken.current()
+        guard let FBAccessTokenString = FBAccessToken?.tokenString else {return}
+        let FBCredentials = FacebookAuthProvider.credential(withAccessToken: FBAccessTokenString)
+        Auth.auth().signIn(with: FBCredentials) { (user, error) in
+            if error != nil {
+                print("Error logging Facebook credentials to Firebase")
+                return
+            }
+             print("Facebook/Firebase authentication successfull")
+        }
     }
-    //FB logoutButton
+    //FB LogOUT Button
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         print("Did log user out of Facebook.")
     }
-    //FB LoginButton
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    //FB LogIN Button
+    func loginButton(_ loginButton: FBSDKLoginButton, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if error != nil {
             print("Error, FB login failed: \(error.localizedDescription)")
             return
         }
         print("User successfully logged in with Facebook.")
-       // moveToHomeScreen()
     }
     
     
     @IBAction func googleLoginPressed(_ sender: GIDSignInButton) {
+        GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
-        moveToHomeScreen()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Google login
         GIDSignIn.sharedInstance().uiDelegate = self
             //Configure the sign-in button look/feel
-        googleLoginPressed.style = .wide
             // Uncomment to automatically sign in the user.
             //GIDSignIn.sharedInstance().signInSilently()
         
@@ -126,9 +136,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButt
     }
     
     func moveToHomeScreen() {
-        if Auth.auth().currentUser != nil {
-    performSegue(withIdentifier: "GoToHomeScreen", sender: self)
-        }
+    performSegue(withIdentifier: "GoToHomeScreen", sender: facebookLoginPressed)
     }
     
     

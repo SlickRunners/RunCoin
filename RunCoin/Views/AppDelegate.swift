@@ -15,6 +15,7 @@ import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -36,36 +37,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     
-    //Google Sign in methods
+//    //Google Sign in methods
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        // ...
         if let error = error {
-            print(error.localizedDescription)
+            GIDSignIn.sharedInstance().signOut()
+            print("Error logging into Google: \(error.localizedDescription)")
             print("ERROR MOTHER FUCKER")
             return
         }
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
+        guard let googleAuthentication = user.authentication.idToken else { return }
+        guard let googleAccessToken = user.authentication.accessToken else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: googleAuthentication,
+                                                       accessToken: googleAccessToken)
         // Pass to firebase
         Auth.auth().signIn(with: credential) { (user, error) in
             if let error = error {
-                print(error.localizedDescription)
-                GIDSignIn.sharedInstance().signOut()
+                print("Failed to create Google/Firebase account: \(error.localizedDescription)")
                 return
             }
-            // User is signed in
-            print("User has successfully signed in with Google!")
-            //self.currentUser = Auth.auth().currentUser
-            //TODO: call function to move user to home screen.
-            // Perform any operations on signed in user here.
+            // User is signed into firebase using Google
+            print("User has successfully logged into Firebase with Google!")
         }
     }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-    }
+//
+//    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+//        // Perform any operations when the user disconnects from app here.
+//        // ...
+//    }
     
     
     @available(iOS 9.0, *)
@@ -74,30 +72,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
             let handled = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
             
-            return handled
+
 //            Google
-//            return GIDSignIn.sharedInstance().handle(url,
-//                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-//                                                     annotation: [:])
+            GIDSignIn.sharedInstance().handle(url,
+                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                     annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+            
+            return handled
     }
-    
-    func logOutGoogle(){
-        GIDSignIn.sharedInstance().signOut()
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print("Error logging out of Firebase: \(signOutError)")
-        }
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        storyBoard.instantiateViewController(withIdentifier: "LoginScreen")
-    }
-    
-    func showHomeView() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: "HomeScreen")
-    }
-    //END Google sign in
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -119,13 +101,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-    
-    /// set orientations you want to be allowed in this property by default
-    var orientationLock = UIInterfaceOrientationMask.all
-    
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return self.orientationLock
     }
 
 
