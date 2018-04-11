@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
 
 class StartRunViewController: UIViewController {
-
+    @IBAction func logoutButtonPressed(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().signOut()
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,15 +32,9 @@ class StartRunViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func goToHomeScreen() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        storyBoard.instantiateViewController(withIdentifier: "HomeScreen")
     }
-    */
 
 }

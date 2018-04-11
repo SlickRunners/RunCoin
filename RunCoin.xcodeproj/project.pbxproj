@@ -27,6 +27,7 @@
 		2324BC8B30C64FD6A5212EAB /* Pods_RunCoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunCoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9014EC65EEF13400AF0360 /* Pods-RunCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunCoin.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin.release.xcconfig"; sourceTree = "<group>"; };
 		A35DA6827AD14EB3CD371AD2 /* Pods-RunCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunCoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin.debug.xcconfig"; sourceTree = "<group>"; };
+		B006F517207E63720045E5E0 /* RunCoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunCoin.entitlements; sourceTree = "<group>"; };
 		B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhotoViewController.swift; sourceTree = "<group>"; };
 		B023D7EF20503DA600491C39 /* RunCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B023D7F220503DA600491C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 		B023D7F120503DA600491C39 /* RunCoin */ = {
 			isa = PBXGroup;
 			children = (
+				B006F517207E63720045E5E0 /* RunCoin.entitlements */,
 				B023D8072050415500491C39 /* Views */,
 				B023D8052050410600491C39 /* StroyBoards */,
 				B023D804205040EF00491C39 /* Image Assets */,
@@ -181,6 +183,11 @@
 					B023D7EE20503DA600491C39 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -448,7 +455,9 @@
 			baseConfigurationReference = A35DA6827AD14EB3CD371AD2 /* Pods-RunCoin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RunCoin/RunCoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88FE5FCGQV;
 				INFOPLIST_FILE = RunCoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.runslick.RunCoin;
@@ -463,7 +472,9 @@
 			baseConfigurationReference = 3C9014EC65EEF13400AF0360 /* Pods-RunCoin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RunCoin/RunCoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88FE5FCGQV;
 				INFOPLIST_FILE = RunCoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.runslick.RunCoin;

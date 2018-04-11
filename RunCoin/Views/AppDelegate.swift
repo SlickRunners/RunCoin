@@ -9,11 +9,33 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import FacebookCore
+import FBSDKCoreKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
-    var currentUser : User?
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //Facebook didFinishLaunchingWithOptions
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        
+        // Google didFinishLaunchingWithOptions
+        FirebaseApp.configure()
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.setValue("We've got data!")
+        
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
+        
+        //currentUser = Auth.auth().currentUser
+        return true
+    }
+    
+    
     //Google Sign in methods
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         // ...
@@ -40,30 +62,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
     }
     
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+    
     
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
         -> Bool {
-            return GIDSignIn.sharedInstance().handle(url,
-                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                     annotation: [:])
+            
+            let handled = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+            
+            return handled
+//            Google
+//            return GIDSignIn.sharedInstance().handle(url,
+//                                                     sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+//                                                     annotation: [:])
     }
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        FirebaseApp.configure()
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        ref.setValue("We've got data!")
-        
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        
-        //currentUser = Auth.auth().currentUser
-
-        return true
+    
+    func logOutGoogle(){
+        GIDSignIn.sharedInstance().signOut()
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error logging out of Firebase: \(signOutError)")
+        }
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        storyBoard.instantiateViewController(withIdentifier: "LoginScreen")
     }
+    
+    func showHomeView() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        window?.rootViewController = storyBoard.instantiateViewController(withIdentifier: "HomeScreen")
+    }
+    //END Google sign in
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

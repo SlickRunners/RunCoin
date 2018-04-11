@@ -5,14 +5,6 @@
 //  Created by Roland Christensen on 3/7/18.
 //  Copyright © 2018 Roland Christensen. All rights reserved.
 //
-
-import UIKit
-import GoogleSignIn
-import Firebase
-import FacebookLogin
-import FBSDKLoginKit
-
-
 extension UIColor {
     
     @nonobjc class var greenyBlue: UIColor {
@@ -70,7 +62,18 @@ extension UIColor {
 }
 
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+
+
+
+
+import UIKit
+import GoogleSignIn
+import Firebase
+import FBSDKLoginKit
+
+
+class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
+    
     //Buttons
     @IBOutlet weak var emailLoginPressed: UIButton!
     @IBOutlet weak var googleLoginPressed: GIDSignInButton!
@@ -78,13 +81,29 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBAction func emailLoginPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEmailSignIn", sender: self)
     }
-    
+    //Facebook button
     @IBAction func facebookLoginPressed(_ sender: UIButton) {
+        let FBLoginButton = FBSDKLoginButton()
+        facebookLoginPressed = FBLoginButton
     }
+    //FB logoutButton
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+        print("Did log user out of Facebook.")
+    }
+    //FB LoginButton
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+        if error != nil {
+            print("Error, FB login failed: \(error.localizedDescription)")
+            return
+        }
+        print("User successfully logged in with Facebook.")
+       // moveToHomeScreen()
+    }
+    
     
     @IBAction func googleLoginPressed(_ sender: GIDSignInButton) {
         GIDSignIn.sharedInstance().signIn()
-        performSegue(withIdentifier: "GoToHomeScreen", sender: self)
+        moveToHomeScreen()
     }
     
     override func viewDidLoad() {
@@ -106,5 +125,16 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         emailLoginPressed.setTitleColor(UIColor.white, for: .normal)
     }
     
+    func moveToHomeScreen() {
+        if Auth.auth().currentUser != nil {
+    performSegue(withIdentifier: "GoToHomeScreen", sender: self)
+        }
+    }
+    
+    
+    
+    //logout unwind segue
+    @IBAction func unwindToVCHome(segue:UIStoryboardSegue) { }
+
 }
     
