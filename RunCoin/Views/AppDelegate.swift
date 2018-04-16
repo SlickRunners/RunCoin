@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 //    //Google Sign in methods
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
         if let error = error {
-            GIDSignIn.sharedInstance().signOut()
             print("Error logging into Google: \(error.localizedDescription)")
             print("ERROR MOTHER FUCKER")
             return

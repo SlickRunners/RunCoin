@@ -61,88 +61,142 @@ extension UIColor {
     
 }
 
-
-
-
-
-
 import UIKit
 import GoogleSignIn
 import Firebase
 import FBSDKLoginKit
 import FacebookLogin
+import FacebookCore
+import SwiftyJSON
+import FirebaseStorage
 
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate {
+    
+    var name : String?
+    var email : String?
+    var profilePicture : UIImage?
     
     //Buttons
     @IBOutlet weak var emailLoginPressed: UIButton!
-    @IBOutlet weak var googleLoginPressed: GIDSignInButton!
-    @IBOutlet weak var facebookLoginPressed: FBSDKLoginButton!
     @IBAction func emailLoginPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEmailSignIn", sender: self)
     }
     //Facebook button
-    @IBAction func facebookLoginPressed(_ sender: FBSDKLoginButton) {
-        let loginButton = FBSDKLoginButton()
-        loginButton.delegate = self
-        let FBAccessToken = FBSDKAccessToken.current()
-        guard let FBAccessTokenString = FBAccessToken?.tokenString else {return}
-        let FBCredentials = FacebookAuthProvider.credential(withAccessToken: FBAccessTokenString)
-        Auth.auth().signIn(with: FBCredentials) { (user, error) in
-            if error != nil {
-                print("Error logging Facebook credentials to Firebase")
-                return
-            }
-             print("Facebook/Firebase authentication successfull")
-        }
-    }
-    //FB LogOUT Button
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        print("Did log user out of Facebook.")
-    }
-    //FB LogIN Button
-    func loginButton(_ loginButton: FBSDKLoginButton, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
-        if error != nil {
-            print("Error, FB login failed: \(error.localizedDescription)")
-            return
-        }
-        print("User successfully logged in with Facebook.")
+    @IBAction func facebookLoginPressed(_ sender: UIButton) {
+        facebookLoginButtonClicked()
     }
     
-    
-    @IBAction func googleLoginPressed(_ sender: GIDSignInButton) {
-        GIDSignIn.sharedInstance().uiDelegate = self
+    @IBAction func googleLoginPressed(_ sender: UIButton) {
         GIDSignIn.sharedInstance().signIn()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpViews()
+    }
+    
+    
+    @objc func facebookLoginButtonClicked() {
+        let loginManager = LoginManager()
+        loginManager.logIn(readPermissions: [ .publicProfile, .email ], viewController: self) { (result) in
+            switch result {
+            case .success(grantedPermissions: _, declinedPermissions: _, token: _):
+                print("Successfully logged into Facebook.")
+                self.signIntoFireBase()
+            case .failed(let err):
+                print(err)
+            case .cancelled:
+                print("User cancelled facebook login.")
+            }
+        }
+    }
+    
+    fileprivate func signIntoFireBase() {
+        guard let FBAccessToken = AccessToken.current?.authenticationToken else {return}
+        let FBCredentials = FacebookAuthProvider.credential(withAccessToken: FBAccessToken)
+        Auth.auth().signIn(with: FBCredentials) { (user, error) in
+            if let error = error {
+                print("Error logging Facebook credentials to Firebase: \(error.localizedDescription)")
+                return
+            }
+            print("Facebook/Firebase authentication successfull")
+        }
+    }
+    
+    fileprivate func fetchFacebookUser() {
+        let graphRequestConnection = GraphRequestConnection()
+        let graphRequest = GraphRequest(graphPath: "me", parameters: ["fields": "id, email, name, picture.type(large)"], accessToken: AccessToken.current, httpMethod: .GET, apiVersion: .defaultVersion)
+        graphRequestConnection.add(graphRequest) { (httpResponse, result) in
+            switch result {
+            case .success(response: let response):
+                guard let responseDictionary = response.dictionaryValue else { return }
+                let json = JSON(responseDictionary)
+                self.name = json["name"].string
+                self.email = json["email"].string
+                guard let profilePictureURL = json["profile"]["data"]["url"].string, let url = URL(string: profilePictureURL) else { return }
         
-        //Google login
-        GIDSignIn.sharedInstance().uiDelegate = self
-            //Configure the sign-in button look/feel
-            // Uncomment to automatically sign in the user.
-            //GIDSignIn.sharedInstance().signInSilently()
-        
-        //Nav attributes
-        title = String("RunCoin")
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        //email login button attributes
-        emailLoginPressed.layer.masksToBounds = false
-        emailLoginPressed.layer.backgroundColor = UIColor.coral.cgColor
-        emailLoginPressed.setTitleColor(UIColor.white, for: .normal)
+                URLSession.shared.dataTask(with: url, completionHandler: { (data, response, err) in
+                    if let err = err {
+                        print(err)
+                    }
+                    guard let data = data else { return }
+                    self.profilePicture = UIImage(data: data)
+                    self.saveUserIntoFirebase()
+                }).resume()
+                break
+            case .failed(let err):
+                print(err)
+                break
+            }
+        }
+        graphRequestConnection.start()
+    }
+    
+    
+    fileprivate func saveUserIntoFirebase() {
+        let fileName = UUID().uuidString
+        guard let profilePicture = self.profilePicture else { return }
+        guard let uploadData = UIImageJPEGRepresentation(profilePicture, 0.3) else { return }
+        Storage.storage().reference().child("profilePictures").child(fileName).putData(uploadData, metadata: nil) { (metadata, error) in
+            if let error = error {
+                print(error)
+            }
+            print("Succesfully saved profile image to Firebase Storage!")
+            guard let profilePictureURL = metadata?.downloadURL()?.absoluteString else { return }
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            let dictionaryValues = ["name" : self.name, "email" : self.email, "profilePictureURL" : profilePictureURL]
+            let values = [uid: dictionaryValues]
+            
+            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                print("Succesfully saved user profile image to Firebase!")
+            })
+        }
     }
     
     func moveToHomeScreen() {
     performSegue(withIdentifier: "GoToHomeScreen", sender: facebookLoginPressed)
     }
     
-    
-    
     //logout unwind segue
-    @IBAction func unwindToVCHome(segue:UIStoryboardSegue) { }
+    @IBAction func unwindToVCHome(segue:UIStoryboardSegue) {
+    }
+    
+    fileprivate func setUpViews(){
+        //Nav attributes
+        title = String("RunCoin")
+        navigationController?.navigationBar.prefersLargeTitles = true
+        //email login button attributes
+        emailLoginPressed.layer.masksToBounds = false
+        emailLoginPressed.layer.backgroundColor = UIColor.coral.cgColor
+        emailLoginPressed.setTitleColor(UIColor.white, for: .normal)
+        //Google login
+        GIDSignIn.sharedInstance().uiDelegate = self
+    }
 
 }
     
