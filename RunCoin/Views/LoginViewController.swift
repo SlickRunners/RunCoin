@@ -78,7 +78,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     var profilePicture : UIImage?
     
     //Buttons
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToLoginScreen", sender: self)
+    }
     @IBOutlet weak var emailLoginPressed: UIButton!
+    
     @IBAction func emailLoginPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "GoToEmailSignIn", sender: self)
     }
@@ -88,8 +92,20 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func googleLoginPressed(_ sender: UIButton) {
-        GIDSignIn.sharedInstance().signIn()
+        if GIDSignIn.sharedInstance().currentUser == nil {
+         GIDSignIn.sharedInstance().signIn()
+            }
     }
+    
+//    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeScreen") as UIViewController
+//    // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
+//
+//    self.presentViewController(viewController, animated: false, completion: nil)
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,6 +120,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             case .success(grantedPermissions: _, declinedPermissions: _, token: _):
                 print("Successfully logged into Facebook.")
                 self.signIntoFireBase()
+                self.moveToHomeScreen()
             case .failed(let err):
                 print(err)
             case .cancelled:
@@ -181,6 +198,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     func moveToHomeScreen() {
     performSegue(withIdentifier: "GoToHomeScreen", sender: facebookLoginPressed)
     }
+    
+    func moveToHomeScreenGoogle() {
+        performSegue(withIdentifier: "GoToHomeScreen", sender: googleLoginPressed)
+    }
+    
     
     //logout unwind segue
     @IBAction func unwindToVCHome(segue:UIStoryboardSegue) {

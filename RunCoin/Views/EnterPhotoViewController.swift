@@ -8,6 +8,7 @@
 
 import UIKit
 import MobileCoreServices
+import FirebaseStorage
 
 class EnterPhotoViewController: UIViewController, UIImagePickerControllerDelegate,
 UINavigationControllerDelegate {
@@ -16,6 +17,13 @@ UINavigationControllerDelegate {
     var placeHolderImage : UIImageView!
     @IBOutlet weak var uploadPhotoButton: UIButton!
     @IBOutlet weak var photoImage: UIImageView!
+    @IBOutlet weak var underImageLabel: UILabel!
+    @IBOutlet weak var headlineLabel: UILabel!
+    @IBOutlet weak var finishProfileButton: UIButton!
+    
+    @IBAction func finishProfileButtonPressed(_ sender: UIButton) {
+        
+    }
     
     @IBAction func uploadPhotoPressed(_ sender: UIButton) {
         let myAlert = UIAlertController(title: "Select Image From", message: "", preferredStyle: .actionSheet)
@@ -32,17 +40,19 @@ UINavigationControllerDelegate {
         }
         myAlert.addAction(cameraRollAction)
         self.present(myAlert, animated: true)
-        
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
-        if mediaType.isEqual(to: kUTTypeImage as String) {
-            let newImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-            photoImage.image = newImage
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            photoImage.image = image
         }
-        self.dismiss(animated: true, completion: nil)
+        //photoImage.image = infoPhoto
+        dismiss(animated: true, completion: nil)
     }
+    
+//    finishProfileButton.isHidden = false
+//    underImageLabel.text = "But you can always tap to change it."
+//    headlineLabel.text = "That's a great look!"
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
@@ -52,6 +62,17 @@ UINavigationControllerDelegate {
         super.viewDidLoad()
         //button attributes
         uploadPhotoButton.layer.backgroundColor = UIColor.coral.cgColor
+        finishProfileButton.isHidden = true
+        
+        let photoTapped = UITapGestureRecognizer(target: self, action: #selector(EnterPhotoViewController.handleSelectProfileImage))
+        photoImage.isUserInteractionEnabled = true
+        photoImage.addGestureRecognizer(photoTapped)
+    }
+    
+    @objc func handleSelectProfileImage(){
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
     }
 }
 

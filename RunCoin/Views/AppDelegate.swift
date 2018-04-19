@@ -22,12 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         //Facebook didFinishLaunchingWithOptions
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        
-        // Google didFinishLaunchingWithOptions
         FirebaseApp.configure()
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        ref.setValue("We've got data!")
+        //ref.setValue("We've got data!")
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
@@ -101,7 +99,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
 
 }
 
