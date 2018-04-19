@@ -504,9 +504,6 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="DZR-Cd-9R8">
-                                                <rect key="frame" x="97" y="160" width="181" height="196"/>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi! This is our official pacer dude." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcg-7n-EZo">
                                                 <rect key="frame" x="48" y="405" width="279" height="25"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
@@ -551,6 +548,10 @@
                                                     <action selector="finishProfileButtonPressed:" destination="1Bd-26-H3J" eventType="touchUpInside" id="pw6-E9-lY8"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photoAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="m44-KK-duF">
+                                                <rect key="frame" x="98" y="160" width="180" height="196"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -558,10 +559,8 @@
                                             <constraint firstAttribute="trailing" secondItem="TKm-Su-gJH" secondAttribute="trailing" constant="38" id="1rD-Gw-fkC"/>
                                             <constraint firstItem="7Vh-AF-uLH" firstAttribute="leading" secondItem="FmJ-Vl-Ded" secondAttribute="leading" constant="38" id="39r-bd-MJf"/>
                                             <constraint firstItem="TKm-Su-gJH" firstAttribute="leading" secondItem="FmJ-Vl-Ded" secondAttribute="leading" constant="38" id="4ep-6g-JRm"/>
-                                            <constraint firstItem="DZR-Cd-9R8" firstAttribute="leading" secondItem="FmJ-Vl-Ded" secondAttribute="leading" constant="97" id="6hN-D2-FjW"/>
                                             <constraint firstItem="7Vh-AF-uLH" firstAttribute="top" secondItem="TKm-Su-gJH" secondAttribute="bottom" constant="25" id="7zP-Fr-u9J"/>
                                             <constraint firstItem="InH-fS-9XU" firstAttribute="leading" secondItem="FmJ-Vl-Ded" secondAttribute="leading" constant="48" id="8rM-C0-byA"/>
-                                            <constraint firstItem="DZR-Cd-9R8" firstAttribute="top" secondItem="InH-fS-9XU" secondAttribute="bottom" constant="26" id="8so-33-kfI"/>
                                             <constraint firstItem="er5-yf-JrY" firstAttribute="top" secondItem="FmJ-Vl-Ded" secondAttribute="top" id="JfD-9h-cUR"/>
                                             <constraint firstItem="TKm-Su-gJH" firstAttribute="top" secondItem="kcg-7n-EZo" secondAttribute="bottom" constant="28" id="Ke8-Yz-h8a"/>
                                             <constraint firstItem="kcg-7n-EZo" firstAttribute="leading" secondItem="FmJ-Vl-Ded" secondAttribute="leading" constant="48" id="Kkb-fa-qA7"/>
@@ -570,7 +569,6 @@
                                             <constraint firstAttribute="trailing" secondItem="7Vh-AF-uLH" secondAttribute="trailing" constant="38" id="Vnc-6z-XiQ"/>
                                             <constraint firstAttribute="height" constant="667" id="Xv5-jt-L1v"/>
                                             <constraint firstAttribute="trailing" secondItem="kcg-7n-EZo" secondAttribute="trailing" constant="48" id="Yv6-mJ-IXC"/>
-                                            <constraint firstAttribute="trailing" secondItem="DZR-Cd-9R8" secondAttribute="trailing" constant="97" id="b29-jC-HGk"/>
                                             <constraint firstItem="ep9-Ab-bo0" firstAttribute="top" secondItem="FmJ-Vl-Ded" secondAttribute="top" constant="43" id="fh0-14-UvM"/>
                                             <constraint firstAttribute="bottom" secondItem="7Vh-AF-uLH" secondAttribute="bottom" constant="84" id="fs0-15-LR3"/>
                                             <constraint firstItem="fmG-Wh-kHf" firstAttribute="top" secondItem="FmJ-Vl-Ded" secondAttribute="top" constant="189" id="ifI-Ya-hfl"/>
@@ -604,7 +602,7 @@
                     <connections>
                         <outlet property="finishProfileButton" destination="7Vh-AF-uLH" id="V4M-84-SV8"/>
                         <outlet property="headlineLabel" destination="InH-fS-9XU" id="rpu-BU-yui"/>
-                        <outlet property="photoImage" destination="DZR-Cd-9R8" id="6OA-Mu-afi"/>
+                        <outlet property="photoImage" destination="m44-KK-duF" id="Lgi-Qt-EDd"/>
                         <outlet property="underImageLabel" destination="kcg-7n-EZo" id="d1a-c1-xjQ"/>
                         <outlet property="uploadPhotoButton" destination="TKm-Su-gJH" id="FRl-6n-6gJ"/>
                     </connections>
@@ -847,6 +845,6 @@
         <image name="time" width="20" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XjH-1T-ozP"/>
+        <segue reference="CsK-Z0-Qsp"/>
     </inferredMetricsTieBreakers>
 </document>

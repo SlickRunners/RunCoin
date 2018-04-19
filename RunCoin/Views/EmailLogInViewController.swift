@@ -21,6 +21,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    //Firebase user ID
+    let firebaseUid = Auth.auth().currentUser?.uid
+    
     //pickerview setup
     let myPickerView = UIPickerView()
     let myPickerData : [String] = ["" ,"Male", "Female", "Other"]
@@ -39,31 +42,6 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     @objc func pickerViewDoneButton(){
         genderTextField.resignFirstResponder()
-        //saveUserInfoToFirebase()
-    }
-    func saveUserInfoToFirebase(){
-        //ref.child("user/data").child("gender").setValue(genderTextField.text)
-        //ref.child("user/data").child("username").setValue(userNameTextField.text)
-    }
-    
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-        SVProgressHUD.show()
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-            if error != nil {
-                print("Problem logging in user for first time! error:", error!)
-            }
-            else {
-                let ref = Database.database().reference()
-                let userReference = ref.child("users")
-                let uid = user?.uid
-                let newUserReference = userReference.child(uid!)
-                newUserReference.setValue(["username": self.userNameTextField.text!, "email": self.emailTextField.text!, "birthday": self.birthdayTextField.text!, "gender": self.genderTextField.text!])
-                SVProgressHUD.dismiss()
-                print("registration success!")
-                self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
-            }
-        }
-
     }
     
     @objc func editingChanged(_ textField: UITextField){
@@ -74,15 +52,15 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
             }
         }
         guard
-        let email = emailTextField.text, !email.isEmpty,
-        let password = passwordTextField.text, !password.isEmpty,
-        let username = userNameTextField.text, !username.isEmpty,
-        let birthday = birthdayTextField.text, !birthday.isEmpty
-        //let gender = genderTextField.text, !gender.isEmpty
-        else {
-            self.doneButton.isEnabled = false
-            self.doneButton.titleLabel?.isEnabled = false
-            return
+            let email = emailTextField.text, !email.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty,
+            let username = userNameTextField.text, !username.isEmpty,
+            let birthday = birthdayTextField.text, !birthday.isEmpty
+            //let gender = genderTextField.text, !gender.isEmpty
+            else {
+                self.doneButton.isEnabled = false
+                self.doneButton.titleLabel?.isEnabled = false
+                return
         }
         doneButton.isEnabled = true
         self.doneButton.titleLabel?.isEnabled = true
@@ -146,7 +124,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         //Nav attributes
         title = String("Set Up Your Profile")
         navigationItem.largeTitleDisplayMode = .never
-    
+        
         genderTextField.inputView = myPickerView
         myPickerView.delegate = self
         myPickerView.showsSelectionIndicator = true
@@ -162,6 +140,30 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         genderTextField.inputAccessoryView = toolBar
     }
     
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        SVProgressHUD.show()
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+            if error != nil {
+                print("Problem logging in user for first time! error:", error!)
+                return
+            }
+            let ref = Database.database().reference()
+            let userReference = ref.child("users")
+            let uid = self.firebaseUid
+            let newUserReference = userReference.child(uid!)
+            newUserReference.setValue(["username": self.userNameTextField.text!, "email": self.emailTextField.text!, "birthday": self.birthdayTextField.text!, "gender": self.genderTextField.text!])
+            print("registration success!")
+            print(uid!)
+        })
+        SVProgressHUD.dismiss()
+        self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToPhotoPage" {
+            let destination = segue.destination as! EnterPhotoViewController
+            destination.firebaseUserID = firebaseUid
+        }
+    }
+    
 }
-
-
