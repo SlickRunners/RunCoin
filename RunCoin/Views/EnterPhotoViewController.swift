@@ -40,7 +40,8 @@ UINavigationControllerDelegate {
                     let newUserRef = userRef.child(userID!)
                     let profileImageURL = metaData?.downloadURL()?.absoluteString
                     
-                    newUserRef.updateChildValues(["profile_image" : profileImageURL!])
+                    newUserRef.value
+                    //newUserRef.updateChildValues(["profile_image" : profileImageURL!])
                     //newUserRef.setValue(["profileImageUrl": profileImageURL])
             })
         }
