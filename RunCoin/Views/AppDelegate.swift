@@ -23,9 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         FirebaseApp.configure()
-        var ref: DatabaseReference!
-        ref = Database.database().reference()
-        //ref.setValue("We've got data!")
+//        var ref: DatabaseReference!
+//        ref = Database.database().reference()
+//        //ref.setValue("We've got data!")
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self

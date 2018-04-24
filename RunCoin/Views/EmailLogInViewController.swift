@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SVProgressHUD
+import Presentr
 
 class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -20,6 +21,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    //Presentr
+    let presenter = Presentr(presentationType: .alert)
     
     //Firebase user ID
     let firebaseUid = Auth.auth().currentUser?.uid
@@ -141,10 +145,15 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        view.endEditing(true)
         SVProgressHUD.show()
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
             if error != nil {
                 print("Problem logging in user for first time! error:", error!)
+                let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email. We won't send you spam.", preferredStyle: .alert)
+                let alertActionTest = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(alertActionTest)
+                self.present(alertController, animated: true)
                 return
             }
             let ref = Database.database().reference()
@@ -154,9 +163,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
             newUserReference.setValue(["username": self.userNameTextField.text!, "email": self.emailTextField.text!, "birthday": self.birthdayTextField.text!, "gender": self.genderTextField.text!])
             print("registration success!")
             print(uid!)
+            self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
         })
         SVProgressHUD.dismiss()
-        self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -164,6 +173,10 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let destination = segue.destination as! EnterPhotoViewController
             destination.firebaseUserID = firebaseUid
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
 }

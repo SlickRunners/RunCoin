@@ -20,6 +20,7 @@
 		B023D82320508DA100491C39 /* LoginScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D82220508DA100491C39 /* LoginScreen.xcassets */; };
 		B023D82520509D6500491C39 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D82420509D6500491C39 /* LoginViewController.swift */; };
 		B03293E22087B16200284BAF /* AccountLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03293E12087B16200284BAF /* AccountLoginViewController.swift */; };
+		B03293E4208A5A3200284BAF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03293E3208A5A3200284BAF /* AuthService.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		B023D82220508DA100491C39 /* LoginScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LoginScreen.xcassets; sourceTree = "<group>"; };
 		B023D82420509D6500491C39 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B03293E12087B16200284BAF /* AccountLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLoginViewController.swift; sourceTree = "<group>"; };
+		B03293E3208A5A3200284BAF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				B023D7F220503DA600491C39 /* AppDelegate.swift */,
+				B03293E3208A5A3200284BAF /* AuthService.swift */,
 				B03293E12087B16200284BAF /* AccountLoginViewController.swift */,
 				B023D7F420503DA600491C39 /* EmailLogInViewController.swift */,
 				B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */,
@@ -266,6 +269,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -283,6 +287,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -324,6 +329,7 @@
 				B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */,
 				B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */,
 				B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */,
+				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

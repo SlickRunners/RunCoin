@@ -21,6 +21,7 @@ class StartRunViewController: UIViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+        goToHomeScreen()
     }
     
     override func viewDidLoad() {
@@ -35,8 +36,8 @@ class StartRunViewController: UIViewController {
     }
     
     func goToHomeScreen() {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        storyBoard.instantiateViewController(withIdentifier: "HomeScreen")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let signInVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        self.present(signInVC, animated: true, completion: nil)
     }
-
 }

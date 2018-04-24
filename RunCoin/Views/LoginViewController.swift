@@ -69,6 +69,7 @@ import FacebookLogin
 import FacebookCore
 import SwiftyJSON
 import FirebaseStorage
+import SVProgressHUD
 
 
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
@@ -102,14 +103,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
 //
 //    self.presentViewController(viewController, animated: false, completion: nil)
     
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        if Auth.auth().currentUser != nil {
+            SVProgressHUD.show()
+                self.performSegue(withIdentifier: "GoToHomeScreen", sender: nil)
+        }
+        SVProgressHUD.dismiss()
     }
     
     
@@ -201,11 +206,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     func moveToHomeScreenGoogle() {
         performSegue(withIdentifier: "GoToHomeScreen", sender: googleLoginPressed)
-    }
-    
-    
-    //logout unwind segue
-    @IBAction func unwindToVCHome(segue:UIStoryboardSegue) {
     }
     
     fileprivate func setUpViews(){

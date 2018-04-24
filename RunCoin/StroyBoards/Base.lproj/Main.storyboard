@@ -44,7 +44,7 @@
         <!--Login View Controller-->
         <scene sceneID="fkh-XZ-nFG">
             <objects>
-                <viewController storyboardIdentifier="LoginScreen" id="XJY-18-pOe" customClass="LoginViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="XJY-18-pOe" customClass="LoginViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RnQ-Q1-TEV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="XJY-18-pOe" eventType="touchUpInside" id="laO-V7-CwS"/>
-                                    <segue destination="5Oo-XV-sZd" kind="show" identifier="GoToLoginScreen" id="V2f-BL-fdx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -145,6 +144,7 @@
                         <outlet property="emailLoginPressed" destination="mdH-lQ-2xR" id="cwv-UN-PI8"/>
                         <segue destination="1BT-5h-lSE" kind="show" identifier="GoToEmailSignIn" id="4He-Ze-Wxn"/>
                         <segue destination="meH-zH-njO" kind="presentation" identifier="GoToHomeScreen" id="CsK-Z0-Qsp"/>
+                        <segue destination="5Oo-XV-sZd" kind="show" identifier="GoToLoginScreen" id="bvd-aL-TMK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23Y-iV-Qb3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -154,7 +154,7 @@
         <!--Account Login View Controller-->
         <scene sceneID="Yg1-Ar-oN5">
             <objects>
-                <viewController storyboardIdentifier="AccountLogin" id="5Oo-XV-sZd" customClass="AccountLoginViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountLoginViewController" id="5Oo-XV-sZd" customClass="AccountLoginViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kOz-9D-YN9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,10 +176,9 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="LoginButtonPressed:" destination="5Oo-XV-sZd" eventType="touchUpInside" id="7tC-A4-L6G"/>
-                                    <segue destination="meH-zH-njO" kind="presentation" identifier="GoToStartScreen" id="XjH-1T-ozP"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LaJ-GC-BjV">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LaJ-GC-BjV">
                                 <rect key="frame" x="50" y="304" width="275" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cb8-jl-YzQ"/>
@@ -187,9 +186,9 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6mo-Lx-QGT">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6mo-Lx-QGT">
                                 <rect key="frame" x="50" y="214" width="275" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="KqZ-dO-iRq"/>
@@ -218,6 +217,7 @@
                         <outlet property="emailTextField" destination="6mo-Lx-QGT" id="vJU-eP-yI2"/>
                         <outlet property="loginButton" destination="IxM-Ut-MLf" id="Hc9-He-FUk"/>
                         <outlet property="passwordTextField" destination="LaJ-GC-BjV" id="8Nd-Y6-21K"/>
+                        <segue destination="meH-zH-njO" kind="presentation" identifier="GoToStartScreen" id="JvV-79-9Bh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8uq-q7-4k7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -845,6 +845,6 @@
         <image name="time" width="20" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CsK-Z0-Qsp"/>
+        <segue reference="JvV-79-9Bh"/>
     </inferredMetricsTieBreakers>
 </document>

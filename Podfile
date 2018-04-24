@@ -18,4 +18,5 @@ target 'RunCoin' do
     pod 'FBSDKLoginKit'
     pod 'SwiftyJSON'
     pod 'FirebaseStorage'
+    pod 'Presentr'
 end

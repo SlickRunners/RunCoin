@@ -15,15 +15,18 @@ class AccountLoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBAction func LoginButtonPressed(_ sender: UIButton) {        
-        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-            if error != nil {
-                print("Error logging user into Firebase with existing credentials", error!)
-                return
-            } else {
-                self.performSegue(withIdentifier: "GoToStartScreen", sender: self)
-            }
-        }
+    @IBAction func LoginButtonPressed(_ sender: UIButton) {
+        view.endEditing(true)
+        AuthService.signInToAccount(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            self.performSegue(withIdentifier: "GoToStartScreen", sender: self)
+            print("performsegue SUCCESSFULL")
+        }, onError: { error in
+            print(error!)
+            let alertController = UIAlertController(title: "Invalid Email or Password", message: "Please enter a valid email and password. Password must be 6+ characters.", preferredStyle: .alert)
+            let alertActionTest = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertActionTest)
+            self.present(alertController, animated: true)
+        })
     }
     
     @objc func editingChanged(_ textField: UITextField){
@@ -51,6 +54,10 @@ class AccountLoginViewController: UIViewController {
         loginButton.titleLabel?.isEnabled = false
         emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
 }
