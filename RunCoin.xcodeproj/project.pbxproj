@@ -23,6 +23,9 @@
 		B03293E4208A5A3200284BAF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03293E3208A5A3200284BAF /* AuthService.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
+		B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2920978189009BB784 /* CoreDataStack.swift */; };
+		B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */; };
+		B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		B03293E3208A5A3200284BAF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B0FB1E2920978189009BB784 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunCoin.xcdatamodel; sourceTree = "<group>"; };
+		B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 			children = (
 				B006F517207E63720045E5E0 /* RunCoin.entitlements */,
 				B023D8072050415500491C39 /* Views */,
+				B0FB1E2B209781A5009BB784 /* Supporting Files */,
 				B023D8052050410600491C39 /* StroyBoards */,
 				B023D804205040EF00491C39 /* Image Assets */,
 				B023D7FE20503DA600491C39 /* Info.plist */,
@@ -125,8 +132,6 @@
 		B023D8072050415500491C39 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B023D7F220503DA600491C39 /* AppDelegate.swift */,
-				B03293E3208A5A3200284BAF /* AuthService.swift */,
 				B03293E12087B16200284BAF /* AccountLoginViewController.swift */,
 				B023D7F420503DA600491C39 /* EmailLogInViewController.swift */,
 				B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */,
@@ -134,6 +139,18 @@
 				B07A7D042065675B00DE33DE /* StartRunViewController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B0FB1E2B209781A5009BB784 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */,
+				B023D7F220503DA600491C39 /* AppDelegate.swift */,
+				B03293E3208A5A3200284BAF /* AuthService.swift */,
+				B0FB1E2920978189009BB784 /* CoreDataStack.swift */,
+				B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C925BFAC59CEB415C7F80017 /* Pods */ = {
@@ -328,8 +345,11 @@
 				B023D82520509D6500491C39 /* LoginViewController.swift in Sources */,
 				B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */,
 				B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */,
+				B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */,
 				B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */,
+				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
+				B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +538,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */,
+			);
+			currentVersion = B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */;
+			path = RunCoin.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B023D7E720503DA600491C39 /* Project object */;
 }
