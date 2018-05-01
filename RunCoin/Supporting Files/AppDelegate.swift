@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         
+        let locationManager = LocationManager.shared
+        locationManager.requestWhenInUseAuthorization()
+        
         //currentUser = Auth.auth().currentUser
         return true
     }
@@ -67,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any])
         -> Bool {
             
-            let handled = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
+            let handled = FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options [UIApplicationOpenURLOptionsKey.sourceApplication] as! String?, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
             
 
 //            Google

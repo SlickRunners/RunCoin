@@ -26,6 +26,11 @@
 		B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2920978189009BB784 /* CoreDataStack.swift */; };
 		B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */; };
 		B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */; };
+		B0FB1E322097A19D009BB784 /* MetricDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */; };
+		B0FB1E342097A244009BB784 /* GPSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E332097A244009BB784 /* GPSManager.swift */; };
+		B0FB1E362097AC95009BB784 /* RunStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E352097AC95009BB784 /* RunStatsViewController.swift */; };
+		B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */; };
+		B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +58,11 @@
 		B0FB1E2920978189009BB784 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunCoin.xcdatamodel; sourceTree = "<group>"; };
 		B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversions.swift; sourceTree = "<group>"; };
+		B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDefinitions.swift; sourceTree = "<group>"; };
+		B0FB1E332097A244009BB784 /* GPSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSManager.swift; sourceTree = "<group>"; };
+		B0FB1E352097AC95009BB784 /* RunStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunStatsViewController.swift; sourceTree = "<group>"; };
+		B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardSupport.swift; sourceTree = "<group>"; };
+		B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticolorPolyline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				B006F517207E63720045E5E0 /* RunCoin.entitlements */,
-				B023D8072050415500491C39 /* Views */,
+				B023D8072050415500491C39 /* View Controllers */,
 				B0FB1E2B209781A5009BB784 /* Supporting Files */,
 				B023D8052050410600491C39 /* StroyBoards */,
 				B023D804205040EF00491C39 /* Image Assets */,
@@ -129,25 +139,30 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B023D8072050415500491C39 /* Views */ = {
+		B023D8072050415500491C39 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B03293E12087B16200284BAF /* AccountLoginViewController.swift */,
+				B023D82420509D6500491C39 /* LoginViewController.swift */,
 				B023D7F420503DA600491C39 /* EmailLogInViewController.swift */,
 				B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */,
-				B023D82420509D6500491C39 /* LoginViewController.swift */,
 				B07A7D042065675B00DE33DE /* StartRunViewController.swift */,
+				B0FB1E352097AC95009BB784 /* RunStatsViewController.swift */,
 			);
-			path = Views;
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		B0FB1E2B209781A5009BB784 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */,
 				B023D7F220503DA600491C39 /* AppDelegate.swift */,
-				B03293E3208A5A3200284BAF /* AuthService.swift */,
 				B0FB1E2920978189009BB784 /* CoreDataStack.swift */,
+				B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */,
+				B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */,
+				B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */,
+				B0FB1E332097A244009BB784 /* GPSManager.swift */,
+				B03293E3208A5A3200284BAF /* AuthService.swift */,
+				B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */,
 				B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */,
 			);
 			path = "Supporting Files";
@@ -207,6 +222,9 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -341,12 +359,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B03293E22087B16200284BAF /* AccountLoginViewController.swift in Sources */,
+				B0FB1E322097A19D009BB784 /* MetricDefinitions.swift in Sources */,
 				B00C2A162062BBA90074AD44 /* EnterPhotoViewController.swift in Sources */,
 				B023D82520509D6500491C39 /* LoginViewController.swift in Sources */,
 				B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */,
 				B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */,
+				B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */,
 				B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */,
 				B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */,
+				B0FB1E362097AC95009BB784 /* RunStatsViewController.swift in Sources */,
+				B0FB1E342097A244009BB784 /* GPSManager.swift in Sources */,
+				B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */,
 				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
 				B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */,
@@ -495,7 +518,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.runslick.RunCoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -512,7 +535,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.runslick.RunCoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

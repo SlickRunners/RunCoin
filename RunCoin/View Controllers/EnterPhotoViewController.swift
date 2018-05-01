@@ -26,7 +26,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var finishProfileButton: UIButton!
     
     @IBAction func finishProfileButtonPressed(_ sender: UIButton) {
-        let userID = firebaseUserID
+        let userID = Auth.auth().currentUser?.uid
         let storageRef = Storage.storage().reference(forURL: "gs://runcoin-c565b.appspot.com").child("profile_image").child(userID!)
         if let profileImage = newSelectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1){
             storageRef.putData(imageData, metadata: nil
@@ -45,21 +45,26 @@ UINavigationControllerDelegate {
                     newUserRef.setValue(["profileImageUrl": profileImageURL])
             })
         }
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "HomeScreen")
+        present(controller, animated: true)
     }
     
-//    @IBAction func uploadPhotoPressed(_ sender: UIButton) {
-//        let myAlert = UIAlertController(title: "Select Image From", message: "", preferredStyle: .actionSheet)
-//        let cameraRollAction = UIAlertAction(title: "Choose photo from your library.", style: .default) { (action) in
-//
-//        }
-//        myAlert.addAction(cameraRollAction)
-//        self.present(myAlert, animated: true)
-//    }
+    @IBAction func uploadPhotoPressed(_ sender: UIButton) {
+        let myAlert = UIAlertController(title: "Select Image From", message: "", preferredStyle: .actionSheet)
+        let cameraRollAction = UIAlertAction(title: "Choose photo from your library.", style: .default) { (action) in
+            self.handleSelectProfileImage()
+        }
+        myAlert.addAction(cameraRollAction)
+        self.present(myAlert, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("successful pass of uid", firebaseUserID!)
+        //photo properties
+        photoImage.layer.cornerRadius = 75
+        photoImage.clipsToBounds = true
+        
         //button attributes
         uploadPhotoButton.layer.backgroundColor = UIColor.coral.cgColor
         finishProfileButton.isHidden = true
@@ -70,9 +75,11 @@ UINavigationControllerDelegate {
     }
     
     @objc func handleSelectProfileImage(){
+        SVProgressHUD.show()
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
+        SVProgressHUD.dismiss()
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{

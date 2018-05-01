@@ -25,9 +25,6 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     //Presentr
     let presenter = Presentr(presentationType: .alert)
     
-    //Firebase user ID
-    let firebaseUid = Auth.auth().currentUser?.uid
-    
     //pickerview setup
     let myPickerView = UIPickerView()
     let myPickerData : [String] = ["" ,"Male", "Female", "Other"]
@@ -72,8 +69,8 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        genderTextField.text = myPickerData[0]
         setUpLoginScreen()
+        
         doneButton.isEnabled = false
         doneButton.titleLabel?.isEnabled = false
         emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -86,21 +83,21 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     fileprivate func setUpLoginScreen() {
         //textfield style properties
         emailTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        emailTextField.layer.masksToBounds = false
+        //emailTextField.layer.masksToBounds = false
         emailTextField.layer.shadowRadius = 1.0
         emailTextField.layer.shadowOpacity = 0.5
         emailTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
         emailTextField.borderStyle = UITextBorderStyle.roundedRect
         
         passwordTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        passwordTextField.layer.masksToBounds = false
+        //passwordTextField.layer.masksToBounds = false
         passwordTextField.layer.shadowRadius = 1.0
         passwordTextField.layer.shadowOpacity = 0.5
         passwordTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
         passwordTextField.borderStyle = UITextBorderStyle.roundedRect
         
         userNameTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        userNameTextField.layer.masksToBounds = false
+        //userNameTextField.layer.masksToBounds = false
         userNameTextField.layer.shadowRadius = 1.0
         userNameTextField.layer.shadowOpacity = 0.5
         userNameTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -116,7 +113,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         birthdayTextField.adjustsFontSizeToFitWidth = true
         
         genderTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        genderTextField.layer.masksToBounds = false
+        //genderTextField.layer.masksToBounds = false
         genderTextField.layer.shadowRadius = 1.0
         genderTextField.layer.shadowOpacity = 0.5
         genderTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -158,25 +155,29 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
             }
             let ref = Database.database().reference()
             let userReference = ref.child("users")
-            let uid = self.firebaseUid
+            let uid = user?.uid
             let newUserReference = userReference.child(uid!)
             newUserReference.setValue(["username": self.userNameTextField.text!, "email": self.emailTextField.text!, "birthday": self.birthdayTextField.text!, "gender": self.genderTextField.text!])
             print("registration success!")
             print(uid!)
+            
             self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
         })
         SVProgressHUD.dismiss()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoToPhotoPage" {
-            let destination = segue.destination as! EnterPhotoViewController
-            destination.firebaseUserID = firebaseUid
-        }
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+//    //Firebase user ID
+//    let firebaseUid = Auth.auth().currentUser?.uid
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "GoToPhotoPage" {
+//            let destination = segue.destination as! EnterPhotoViewController
+//            destination.firebaseUserID = firebaseUid
+//        }
+//    }
     
 }
