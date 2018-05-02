@@ -42,7 +42,8 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         genderTextField.text = myPickerData[row]
     }
     @objc func pickerViewDoneButton(){
-        genderTextField.resignFirstResponder()
+        //genderTextField.resignFirstResponder()
+        view.endEditing(true)
     }
     
     @objc func editingChanged(_ textField: UITextField){
