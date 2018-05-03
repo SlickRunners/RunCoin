@@ -135,9 +135,9 @@ class StartRunViewController: UIViewController {
     }
     
     func goToHomeScreen() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let signInVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-        self.present(signInVC, animated: true, completion: nil)
+        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let navController = UINavigationController(rootViewController: VC1)
+        self.present(navController, animated:true, completion: nil)
     }
     
     private func startLocationUpdates() {

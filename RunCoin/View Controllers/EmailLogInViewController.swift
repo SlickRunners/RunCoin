@@ -171,14 +171,4 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         view.endEditing(true)
     }
     
-//    //Firebase user ID
-//    let firebaseUid = Auth.auth().currentUser?.uid
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "GoToPhotoPage" {
-//            let destination = segue.destination as! EnterPhotoViewController
-//            destination.firebaseUserID = firebaseUid
-//        }
-//    }
-    
 }

@@ -72,7 +72,7 @@ import FirebaseStorage
 import SVProgressHUD
 
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     var name : String?
     var email : String?
@@ -93,19 +93,40 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     }
     
     @IBAction func googleLoginPressed(_ sender: UIButton) {
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        GIDSignIn.sharedInstance().delegate = self
         if GIDSignIn.sharedInstance().currentUser == nil {
          GIDSignIn.sharedInstance().signIn()
             }
     }
     
-//    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeScreen") as UIViewController
-//    // .instantiatViewControllerWithIdentifier() returns AnyObject! this must be downcast to utilize it
-//
-//    self.presentViewController(viewController, animated: false, completion: nil)
+    //    //Google Sign in method
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        if let error = error {
+            print("Error logging into Google: \(error.localizedDescription)")
+            print("ERROR MOTHER FUCKER")
+            return
+        }
+        guard let googleAuthentication = user.authentication.idToken else { return }
+        guard let googleAccessToken = user.authentication.accessToken else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: googleAuthentication,
+                                                       accessToken: googleAccessToken)
+        // Pass to firebase
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if let error = error {
+                print("Failed to create Google/Firebase account: \(error.localizedDescription)")
+                return
+            }
+            // User is signed into firebase using Google
+            print("User has successfully logged into Firebase with Google!")
+            self.moveToHomeScreen()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

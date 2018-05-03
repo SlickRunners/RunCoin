@@ -14,7 +14,7 @@ import FBSDKCoreKit
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
@@ -27,8 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 //        ref = Database.database().reference()
 //        //ref.setValue("We've got data!")
         
-        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
+//        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+//        GIDSignIn.sharedInstance().delegate = self
         
         let locationManager = LocationManager.shared
         locationManager.requestWhenInUseAuthorization()
@@ -38,27 +38,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     
-//    //Google Sign in methods
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
-        if let error = error {
-            print("Error logging into Google: \(error.localizedDescription)")
-            print("ERROR MOTHER FUCKER")
-            return
-        }
-        guard let googleAuthentication = user.authentication.idToken else { return }
-        guard let googleAccessToken = user.authentication.accessToken else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: googleAuthentication,
-                                                       accessToken: googleAccessToken)
-        // Pass to firebase
-        Auth.auth().signIn(with: credential) { (user, error) in
-            if let error = error {
-                print("Failed to create Google/Firebase account: \(error.localizedDescription)")
-                return
-            }
-            // User is signed into firebase using Google
-            print("User has successfully logged into Firebase with Google!")
-        }
-    }
+////    //Google Sign in methods
+//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+//        if let error = error {
+//            print("Error logging into Google: \(error.localizedDescription)")
+//            print("ERROR MOTHER FUCKER")
+//            return
+//        }
+//        guard let googleAuthentication = user.authentication.idToken else { return }
+//        guard let googleAccessToken = user.authentication.accessToken else { return }
+//        let credential = GoogleAuthProvider.credential(withIDToken: googleAuthentication,
+//                                                       accessToken: googleAccessToken)
+//        // Pass to firebase
+//        Auth.auth().signIn(with: credential) { (user, error) in
+//            if let error = error {
+//                print("Failed to create Google/Firebase account: \(error.localizedDescription)")
+//                return
+//            }
+//            // User is signed into firebase using Google
+//            print("User has successfully logged into Firebase with Google!")
+//        }
+//    }
 //
 //    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
 //        // Perform any operations when the user disconnects from app here.
