@@ -21,6 +21,7 @@ class StartRunViewController: UIViewController {
     private var timer: Timer?
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     private var locationList: [CLLocation] = []
+    var databaseRef: DatabaseReference!
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
@@ -159,9 +160,17 @@ class StartRunViewController: UIViewController {
             locationObject.latitude = location.coordinate.latitude
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
+            //upload photo to firebase storage? This is where I left off. 
         }
         CoreDataStack.saveContext()
         run = newRun
+        //Send run data to firebase database
+        let runDate = newRun.timestamp?.timeIntervalSince1970
+        let runDict : [String : Any] = ["distance": newRun.distance, "duration": newRun.duration, "timestamp": runDate!]
+        //guard let uid = Auth.auth().currentUser?.uid else {return}
+        let runDataID = NSUUID().uuidString
+        databaseRef = Database.database().reference()
+        self.databaseRef.child("run_data").child(runDataID).setValue(runDict)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,6 +179,8 @@ class StartRunViewController: UIViewController {
 //            destination.run = run
 //        }
 //    }
+    
+    
 }
 //Extensions
 extension StartRunViewController: SegueHandlerType {

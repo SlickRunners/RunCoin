@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class RunStatsViewController: UIViewController {
 
@@ -19,10 +20,31 @@ class RunStatsViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     var run : Run!
+    var container: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        
+        container = NSPersistentContainer(name: "RunCoin")
+        
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error {
+                print("Unresolved error for NSPERSISTCONTAINER \(error)")
+            }
+        }
+    }
+    
+    
+    func saveData(){
+        if container.viewContext.hasChanges {
+            do {
+                try container.viewContext.save()
+            }
+            catch {
+                print("An error occurred while saving to container: \(error)")
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

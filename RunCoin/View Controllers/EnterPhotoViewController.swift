@@ -17,7 +17,11 @@ UINavigationControllerDelegate {
     //Variables
     var newSelectedImage : UIImage?
     var placeHolderImage : UIImageView!
-    var firebaseUserID: String?
+    var emailtext : String?
+    var passwordtext : String?
+    var usernameText : String?
+    var birthdayText : String?
+    var genderText : String?
     
     @IBOutlet weak var uploadPhotoButton: UIButton!
     @IBOutlet weak var photoImage: UIImageView!
@@ -26,28 +30,35 @@ UINavigationControllerDelegate {
     @IBOutlet weak var finishProfileButton: UIButton!
     
     @IBAction func finishProfileButtonPressed(_ sender: UIButton) {
-        let userID = Auth.auth().currentUser?.uid
-        let storageRef = Storage.storage().reference(forURL: "gs://runcoin-c565b.appspot.com").child("profile_image").child(userID!)
-        if let profileImage = newSelectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1){
-            storageRef.putData(imageData, metadata: nil
-                , completion: { (metaData, error) in
-                    if error != nil {
-                        print("There was an error saving user's profile image to Firebase:", error!)
-                        return
-                    }
-                    let ref = Database.database().reference()
-                    let userRef = ref.child("users")
-                    let newUserRef = userRef.child(userID!)
-                    let profileImageURL = metaData?.downloadURL()?.absoluteString
-                    
-                    //newUserRef.setValue([""])
-                    //newUserRef.updateChildValues(["profile_image" : profileImageURL!])
-                    newUserRef.setValue(["profileImageUrl": profileImageURL])
-            })
-        }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "HomeScreen")
-        present(controller, animated: true)
+        Auth.auth().createUser(withEmail: emailtext!, password: passwordtext!, completion: { (user, error) in
+            if error != nil {
+                print("Problem logging in user for first time! error:", error!)
+                let alertController = UIAlertController(title: "Invalid Email and/or Password", message: "Please enter a valid email. Password must be at least 6 characters.", preferredStyle: .alert)
+                let alertActionTest = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(alertActionTest)
+                self.present(alertController, animated: true)
+                return
+            }
+            let ref = Database.database().reference()
+            let userReference = ref.child("users")
+            let uid = user?.uid
+            let newUserReference = userReference.child(uid!)
+            newUserReference.setValue(["username": self.usernameText!, "email": self.emailtext!, "birthday": self.birthdayText!, "gender": self.genderText!])
+            print("registration success!")
+            let storageRef = Storage.storage().reference(forURL: "gs://runcoin-c565b.appspot.com").child("profile_image").child(uid!)
+            if let profileImage = self.newSelectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1){
+                storageRef.putData(imageData, metadata: nil
+                    , completion: { (metaData, error) in
+                        if error != nil {
+                            print("There was an error saving user's profile image to Firebase:", error!)
+                            return
+                        }
+                        let profileImageURL = metaData?.downloadURL()?.absoluteString
+                        newUserReference.updateChildValues(["profileImageUrl": profileImageURL!])
+                })
+            }
+        })
+        goToHomeScreen()
     }
     
     @IBAction func uploadPhotoPressed(_ sender: UIButton) {
@@ -101,6 +112,10 @@ UINavigationControllerDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func goToHomeScreen(){
+        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "HomeScreen") as! StartRunViewController
+        let navController = UINavigationController(rootViewController: VC1)
+        self.present(navController, animated:true, completion: nil)
+    }
+
 }
-
-

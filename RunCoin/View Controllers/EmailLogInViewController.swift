@@ -11,7 +11,7 @@ import Firebase
 import SVProgressHUD
 import Presentr
 
-class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     //variables
     @IBOutlet weak var emailTextField: UITextField!
@@ -42,8 +42,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         genderTextField.text = myPickerData[row]
     }
     @objc func pickerViewDoneButton(){
-        //genderTextField.resignFirstResponder()
-        view.endEditing(true)
+        genderTextField.resignFirstResponder()
     }
     
     @objc func editingChanged(_ textField: UITextField){
@@ -80,6 +79,27 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         birthdayTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         //genderTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is EnterPhotoViewController {
+            let destinationVC = segue.destination as? EnterPhotoViewController
+            destinationVC?.emailtext = emailTextField.text
+            destinationVC?.usernameText = userNameTextField.text
+            destinationVC?.passwordtext = passwordTextField.text
+            destinationVC?.birthdayText = birthdayTextField.text
+            destinationVC?.genderText = genderTextField.text
+        }
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        view.endEditing(true)
+        self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     
     fileprivate func setUpLoginScreen() {
         //textfield style properties
@@ -140,35 +160,6 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         toolBar.setItems([donePickingGender], animated: false)
         toolBar.isUserInteractionEnabled = true
         genderTextField.inputAccessoryView = toolBar
-    }
-    
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-        view.endEditing(true)
-        SVProgressHUD.show()
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-            if error != nil {
-                print("Problem logging in user for first time! error:", error!)
-                let alertController = UIAlertController(title: "Invalid Email", message: "Please enter a valid email. We won't send you spam.", preferredStyle: .alert)
-                let alertActionTest = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alertController.addAction(alertActionTest)
-                self.present(alertController, animated: true)
-                return
-            }
-            let ref = Database.database().reference()
-            let userReference = ref.child("users")
-            let uid = user?.uid
-            let newUserReference = userReference.child(uid!)
-            newUserReference.setValue(["username": self.userNameTextField.text!, "email": self.emailTextField.text!, "birthday": self.birthdayTextField.text!, "gender": self.genderTextField.text!])
-            print("registration success!")
-            print(uid!)
-            
-            self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
-        })
-        SVProgressHUD.dismiss()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
     
 }
