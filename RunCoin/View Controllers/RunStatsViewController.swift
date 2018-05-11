@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreData
+import Firebase
 
 class RunStatsViewController: UIViewController {
 
@@ -33,6 +34,13 @@ class RunStatsViewController: UIViewController {
                 print("Unresolved error for NSPERSISTCONTAINER \(error)")
             }
         }
+    }
+    
+    func saveMapImageToFirebase(){
+        let storageRef = Storage.storage().reference()
+        let mapImageRef = storageRef.child("run_maps")
+        let mapDataID = NSUUID().uuidString
+        mapImageRef.child(mapDataID)
     }
     
     

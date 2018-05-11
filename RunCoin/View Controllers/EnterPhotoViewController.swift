@@ -97,16 +97,11 @@ UINavigationControllerDelegate {
             newSelectedImage = image
             photoImage.image = image
         }
-        //photoImage.image = infoPhoto
         dismiss(animated: true, completion: nil)
         finishProfileButton.isHidden = false
         underImageLabel.text = "But you can always tap to change it."
         headlineLabel.text = "That's a great look!"
     }
-    
-    //    finishProfileButton.isHidden = false
-    //    underImageLabel.text = "But you can always tap to change it."
-    //    headlineLabel.text = "That's a great look!"
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)

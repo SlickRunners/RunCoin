@@ -160,26 +160,28 @@ class StartRunViewController: UIViewController {
             locationObject.latitude = location.coordinate.latitude
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
-            //upload photo to firebase storage? This is where I left off. 
+            //upload photo to firebase storage
+            let uid = Auth.auth().currentUser?.uid
+            let dataID = NSUUID().uuidString
+            let storageRef = Storage.storage().reference()
+            let postReference = storageRef.child("run_maps").child(uid!)
+            let newPostID = postReference.child(dataID)
+            //newPostID.setValue(["saved_run" : newRun])
         }
         CoreDataStack.saveContext()
         run = newRun
         //Send run data to firebase database
-        let runDate = newRun.timestamp?.timeIntervalSince1970
-        let runDict : [String : Any] = ["distance": newRun.distance, "duration": newRun.duration, "timestamp": runDate!]
-        //guard let uid = Auth.auth().currentUser?.uid else {return}
-        let runDataID = NSUUID().uuidString
+        let runDate = newRun.timestamp?.timeIntervalSince1970.description
+        let runDict : [String : Any] = ["distance": newRun.distance.description, "duration": newRun.duration.description, "timestamp": runDate!]
+        
+        let uid = Auth.auth().currentUser?.uid
+//        let dataID = NSUUID().uuidString
         databaseRef = Database.database().reference()
-        self.databaseRef.child("run_data").child(runDataID).setValue(runDict)
+        //maybe add another node with unique runID and append uid on that and use that to put into datamodel
+//        self.databaseRef.child("run_data").child(uid!).child(dataID).setValue(runDict)
+        self.databaseRef.child("run_data").child(uid!).childByAutoId().setValue(runDict)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "GoToRunStats" {
-//            let destination = segue.destination as! RunStatsViewController
-//            destination.run = run
-//        }
-//    }
-    
+
     
 }
 //Extensions

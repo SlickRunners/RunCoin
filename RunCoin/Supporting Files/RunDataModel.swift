@@ -8,18 +8,19 @@
 
 import Foundation
 
-class RunDataModel {
+class FeedPost {
+    var distance : String?
+    var duration : String?
+    var date : String?
     
-    var distance = Double()
-    var duration = Double()
-    var pace = Double()
-    var date = Date()
-    
-    init(distance: Double, duration: Double, pace: Double, date: Date){
-        self.distance = distance
-        self.duration = duration
-        self.pace = pace
-        self.date = date
+}
+
+extension FeedPost {
+    static func transformPost(dict: [String : Any]) -> FeedPost {
+        let post = FeedPost()
+        post.distance = dict["distance"] as? String
+        post.duration = dict["duration"] as? String
+        post.date = dict["timestamp"] as? String
+        return post
     }
-    
 }
