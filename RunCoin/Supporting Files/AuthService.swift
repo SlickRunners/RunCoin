@@ -22,9 +22,10 @@ class AuthService {
         })
     }
     
-    static func signUp(email: String, username: String, password: String, imageData: Data, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+    static func signUp(email: String, username: String, password: String, imageData: Data, birthday: String, gender: String,  onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
             if error != nil {
+                onError("Error registering/singing in new user into Firebase! \(error!.localizedDescription)")
                 return
             }
             let uid = user?.uid
@@ -34,12 +35,18 @@ class AuthService {
                 if error != nil {
                     return
                 }
-//                let profileImageURL = metadata.dow
+             let profileImageUrl = metadata?.downloadURL()?.absoluteString
+                
+                self.setUserInformation(email: email, username: username, birthday: birthday, gender: gender, profileImageUrl: profileImageUrl!, uid: uid!, onSuccess: onSuccess)
             })
-        }
+        })
     }
     
-    
-    
-    
+    static func setUserInformation(email: String, username: String, birthday: String, gender: String, profileImageUrl: String, uid: String, onSuccess: @escaping () -> Void){
+        let ref = Database.database().reference()
+        let userRef = ref.child("users")
+        let newUserRef = userRef.child(uid)
+        newUserRef.setValue(["email": email, "username": username, "birthday": birthday, "gender": gender, "profileImageUrl": profileImageUrl])
+        onSuccess()
+    }
 }

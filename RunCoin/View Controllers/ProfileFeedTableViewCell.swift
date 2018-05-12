@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileFeedTableViewCell: UITableViewCell {
 
@@ -16,15 +17,27 @@ class ProfileFeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var runMapImageView: UIImageView!
     
+    var post : FeedPost? {
+        didSet{
+            updateView()
+        }
+    }
+    
+    func updateView(){
+        
+    }
+    
+    func setUpUserInfo() {
+        
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        profileImageView.clipsToBounds = true
-        // Configure the view for the selected state
     }
 
 }

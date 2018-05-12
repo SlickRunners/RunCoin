@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class ProfileFeedViewController: UIViewController {
 
@@ -22,6 +23,7 @@ class ProfileFeedViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
         loadFeedData()
+        title = "User Profile"
         //var post = FeedPost(distance: 12.1, duration: 12.1, date: 1525986914.83655)
     }
     
@@ -43,16 +45,16 @@ class ProfileFeedViewController: UIViewController {
 extension ProfileFeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let post = posts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! ProfileFeedTableViewCell
-        //cell.imageView?.image = UIImage(named: "memorygrovemapview")
-        cell.usernameLabel.text = "RolQuan"
-        //cell.textLabel?.text = posts[indexPath.row].distance
+//        let photoURLString =
+        
+//        cell.profileImageView.sd_setAnimationImages(with: [URL])
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return posts.count
-        return 10
+        return posts.count
     }
     
     

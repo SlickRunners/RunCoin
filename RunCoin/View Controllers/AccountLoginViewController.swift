@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class AccountLoginViewController: UIViewController {
     
@@ -16,12 +17,15 @@ class AccountLoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     @IBAction func LoginButtonPressed(_ sender: UIButton) {
+        SVProgressHUD.show()
         view.endEditing(true)
         AuthService.signInToAccount(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            SVProgressHUD.dismiss()
             self.performSegue(withIdentifier: "GoToStartScreen", sender: self)
             print("performsegue SUCCESSFULL")
         }, onError: { error in
             print(error!)
+            SVProgressHUD.dismiss()
             let alertController = UIAlertController(title: "Invalid Email or Password", message: "Please enter a valid email and password. Password must be 6+ characters.", preferredStyle: .alert)
             let alertActionTest = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(alertActionTest)

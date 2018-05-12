@@ -19,4 +19,5 @@ target 'RunCoin' do
     pod 'SwiftyJSON'
     pod 'FirebaseStorage'
     pod 'Presentr'
+    pod 'SDWebImage'
 end

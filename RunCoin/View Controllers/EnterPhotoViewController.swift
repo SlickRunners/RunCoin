@@ -30,35 +30,21 @@ UINavigationControllerDelegate {
     @IBOutlet weak var finishProfileButton: UIButton!
     
     @IBAction func finishProfileButtonPressed(_ sender: UIButton) {
-        Auth.auth().createUser(withEmail: emailtext!, password: passwordtext!, completion: { (user, error) in
-            if error != nil {
-                print("Problem logging in user for first time! error:", error!)
+        SVProgressHUD.show()
+        if let profileImage = self.newSelectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1){
+            AuthService.signUp(email: emailtext!, username: usernameText!, password: passwordtext!, imageData: imageData, birthday: birthdayText!, gender: genderText!, onSuccess: {
+                print("Successful creation of firebase user.")
+                self.goToHomeScreen()
+            }, onError: { (errorString) in
+                print("Error creating firebase user", errorString!)
+                SVProgressHUD.dismiss()
                 let alertController = UIAlertController(title: "Invalid Email and/or Password", message: "Please enter a valid email. Password must be at least 6 characters.", preferredStyle: .alert)
                 let alertActionTest = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alertController.addAction(alertActionTest)
                 self.present(alertController, animated: true)
                 return
-            }
-            let ref = Database.database().reference()
-            let userReference = ref.child("users")
-            let uid = user?.uid
-            let newUserReference = userReference.child(uid!)
-            newUserReference.setValue(["username": self.usernameText!, "email": self.emailtext!, "birthday": self.birthdayText!, "gender": self.genderText!])
-            print("registration success!")
-            let storageRef = Storage.storage().reference(forURL: "gs://runcoin-c565b.appspot.com").child("profile_image").child(uid!)
-            if let profileImage = self.newSelectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1){
-                storageRef.putData(imageData, metadata: nil
-                    , completion: { (metaData, error) in
-                        if error != nil {
-                            print("There was an error saving user's profile image to Firebase:", error!)
-                            return
-                        }
-                        let profileImageURL = metaData?.downloadURL()?.absoluteString
-                        newUserReference.updateChildValues(["profileImageUrl": profileImageURL!])
-                })
-            }
-        })
-        goToHomeScreen()
+            })
+        }
     }
     
     @IBAction func uploadPhotoPressed(_ sender: UIButton) {
@@ -111,6 +97,7 @@ UINavigationControllerDelegate {
         let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "HomeScreen") as! StartRunViewController
         let navController = UINavigationController(rootViewController: VC1)
         self.present(navController, animated:true, completion: nil)
+        SVProgressHUD.dismiss()
     }
 
 }
