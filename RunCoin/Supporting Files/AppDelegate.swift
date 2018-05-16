@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         //Facebook didFinishLaunchingWithOptions
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        //UITabBar
+        UITabBar.appearance().tintColor = .black
+        
         
         FirebaseApp.configure()
 //        var ref: DatabaseReference!

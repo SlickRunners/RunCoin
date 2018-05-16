@@ -46,10 +46,17 @@ class RunStatsViewController: UIViewController {
         //Create the UIImage
         UIGraphicsBeginImageContextWithOptions(mapViewContainer.frame.size, true, 0)
         mapViewContainer.layer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+       // let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        if let imageData = UIImageJPEGRepresentation(image!, 0.1) {
+        
+        let isOpaque = UIGraphicsImageRendererFormat.default()
+        isOpaque.opaque = false
+        let renderer = UIGraphicsImageRenderer(size: mapViewContainer.bounds.size, format: isOpaque)
+        let image = renderer.image { ctx in
+            view.drawHierarchy(in: mapViewContainer.bounds, afterScreenUpdates: true)
+        }
+        if let imageData = UIImageJPEGRepresentation(image, 0.0) {
             let mapDataID = NSUUID().uuidString
             let storageRef = Storage.storage().reference().child("run_maps").child(mapDataID)
             storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in

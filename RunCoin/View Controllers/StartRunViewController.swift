@@ -31,10 +31,7 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeDurationLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
-    @IBOutlet weak var metricsStackView: UIStackView!
-    @IBOutlet weak var launchPrompt: UIStackView!
-    @IBOutlet weak var stopButton: UIButton!
-    @IBOutlet weak var startButton: UIButton!
+    
     
     @IBAction func stopButtonPressed(_ sender: UIButton) {
         let alertController = UIAlertController(title: "Finished Running?",
@@ -54,19 +51,8 @@ class StartRunViewController: UIViewController {
         present(alertController, animated: true)
     }
     
-    @IBAction func startButtonPressed(_ sender: UIButton) {
-        startRun()
-    }
-    
     private func startRun() {
-        mapContainerView.isHidden = false
         mapView.removeOverlays(mapView.overlays)
-        
-        metricsStackView.isHidden = false
-        launchPrompt.isHidden = true
-        startButton.isHidden = true
-        stopButton.isHidden = false
-        
         seconds = 0
         distance = Measurement(value: 0, unit: UnitLength.meters)
         locationList.removeAll()
@@ -78,13 +64,6 @@ class StartRunViewController: UIViewController {
     }
     
     private func stopRun() {
-        mapContainerView.isHidden = true
-        
-        metricsStackView.isHidden = true
-        launchPrompt.isHidden = false
-        startButton.isHidden = false
-        stopButton.isHidden = true
-        
         locationManager.stopUpdatingLocation()
     }
     
@@ -103,10 +82,7 @@ class StartRunViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        metricsStackView.isHidden = true
-        
+        startRun()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
