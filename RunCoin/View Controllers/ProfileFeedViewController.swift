@@ -47,6 +47,7 @@ extension ProfileFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = posts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! ProfileFeedTableViewCell
+       //convertetDistance = cell.usernameLabel.text
 //        let photoURLString =
         
 //        cell.profileImageView.sd_setAnimationImages(with: [URL])

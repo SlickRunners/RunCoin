@@ -944,6 +944,7 @@
                         <outlet property="dateLabel" destination="z18-qc-chu" id="iVj-6o-KFZ"/>
                         <outlet property="distanceLabel" destination="Drd-J6-C89" id="t2l-Pu-7C1"/>
                         <outlet property="mapView" destination="tmt-Ys-KHx" id="ub6-Oy-6ZT"/>
+                        <outlet property="mapViewContainer" destination="239-EQ-SXs" id="Q3i-Og-fF6"/>
                         <outlet property="paceLabel" destination="69T-GF-8mk" id="kcS-Xj-QGV"/>
                         <outlet property="timeLabel" destination="gAg-jg-cVw" id="v9O-bx-dwT"/>
                     </connections>
@@ -992,7 +993,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="AHC-Xo-5aH">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="uVU-tM-foJ" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UITabBarController" automaticallyAdjustsScrollViewInsets="NO" id="uVU-tM-foJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x8I-9Y-zxQ">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

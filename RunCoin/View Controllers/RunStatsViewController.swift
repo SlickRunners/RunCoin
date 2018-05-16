@@ -19,16 +19,15 @@ class RunStatsViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak var mapViewContainer: UIView!
     var run : Run!
     var container: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        
+        screenShotMethod()
         container = NSPersistentContainer(name: "RunCoin")
-        
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
                 print("Unresolved error for NSPERSISTCONTAINER \(error)")
@@ -36,12 +35,53 @@ class RunStatsViewController: UIViewController {
         }
     }
     
-    func saveMapImageToFirebase(){
-        let storageRef = Storage.storage().reference()
-        let mapImageRef = storageRef.child("run_maps")
-        let mapDataID = NSUUID().uuidString
-        mapImageRef.child(mapDataID)
+//    func saveMapImageToFirebase(){
+//        let storageRef = Storage.storage().reference()
+//        let mapImageRef = storageRef.child("run_maps")
+//        let mapDataID = NSUUID().uuidString
+//        mapImageRef.child(mapDataID)
+//    }
+    
+    func screenShotMethod() {
+        //Create the UIImage
+        UIGraphicsBeginImageContextWithOptions(mapViewContainer.frame.size, true, 0)
+        mapViewContainer.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        if let imageData = UIImageJPEGRepresentation(image!, 0.1) {
+            let mapDataID = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("run_maps").child(mapDataID)
+            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print("something went wrong uploading map image to firebase")
+                    return
+                }
+                let photoUrl = metadata?.downloadURL()?.absoluteString
+                self.sendDataToDatabase(photoUrl: photoUrl!)
+            })
+        } else {
+            print("error will robinson")
+        }
     }
+    
+    
+    func sendDataToDatabase(photoUrl: String) {
+        let ref = Database.database().reference()
+        let photoReference = ref.child("run_maps")
+        let newPhotoID = photoReference.childByAutoId().key
+        let newPhotoRef = photoReference.child(newPhotoID)
+        newPhotoRef.setValue(["photoUrl": photoUrl], withCompletionBlock: {
+            error, ref in
+            if error != nil {
+                print("Error saving map image to firebase!")
+                return
+            }
+        })
+    }
+    
+    
+    
     
     
     func saveData(){
@@ -60,10 +100,11 @@ class RunStatsViewController: UIViewController {
 
         
     }
-
+    //Convert run data into proper units
     private func configureView() {
         let distance = Measurement(value: (run.distance), unit: UnitLength.meters)
         let seconds = Int(run.duration)
+        //To re convert firebase distance: FormatDisplay.distance(distanceInFirebase)
         let formattedDistance = FormatDisplay.distance(distance)
         let formattedDate = FormatDisplay.date(run.timestamp)
         let formattedTime = FormatDisplay.time(seconds)
@@ -77,7 +118,6 @@ class RunStatsViewController: UIViewController {
         paceLabel.text = "Pace:  \(formattedPace)"
         loadMap()
     }
-    
     
     private func mapRegion() -> MKCoordinateRegion? {
         guard

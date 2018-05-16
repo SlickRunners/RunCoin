@@ -94,7 +94,8 @@ UINavigationControllerDelegate {
     }
     
     func goToHomeScreen(){
-        let VC1 = self.storyboard!.instantiateViewController(withIdentifier: "HomeScreen") as! StartRunViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let VC1 = storyboard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
         let navController = UINavigationController(rootViewController: VC1)
         self.present(navController, animated:true, completion: nil)
         SVProgressHUD.dismiss()

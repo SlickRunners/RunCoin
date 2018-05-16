@@ -22,6 +22,8 @@ class StartRunViewController: UIViewController {
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     private var locationList: [CLLocation] = []
     var databaseRef: DatabaseReference!
+    var runCoinsEarned : Int = 0
+    
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
@@ -160,26 +162,25 @@ class StartRunViewController: UIViewController {
             locationObject.latitude = location.coordinate.latitude
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
-            //upload photo to firebase storage
-            let uid = Auth.auth().currentUser?.uid
-            let dataID = NSUUID().uuidString
-            let storageRef = Storage.storage().reference()
-            let postReference = storageRef.child("run_maps").child(uid!)
-            let newPostID = postReference.child(dataID)
-            //newPostID.setValue(["saved_run" : newRun])
         }
         CoreDataStack.saveContext()
         run = newRun
+        let newDistance = FormatDisplay.distance(newRun.distance).description
+        let newDuration = FormatDisplay.time(seconds*(1/60)).description
+        let newDate = FormatDisplay.date(newRun.timestamp).description
+        let newPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
         //Send run data to firebase database
-        let runDate = newRun.timestamp?.timeIntervalSince1970.description
-        let runDict : [String : Any] = ["distance": newRun.distance.description, "duration": newRun.duration.description, "timestamp": runDate!]
-        
+        //        let mapPhoto = UIImageJPEGRepresentation(mapView, 0.1)
+        //let runDate = newRun.timestamp?.timeIntervalSince1970.description
+        let runDict : [String : Any] = ["distance": newDistance, "duration": newDuration, "timestamp": newDate, "pace": newPace]
+//        let runDict : [String : Any] = ["distance": newRun.distance.description, "duration": newRun.duration.description, "timestamp": runDate!, "mapPhoto": ]
         let uid = Auth.auth().currentUser?.uid
-//        let dataID = NSUUID().uuidString
         databaseRef = Database.database().reference()
-        //maybe add another node with unique runID and append uid on that and use that to put into datamodel
-//        self.databaseRef.child("run_data").child(uid!).child(dataID).setValue(runDict)
         self.databaseRef.child("run_data").child(uid!).childByAutoId().setValue(runDict)
+        if newRun.distance > 5.0 {
+            runCoinsEarned += 1
+            print("you've earned a RUNCOIN!", runCoinsEarned)
+        }
     }
 
     
