@@ -31,24 +31,55 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeDurationLabel: UILabel!
     @IBOutlet weak var paceLabel: UILabel!
-    
+    @IBOutlet weak var resumeButton: UIButton!
+    @IBOutlet weak var finishButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var finishResumeStackView: UIStackView!
     
     @IBAction func stopButtonPressed(_ sender: UIButton) {
-        let alertController = UIAlertController(title: "Finished Running?",
-                                                message: "Do you want to stop your workout?",
-                                                preferredStyle: .actionSheet)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alertController.addAction(UIAlertAction(title: "Save", style: .default) { _ in
-            self.stopRun()
-            self.saveRun()
-            self.performSegue(withIdentifier: .details, sender: nil)
-        })
-        alertController.addAction(UIAlertAction(title: "Discard", style: .destructive) { _ in
-            self.stopRun()
-            _ = self.navigationController?.popToRootViewController(animated: true)
-        })
+        stopButton.isHidden = true
+        finishResumeStackView.isHidden = false
+        resumeButton.isHidden = false
+        finishButton.isHidden = false
         
-        present(alertController, animated: true)
+//        let alertController = UIAlertController(title: "Finished Running?",
+//                                                message: "Do you want to stop your workout?",
+//                                                preferredStyle: .actionSheet)
+//        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//        alertController.addAction(UIAlertAction(title: "Save", style: .default) { _ in
+//            self.stopRun()
+//            self.saveRun()
+//            self.performSegue(withIdentifier: .details, sender: nil)
+//        })
+//        alertController.addAction(UIAlertAction(title: "Discard", style: .destructive) { _ in
+//            self.stopRun()
+//            _ = self.navigationController?.popToRootViewController(animated: true)
+//        })
+//
+//        present(alertController, animated: true)
+    }
+    
+    @IBAction func resumeButtonPressed(_ sender: UIButton) {
+        stopButton.isHidden = false
+        finishResumeStackView.isHidden = true
+        resumeButton.isHidden = true
+        finishButton.isHidden = true
+    }
+    
+    @IBAction func finishButtonPressed(_ sender: UIButton) {
+        saveButton.isHidden = false
+        finishResumeStackView.isHidden = true
+        resumeButton.isHidden = true
+        finishButton.isHidden = true
+        stopButton.isHidden = true
+        paceLabel.text = "--"
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        stopRun()
+        saveRun()
+        
     }
     
     private func startRun() {
@@ -83,6 +114,9 @@ class StartRunViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startRun()
+        finishButton.layer.borderWidth = 0.5
+        finishButton.layer.borderColor = UIColor.offBlue.cgColor
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -108,9 +142,9 @@ class StartRunViewController: UIViewController {
                                                seconds: seconds,
                                                outputUnit: UnitSpeed.minutesPerMile)
         
-        distanceLabel.text = "Distance:  \(formattedDistance)"
-        timeDurationLabel.text = "Time:  \(formattedTime)"
-        paceLabel.text = "Pace:  \(formattedPace)"
+        distanceLabel.text = "\(formattedDistance)"
+        timeDurationLabel.text = "\(formattedTime)"
+        paceLabel.text = "\(formattedPace)"
     }
     
     func goToHomeScreen() {

@@ -59,6 +59,10 @@ extension UIColor {
         return UIColor(white: 0.0, alpha: 0.54)
     }
     
+    @nonobjc class var offBlue: UIColor {
+        return UIColor(red: 84.0 / 255.0, green: 109.0 / 255.0, blue: 169.0 / 255.0, alpha: 1.0)
+    }
+    
 }
 
 import UIKit
