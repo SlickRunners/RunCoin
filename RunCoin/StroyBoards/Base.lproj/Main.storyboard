@@ -735,14 +735,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="8MX-TN-e8C" userLabel="Metrics Stack View">
                                 <rect key="frame" x="50" y="345" width="275" height="208"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Xne-U6-sG1">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Xne-U6-sG1">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="208"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="uQ6-Ci-ZXh" userLabel="Left Column Stack View">
-                                                <rect key="frame" x="0.0" y="0.0" width="112.5" height="208"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="117.5" height="208"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="qkS-ay-tfT" userLabel="RunCoin Stack View">
-                                                        <rect key="frame" x="21.5" y="0.0" width="69.5" height="74"/>
+                                                        <rect key="frame" x="24" y="0.0" width="69.5" height="74"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RUNCOIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCI-Kt-MKc">
                                                                 <rect key="frame" x="0.0" y="0.0" width="69.5" height="17"/>
@@ -750,7 +750,7 @@
                                                                 <color key="textColor" red="0.33333333333333331" green="0.43137254901960786" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="16" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNO-uS-ph1">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNO-uS-ph1">
                                                                 <rect key="frame" x="23.5" y="37" width="22.5" height="37"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="31"/>
                                                                 <nil key="highlightedColor"/>
@@ -758,7 +758,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="T5v-cH-li0" userLabel="Distance Stack View">
-                                                        <rect key="frame" x="19" y="134" width="75" height="74"/>
+                                                        <rect key="frame" x="21.5" y="134" width="75" height="74"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISTANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHf-st-JIe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="17"/>
@@ -769,7 +769,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="fSb-Sl-DFe" userLabel="Miles Stack View">
                                                                 <rect key="frame" x="30" y="37" width="45" height="37"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvQ-AZ-ehJ">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RvQ-AZ-ehJ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="22.5" height="37"/>
                                                                         <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="31"/>
                                                                         <nil key="highlightedColor"/>
@@ -791,10 +791,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="bFr-TH-gor" userLabel="Right Column Stack View">
-                                                <rect key="frame" x="162.5" y="0.0" width="112.5" height="208"/>
+                                                <rect key="frame" x="157.5" y="0.0" width="117.5" height="208"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Wwv-NQ-L0C" userLabel="Time Stack View">
-                                                        <rect key="frame" x="6.5" y="0.0" width="99.5" height="74"/>
+                                                        <rect key="frame" x="9" y="0.0" width="99.5" height="74"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TIME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQY-3M-3zW">
                                                                 <rect key="frame" x="31.5" y="0.0" width="36.5" height="17"/>
@@ -802,7 +802,7 @@
                                                                 <color key="textColor" red="0.33333333329999998" green="0.43137254899999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyN-T8-Rzq">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PyN-T8-Rzq">
                                                                 <rect key="frame" x="0.0" y="37" width="99.5" height="37"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="31"/>
                                                                 <nil key="highlightedColor"/>
@@ -810,7 +810,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5OE-VG-BN7" userLabel="Pace Stack View">
-                                                        <rect key="frame" x="37" y="134" width="39" height="74"/>
+                                                        <rect key="frame" x="39.5" y="134" width="39" height="74"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PACE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pG0-a8-8G9">
                                                                 <rect key="frame" x="0.0" y="0.0" width="39" height="17"/>
@@ -818,7 +818,7 @@
                                                                 <color key="textColor" red="0.33333333329999998" green="0.43137254899999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OHo-aD-Lsc">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OHo-aD-Lsc">
                                                                 <rect key="frame" x="4" y="37" width="30.5" height="37"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="31"/>
                                                                 <nil key="highlightedColor"/>

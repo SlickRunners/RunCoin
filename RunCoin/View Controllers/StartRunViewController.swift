@@ -79,7 +79,7 @@ class StartRunViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         stopRun()
         saveRun()
-        
+        performSegue(withIdentifier: "GoToRunStats", sender: self)
     }
     
     private func startRun() {
@@ -176,7 +176,7 @@ class StartRunViewController: UIViewController {
         CoreDataStack.saveContext()
         run = newRun
         let newDistance = FormatDisplay.distance(newRun.distance).description
-        let newDuration = FormatDisplay.time(seconds*(1/60)).description
+        let newDuration = FormatDisplay.time(seconds).description
         let newDate = FormatDisplay.date(newRun.timestamp).description
         let newPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
         //Send run data to firebase database
