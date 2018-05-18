@@ -79,7 +79,8 @@ class StartRunViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         stopRun()
         saveRun()
-        performSegue(withIdentifier: "GoToRunStats", sender: self)
+        screenShotMethod()
+        performSegue(withIdentifier: .details, sender: nil)
     }
     
     private func startRun() {
@@ -116,7 +117,6 @@ class StartRunViewController: UIViewController {
         startRun()
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -192,10 +192,49 @@ class StartRunViewController: UIViewController {
             print("you've earned a RUNCOIN!", runCoinsEarned)
         }
     }
+    
+    func screenShotMethod() {
+        let image = imageScreenshot(view: mapContainerView)
+        if let imageData = UIImageJPEGRepresentation(image!, 0.0) {
+            let mapDataID = NSUUID().uuidString
+            let storageRef = Storage.storage().reference().child("run_maps").child(mapDataID)
+            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print("something went wrong uploading map image to firebase")
+                    return
+                }
+                let photoUrl = metadata?.downloadURL()?.absoluteString
+                self.sendDataToDatabase(photoUrl: photoUrl!)
+            })
+        } else {
+            print("error will robinson")
+        }
+    }
+    
+    func imageScreenshot(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return snapshot
+    }
+    
+    func sendDataToDatabase(photoUrl: String) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let ref = Database.database().reference()
+        let photoReference = ref.child("run_maps").child(uid)
+        photoReference.setValue(["photoUrl": photoUrl], withCompletionBlock: {
+            error, ref in
+            if error != nil {
+                print("Error saving map image to firebase!")
+                return
+            }
+        })
+    }
 
     
 }
-//Extensions
+//MARK: Extensions
 extension StartRunViewController: SegueHandlerType {
     enum SegueIdentifier: String {
         case details = "GoToRunStats"

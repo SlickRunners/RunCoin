@@ -26,7 +26,6 @@ class RunStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        screenShotMethod()
         container = NSPersistentContainer(name: "RunCoin")
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
@@ -35,28 +34,9 @@ class RunStatsViewController: UIViewController {
         }
     }
     
-//    func saveMapImageToFirebase(){
-//        let storageRef = Storage.storage().reference()
-//        let mapImageRef = storageRef.child("run_maps")
-//        let mapDataID = NSUUID().uuidString
-//        mapImageRef.child(mapDataID)
-//    }
-    
     func screenShotMethod() {
-//        //Create the UIImage
-//        UIGraphicsBeginImageContextWithOptions(mapViewContainer.frame.size, true, 0)
-//        mapViewContainer.layer.render(in: UIGraphicsGetCurrentContext()!)
-//       // let image = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//
-//
-//        let isOpaque = UIGraphicsImageRendererFormat.default()
-//        isOpaque.opaque = false
-//        let renderer = UIGraphicsImageRenderer(size: mapViewContainer.bounds.size, format: isOpaque)
-//        let image = renderer.image { ctx in
-//            view.drawHierarchy(in: mapViewContainer.bounds, afterScreenUpdates: true)
-//        }
-        if let image = imageScreenshot(view: mapViewContainer), let imageData = UIImageJPEGRepresentation(image, 0.0) {
+        let image = imageScreenshot(view: mapViewContainer)
+        if let imageData = UIImageJPEGRepresentation(image!, 0.0) {
             let mapDataID = NSUUID().uuidString
             let storageRef = Storage.storage().reference().child("run_maps").child(mapDataID)
             storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
@@ -68,13 +48,13 @@ class RunStatsViewController: UIViewController {
                 self.sendDataToDatabase(photoUrl: photoUrl!)
             })
         } else {
-            print("error will robinson")
+            print("error will robinson, your image screenshot failed to send to firebase!")
         }
     }
     
     func imageScreenshot(view: UIView) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 0)
+        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let snapshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return snapshot
@@ -105,10 +85,6 @@ class RunStatsViewController: UIViewController {
             }
         })
     }
-    
-    
-    
-    
     
     func saveData(){
         if container.viewContext.hasChanges {
