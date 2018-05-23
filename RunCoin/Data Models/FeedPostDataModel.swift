@@ -12,12 +12,15 @@ class FeedPost {
     var distance : String?
     var duration : String?
     var date : String?
-    
+    var pace : String?
+    var runMap : String?
 }
 
 extension FeedPost {
     static func transformPost(dict: [String : Any]) -> FeedPost {
         let post = FeedPost()
+        post.pace = dict["pace"] as? String
+        post.runMap = dict["mapUrl"] as? String
         post.distance = dict["distance"] as? String
         post.duration = dict["duration"] as? String
         post.date = dict["timestamp"] as? String

@@ -10,12 +10,14 @@ import UIKit
 import Firebase
 
 class ProfileFeedTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var profileImageView: UIImageView!
     
     @IBOutlet weak var usernameLabel: UILabel!
     
     @IBOutlet weak var runMapImageView: UIImageView!
+    
+    @IBOutlet weak var DateLabel: UILabel!
     
     var post : FeedPost? {
         didSet{
@@ -35,9 +37,9 @@ class ProfileFeedTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }

@@ -19,17 +19,16 @@ class ProfileFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = 550
+        tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
         loadFeedData()
         title = "User Profile"
-        //var post = FeedPost(distance: 12.1, duration: 12.1, date: 1525986914.83655)
     }
     
     
     func loadFeedData(){
-        Database.database().reference().child("run_data").child(uid!).observe(.childAdded) { (snapshot) in
+        Database.database().reference().child("run_data").observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
                 let newPost = FeedPost.transformPost(dict: dict)
                 self.posts.append(newPost)
@@ -45,12 +44,13 @@ class ProfileFeedViewController: UIViewController {
 extension ProfileFeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let post = posts[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! ProfileFeedTableViewCell
-       //convertetDistance = cell.usernameLabel.text
-//        let photoURLString =
-        
-//        cell.profileImageView.sd_setAnimationImages(with: [URL])
+        let post = posts[indexPath.row]
+        cell.DateLabel.text = post.date
+        if let photoURLString = post.runMap {
+            let photoURL = URL(string: photoURLString)
+            cell.runMapImageView.sd_setImage(with: photoURL)
+        }
         return cell
     }
     

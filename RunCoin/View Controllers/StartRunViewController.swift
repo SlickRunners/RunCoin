@@ -23,6 +23,7 @@ class StartRunViewController: UIViewController {
     private var locationList: [CLLocation] = []
     var databaseRef: DatabaseReference!
     var runCoinsEarned : Int = 0
+    private var coins : RunCoins?
     
     
     //Buttons & Actions
@@ -79,7 +80,7 @@ class StartRunViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         stopRun()
         saveRun()
-        screenShotMethod()
+//        screenShotMethod()
         performSegue(withIdentifier: .details, sender: nil)
     }
     
@@ -93,6 +94,7 @@ class StartRunViewController: UIViewController {
             self.eachSecond()
         }
         startLocationUpdates()
+        runCoinEarned()
     }
     
     private func stopRun() {
@@ -179,37 +181,42 @@ class StartRunViewController: UIViewController {
         let newDuration = FormatDisplay.time(seconds).description
         let newDate = FormatDisplay.date(newRun.timestamp).description
         let newPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
-        //Send run data to firebase database
-        //        let mapPhoto = UIImageJPEGRepresentation(mapView, 0.1)
-        //let runDate = newRun.timestamp?.timeIntervalSince1970.description
-        let runDict : [String : Any] = ["distance": newDistance, "duration": newDuration, "timestamp": newDate, "pace": newPace]
-//        let runDict : [String : Any] = ["distance": newRun.distance.description, "duration": newRun.duration.description, "timestamp": runDate!, "mapPhoto": ]
-        let uid = Auth.auth().currentUser?.uid
-        databaseRef = Database.database().reference()
-        self.databaseRef.child("run_data").child(uid!).childByAutoId().setValue(runDict)
-        if newRun.distance > 5.0 {
-            runCoinsEarned += 1
-            print("you've earned a RUNCOIN!", runCoinsEarned)
-        }
-    }
-    
-    func screenShotMethod() {
-        let image = imageScreenshot(view: mapContainerView)
-        if let imageData = UIImageJPEGRepresentation(image!, 0.0) {
+        guard let currentUser = Auth.auth().currentUser else {return}
+        let currentUserId = currentUser.uid
+        guard let image = imageScreenshot(view: mapContainerView) else {return}
+        if let imageData = UIImagePNGRepresentation(image){
             let mapDataID = NSUUID().uuidString
-            let storageRef = Storage.storage().reference().child("run_maps").child(mapDataID)
+            let storageRef = Storage.storage().reference().child("run_data").child(mapDataID)
             storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print("something went wrong uploading map image to firebase")
                     return
                 }
-                let photoUrl = metadata?.downloadURL()?.absoluteString
-                self.sendDataToDatabase(photoUrl: photoUrl!)
+                let mapUrl = metadata?.downloadURL()?.absoluteString
+                self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: mapUrl!)
             })
         } else {
             print("error will robinson")
         }
     }
+    
+//    func screenShotMethod() {
+//        let image = imageScreenshot(view: mapContainerView)
+//        if let imageData = UIImageJPEGRepresentation(image!, 0.0) {
+//            let mapDataID = NSUUID().uuidString
+//            let storageRef = Storage.storage().reference().child("run_data").child(mapDataID)
+//            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
+//                if error != nil {
+//                    print("something went wrong uploading map image to firebase")
+//                    return
+//                }
+//                let photoUrl = metadata?.downloadURL()?.absoluteString
+//                self.sendDataToDatabase(photoUrl: photoUrl!)
+//            })
+//        } else {
+//            print("error will robinson")
+//        }
+//    }
     
     func imageScreenshot(view: UIView) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
@@ -219,17 +226,26 @@ class StartRunViewController: UIViewController {
         return snapshot
     }
     
-    func sendDataToDatabase(photoUrl: String) {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let ref = Database.database().reference()
-        let photoReference = ref.child("run_maps").child(uid)
-        photoReference.setValue(["photoUrl": photoUrl], withCompletionBlock: {
+    func sendDataToDatabase(uid: String, distance: String, duration: String, date: String, pace: String, mapUrl: String) {
+        let databaseRef = Database.database().reference()
+        let postRef = databaseRef.child("run_data")
+        let postId = postRef.childByAutoId().key
+        let newPostRef = postRef.child(postId)
+        let runDict = ["uid": uid, "distance": distance,"duration": duration,"date": date,"pace": pace ,"mapUrl": mapUrl]
+        newPostRef.setValue(runDict, withCompletionBlock: {
             error, ref in
             if error != nil {
                 print("Error saving map image to firebase!")
                 return
             }
         })
+    }
+    
+    private func runCoinEarned(){
+        if run?.distance == 1 {
+            runCoinsEarned = 1
+            print("You've earned 1 RunCoin!")
+        }
     }
 
     
@@ -277,7 +293,7 @@ extension StartRunViewController: MKMapViewDelegate {
             return MKOverlayRenderer(overlay: overlay)
         }
         let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor = .blue
+        renderer.strokeColor = UIColor.offBlue
         renderer.lineWidth = 3
         return renderer
     }
