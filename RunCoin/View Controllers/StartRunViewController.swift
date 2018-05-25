@@ -43,22 +43,6 @@ class StartRunViewController: UIViewController {
         finishResumeStackView.isHidden = false
         resumeButton.isHidden = false
         finishButton.isHidden = false
-        
-//        let alertController = UIAlertController(title: "Finished Running?",
-//                                                message: "Do you want to stop your workout?",
-//                                                preferredStyle: .actionSheet)
-//        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//        alertController.addAction(UIAlertAction(title: "Save", style: .default) { _ in
-//            self.stopRun()
-//            self.saveRun()
-//            self.performSegue(withIdentifier: .details, sender: nil)
-//        })
-//        alertController.addAction(UIAlertAction(title: "Discard", style: .destructive) { _ in
-//            self.stopRun()
-//            _ = self.navigationController?.popToRootViewController(animated: true)
-//        })
-//
-//        present(alertController, animated: true)
     }
     
     @IBAction func resumeButtonPressed(_ sender: UIButton) {
@@ -231,7 +215,7 @@ class StartRunViewController: UIViewController {
         let postRef = databaseRef.child("run_data")
         let postId = postRef.childByAutoId().key
         let newPostRef = postRef.child(postId)
-        let runDict = ["uid": uid, "distance": distance,"duration": duration,"date": date,"pace": pace ,"mapUrl": mapUrl]
+        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl]
         newPostRef.setValue(runDict, withCompletionBlock: {
             error, ref in
             if error != nil {
@@ -294,7 +278,7 @@ extension StartRunViewController: MKMapViewDelegate {
         }
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor.offBlue
-        renderer.lineWidth = 3
+        renderer.lineWidth = 4
         return renderer
     }
 }

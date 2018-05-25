@@ -60,17 +60,6 @@ class RunStatsViewController: UIViewController {
         return snapshot
     }
     
-//    func imageScreenshot(with view: UIView) -> UIImage? {
-//        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
-//        defer { UIGraphicsEndImageContext() }
-//        if let context = UIGraphicsGetCurrentContext() {
-//            view.layer.render(in: context)
-//            let image = UIGraphicsGetImageFromCurrentImageContext()
-//            return image
-//        }
-//        return nil
-//    }
-    
     
     func sendDataToDatabase(photoUrl: String) {
         let ref = Database.database().reference()
@@ -96,12 +85,7 @@ class RunStatsViewController: UIViewController {
             }
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-        
-    }
+    
     //Convert run data into proper units
     private func configureView() {
         let distance = Measurement(value: (run.distance), unit: UnitLength.meters)

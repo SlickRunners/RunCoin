@@ -14,6 +14,7 @@ class FeedPost {
     var date : String?
     var pace : String?
     var runMap : String?
+    var uid : String?
 }
 
 extension FeedPost {
@@ -23,7 +24,8 @@ extension FeedPost {
         post.runMap = dict["mapUrl"] as? String
         post.distance = dict["distance"] as? String
         post.duration = dict["duration"] as? String
-        post.date = dict["timestamp"] as? String
+        post.date = dict["date"] as? String
+        post.uid = dict["uid"] as? String
         return post
     }
 }

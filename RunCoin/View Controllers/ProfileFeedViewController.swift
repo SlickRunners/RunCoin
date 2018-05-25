@@ -11,11 +11,12 @@ import Firebase
 import SDWebImage
 
 class ProfileFeedViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     let uid = Auth.auth().currentUser?.uid
     var posts = [FeedPost]()
+    var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,20 @@ class ProfileFeedViewController: UIViewController {
         Database.database().reference().child("run_data").observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
                 let newPost = FeedPost.transformPost(dict: dict)
-                self.posts.append(newPost)
-                print(self.posts)
-                print(dict)
-                self.tableView.reloadData()
+                self.fetchUser(uid: newPost.uid!, completed: {
+                    self.posts.append(newPost)
+                    self.tableView.reloadData()
+                })
+            }
+        }
+    }
+    
+    func fetchUser(uid: String, completed: @escaping ()-> Void){
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            if let dict = snapshot.value as? [String : Any] {
+                let user = User.transformUser(dict: dict)
+                self.users.append(user)
+                completed()
             }
         }
     }
@@ -46,11 +57,9 @@ extension ProfileFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! ProfileFeedTableViewCell
         let post = posts[indexPath.row]
-        cell.DateLabel.text = post.date
-        if let photoURLString = post.runMap {
-            let photoURL = URL(string: photoURLString)
-            cell.runMapImageView.sd_setImage(with: photoURL)
-        }
+        let user = users[indexPath.row]
+        cell.post = post
+        cell.user = user
         return cell
     }
     

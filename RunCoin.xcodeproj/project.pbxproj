@@ -78,6 +78,7 @@
 		B03E7CAC20A6222C0018B43A /* ProfileFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
+		B08A10B320B604F50019DA8C /* UsersDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B220B604F50019DA8C /* UsersDataModel.swift */; };
 		B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2920978189009BB784 /* CoreDataStack.swift */; };
 		B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */; };
 		B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */; };
@@ -165,6 +166,7 @@
 		B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTableViewCell.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B08A10B220B604F50019DA8C /* UsersDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDataModel.swift; sourceTree = "<group>"; };
 		B0FB1E2920978189009BB784 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunCoin.xcdatamodel; sourceTree = "<group>"; };
 		B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversions.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		B037D09D20AB6237005AE2E0 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				B08A10B220B604F50019DA8C /* UsersDataModel.swift */,
 				B03E7CA720A3A2A80018B43A /* FeedPostDataModel.swift */,
 				B037D09E20AB6258005AE2E0 /* RunCoinDataModel.swift */,
 			);
@@ -608,6 +611,7 @@
 				B037D09F20AB6258005AE2E0 /* RunCoinDataModel.swift in Sources */,
 				B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */,
 				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
+				B08A10B320B604F50019DA8C /* UsersDataModel.swift in Sources */,
 				B037D10820AC9ADA005AE2E0 /* InitiateRunViewController.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
 				B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */,
