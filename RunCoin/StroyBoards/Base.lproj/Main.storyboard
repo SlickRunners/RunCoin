@@ -967,7 +967,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="020-d6-ZpP"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1bz-rb-ZpZ"/>
+                    <navigationItem key="navigationItem" id="1bz-rb-ZpZ">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="OWA-Ce-8XA">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="g2p-PJ-owc" id="1kp-Go-Ezx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="CzI-PW-8R4" id="raH-sO-RD1"/>
                     </connections>
@@ -995,6 +1001,7 @@
         <!--Run Stats View Controller-->
         <scene sceneID="cv8-ga-VlB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q33-6u-f3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xRf-Tp-fuJ" customClass="RunStatsViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="moW-4a-TiR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -1039,19 +1046,38 @@
                                         <rect key="frame" x="0.0" y="25" width="325" height="284"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drd-J6-C89">
-                                                <rect key="frame" x="0.0" y="0.0" width="72" height="94.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="72" height="57"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Tba-Gh-sG2">
+                                                <rect key="frame" x="0.0" y="57" width="40" height="56.5"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFx-E0-UeP">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="56.5"/>
+                                                        <state key="normal" title="Share"/>
+                                                        <connections>
+                                                            <action selector="shareButtonPressed:" destination="xRf-Tp-fuJ" eventType="touchUpInside" id="YCm-30-81t"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leA-Km-sKd">
+                                                <rect key="frame" x="0.0" y="113.5" width="37" height="57"/>
+                                                <state key="normal" title="Done"/>
+                                                <connections>
+                                                    <action selector="doneButtonPressed:" destination="xRf-Tp-fuJ" eventType="touchUpInside" id="qBo-pc-iAl"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAg-jg-cVw">
-                                                <rect key="frame" x="0.0" y="94.5" width="47" height="95"/>
+                                                <rect key="frame" x="0.0" y="170.5" width="47" height="56.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pace: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69T-GF-8mk">
-                                                <rect key="frame" x="0.0" y="189.5" width="47" height="94.5"/>
+                                                <rect key="frame" x="0.0" y="227" width="47" height="57"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1084,7 +1110,6 @@
                         <outlet property="timeLabel" destination="gAg-jg-cVw" id="v9O-bx-dwT"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q33-6u-f3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5921" y="1101"/>
         </scene>
@@ -1259,6 +1284,6 @@
         <image name="slickCharacter" width="136" height="221"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="CsK-Z0-Qsp"/>
+        <segue reference="JvV-79-9Bh"/>
     </inferredMetricsTieBreakers>
 </document>

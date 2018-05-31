@@ -184,24 +184,6 @@ class StartRunViewController: UIViewController {
         }
     }
     
-//    func screenShotMethod() {
-//        let image = imageScreenshot(view: mapContainerView)
-//        if let imageData = UIImageJPEGRepresentation(image!, 0.0) {
-//            let mapDataID = NSUUID().uuidString
-//            let storageRef = Storage.storage().reference().child("run_data").child(mapDataID)
-//            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-//                if error != nil {
-//                    print("something went wrong uploading map image to firebase")
-//                    return
-//                }
-//                let photoUrl = metadata?.downloadURL()?.absoluteString
-//                self.sendDataToDatabase(photoUrl: photoUrl!)
-//            })
-//        } else {
-//            print("error will robinson")
-//        }
-//    }
-    
     func imageScreenshot(view: UIView) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
         view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)

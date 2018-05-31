@@ -12,11 +12,8 @@ import Firebase
 class ProfileFeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
-    
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var runMapImageView: UIImageView!
-    
     @IBOutlet weak var DateLabel: UILabel!
     
     var user : User? {

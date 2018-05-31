@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 import Firebase
+import FacebookShare
 
 class RunStatsViewController: UIViewController {
 
@@ -23,6 +24,35 @@ class RunStatsViewController: UIViewController {
     var run : Run!
     var container: NSPersistentContainer!
     
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func shareButtonPressed(_ sender: UIButton) {
+        guard let image = imageScreenshot(view: mapViewContainer) else {return}
+        let photo = Photo(image: image, userGenerated: true)
+        let content = PhotoShareContent(photos: [photo])
+        let shareDialog = ShareDialog(content: content)
+        shareDialog.mode = .shareSheet
+        shareDialog.failsOnInvalidData = false
+        shareDialog.completion = { result in
+            // Handle share results
+            print("share to facebook successfull")
+        }
+        try! shareDialog.show()
+        
+        
+//        guard let image = imageScreenshot(view: mapViewContainer) else {return}
+//        let vc = UIViewController(nibName: "RunStatsViewController", bundle: nil)
+//        let photo = Photo(image: image, userGenerated: true)
+//        let content = PhotoShareContent(photos: [photo])
+//        do {
+//          try ShareDialog.show(from: vc, content: content)
+//        }
+//        catch {
+//            print("error with share button", error.localizedDescription)
+//        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -34,47 +64,6 @@ class RunStatsViewController: UIViewController {
         }
     }
     
-    func screenShotMethod() {
-        let image = imageScreenshot(view: mapViewContainer)
-        if let imageData = UIImageJPEGRepresentation(image!, 0.0) {
-            let mapDataID = NSUUID().uuidString
-            let storageRef = Storage.storage().reference().child("run_maps").child(mapDataID)
-            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print("something went wrong uploading map image to firebase")
-                    return
-                }
-                let photoUrl = metadata?.downloadURL()?.absoluteString
-                self.sendDataToDatabase(photoUrl: photoUrl!)
-            })
-        } else {
-            print("error will robinson, your image screenshot failed to send to firebase!")
-        }
-    }
-    
-    func imageScreenshot(view: UIView) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(view.frame.size, true, 0)
-        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
-        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return snapshot
-    }
-    
-    
-    func sendDataToDatabase(photoUrl: String) {
-        let ref = Database.database().reference()
-        let photoReference = ref.child("run_maps")
-        let newPhotoID = photoReference.childByAutoId().key
-        let newPhotoRef = photoReference.child(newPhotoID)
-        newPhotoRef.setValue(["photoUrl": photoUrl], withCompletionBlock: {
-            error, ref in
-            if error != nil {
-                print("Error saving map image to firebase!")
-                return
-            }
-        })
-    }
-    
     func saveData(){
         if container.viewContext.hasChanges {
             do {
@@ -84,6 +73,14 @@ class RunStatsViewController: UIViewController {
                 print("An error occurred while saving to container: \(error)")
             }
         }
+    }
+    
+    func imageScreenshot(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return snapshot
     }
     
     //Convert run data into proper units

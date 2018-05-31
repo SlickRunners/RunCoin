@@ -14,7 +14,6 @@ class ProfileFeedViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let uid = Auth.auth().currentUser?.uid
     var posts = [FeedPost]()
     var users = [User]()
     
@@ -27,8 +26,28 @@ class ProfileFeedViewController: UIViewController {
         title = "User Profile"
     }
     
+
+    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
+        do{
+            try Auth.auth().signOut()
+            print("successful logout of firebase")
+            if self.presentingViewController != nil {
+                self.dismiss(animated: false, completion: {
+                    self.navigationController!.popToRootViewController(animated: true)
+                })
+            }
+            else {
+                self.navigationController!.popToRootViewController(animated: true)
+            }
+        }
+        catch {
+            print("Error logging out of Firebase.")
+        }
+    }
     
     func loadFeedData(){
+        guard let user = Auth.auth().currentUser else {return}
+        let uid = user.uid
         Database.database().reference().child("run_data").observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
                 let newPost = FeedPost.transformPost(dict: dict)

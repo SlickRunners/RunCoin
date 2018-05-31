@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import SVProgressHUD
-import Presentr
 
 class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
@@ -22,12 +21,14 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    //Presentr
-    let presenter = Presentr(presentationType: .alert)
-    
     //pickerview setup
     let myPickerView = UIPickerView()
     let myPickerData : [String] = ["" ,"Male", "Female", "Other"]
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     //MARK: -- PickerView DataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -79,7 +80,6 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         birthdayTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         //genderTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is EnterPhotoViewController {
             let destinationVC = segue.destination as? EnterPhotoViewController
@@ -94,10 +94,6 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         view.endEditing(true)
         self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
     
     

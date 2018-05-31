@@ -21,8 +21,7 @@ class AccountLoginViewController: UIViewController {
         view.endEditing(true)
         AuthService.signInToAccount(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             SVProgressHUD.dismiss()
-            self.performSegue(withIdentifier: "GoToStartScreen", sender: self)
-            print("performsegue SUCCESSFULL")
+            self.performSegue(withIdentifier: "GoToStartScreen", sender: nil)
         }, onError: { error in
             print(error!)
             SVProgressHUD.dismiss()

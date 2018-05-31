@@ -79,12 +79,12 @@
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
 		B08A10B320B604F50019DA8C /* UsersDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B220B604F50019DA8C /* UsersDataModel.swift */; };
+		B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */; };
 		B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2920978189009BB784 /* CoreDataStack.swift */; };
 		B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */; };
 		B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */; };
 		B0FB1E322097A19D009BB784 /* MetricDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */; };
 		B0FB1E342097A244009BB784 /* GPSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E332097A244009BB784 /* GPSManager.swift */; };
-		B0FB1E362097AC95009BB784 /* RunStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E352097AC95009BB784 /* RunStatsViewController.swift */; };
 		B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */; };
 		B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */; };
 /* End PBXBuildFile section */
@@ -167,12 +167,12 @@
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B08A10B220B604F50019DA8C /* UsersDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDataModel.swift; sourceTree = "<group>"; };
+		B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunStatsViewController.swift; sourceTree = "<group>"; };
 		B0FB1E2920978189009BB784 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunCoin.xcdatamodel; sourceTree = "<group>"; };
 		B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversions.swift; sourceTree = "<group>"; };
 		B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDefinitions.swift; sourceTree = "<group>"; };
 		B0FB1E332097A244009BB784 /* GPSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSManager.swift; sourceTree = "<group>"; };
-		B0FB1E352097AC95009BB784 /* RunStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunStatsViewController.swift; sourceTree = "<group>"; };
 		B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardSupport.swift; sourceTree = "<group>"; };
 		B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticolorPolyline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,7 +261,7 @@
 				B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */,
 				B037D10720AC9ADA005AE2E0 /* InitiateRunViewController.swift */,
 				B07A7D042065675B00DE33DE /* StartRunViewController.swift */,
-				B0FB1E352097AC95009BB784 /* RunStatsViewController.swift */,
+				B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */,
 				B03E7CA520A37E730018B43A /* ProfileFeedViewController.swift */,
 				B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */,
 			);
@@ -606,12 +606,12 @@
 				B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */,
 				B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */,
 				B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */,
-				B0FB1E362097AC95009BB784 /* RunStatsViewController.swift in Sources */,
 				B0FB1E342097A244009BB784 /* GPSManager.swift in Sources */,
 				B037D09F20AB6258005AE2E0 /* RunCoinDataModel.swift in Sources */,
 				B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */,
 				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
 				B08A10B320B604F50019DA8C /* UsersDataModel.swift in Sources */,
+				B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */,
 				B037D10820AC9ADA005AE2E0 /* InitiateRunViewController.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
 				B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */,
