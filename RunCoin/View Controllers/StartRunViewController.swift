@@ -176,8 +176,10 @@ class StartRunViewController: UIViewController {
                     print("something went wrong uploading map image to firebase")
                     return
                 }
-                let mapUrl = metadata?.downloadURL()?.absoluteString
-                self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: mapUrl!)
+                metadata?.storageReference?.downloadURL(completion: { (url, error) in
+                    let mapUrl = url?.absoluteString
+                    self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: mapUrl!)
+                })
             })
         } else {
             print("error will robinson")
