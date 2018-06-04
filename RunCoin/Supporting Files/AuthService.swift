@@ -26,16 +26,20 @@ class AuthService {
                 onError("Error registering/singing in new user into Firebase! \(error!.localizedDescription)")
                 return
             }
-            let uid = user?.uid
+            let uid = user?.user.uid
             let storageRef = Storage.storage().reference(forURL: "gs://runcoin-c565b.appspot.com").child("profile_image").child(uid!)
-            
             storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     return
                 }
-             let profileImageUrl = metadata?.downloadURL()?.absoluteString
-                
-                self.setUserInformation(email: email, username: username, birthday: birthday, gender: gender, profileImageUrl: profileImageUrl!, uid: uid!, onSuccess: onSuccess)
+                metadata?.storageReference?.downloadURL(completion: { (url, error) in
+                    if error != nil {
+                        print("error retreiving photo URL")
+                        return
+                    }
+                    let profileUrl = url?.absoluteString
+                    self.setUserInformation(email: email, username: username, birthday: birthday, gender: gender, profileImageUrl: profileUrl!, uid: uid!, onSuccess: onSuccess)
+                })
             })
         })
     }

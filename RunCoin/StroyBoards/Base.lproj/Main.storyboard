@@ -1001,7 +1001,6 @@
         <!--Run Stats View Controller-->
         <scene sceneID="cv8-ga-VlB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q33-6u-f3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="xRf-Tp-fuJ" customClass="RunStatsViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="moW-4a-TiR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -1110,6 +1109,7 @@
                         <outlet property="timeLabel" destination="gAg-jg-cVw" id="v9O-bx-dwT"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q33-6u-f3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5921" y="1101"/>
         </scene>

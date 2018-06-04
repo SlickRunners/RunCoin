@@ -40,19 +40,19 @@ class RunStatsViewController: UIViewController {
             print("share to facebook successfull")
         }
         try! shareDialog.show()
-        
-        
-//        guard let image = imageScreenshot(view: mapViewContainer) else {return}
-//        let vc = UIViewController(nibName: "RunStatsViewController", bundle: nil)
+    }
+    
+    
+//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSString:AnyObject]) {
+//        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+//            return // No image selected.
+//        }
+//
 //        let photo = Photo(image: image, userGenerated: true)
 //        let content = PhotoShareContent(photos: [photo])
-//        do {
-//          try ShareDialog.show(from: vc, content: content)
-//        }
-//        catch {
-//            print("error with share button", error.localizedDescription)
-//        }
-    }
+//        try ShareDialog.show(from: myViewController, content: content)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
