@@ -34,7 +34,7 @@ class RunStatsViewController: UIViewController {
         let content = PhotoShareContent(photos: [photo])
         let shareDialog = ShareDialog(content: content)
         shareDialog.mode = .shareSheet
-        shareDialog.failsOnInvalidData = false
+        shareDialog.failsOnInvalidData = true
         shareDialog.completion = { result in
             // Handle share results
             print("share to facebook successfull")
