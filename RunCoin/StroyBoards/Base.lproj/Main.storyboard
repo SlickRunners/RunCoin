@@ -629,7 +629,7 @@
         <!--HomeViewController-->
         <scene sceneID="XLN-D4-SfX">
             <objects>
-                <viewController storyboardIdentifier="HomeScreen" title="HomeViewController" id="meH-zH-njO" customClass="StartRunViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeScreen" title="HomeViewController" hidesBottomBarWhenPushed="YES" id="meH-zH-njO" customClass="StartRunViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1AN-HH-o2j" userLabel="Main View">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -831,7 +831,7 @@
                             <constraint firstItem="evx-gi-7Ld" firstAttribute="leading" secondItem="1AN-HH-o2j" secondAttribute="leading" constant="10" id="3VJ-UE-t7y"/>
                             <constraint firstItem="E3j-Ly-reu" firstAttribute="trailing" secondItem="mfD-8i-ZZa" secondAttribute="trailing" id="67h-r8-H8z"/>
                             <constraint firstItem="8MX-TN-e8C" firstAttribute="leading" secondItem="E3j-Ly-reu" secondAttribute="leading" constant="50" id="6Zm-GA-wAp"/>
-                            <constraint firstItem="8nZ-cQ-XRh" firstAttribute="top" secondItem="E3j-Ly-reu" secondAttribute="top" constant="44" id="9Gu-z5-Emy"/>
+                            <constraint firstItem="8nZ-cQ-XRh" firstAttribute="top" secondItem="E3j-Ly-reu" secondAttribute="top" id="9Gu-z5-Emy"/>
                             <constraint firstItem="8nZ-cQ-XRh" firstAttribute="leading" secondItem="E3j-Ly-reu" secondAttribute="leading" id="9oi-9b-uJq"/>
                             <constraint firstAttribute="trailing" secondItem="evx-gi-7Ld" secondAttribute="trailing" constant="10" id="K2l-Oo-aAH"/>
                             <constraint firstItem="mfD-8i-ZZa" firstAttribute="leading" secondItem="E3j-Ly-reu" secondAttribute="leading" id="NnX-I3-tOn"/>
@@ -860,7 +860,7 @@
                         <outlet property="saveButton" destination="CJ8-Z1-H1o" id="CkG-er-OFq"/>
                         <outlet property="stopButton" destination="5pU-F9-giS" id="Xar-fB-NQZ"/>
                         <outlet property="timeDurationLabel" destination="PyN-T8-Rzq" id="yQr-HH-4Gq"/>
-                        <segue destination="xRf-Tp-fuJ" kind="show" identifier="GoToRunStats" id="nUY-Rc-f8Y"/>
+                        <segue destination="xRf-Tp-fuJ" kind="presentation" identifier="GoToRunStats" id="nUY-Rc-f8Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XrD-Bu-UQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1067,6 +1067,7 @@
                                                 <state key="normal" title="Done"/>
                                                 <connections>
                                                     <action selector="doneButtonPressed:" destination="xRf-Tp-fuJ" eventType="touchUpInside" id="qBo-pc-iAl"/>
+                                                    <segue destination="7I8-3g-pv4" kind="unwind" unwindAction="unwindToStartWithUnwindSegue:" id="dQv-fL-8ZV"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAg-jg-cVw">
@@ -1110,6 +1111,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q33-6u-f3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7I8-3g-pv4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5921" y="1101"/>
         </scene>
@@ -1189,7 +1191,7 @@
                     <navigationItem key="navigationItem" id="46I-ql-CF1"/>
                     <connections>
                         <outlet property="mapView" destination="4ra-h6-5hS" id="8vX-9o-Nco"/>
-                        <segue destination="meH-zH-njO" kind="presentation" identifier="StartRun" id="4Ch-O0-Gml"/>
+                        <segue destination="meH-zH-njO" kind="show" identifier="StartRun" id="4Ch-O0-Gml"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGo-Yz-RnY" userLabel="First Responder" sceneMemberID="firstResponder"/>
