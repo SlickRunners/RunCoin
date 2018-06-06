@@ -25,33 +25,14 @@ class RunStatsViewController: UIViewController {
     var container: NSPersistentContainer!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         guard let image = imageScreenshot(view: mapViewContainer) else {return}
-        let photo = Photo(image: image, userGenerated: true)
-        let content = PhotoShareContent(photos: [photo])
-        let shareDialog = ShareDialog(content: content)
-        shareDialog.mode = .shareSheet
-        shareDialog.failsOnInvalidData = true
-        shareDialog.completion = { result in
-            // Handle share results
-            print("share to facebook successfull")
-        }
-        try! shareDialog.show()
+        let caption = [dateLabel.text, distanceLabel.text, paceLabel.text, timeLabel.text]
+        let activityController = UIActivityViewController(activityItems: [image, caption], applicationActivities: nil)
+        present(activityController, animated: true)
     }
-    
-    
-//    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSString:AnyObject]) {
-//        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-//            return // No image selected.
-//        }
-//
-//        let photo = Photo(image: image, userGenerated: true)
-//        let content = PhotoShareContent(photos: [photo])
-//        try ShareDialog.show(from: myViewController, content: content)
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
