@@ -210,17 +210,21 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
                 print(error)
             }
             print("Succesfully saved profile image to Firebase Storage!")
-            guard let profilePictureURL = metadata?.downloadURL()?.absoluteString else { return }
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-            let dictionaryValues = ["name" : self.name, "email" : self.email, "profilePictureURL" : profilePictureURL]
-            let values = [uid: dictionaryValues]
-            
-            Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
-                if let error = error {
-                    print(error)
-                    return
+            metadata?.storageReference?.downloadURL(completion: { (url, error) in
+                if error != nil {
+                    print("error with Storage reference download URL method")
                 }
-                print("Succesfully saved user profile image to Firebase!")
+                let profilePictureURL = url?.absoluteString
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                let dictionaryValues = ["name" : self.name, "email" : self.email, "profilePictureURL" : profilePictureURL]
+                let values = [uid: dictionaryValues]
+                Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    print("Succesfully saved user profile image to Firebase!")
+                })
             })
         }
     }

@@ -25,34 +25,15 @@ class RunStatsViewController: UIViewController {
     var container: NSPersistentContainer!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         guard let image = imageScreenshot(view: mapViewContainer) else {return}
-        let photo = Photo(image: image, userGenerated: true)
-        let content = PhotoShareContent(photos: [photo])
-        let shareDialog = ShareDialog(content: content)
-        shareDialog.mode = .shareSheet
-        shareDialog.failsOnInvalidData = false
-        shareDialog.completion = { result in
-            // Handle share results
-            print("share to facebook successfull")
-        }
-        try! shareDialog.show()
-        
-        
-//        guard let image = imageScreenshot(view: mapViewContainer) else {return}
-//        let vc = UIViewController(nibName: "RunStatsViewController", bundle: nil)
-//        let photo = Photo(image: image, userGenerated: true)
-//        let content = PhotoShareContent(photos: [photo])
-//        do {
-//          try ShareDialog.show(from: vc, content: content)
-//        }
-//        catch {
-//            print("error with share button", error.localizedDescription)
-//        }
+        let caption = [dateLabel.text, distanceLabel.text, paceLabel.text, timeLabel.text]
+        let activityController = UIActivityViewController(activityItems: [image, caption], applicationActivities: nil)
+        present(activityController, animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
