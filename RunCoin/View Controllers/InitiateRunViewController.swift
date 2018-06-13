@@ -29,4 +29,7 @@ class InitiateRunViewController: UIViewController, CLLocationManagerDelegate, MK
         
         self.mapView.setRegion(region, animated: true)
     }
+    
+    @IBAction func unwindToStart(unwindSegue: UIStoryboardSegue) {
+        }
 }
