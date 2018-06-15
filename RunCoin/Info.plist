@@ -2,19 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>RunCoin needs to use your location to map the route that you&apos;re running.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>MKDirectionsRequest</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.apple.maps.directionsrequest</string>
-			</array>
-		</dict>
-	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -59,20 +50,12 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>MKDirectionsApplicationSupportedModes</key>
-	<array>
-		<string>MKDirectionsModeBike</string>
-		<string>MKDirectionsModePedestrian</string>
-	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow RunCoin to access your phone's camera.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>RunCoin needs to use your location to map the route that you're running.</string>
+	<string>Allow RunCoin to access your phone&apos;s camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow RunCoin to import a photo for your profile.</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Nunito-Regular.ttf</string>
 		<string>SF-Pro-Text-SemiboldItalic.otf</string>
 		<string>SF-Pro-Text-RegularItalic.otf</string>
 		<string>SF-Pro-Text-Regular.otf</string>
