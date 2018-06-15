@@ -8,12 +8,9 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 import CoreLocation
 import MapKit
-import FirebaseStorage
-import FirebaseAuth
-import FirebaseDatabase
-import GameplayKit
 
 class StartRunViewController: UIViewController {
     
@@ -41,26 +38,12 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var finishResumeStackView: UIStackView!
     
-    private func startLocationUpdates() {
-        locationManager.delegate = self
-        locationManager.activityType = .fitness
-        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
-        locationManager.allowsBackgroundLocationUpdates = true
-    }
-    
     @IBAction func stopButtonPressed(_ sender: UIButton) {
         stopButton.isHidden = true
         finishResumeStackView.isHidden = false
         resumeButton.isHidden = false
         finishButton.isHidden = false
     }
-    
-    @IBAction func discardButtonPressed(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
-        locationManager.stopUpdatingLocation()
-    }
-    
     
     @IBAction func resumeButtonPressed(_ sender: UIButton) {
         stopButton.isHidden = false
@@ -81,6 +64,7 @@ class StartRunViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         stopRun()
         saveRun()
+//        screenShotMethod()
         performSegue(withIdentifier: .details, sender: nil)
     }
     
@@ -94,10 +78,24 @@ class StartRunViewController: UIViewController {
             self.eachSecond()
         }
         startLocationUpdates()
+        runCoinEarned()
     }
     
     private func stopRun() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    
+    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
+        GIDSignIn.sharedInstance().signOut()
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            print("Successfully logged out of Firebase from home screen!")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        goToHomeScreen()
     }
     
     override func viewDidLoad() {
@@ -105,17 +103,13 @@ class StartRunViewController: UIViewController {
         startRun()
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
-        mapView.showsUserLocation = true
-        let userLocation = mapView.userLocation.coordinate
-        let region = MKCoordinateRegionMakeWithDistance(userLocation, 100, 100)
-        mapView.setRegion(region, animated: true)
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        timer?.invalidate()
-//        locationManager.stopUpdatingLocation()
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
+        locationManager.stopUpdatingLocation()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -145,20 +139,11 @@ class StartRunViewController: UIViewController {
         self.present(navController, animated:true, completion: nil)
     }
     
-//    private func startLocationUpdates() {
-//        locationManager.delegate = self
-//        locationManager.activityType = .fitness
-//        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-//        locationManager.startUpdatingLocation()
-//        locationManager.allowsBackgroundLocationUpdates = true
-//    }
-    
-    func imageScreenshot(view: UIView) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return snapshot
+    private func startLocationUpdates() {
+        locationManager.delegate = self
+        locationManager.activityType = .fitness
+        locationManager.distanceFilter = 10
+        locationManager.startUpdatingLocation()
     }
     
     private func saveRun() {
@@ -174,47 +159,41 @@ class StartRunViewController: UIViewController {
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
         }
-        
         CoreDataStack.saveContext()
         run = newRun
-        
         let newDistance = FormatDisplay.distance(newRun.distance).description
         let newDuration = FormatDisplay.time(seconds).description
         let newDate = FormatDisplay.date(newRun.timestamp).description
         let newPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
-        guard let currentUser = Auth.auth().currentUser else {
-            print("No current firebase user")
-            return
-        }
+        guard let currentUser = Auth.auth().currentUser else {return}
         let currentUserId = currentUser.uid
-        guard let image = imageScreenshot(view: mapContainerView) else {
-            print("image screenshot method did not work")
-            return
-        }
-        if let imageData = UIImagePNGRepresentation(image) {
+        guard let image = imageScreenshot(view: mapContainerView) else {return}
+        if let imageData = UIImagePNGRepresentation(image){
             let mapDataID = NSUUID().uuidString
             let storageRef = Storage.storage().reference().child("run_data").child(mapDataID)
-            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
+                    print("something went wrong uploading map image to firebase")
                     return
                 }
-                storageRef.downloadURL { (url, error) in
-                    guard let downloadUrl = url else {return}
-                    let urlString = downloadUrl.absoluteString
-                    print(urlString)
-                    self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: urlString)
-//                    AuthService.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: urlString)
-                }
-            }
+                let mapUrl = metadata?.downloadURL()?.absoluteString
+                self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: mapUrl!)
+            })
+        } else {
+            print("error will robinson")
         }
-        else {
-            print("error will robinson, imageData couldn't be converted to UIIMagePNGRep")
-        }
+    }
+    
+    func imageScreenshot(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return snapshot
     }
     
     func sendDataToDatabase(uid: String, distance: String, duration: String, date: String, pace: String, mapUrl: String) {
         let databaseRef = Database.database().reference()
-//        let databaseRef = DatabaseReference()
         let postRef = databaseRef.child("run_data")
         let postId = postRef.childByAutoId().key
         let newPostRef = postRef.child(postId)
@@ -228,26 +207,13 @@ class StartRunViewController: UIViewController {
         })
     }
     
-    func runCoinEarned() {
-        let distance = distanceLabel.text!
-        var runCoin = 0
-        let random = String(arc4random_uniform(8) + 2)
-        let newRando = Double(arc4random_uniform(8) + 2)
-        let newnew = newRando + 1.00
-        print(newnew)
-        print("This is the Random Number!", random)
-        if distance == random {
-            runCoin += 1
-            let databaseRef = Database.database().reference()
-            if let currentUser = Auth.auth().currentUser {
-                let uid = currentUser.uid
-                let runCoinNode = databaseRef.child("ruc_coins").child(uid)
-                runCoinNode.setValue(runCoin)
-                print("Success You've Earned a runcoin MOTHAFUCKA!!!!!!")
-            }
+    private func runCoinEarned(){
+        if run?.distance == 1 {
+            runCoinsEarned = 1
+            print("You've earned 1 RunCoin!")
         }
     }
-    
+
     
 }
 //MARK: Extensions
@@ -281,6 +247,7 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500)
                 mapView.setRegion(region, animated: true)
             }
+            
             locationList.append(newLocation)
         }
     }

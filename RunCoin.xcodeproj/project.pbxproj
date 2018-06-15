@@ -8,14 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		10688EA52A1D9203C4DCDA82 /* Pods_RunCoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2324BC8B30C64FD6A5212EAB /* Pods_RunCoin.framework */; };
+		B00C2A162062BBA90074AD44 /* EnterPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */; };
 		B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D7F220503DA600491C39 /* AppDelegate.swift */; };
 		B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D7F420503DA600491C39 /* EmailLogInViewController.swift */; };
 		B023D7F820503DA600491C39 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B023D7F620503DA600491C39 /* Main.storyboard */; };
 		B023D7FA20503DA600491C39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D7F920503DA600491C39 /* Assets.xcassets */; };
 		B023D7FD20503DA600491C39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B023D7FB20503DA600491C39 /* LaunchScreen.storyboard */; };
+		B023D8092050418100491C39 /* SplashScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D8082050418100491C39 /* SplashScreen.xcassets */; };
+		B023D82120508BB200491C39 /* ProfileScreenAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D82020508BB200491C39 /* ProfileScreenAssets.xcassets */; };
 		B023D82320508DA100491C39 /* LoginScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B023D82220508DA100491C39 /* LoginScreen.xcassets */; };
 		B023D82520509D6500491C39 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023D82420509D6500491C39 /* LoginViewController.swift */; };
-		B0293F8D20CF143F00BF7670 /* RunCoinEarned.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0293F8C20CF143F00BF7670 /* RunCoinEarned.swift */; };
 		B03293E22087B16200284BAF /* AccountLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03293E12087B16200284BAF /* AccountLoginViewController.swift */; };
 		B03293E4208A5A3200284BAF /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03293E3208A5A3200284BAF /* AuthService.swift */; };
 		B037D09F20AB6258005AE2E0 /* RunCoinDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037D09E20AB6258005AE2E0 /* RunCoinDataModel.swift */; };
@@ -72,24 +74,17 @@
 		B037D10620AC7BA9005AE2E0 /* SFCompactDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = B037D0F120AC7BA7005AE2E0 /* SFCompactDisplay-Ultralight.otf */; };
 		B037D10820AC9ADA005AE2E0 /* InitiateRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037D10720AC9ADA005AE2E0 /* InitiateRunViewController.swift */; };
 		B03E7CA620A37E730018B43A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CA520A37E730018B43A /* ProfileFeedViewController.swift */; };
-		B03E7CA820A3A2A80018B43A /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CA720A3A2A80018B43A /* FeedPost.swift */; };
+		B03E7CA820A3A2A80018B43A /* FeedPostDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CA720A3A2A80018B43A /* FeedPostDataModel.swift */; };
 		B03E7CAC20A6222C0018B43A /* ProfileFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */; };
-		B04F854720D2E793002DE382 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854620D2E793002DE382 /* Api.swift */; };
-		B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */; };
-		B04F854F20D455A1002DE382 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04F854E20D455A1002DE382 /* MapKit.framework */; };
-		B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F9CB220C88223006AB649 /* AccountViewController.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
-		B08A10B320B604F50019DA8C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B220B604F50019DA8C /* User.swift */; };
+		B08A10B320B604F50019DA8C /* UsersDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B220B604F50019DA8C /* UsersDataModel.swift */; };
 		B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */; };
-		B0C5D5F720D19AEE00970FE0 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */; };
-		B0C5D5F920D2DC9000970FE0 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D5F820D2DC9000970FE0 /* PostApi.swift */; };
-		B0C5D5FB20D2DF4800970FE0 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */; };
 		B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2920978189009BB784 /* CoreDataStack.swift */; };
 		B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */; };
 		B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */; };
 		B0FB1E322097A19D009BB784 /* MetricDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */; };
-		B0FB1E342097A244009BB784 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E332097A244009BB784 /* LocationManager.swift */; };
+		B0FB1E342097A244009BB784 /* GPSManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E332097A244009BB784 /* GPSManager.swift */; };
 		B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */; };
 		B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +94,7 @@
 		3C9014EC65EEF13400AF0360 /* Pods-RunCoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunCoin.release.xcconfig"; path = "Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin.release.xcconfig"; sourceTree = "<group>"; };
 		A35DA6827AD14EB3CD371AD2 /* Pods-RunCoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunCoin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RunCoin/Pods-RunCoin.debug.xcconfig"; sourceTree = "<group>"; };
 		B006F517207E63720045E5E0 /* RunCoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunCoin.entitlements; sourceTree = "<group>"; };
+		B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPhotoViewController.swift; sourceTree = "<group>"; };
 		B023D7EF20503DA600491C39 /* RunCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B023D7F220503DA600491C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B023D7F420503DA600491C39 /* EmailLogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLogInViewController.swift; sourceTree = "<group>"; };
@@ -106,11 +102,12 @@
 		B023D7F920503DA600491C39 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B023D7FC20503DA600491C39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B023D7FE20503DA600491C39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B023D8082050418100491C39 /* SplashScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SplashScreen.xcassets; sourceTree = "<group>"; };
+		B023D82020508BB200491C39 /* ProfileScreenAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ProfileScreenAssets.xcassets; sourceTree = "<group>"; };
 		B023D82220508DA100491C39 /* LoginScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LoginScreen.xcassets; sourceTree = "<group>"; };
 		B023D82420509D6500491C39 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		B0293F8C20CF143F00BF7670 /* RunCoinEarned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunCoinEarned.swift; sourceTree = "<group>"; };
 		B03293E12087B16200284BAF /* AccountLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLoginViewController.swift; sourceTree = "<group>"; };
-		B03293E3208A5A3200284BAF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "../Supporting Files/AuthService.swift"; sourceTree = "<group>"; };
+		B03293E3208A5A3200284BAF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B037D09E20AB6258005AE2E0 /* RunCoinDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunCoinDataModel.swift; sourceTree = "<group>"; };
 		B037D0A120AC7AD7005AE2E0 /* SF-Pro-Text-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BoldItalic.otf"; sourceTree = "<group>"; };
 		B037D0A220AC7AD9005AE2E0 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -165,24 +162,17 @@
 		B037D0F120AC7BA7005AE2E0 /* SFCompactDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		B037D10720AC9ADA005AE2E0 /* InitiateRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitiateRunViewController.swift; sourceTree = "<group>"; };
 		B03E7CA520A37E730018B43A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
-		B03E7CA720A3A2A80018B43A /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
+		B03E7CA720A3A2A80018B43A /* FeedPostDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostDataModel.swift; sourceTree = "<group>"; };
 		B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTableViewCell.swift; sourceTree = "<group>"; };
-		B04F854620D2E793002DE382 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
-		B04F854E20D455A1002DE382 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		B06F9CB220C88223006AB649 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B08A10B220B604F50019DA8C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B08A10B220B604F50019DA8C /* UsersDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersDataModel.swift; sourceTree = "<group>"; };
 		B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunStatsViewController.swift; sourceTree = "<group>"; };
-		B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-Regular.ttf"; path = "../../../../Documents/RunCoin/RunCoin/Image Assets/nunito/Nunito-Regular.ttf"; sourceTree = "<group>"; };
-		B0C5D5F820D2DC9000970FE0 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
-		B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
 		B0FB1E2920978189009BB784 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunCoin.xcdatamodel; sourceTree = "<group>"; };
 		B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversions.swift; sourceTree = "<group>"; };
 		B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricDefinitions.swift; sourceTree = "<group>"; };
-		B0FB1E332097A244009BB784 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		B0FB1E332097A244009BB784 /* GPSManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSManager.swift; sourceTree = "<group>"; };
 		B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardSupport.swift; sourceTree = "<group>"; };
 		B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MulticolorPolyline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +182,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B04F854F20D455A1002DE382 /* MapKit.framework in Frameworks */,
 				10688EA52A1D9203C4DCDA82 /* Pods_RunCoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,7 +214,6 @@
 				B006F517207E63720045E5E0 /* RunCoin.entitlements */,
 				B023D8072050415500491C39 /* View Controllers */,
 				B0FB1E2B209781A5009BB784 /* Supporting Files */,
-				B0C5D5FC20D2DF5200970FE0 /* APIs */,
 				B037D09D20AB6237005AE2E0 /* Data Models */,
 				B023D8052050410600491C39 /* StroyBoards */,
 				B023D804205040EF00491C39 /* Image Assets */,
@@ -239,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				B023D7F920503DA600491C39 /* Assets.xcassets */,
+				B023D8082050418100491C39 /* SplashScreen.xcassets */,
+				B023D82020508BB200491C39 /* ProfileScreenAssets.xcassets */,
 				B023D82220508DA100491C39 /* LoginScreen.xcassets */,
 			);
 			path = "Image Assets";
@@ -265,16 +255,15 @@
 		B023D8072050415500491C39 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */,
 				B03293E12087B16200284BAF /* AccountLoginViewController.swift */,
 				B023D82420509D6500491C39 /* LoginViewController.swift */,
 				B023D7F420503DA600491C39 /* EmailLogInViewController.swift */,
+				B00C2A152062BBA90074AD44 /* EnterPhotoViewController.swift */,
 				B037D10720AC9ADA005AE2E0 /* InitiateRunViewController.swift */,
 				B07A7D042065675B00DE33DE /* StartRunViewController.swift */,
 				B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */,
 				B03E7CA520A37E730018B43A /* ProfileFeedViewController.swift */,
 				B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */,
-				B06F9CB220C88223006AB649 /* AccountViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -282,10 +271,8 @@
 		B037D09D20AB6237005AE2E0 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				B0293F8C20CF143F00BF7670 /* RunCoinEarned.swift */,
-				B03293E3208A5A3200284BAF /* AuthService.swift */,
-				B08A10B220B604F50019DA8C /* User.swift */,
-				B03E7CA720A3A2A80018B43A /* FeedPost.swift */,
+				B08A10B220B604F50019DA8C /* UsersDataModel.swift */,
+				B03E7CA720A3A2A80018B43A /* FeedPostDataModel.swift */,
 				B037D09E20AB6258005AE2E0 /* RunCoinDataModel.swift */,
 			);
 			path = "Data Models";
@@ -301,7 +288,6 @@
 				B037D0E420AC7B8B005AE2E0 /* SFCompactDisplay-Medium.otf */,
 				B037D0E320AC7B89005AE2E0 /* SFCompactDisplay-Regular.otf */,
 				B037D0EA20AC7B98005AE2E0 /* SFCompactDisplay-Semibold.otf */,
-				B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */,
 				B037D0E020AC7B83005AE2E0 /* SFCompactDisplay-Thin.otf */,
 				B037D0F120AC7BA7005AE2E0 /* SFCompactDisplay-Ultralight.otf */,
 				B037D0DF20AC7B81005AE2E0 /* SFCompactText-Bold.otf */,
@@ -350,16 +336,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		B0C5D5FC20D2DF5200970FE0 /* APIs */ = {
-			isa = PBXGroup;
-			children = (
-				B04F854620D2E793002DE382 /* Api.swift */,
-				B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */,
-				B0C5D5F820D2DC9000970FE0 /* PostApi.swift */,
-			);
-			path = APIs;
-			sourceTree = "<group>";
-		};
 		B0FB1E2B209781A5009BB784 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,8 +344,9 @@
 				B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */,
 				B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */,
 				B0FB1E312097A19D009BB784 /* MetricDefinitions.swift */,
+				B03293E3208A5A3200284BAF /* AuthService.swift */,
 				B0FB1E392097BF58009BB784 /* MulticolorPolyline.swift */,
-				B0FB1E332097A244009BB784 /* LocationManager.swift */,
+				B0FB1E332097A244009BB784 /* GPSManager.swift */,
 				B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */,
 			);
 			path = "Supporting Files";
@@ -387,7 +364,6 @@
 		EBDE6746ABE11891CD485317 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B04F854E20D455A1002DE382 /* MapKit.framework */,
 				2324BC8B30C64FD6A5212EAB /* Pods_RunCoin.framework */,
 			);
 			name = Frameworks;
@@ -423,7 +399,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Roland Christensen";
 				TargetAttributes = {
 					B023D7EE20503DA600491C39 = {
@@ -434,9 +410,6 @@
 								enabled = 1;
 							};
 							com.apple.Keychain = {
-								enabled = 1;
-							};
-							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};
@@ -469,7 +442,6 @@
 				B037D0F920AC7BA9005AE2E0 /* SFCompactDisplay-Medium.otf in Resources */,
 				B037D10020AC7BA9005AE2E0 /* SFCompactDisplay-Heavy.otf in Resources */,
 				B037D0C520AC7B0C005AE2E0 /* SF-Pro-Text-MediumItalic.otf in Resources */,
-				B0C5D5F720D19AEE00970FE0 /* Nunito-Regular.ttf in Resources */,
 				B037D0F420AC7BA9005AE2E0 /* SFCompactText-Bold.otf in Resources */,
 				B037D0CC20AC7B0C005AE2E0 /* SF-Pro-Display-BlackItalic.otf in Resources */,
 				B037D10520AC7BA9005AE2E0 /* SFCompactText-HeavyItalic.otf in Resources */,
@@ -484,6 +456,7 @@
 				B037D0F220AC7BA9005AE2E0 /* SFCompactDisplay-Light.otf in Resources */,
 				B037D0CB20AC7B0C005AE2E0 /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				B037D10220AC7BA9005AE2E0 /* SFCompactDisplay-Bold.otf in Resources */,
+				B023D8092050418100491C39 /* SplashScreen.xcassets in Resources */,
 				B037D0FB20AC7BA9005AE2E0 /* SFCompactText-SemiboldItalic.otf in Resources */,
 				B037D0DB20AC7B0C005AE2E0 /* SF-Pro-Display-Thin.otf in Resources */,
 				B037D10120AC7BA9005AE2E0 /* SFCompactText-Semibold.otf in Resources */,
@@ -499,6 +472,7 @@
 				B023D7FA20503DA600491C39 /* Assets.xcassets in Resources */,
 				B037D0D020AC7B0C005AE2E0 /* SF-Pro-Text-Light.otf in Resources */,
 				B037D0D620AC7B0C005AE2E0 /* SF-Pro-Display-HeavyItalic.otf in Resources */,
+				B023D82120508BB200491C39 /* ProfileScreenAssets.xcassets in Resources */,
 				B037D10320AC7BA9005AE2E0 /* SFCompactDisplay-Black.otf in Resources */,
 				B023D7F820503DA600491C39 /* Main.storyboard in Resources */,
 				B037D0C320AC7B0C005AE2E0 /* SF-Pro-Text-HeavyItalic.otf in Resources */,
@@ -623,29 +597,24 @@
 				B03293E22087B16200284BAF /* AccountLoginViewController.swift in Sources */,
 				B03E7CAC20A6222C0018B43A /* ProfileFeedTableViewCell.swift in Sources */,
 				B0FB1E322097A19D009BB784 /* MetricDefinitions.swift in Sources */,
-				B03E7CA820A3A2A80018B43A /* FeedPost.swift in Sources */,
+				B00C2A162062BBA90074AD44 /* EnterPhotoViewController.swift in Sources */,
+				B03E7CA820A3A2A80018B43A /* FeedPostDataModel.swift in Sources */,
 				B023D82520509D6500491C39 /* LoginViewController.swift in Sources */,
 				B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */,
 				B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */,
 				B03E7CA620A37E730018B43A /* ProfileFeedViewController.swift in Sources */,
 				B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */,
-				B0C5D5FB20D2DF4800970FE0 /* UserApi.swift in Sources */,
-				B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */,
-				B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */,
 				B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */,
 				B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */,
-				B04F854720D2E793002DE382 /* Api.swift in Sources */,
-				B0FB1E342097A244009BB784 /* LocationManager.swift in Sources */,
+				B0FB1E342097A244009BB784 /* GPSManager.swift in Sources */,
 				B037D09F20AB6258005AE2E0 /* RunCoinDataModel.swift in Sources */,
 				B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */,
 				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
-				B08A10B320B604F50019DA8C /* User.swift in Sources */,
+				B08A10B320B604F50019DA8C /* UsersDataModel.swift in Sources */,
 				B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */,
 				B037D10820AC9ADA005AE2E0 /* InitiateRunViewController.swift in Sources */,
-				B0293F8D20CF143F00BF7670 /* RunCoinEarned.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
 				B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */,
-				B0C5D5F920D2DC9000970FE0 /* PostApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,7 +654,6 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -693,7 +661,6 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -744,7 +711,6 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -752,7 +718,6 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
