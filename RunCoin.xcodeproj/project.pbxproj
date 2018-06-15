@@ -76,6 +76,7 @@
 		B03E7CAC20A6222C0018B43A /* ProfileFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */; };
 		B04F854720D2E793002DE382 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854620D2E793002DE382 /* Api.swift */; };
 		B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */; };
+		B04F854F20D455A1002DE382 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04F854E20D455A1002DE382 /* MapKit.framework */; };
 		B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F9CB220C88223006AB649 /* AccountViewController.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
@@ -168,6 +169,7 @@
 		B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTableViewCell.swift; sourceTree = "<group>"; };
 		B04F854620D2E793002DE382 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		B04F854E20D455A1002DE382 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B06F9CB220C88223006AB649 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04F854F20D455A1002DE382 /* MapKit.framework in Frameworks */,
 				10688EA52A1D9203C4DCDA82 /* Pods_RunCoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +387,7 @@
 		EBDE6746ABE11891CD485317 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B04F854E20D455A1002DE382 /* MapKit.framework */,
 				2324BC8B30C64FD6A5212EAB /* Pods_RunCoin.framework */,
 			);
 			name = Frameworks;
@@ -430,6 +434,9 @@
 								enabled = 1;
 							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};

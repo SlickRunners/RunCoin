@@ -216,7 +216,7 @@ extension RunStatsViewController: MKMapViewDelegate {
         }
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = polyline.color
-        renderer.lineWidth = 3
+        renderer.lineWidth = 4
         return renderer
     }
 }

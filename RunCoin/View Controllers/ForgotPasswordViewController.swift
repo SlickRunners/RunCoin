@@ -43,6 +43,8 @@ class ForgotPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        emailTextField.layer.borderWidth = 1.0
         
     }
 

@@ -62,7 +62,9 @@ extension UIColor {
     @nonobjc class var offBlue: UIColor {
         return UIColor(red: 84.0 / 255.0, green: 109.0 / 255.0, blue: 169.0 / 255.0, alpha: 1.0)
     }
-    
+    @nonobjc class var coolGrey: UIColor {
+        return UIColor(red: 151.0 / 255.0, green: 157.0 / 255.0, blue: 168.0 / 255.0, alpha: 1.0)
+    }
 }
 
 import UIKit
@@ -89,6 +91,7 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "GoToEmailSignIn", sender: self)
     }
     
+    @IBAction func unwindToLogin(segue:UIStoryboardSegue){}
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -58,6 +58,7 @@ class StartRunViewController: UIViewController {
     
     @IBAction func discardButtonPressed(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
+        locationManager.stopUpdatingLocation()
     }
     
     
@@ -173,8 +174,10 @@ class StartRunViewController: UIViewController {
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
         }
+        
         CoreDataStack.saveContext()
         run = newRun
+        
         let newDistance = FormatDisplay.distance(newRun.distance).description
         let newDuration = FormatDisplay.time(seconds).description
         let newDate = FormatDisplay.date(newRun.timestamp).description
@@ -275,7 +278,7 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 
                 let coordinates = [lastLocation.coordinate, newLocation.coordinate]
                 mapView.add(MKPolyline(coordinates: coordinates, count: 2))
-                let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 550, 550)
+                let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500)
                 mapView.setRegion(region, animated: true)
             }
             locationList.append(newLocation)
