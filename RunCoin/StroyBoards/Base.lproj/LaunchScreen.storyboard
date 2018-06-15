@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Nunito-ExtraLightItalic.ttf">
-            <string>Nunito-ExtraLightItalic</string>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
         </array>
-        <array key="Nunito-SemiBold.ttf">
-            <string>Nunito-SemiBold</string>
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
         </array>
     </customFonts>
     <scenes>
@@ -26,47 +26,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runCoinDefault" translatesAutoresizingMaskIntoConstraints="NO" id="kd8-yk-neb">
-                                <rect key="frame" x="15" y="0.0" width="345" height="667"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hrZ-gG-BsY">
+                                <rect key="frame" x="49" y="382" width="277" height="137"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RunCoin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szh-A6-jdp">
+                                        <rect key="frame" x="0.0" y="0.0" width="277" height="68.5"/>
+                                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="50"/>
+                                        <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motivation to thrive." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izy-Fm-Qd1">
+                                        <rect key="frame" x="0.0" y="68.5" width="277" height="68.5"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="14"/>
+                                        <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runCoinLogo" translatesAutoresizingMaskIntoConstraints="NO" id="B1o-eu-CuE">
+                                <rect key="frame" x="70" y="120" width="235" height="235"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runCoinLogo" translatesAutoresizingMaskIntoConstraints="NO" id="E9T-qs-E9T">
-                                <rect key="frame" x="0.0" y="152" width="298" height="222"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Motivation to thrive." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="izy-Fm-Qd1">
-                                <rect key="frame" x="124" y="548" width="127" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="DBN-BJ-YU1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RUNCOIN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szh-A6-jdp">
-                                <rect key="frame" x="75" y="460" width="225.5" height="69"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="Ng8-xw-1me"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-ExtraLightItalic" family="Nunito" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="izy-Fm-Qd1" secondAttribute="bottom" constant="99" id="03c-xf-glg"/>
-                            <constraint firstItem="kd8-yk-neb" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="0jj-gE-Nz7"/>
-                            <constraint firstItem="Szh-A6-jdp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1ga-pw-4Bu"/>
-                            <constraint firstItem="E9T-qs-E9T" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="132" id="T9g-re-RQF"/>
-                            <constraint firstItem="kd8-yk-neb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Tz5-i9-7KV"/>
-                            <constraint firstItem="izy-Fm-Qd1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="YFM-7L-4KI"/>
-                            <constraint firstItem="izy-Fm-Qd1" firstAttribute="top" secondItem="Szh-A6-jdp" secondAttribute="bottom" constant="19" id="cF1-Ff-hrV"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E9T-qs-E9T" secondAttribute="trailing" constant="77" id="ewI-LZ-XEP"/>
-                            <constraint firstItem="kd8-yk-neb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gaj-Ll-w3I"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kd8-yk-neb" secondAttribute="trailing" constant="15" id="lYU-PB-epy"/>
-                            <constraint firstItem="kd8-yk-neb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="mwt-fy-wCu"/>
-                            <constraint firstAttribute="bottom" secondItem="Szh-A6-jdp" secondAttribute="bottom" constant="138" id="o2k-aV-EU4"/>
-                            <constraint firstItem="Szh-A6-jdp" firstAttribute="top" secondItem="E9T-qs-E9T" secondAttribute="bottom" constant="86" id="o78-CY-gl2"/>
-                            <constraint firstItem="E9T-qs-E9T" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="phm-bx-1md"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hrZ-gG-BsY" secondAttribute="trailing" constant="49" id="0l6-Ev-J1P"/>
+                            <constraint firstItem="B1o-eu-CuE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AdR-eZ-Fey"/>
+                            <constraint firstItem="hrZ-gG-BsY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="49" id="P7y-zC-Vpi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hrZ-gG-BsY" secondAttribute="bottom" constant="148" id="Rgk-3A-svF"/>
+                            <constraint firstItem="B1o-eu-CuE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="ybJ-N3-fy2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -77,7 +64,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="runCoinDefault" width="349" height="647"/>
-        <image name="runCoinLogo" width="300" height="222"/>
+        <image name="runCoinLogo" width="235" height="235"/>
     </resources>
 </document>
