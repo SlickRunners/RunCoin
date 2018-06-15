@@ -9,17 +9,22 @@
 import UIKit
 import Firebase
 import SVProgressHUD
+import MobileCoreServices
+import FirebaseStorage
 
-class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     //variables
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
-    @IBOutlet weak var profileLabel: UILabel!
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var bottomView: UIView!
+    @IBOutlet weak var photoImage: UIImageView!
+    var newSelectedImage : UIImage?
     
     //pickerview setup
     let myPickerView = UIPickerView()
@@ -27,6 +32,17 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    @IBAction func uploadPhotoPressed(_ sender: UIButton) {
+        let myAlert = UIAlertController(title: "Select a profile image from your phone library.", message: "", preferredStyle: .actionSheet)
+        let cameraRollAction = UIAlertAction(title: "Choose photo from", style: .default) { (action) in
+            self.handleSelectProfileImage()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        myAlert.addAction(cameraRollAction)
+        myAlert.addAction(cancelAction)
+        self.present(myAlert, animated: true)
     }
     
     //MARK: -- PickerView DataSource
@@ -60,92 +76,79 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let birthday = birthdayTextField.text, !birthday.isEmpty
             //let gender = genderTextField.text, !gender.isEmpty
             else {
-                self.doneButton.isEnabled = false
-                self.doneButton.titleLabel?.isEnabled = false
+                self.saveButton.isEnabled = false
+                self.saveButton.titleLabel?.isEnabled = false
                 return
         }
-        doneButton.isEnabled = true
-        self.doneButton.titleLabel?.isEnabled = true
+        saveButton.isEnabled = true
+        self.saveButton.titleLabel?.isEnabled = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLoginScreen()
         
-        doneButton.isEnabled = false
-        doneButton.titleLabel?.isEnabled = false
+        saveButton.isEnabled = false
+        saveButton.titleLabel?.isEnabled = false
         emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         userNameTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         birthdayTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         //genderTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is EnterPhotoViewController {
-            let destinationVC = segue.destination as? EnterPhotoViewController
-            destinationVC?.emailtext = emailTextField.text
-            destinationVC?.usernameText = userNameTextField.text
-            destinationVC?.passwordtext = passwordTextField.text
-            destinationVC?.birthdayText = birthdayTextField.text
-            destinationVC?.genderText = genderTextField.text
-        }
+        
+        let photoTapped = UITapGestureRecognizer(target: self, action: #selector(EmailLogInViewController.handleSelectProfileImage))
+        photoImage.isUserInteractionEnabled = true
+        photoImage.addGestureRecognizer(photoTapped)
     }
     
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    @objc func handleSelectProfileImage(){
+        SVProgressHUD.show()
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
+        SVProgressHUD.dismiss()
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            newSelectedImage = image
+            photoImage.image = image
+            photoImage.layer.cornerRadius = 68
+            photoImage.clipsToBounds = true
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
         view.endEditing(true)
-        self.performSegue(withIdentifier: "GoToPhotoPage", sender: self)
+        saveImageData()
     }
     
     
     fileprivate func setUpLoginScreen() {
-        //textfield style properties
-        emailTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        //emailTextField.layer.masksToBounds = false
-        emailTextField.layer.shadowRadius = 1.0
-        emailTextField.layer.shadowOpacity = 0.5
-        emailTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        emailTextField.borderStyle = UITextBorderStyle.roundedRect
-        
-        passwordTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        //passwordTextField.layer.masksToBounds = false
-        passwordTextField.layer.shadowRadius = 1.0
-        passwordTextField.layer.shadowOpacity = 0.5
-        passwordTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        passwordTextField.borderStyle = UITextBorderStyle.roundedRect
-        
-        userNameTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        //userNameTextField.layer.masksToBounds = false
-        userNameTextField.layer.shadowRadius = 1.0
-        userNameTextField.layer.shadowOpacity = 0.5
-        userNameTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        userNameTextField.borderStyle = UITextBorderStyle.roundedRect
-        userNameTextField.adjustsFontSizeToFitWidth = true
-        
-        birthdayTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        birthdayTextField.layer.masksToBounds = false
-        birthdayTextField.layer.shadowRadius = 1.0
-        birthdayTextField.layer.shadowOpacity = 0.5
-        birthdayTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        birthdayTextField.borderStyle = UITextBorderStyle.roundedRect
-        birthdayTextField.adjustsFontSizeToFitWidth = true
-        
-        genderTextField.layer.shadowColor = UIColor.googleGrey.cgColor
-        //genderTextField.layer.masksToBounds = false
-        genderTextField.layer.shadowRadius = 1.0
-        genderTextField.layer.shadowOpacity = 0.5
-        genderTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
-        genderTextField.borderStyle = UITextBorderStyle.roundedRect
-        
-        //done button attributes
-        doneButton.backgroundColor = UIColor.coral
+        //view attributes
+        topView.layer.shadowColor = UIColor.black.cgColor
+        topView.layer.shadowOpacity = 0.25
+        topView.layer.shadowRadius = 5.0
+        topView.layer.backgroundColor = UIColor.white.cgColor
+        bottomView.layer.backgroundColor = UIColor.white.cgColor
+        bottomView.layer.shadowColor = UIColor.black.cgColor
+        bottomView.layer.shadowOpacity = 0.25
+        bottomView.layer.shadowRadius = 5.0
         
         //Nav attributes
-        title = String("Set Up Your Profile")
+        title = String("Sign Up")
         navigationItem.largeTitleDisplayMode = .never
         
         genderTextField.inputView = myPickerView
         myPickerView.delegate = self
         myPickerView.showsSelectionIndicator = true
+        myPickerView.endEditing(true)
+        
         // ToolBar
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
@@ -156,6 +159,32 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         toolBar.setItems([donePickingGender], animated: false)
         toolBar.isUserInteractionEnabled = true
         genderTextField.inputAccessoryView = toolBar
+    }
+    
+    func saveImageData() {
+        SVProgressHUD.show()
+        if photoImage != newSelectedImage {
+            newSelectedImage = UIImage(named: "blankProfileImage")
+        }
+        if let profileImage = newSelectedImage, let imageData = UIImagePNGRepresentation(profileImage){
+            AuthService.signUp(email: emailTextField.text!, username: userNameTextField.text!, password: passwordTextField.text!, imageData: imageData, birthday: birthdayTextField.text!, gender: genderTextField.text!, onSuccess: {
+                print("Successful creation of firebase user.")
+                self.goToHomeScreen()
+            }, onError: { (errorString) in
+                print("Error creating firebase user", errorString!)
+                SVProgressHUD.dismiss()
+                let alertController = UIAlertController(title: "Invalid Email and/or Password", message: "Please enter a valid email. Password must be at least 6 characters.", preferredStyle: .alert)
+                let alertActionTest = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(alertActionTest)
+                self.present(alertController, animated: true)
+                return
+            })
+        }
+    }
+    
+    func goToHomeScreen(){
+        performSegue(withIdentifier: "GoToStartTabController", sender: self)
+        SVProgressHUD.dismiss()
     }
     
 }

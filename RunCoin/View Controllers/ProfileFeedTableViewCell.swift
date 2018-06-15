@@ -12,9 +12,12 @@ import Firebase
 class ProfileFeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var runMapImageView: UIImageView!
     @IBOutlet weak var DateLabel: UILabel!
+    @IBOutlet weak var runDistanceLabel: UILabel!
+    @IBOutlet weak var runDurationLabel: UILabel!
+    @IBOutlet weak var runAveragePaceLabel: UILabel!
+    @IBOutlet weak var runCoinEarnedLabel: UILabel!
     
     var user : User? {
         didSet{
@@ -30,8 +33,11 @@ class ProfileFeedTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        usernameLabel.text = ""
         DateLabel.text = ""
+        runDistanceLabel.text = ""
+        runAveragePaceLabel.text = ""
+        runCoinEarnedLabel.text = ""
+        runDurationLabel.text = ""
     }
     
     override func prepareForReuse() {
@@ -44,6 +50,9 @@ class ProfileFeedTableViewCell: UITableViewCell {
     }
     
     func updateView(){
+        runDistanceLabel.text = post?.distance
+        runDurationLabel.text = post?.duration
+        runAveragePaceLabel.text = post?.pace
         DateLabel.text = post?.date
         if let photoURLString = post?.runMap {
             let photoURL = URL(string: photoURLString)
@@ -53,10 +62,9 @@ class ProfileFeedTableViewCell: UITableViewCell {
     }
     
     func setUpUserInfo() {
-        usernameLabel.text = user?.username
         if let photoURLString = user?.profileImageUrl {
             let photoURL = URL(string: photoURLString)
-            profileImageView.sd_setImage(with: photoURL, placeholderImage: UIImage(named: "PlaceholderDude"))
+            profileImageView.sd_setImage(with: photoURL, placeholderImage: UIImage(named: "blankProfileImage"))
         }
     }
 }

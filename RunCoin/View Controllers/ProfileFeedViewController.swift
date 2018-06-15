@@ -9,21 +9,29 @@
 import UIKit
 import Firebase
 import SDWebImage
+import FirebaseAuth
+import FirebaseDatabase
 
 class ProfileFeedViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var aggregateDistanceLabel: UILabel!
+    @IBOutlet weak var aggregateDurationLabel: UILabel!
+    @IBAction func unwindToVC1(segue:UIStoryboardSegue){}
+    
+    
     
     var posts = [FeedPost]()
     var users = [User]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadFeedData()
+        setUpView()
+        
         tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.dataSource = self
-        loadFeedData()
-        title = "User Profile"
     }
     
 
@@ -46,26 +54,20 @@ class ProfileFeedViewController: UIViewController {
     }
     
     func loadFeedData(){
-        guard let user = Auth.auth().currentUser else {return}
-        let uid = user.uid
-        Database.database().reference().child("run_data").observe(.childAdded) { (snapshot) in
-            if let dict = snapshot.value as? [String : Any] {
-                let newPost = FeedPost.transformPost(dict: dict)
-                self.fetchUser(uid: newPost.uid!, completed: {
-                    self.posts.append(newPost)
-                    self.tableView.reloadData()
-                })
-            }
+//        guard let user = Auth.auth().currentUser else {return}
+//        let uid = user.uid
+        Api.Post.observePosts { (post) in
+            self.fetchUser(uid: post.uid!, completed: {
+                self.posts.append(post)
+                self.tableView.reloadData()
+            })
         }
     }
     
     func fetchUser(uid: String, completed: @escaping ()-> Void){
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            if let dict = snapshot.value as? [String : Any] {
-                let user = User.transformUser(dict: dict)
-                self.users.append(user)
-                completed()
-            }
+        Api.User.observeUser(withId: uid) { (user) in
+            self.users.append(user)
+            completed()
         }
     }
 }
@@ -86,5 +88,21 @@ extension ProfileFeedViewController: UITableViewDataSource {
         return posts.count
     }
     
+    func setUpView(){
+        headerView.layer.shadowColor = UIColor.black.cgColor
+        headerView.layer.shadowRadius = 5.0
+        headerView.layer.shadowOpacity = 0.25
+        headerView.layer.backgroundColor = UIColor.white.cgColor
+        
+        tableView.estimatedRowHeight = 600
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.dataSource = self
+        title = "Activity"
+        
+        tableView.layer.shadowColor = UIColor.black.cgColor
+        tableView.layer.shadowRadius = 5.0
+        tableView.layer.shadowOpacity = 0.25
+        tableView.layer.backgroundColor = UIColor.white.cgColor
+    }
     
 }

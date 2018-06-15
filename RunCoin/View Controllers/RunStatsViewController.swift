@@ -24,13 +24,14 @@ class RunStatsViewController: UIViewController {
     var run : Run!
     var container: NSPersistentContainer!
     
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    @IBAction func skipButtonPressed(_ sender: UIButton) {
+        
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         guard let image = imageScreenshot(view: mapViewContainer) else {return}
-        let caption = [dateLabel.text, distanceLabel.text, paceLabel.text, timeLabel.text]
-        let activityController = UIActivityViewController(activityItems: [image, caption], applicationActivities: nil)
+        //let caption = [dateLabel.text, distanceLabel.text, paceLabel.text, timeLabel.text]
+        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activityController, animated: true)
     }
     
@@ -66,20 +67,20 @@ class RunStatsViewController: UIViewController {
     
     //Convert run data into proper units
     private func configureView() {
-        let distance = Measurement(value: (run.distance), unit: UnitLength.meters)
-        let seconds = Int(run.duration)
-        //To re convert firebase distance: FormatDisplay.distance(distanceInFirebase)
-        let formattedDistance = FormatDisplay.distance(distance)
-        let formattedDate = FormatDisplay.date(run.timestamp)
-        let formattedTime = FormatDisplay.time(seconds)
-        let formattedPace = FormatDisplay.pace(distance: distance,
-                                               seconds: seconds,
-                                               outputUnit: UnitSpeed.minutesPerMile)
-        
-        distanceLabel.text = "Distance:  \(formattedDistance)"
-        dateLabel.text = formattedDate
-        timeLabel.text = "Time:  \(formattedTime)"
-        paceLabel.text = "Pace:  \(formattedPace)"
+//        let distance = Measurement(value: (run.distance), unit: UnitLength.meters)
+//        let seconds = Int(run.duration)
+//        //To re convert firebase distance: FormatDisplay.distance(distanceInFirebase)
+//        let formattedDistance = FormatDisplay.distance(distance)
+//        let formattedDate = FormatDisplay.date(run.timestamp)
+//        let formattedTime = FormatDisplay.time(seconds)
+//        let formattedPace = FormatDisplay.pace(distance: distance,
+//                                               seconds: seconds,
+//                                               outputUnit: UnitSpeed.minutesPerMile)
+//
+//        distanceLabel.text = "Distance:  \(formattedDistance)"
+//        dateLabel.text = formattedDate
+//        timeLabel.text = "Time:  \(formattedTime)"
+//        paceLabel.text = "Pace:  \(formattedPace)"
         loadMap()
     }
     
