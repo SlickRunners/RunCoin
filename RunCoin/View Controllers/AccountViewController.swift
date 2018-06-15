@@ -19,6 +19,9 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    
     var user = User()
     var newSelectedImage : UIImage?
     
@@ -85,6 +88,11 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
         topView.layer.shadowColor = UIColor.black.cgColor
         topView.layer.shadowRadius = 5.0
         topView.layer.shadowOpacity = 0.25
+        //textfields
+        emailTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        nameTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        emailTextField.layer.borderWidth = 1.0
+        nameTextField.layer.borderWidth = 1.0
     }
     
     func saveImageData() {
@@ -127,15 +135,7 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         do{
             try Auth.auth().signOut()
-            print("successful logout of firebase")
-            if self.presentingViewController != nil {
-                self.dismiss(animated: false, completion: {
-                    self.navigationController!.popToRootViewController(animated: true)
-                })
-            }
-            else {
-                self.navigationController!.popToRootViewController(animated: true)
-            }
+            performSegue(withIdentifier: "unwindToLogin", sender: self)
         }
         catch {
             print("Error logging out of Firebase.")

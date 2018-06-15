@@ -154,12 +154,27 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
         toolBar.sizeToFit()
+        
         // Adding Button ToolBar
         let donePickingGender = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(pickerViewDoneButton))
         toolBar.setItems([donePickingGender], animated: false)
         toolBar.isUserInteractionEnabled = true
         genderTextField.inputAccessoryView = toolBar
+        
+        //textfields
+        emailTextField.layer.borderWidth = 1.0
+        userNameTextField.layer.borderWidth = 1.0
+        genderTextField.layer.borderWidth = 1.0
+        passwordTextField.layer.borderWidth = 1.0
+        birthdayTextField.layer.borderWidth = 1.0
+        birthdayTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        userNameTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        emailTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        genderTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        passwordTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        genderTextField.layer.borderColor = UIColor.coolGrey.cgColor
     }
+    
     
     func saveImageData() {
         SVProgressHUD.show()

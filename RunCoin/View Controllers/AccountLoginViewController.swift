@@ -62,10 +62,18 @@ class AccountLoginViewController: UIViewController {
         loginButton.titleLabel?.isEnabled = false
         emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        configureView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
+    
+    func configureView(){
+        emailTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        emailTextField.layer.borderWidth = 1.0
+        passwordTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        passwordTextField.layer.borderWidth = 1.0
+    }
 }
