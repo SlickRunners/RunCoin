@@ -16,6 +16,11 @@ class AccountLoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    
+    @IBAction func forgotPasswordPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToForgotPassword", sender: self)
+    }
+    
     @IBAction func LoginButtonPressed(_ sender: UIButton) {
         SVProgressHUD.show()
         view.endEditing(true)
