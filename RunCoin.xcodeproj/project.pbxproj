@@ -77,6 +77,7 @@
 		B04F854720D2E793002DE382 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854620D2E793002DE382 /* Api.swift */; };
 		B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */; };
 		B04F854F20D455A1002DE382 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04F854E20D455A1002DE382 /* MapKit.framework */; };
+		B04F855120D7FE73002DE382 /* MyPostsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855020D7FE73002DE382 /* MyPostsApi.swift */; };
 		B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F9CB220C88223006AB649 /* AccountViewController.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
@@ -170,6 +171,7 @@
 		B04F854620D2E793002DE382 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B04F854E20D455A1002DE382 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B04F855020D7FE73002DE382 /* MyPostsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsApi.swift; sourceTree = "<group>"; };
 		B06F9CB220C88223006AB649 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				B04F854620D2E793002DE382 /* Api.swift */,
+				B04F855020D7FE73002DE382 /* MyPostsApi.swift */,
 				B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */,
 				B0C5D5F820D2DC9000970FE0 /* PostApi.swift */,
 			);
@@ -644,6 +647,7 @@
 				B037D10820AC9ADA005AE2E0 /* InitiateRunViewController.swift in Sources */,
 				B0293F8D20CF143F00BF7670 /* RunCoinEarned.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
+				B04F855120D7FE73002DE382 /* MyPostsApi.swift in Sources */,
 				B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */,
 				B0C5D5F920D2DC9000970FE0 /* PostApi.swift in Sources */,
 			);

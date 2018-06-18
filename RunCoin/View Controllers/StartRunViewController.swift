@@ -41,6 +41,18 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var finishResumeStackView: UIStackView!
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        startRun()
+        finishButton.layer.borderWidth = 0.5
+        finishButton.layer.borderColor = UIColor.offBlue.cgColor
+        mapView.showsUserLocation = true
+        let userLocation = mapView.userLocation.coordinate
+        let region = MKCoordinateRegionMakeWithDistance(userLocation, 100, 100)
+        mapView.setRegion(region, animated: true)
+    }
+    
     private func startLocationUpdates() {
         locationManager.delegate = self
         locationManager.activityType = .fitness
@@ -98,17 +110,6 @@ class StartRunViewController: UIViewController {
     
     private func stopRun() {
         locationManager.stopUpdatingLocation()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        startRun()
-        finishButton.layer.borderWidth = 0.5
-        finishButton.layer.borderColor = UIColor.offBlue.cgColor
-        mapView.showsUserLocation = true
-        let userLocation = mapView.userLocation.coordinate
-        let region = MKCoordinateRegionMakeWithDistance(userLocation, 100, 100)
-        mapView.setRegion(region, animated: true)
     }
     
 //    override func viewWillDisappear(_ animated: Bool) {
@@ -203,7 +204,6 @@ class StartRunViewController: UIViewController {
                     let urlString = downloadUrl.absoluteString
                     print(urlString)
                     self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: urlString)
-//                    AuthService.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: urlString)
                 }
             }
         }
@@ -214,7 +214,6 @@ class StartRunViewController: UIViewController {
     
     func sendDataToDatabase(uid: String, distance: String, duration: String, date: String, pace: String, mapUrl: String) {
         let databaseRef = Database.database().reference()
-//        let databaseRef = DatabaseReference()
         let postRef = databaseRef.child("run_data")
         let postId = postRef.childByAutoId().key
         let newPostRef = postRef.child(postId)
@@ -225,46 +224,21 @@ class StartRunViewController: UIViewController {
                 print("Error saving map image to firebase!")
                 return
             }
+            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(uid).child(postId)
+            myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
+                if error != nil {
+                    return
+                }
+            })
         })
     }
     
     func runCoinEarned() {
-        let distance = distanceLabel.text!
-        var runCoin = 0
-        let random = String(arc4random_uniform(8) + 2)
-        let newRando = Double(arc4random_uniform(8) + 2)
-        let newnew = newRando + 1.00
-        print(newnew)
-        print("This is the Random Number!", random)
-        if distance == random {
-            runCoin += 1
-            let databaseRef = Database.database().reference()
-            if let currentUser = Auth.auth().currentUser {
-                let uid = currentUser.uid
-                let runCoinNode = databaseRef.child("ruc_coins").child(uid)
-                runCoinNode.setValue(runCoin)
-                print("Success You've Earned a runcoin MOTHAFUCKA!!!!!!")
-            }
-        }
     }
     
     
 }
 //MARK: Extensions
-extension StartRunViewController: SegueHandlerType {
-    enum SegueIdentifier: String {
-        case details = "GoToRunStats"
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .details:
-            let destination = segue.destination as! RunStatsViewController
-            destination.run = run
-        }
-    }
-}
-
 extension StartRunViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -295,5 +269,19 @@ extension StartRunViewController: MKMapViewDelegate {
         renderer.strokeColor = UIColor.offBlue
         renderer.lineWidth = 4
         return renderer
+    }
+}
+
+extension StartRunViewController: SegueHandlerType {
+    enum SegueIdentifier: String {
+        case details = "GoToRunStats"
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .details:
+            let destination = segue.destination as! RunStatsViewController
+            destination.run = run
+        }
     }
 }
