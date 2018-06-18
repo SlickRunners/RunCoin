@@ -133,12 +133,12 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
-        do{
-            try Auth.auth().signOut()
-            performSegue(withIdentifier: "unwindToLogin", sender: self)
-        }
-        catch {
-            print("Error logging out of Firebase.")
+        AuthService.logout(onSuccess: {
+             self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+        }) { (error) in
+            if error != nil {
+                return
+            }
         }
     }
 }

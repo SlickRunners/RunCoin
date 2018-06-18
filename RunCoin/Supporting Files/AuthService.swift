@@ -57,29 +57,23 @@ class AuthService {
         onSuccess()
     }
     
-    static func sendDataToDatabase(uid: String, distance: String, duration: String, date: String, pace: String, mapUrl: String) {
-        let databaseRef = Database.database().reference()
-        //        let databaseRef = DatabaseReference()
-        let postRef = databaseRef.child("all_friends_feed_posts")
-        let postRef2 = databaseRef.child("single_user_feed_posts")
-        let singleUserRef = postRef2.child(uid)
-        let postId = postRef.childByAutoId().key
-        let multipleUsersRef = postRef.child(postId)
-        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl]
-        
-        singleUserRef.setValue(runDict) { (error, ref) in
-            if error != nil {
-                print("error handling database call for sendDataToDatabase method in authservice.")
-                return
-            }
+    static func logout(onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
+        do {
+            try Auth.auth().signOut()
+            onSuccess()
         }
-        
-        multipleUsersRef.setValue(runDict, withCompletionBlock: {
-            error, ref in
+        catch let logoutError {
+            onError(logoutError.localizedDescription)
+        }
+    }
+    
+    static func sendPasswordReset(email: String, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             if error != nil {
-                print("Error saving map image to firebase!")
+                onError(error?.localizedDescription)
                 return
             }
-        })
+            onSuccess()
+        }
     }
 }
