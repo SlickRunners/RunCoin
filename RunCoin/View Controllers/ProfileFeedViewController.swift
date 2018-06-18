@@ -20,18 +20,31 @@ class ProfileFeedViewController: UIViewController {
     @IBOutlet weak var aggregateDurationLabel: UILabel!
     @IBAction func unwindToVC1(segue:UIStoryboardSegue){}
     
-    
-    
     var posts = [FeedPost]()
     var users = [User]()
+    var myPosts : [FeedPost]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadFeedData()
+//        loadFeedData()
         setUpView()
+        fetchMyPosts()
         
         tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    func fetchMyPosts() {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        let uid = currentUser.uid
+        Api.MyPosts.REF_MYPOSTS.child(uid).observe(.childAdded) { (snapshot) in
+            Api.Post.observePost(withId: snapshot.key, completion: { (post) in
+                self.posts.append(post)
+                self.tableView.reloadData()
+            })
+        }
     }
     
 
@@ -78,9 +91,9 @@ extension ProfileFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! ProfileFeedTableViewCell
         let post = posts[indexPath.row]
-        let user = users[indexPath.row]
+//        let user = users[indexPath.row]
         cell.post = post
-        cell.user = user
+//        cell.user = user
         return cell
     }
     

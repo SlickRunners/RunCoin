@@ -15,10 +15,11 @@ class FeedPost {
     var pace : String?
     var runMap : String?
     var uid : String?
+    var key : String?
 }
 
 extension FeedPost {
-    static func transformPost(dict: [String : Any]) -> FeedPost {
+    static func transformPost(dict: [String : Any], key: String) -> FeedPost {
         let post = FeedPost()
         post.pace = dict["pace"] as? String
         post.runMap = dict["mapUrl"] as? String
