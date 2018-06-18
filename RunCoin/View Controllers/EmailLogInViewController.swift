@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import Firebase
 import SVProgressHUD
 import MobileCoreServices
-import FirebaseStorage
 
 class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     

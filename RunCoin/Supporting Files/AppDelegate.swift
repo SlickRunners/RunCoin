@@ -24,9 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         FirebaseApp.configure()
-//        var ref: DatabaseReference!
-//        ref = Database.database().reference()
-//        //ref.setValue("We've got data!")
         
         let locationManager = LocationManager.shared
         locationManager.requestWhenInUseAuthorization()

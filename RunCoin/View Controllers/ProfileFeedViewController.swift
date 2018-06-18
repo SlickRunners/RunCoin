@@ -7,10 +7,7 @@
 //
 
 import UIKit
-import Firebase
 import SDWebImage
-import FirebaseAuth
-import FirebaseDatabase
 
 class ProfileFeedViewController: UIViewController {
     
@@ -35,7 +32,7 @@ class ProfileFeedViewController: UIViewController {
     }
     
     func fetchMyPosts() {
-        guard let currentUser = Auth.auth().currentUser else {
+        guard let currentUser = Api.User.CURRENT_USER else {
             return
         }
         let uid = currentUser.uid
@@ -49,20 +46,12 @@ class ProfileFeedViewController: UIViewController {
     
 
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        do{
-            try Auth.auth().signOut()
-            print("successful logout of firebase")
-            if self.presentingViewController != nil {
-                self.dismiss(animated: false, completion: {
-                    self.navigationController!.popToRootViewController(animated: true)
-                })
+        AuthService.logout(onSuccess: {
+            self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+        }) { (error) in
+            if error != nil {
+                return
             }
-            else {
-                self.navigationController!.popToRootViewController(animated: true)
-            }
-        }
-        catch {
-            print("Error logging out of Firebase.")
         }
     }
     

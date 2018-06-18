@@ -22,6 +22,13 @@ class UserApi {
         }
     }
     
+    var CURRENT_USER : UserInfo? {
+        if let currentUser = Auth.auth().currentUser {
+            return currentUser
+        }
+        return nil
+    }
+    
     var REF_CURRENT_USER : DatabaseReference? {
         guard let currentUser = Auth.auth().currentUser else {
             return nil

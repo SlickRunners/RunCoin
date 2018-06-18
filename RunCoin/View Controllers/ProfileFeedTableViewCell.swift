@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-
 class ProfileFeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!

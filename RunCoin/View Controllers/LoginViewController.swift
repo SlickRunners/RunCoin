@@ -68,13 +68,9 @@ extension UIColor {
 }
 
 import UIKit
-import Firebase
-import FacebookCore
 import SwiftyJSON
-import FirebaseStorage
 import SVProgressHUD
-import FirebaseAuth
-import FirebaseDatabase
+
 class LoginViewController: UIViewController {
     
     var name : String?
@@ -99,39 +95,11 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        if Auth.auth().currentUser != nil {
+        if Api.User.CURRENT_USER != nil {
             SVProgressHUD.show()
             self.performSegue(withIdentifier: "GoToHomeScreen", sender: nil)
         }
         SVProgressHUD.dismiss()
-    }
-    
-    fileprivate func saveUserIntoFirebase() {
-        let fileName = UUID().uuidString
-        guard let profilePicture = self.profilePicture else { return }
-        guard let uploadData = UIImageJPEGRepresentation(profilePicture, 0.3) else { return }
-        Storage.storage().reference().child("profilePictures").child(fileName).putData(uploadData, metadata: nil) { (metadata, error) in
-            if let error = error {
-                print(error)
-            }
-            print("Succesfully saved profile image to Firebase Storage!")
-            metadata?.storageReference?.downloadURL(completion: { (url, error) in
-                if error != nil {
-                    print("error with Storage reference download URL method")
-                }
-                let profilePictureURL = url?.absoluteString
-                guard let uid = Auth.auth().currentUser?.uid else { return }
-                let dictionaryValues = ["name" : self.name, "email" : self.email, "profilePictureURL" : profilePictureURL]
-                let values = [uid: dictionaryValues]
-                Database.database().reference().child("users").updateChildValues(values, withCompletionBlock: { (error, reference) in
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                    print("Succesfully saved user profile image to Firebase!")
-                })
-            })
-        }
     }
 }
     
