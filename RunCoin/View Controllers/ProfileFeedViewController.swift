@@ -23,9 +23,9 @@ class ProfileFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        loadFeedData()
+        loadFeedData()
         setUpView()
-        fetchMyPosts()
+//        fetchMyPosts()
         
         tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -69,6 +69,7 @@ class ProfileFeedViewController: UIViewController {
     func fetchUser(uid: String, completed: @escaping ()-> Void){
         Api.User.observeUser(withId: uid) { (user) in
             self.users.append(user)
+            self.title = user.username
             completed()
         }
     }
@@ -79,10 +80,10 @@ extension ProfileFeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! ProfileFeedTableViewCell
-        let post = posts[indexPath.row]
-//        let user = users[indexPath.row]
+        let post = posts.reversed()[indexPath.row]
+        let user = users[indexPath.row]
         cell.post = post
-//        cell.user = user
+        cell.user = user
         return cell
     }
     
