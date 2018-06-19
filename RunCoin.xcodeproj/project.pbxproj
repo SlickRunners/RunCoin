@@ -78,6 +78,8 @@
 		B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */; };
 		B04F854F20D455A1002DE382 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04F854E20D455A1002DE382 /* MapKit.framework */; };
 		B04F855120D7FE73002DE382 /* MyPostsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855020D7FE73002DE382 /* MyPostsApi.swift */; };
+		B04F855320D94C26002DE382 /* SearchFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855220D94C26002DE382 /* SearchFriendsViewController.swift */; };
+		B04F855520D94CA6002DE382 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855420D94CA6002DE382 /* SearchTableViewCell.swift */; };
 		B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F9CB220C88223006AB649 /* AccountViewController.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
@@ -172,6 +174,8 @@
 		B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B04F854E20D455A1002DE382 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		B04F855020D7FE73002DE382 /* MyPostsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsApi.swift; sourceTree = "<group>"; };
+		B04F855220D94C26002DE382 /* SearchFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewController.swift; sourceTree = "<group>"; };
+		B04F855420D94CA6002DE382 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		B06F9CB220C88223006AB649 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -277,6 +281,8 @@
 				B03E7CA520A37E730018B43A /* ProfileFeedViewController.swift */,
 				B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */,
 				B06F9CB220C88223006AB649 /* AccountViewController.swift */,
+				B04F855220D94C26002DE382 /* SearchFriendsViewController.swift */,
+				B04F855420D94CA6002DE382 /* SearchTableViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -633,12 +639,14 @@
 				B03E7CA620A37E730018B43A /* ProfileFeedViewController.swift in Sources */,
 				B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */,
 				B0C5D5FB20D2DF4800970FE0 /* UserApi.swift in Sources */,
+				B04F855520D94CA6002DE382 /* SearchTableViewCell.swift in Sources */,
 				B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */,
 				B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */,
 				B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */,
 				B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */,
 				B04F854720D2E793002DE382 /* Api.swift in Sources */,
 				B0FB1E342097A244009BB784 /* LocationManager.swift in Sources */,
+				B04F855320D94C26002DE382 /* SearchFriendsViewController.swift in Sources */,
 				B037D09F20AB6258005AE2E0 /* RunCoinDataModel.swift in Sources */,
 				B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */,
 				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
