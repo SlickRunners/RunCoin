@@ -25,7 +25,9 @@ class RunStatsViewController: UIViewController {
     var container: NSPersistentContainer!
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+        present(homeVC, animated: true, completion: nil)
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {

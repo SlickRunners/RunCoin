@@ -1518,7 +1518,6 @@
                                         </state>
                                         <connections>
                                             <action selector="skipButtonPressed:" destination="xRf-Tp-fuJ" eventType="touchUpInside" id="T02-OT-njZ"/>
-                                            <segue destination="hp2-NL-UN9" kind="unwind" unwindAction="unwindToVC1WithSegue:" id="HBS-B2-9Gn"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1571,7 +1570,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q33-6u-f3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="hp2-NL-UN9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5920.8000000000002" y="1100.5997001499252"/>
         </scene>
@@ -1596,7 +1594,7 @@
         <!--Initiate Run View Controller-->
         <scene sceneID="8FI-GK-WNd">
             <objects>
-                <viewController id="tNM-b5-cUg" customClass="InitiateRunViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitiateRunViewController" id="tNM-b5-cUg" customClass="InitiateRunViewController" customModule="RunCoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sii-8q-5ci">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
