@@ -72,7 +72,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
             let password = passwordTextField.text, !password.isEmpty,
             let username = userNameTextField.text, !username.isEmpty,
             let birthday = birthdayTextField.text, !birthday.isEmpty
-            //let gender = genderTextField.text, !gender.isEmpty
+//            let gender = genderTextField.text, !gender.isEmpty
             else {
                 self.saveButton.isEnabled = false
                 self.saveButton.titleLabel?.isEnabled = false
@@ -97,6 +97,8 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         let photoTapped = UITapGestureRecognizer(target: self, action: #selector(EmailLogInViewController.handleSelectProfileImage))
         photoImage.isUserInteractionEnabled = true
         photoImage.addGestureRecognizer(photoTapped)
+        
+        newSelectedImage = photoImage.image
     }
     
     @objc func handleSelectProfileImage(){
@@ -176,9 +178,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func saveImageData() {
         SVProgressHUD.show()
-        if photoImage != newSelectedImage {
-            newSelectedImage = UIImage(named: "blankProfileImage")
-        }
+//        if photoImage != newSelectedImage {
+//            newSelectedImage = UIImage(named: "blankProfileImage")
+//        }
         if let profileImage = newSelectedImage, let imageData = UIImagePNGRepresentation(profileImage){
             AuthService.signUp(email: emailTextField.text!, username: userNameTextField.text!, password: passwordTextField.text!, imageData: imageData, birthday: birthdayTextField.text!, gender: genderTextField.text!, onSuccess: {
                 print("Successful creation of firebase user.")
