@@ -44,7 +44,7 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
         let userLocation = mapView.userLocation.coordinate
-        let region = MKCoordinateRegionMakeWithDistance(userLocation, 100, 100)
+        let region = MKCoordinateRegionMakeWithDistance(userLocation, 500, 500)
         mapView.setRegion(region, animated: true)
     }
     
