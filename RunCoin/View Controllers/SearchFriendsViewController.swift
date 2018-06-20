@@ -13,7 +13,7 @@ class SearchFriendsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var users : [User] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUsers()
@@ -24,16 +24,23 @@ class SearchFriendsViewController: UIViewController {
     
     func loadUsers(){
         Api.User.observeAllUsers { (user) in
-            self.users.append(user)
-            self.tableView.reloadData()
+            self.isFollowing(userId: user.id!, completed: { (value) in
+                user.isFollowing = value
+                self.users.append(user)
+                self.tableView.reloadData()
+            })
         }
     }
-
+    
+    func isFollowing(userId: String, completed: @escaping (Bool) -> Void){
+        Api.Follow.isFollowing(userId: userId, completed: completed)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 
 

@@ -80,6 +80,9 @@
 		B04F855120D7FE73002DE382 /* MyPostsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855020D7FE73002DE382 /* MyPostsApi.swift */; };
 		B04F855320D94C26002DE382 /* SearchFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855220D94C26002DE382 /* SearchFriendsViewController.swift */; };
 		B04F855520D94CA6002DE382 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855420D94CA6002DE382 /* SearchTableViewCell.swift */; };
+		B04F855720DA992D002DE382 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855620DA992D002DE382 /* FollowApi.swift */; };
+		B04F855920DAC84B002DE382 /* HelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855820DAC84B002DE382 /* HelperService.swift */; };
+		B04F855B20DAF6B9002DE382 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855A20DAF6B9002DE382 /* Config.swift */; };
 		B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F9CB220C88223006AB649 /* AccountViewController.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
@@ -113,7 +116,7 @@
 		B023D82420509D6500491C39 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B0293F8C20CF143F00BF7670 /* RunCoinEarned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunCoinEarned.swift; sourceTree = "<group>"; };
 		B03293E12087B16200284BAF /* AccountLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountLoginViewController.swift; sourceTree = "<group>"; };
-		B03293E3208A5A3200284BAF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "../Supporting Files/AuthService.swift"; sourceTree = "<group>"; };
+		B03293E3208A5A3200284BAF /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		B037D09E20AB6258005AE2E0 /* RunCoinDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunCoinDataModel.swift; sourceTree = "<group>"; };
 		B037D0A120AC7AD7005AE2E0 /* SF-Pro-Text-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-BoldItalic.otf"; sourceTree = "<group>"; };
 		B037D0A220AC7AD9005AE2E0 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -176,6 +179,9 @@
 		B04F855020D7FE73002DE382 /* MyPostsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsApi.swift; sourceTree = "<group>"; };
 		B04F855220D94C26002DE382 /* SearchFriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFriendsViewController.swift; sourceTree = "<group>"; };
 		B04F855420D94CA6002DE382 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		B04F855620DA992D002DE382 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
+		B04F855820DAC84B002DE382 /* HelperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperService.swift; sourceTree = "<group>"; };
+		B04F855A20DAF6B9002DE382 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		B06F9CB220C88223006AB649 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -291,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				B0293F8C20CF143F00BF7670 /* RunCoinEarned.swift */,
-				B03293E3208A5A3200284BAF /* AuthService.swift */,
 				B08A10B220B604F50019DA8C /* User.swift */,
 				B03E7CA720A3A2A80018B43A /* FeedPost.swift */,
 				B037D09E20AB6258005AE2E0 /* RunCoinDataModel.swift */,
@@ -361,6 +366,7 @@
 		B0C5D5FC20D2DF5200970FE0 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				B04F855620DA992D002DE382 /* FollowApi.swift */,
 				B04F854620D2E793002DE382 /* Api.swift */,
 				B04F855020D7FE73002DE382 /* MyPostsApi.swift */,
 				B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */,
@@ -372,6 +378,9 @@
 		B0FB1E2B209781A5009BB784 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B03293E3208A5A3200284BAF /* AuthService.swift */,
+				B04F855820DAC84B002DE382 /* HelperService.swift */,
+				B04F855A20DAF6B9002DE382 /* Config.swift */,
 				B023D7F220503DA600491C39 /* AppDelegate.swift */,
 				B0FB1E2920978189009BB784 /* CoreDataStack.swift */,
 				B0FB1E372097B6C6009BB784 /* StoryboardSupport.swift */,
@@ -637,6 +646,7 @@
 				B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */,
 				B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */,
 				B03E7CA620A37E730018B43A /* ProfileFeedViewController.swift in Sources */,
+				B04F855920DAC84B002DE382 /* HelperService.swift in Sources */,
 				B0FB1E382097B6C6009BB784 /* StoryboardSupport.swift in Sources */,
 				B0C5D5FB20D2DF4800970FE0 /* UserApi.swift in Sources */,
 				B04F855520D94CA6002DE382 /* SearchTableViewCell.swift in Sources */,
@@ -654,8 +664,10 @@
 				B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */,
 				B037D10820AC9ADA005AE2E0 /* InitiateRunViewController.swift in Sources */,
 				B0293F8D20CF143F00BF7670 /* RunCoinEarned.swift in Sources */,
+				B04F855720DA992D002DE382 /* FollowApi.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
 				B04F855120D7FE73002DE382 /* MyPostsApi.swift in Sources */,
+				B04F855B20DAF6B9002DE382 /* Config.swift in Sources */,
 				B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */,
 				B0C5D5F920D2DC9000970FE0 /* PostApi.swift in Sources */,
 			);

@@ -7,12 +7,8 @@
 //
 
 import UIKit
-import Firebase
 import CoreLocation
 import MapKit
-import FirebaseStorage
-import FirebaseAuth
-import FirebaseDatabase
 import GameplayKit
 
 class StartRunViewController: UIViewController {
@@ -24,7 +20,6 @@ class StartRunViewController: UIViewController {
     private var timer: Timer?
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     private var locationList: [CLLocation] = []
-    var databaseRef: DatabaseReference!
     var runCoinsEarned : Int = 0
     private var coins : RunCoins?
     
@@ -179,58 +174,17 @@ class StartRunViewController: UIViewController {
         CoreDataStack.saveContext()
         run = newRun
         
-        let newDistance = FormatDisplay.distance(newRun.distance).description
-        let newDuration = FormatDisplay.time(seconds).description
-        let newDate = FormatDisplay.date(newRun.timestamp).description
-        let newPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
-        guard let currentUser = Auth.auth().currentUser else {
-            print("No current firebase user")
-            return
-        }
-        let currentUserId = currentUser.uid
+        let stringDistance = FormatDisplay.distance(newRun.distance).description
+        let stringDuration = FormatDisplay.time(seconds).description
+        let stringDate = FormatDisplay.date(newRun.timestamp).description
+        let stringPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
+        
         guard let image = imageScreenshot(view: mapContainerView) else {
             print("image screenshot method did not work")
             return
         }
-        if let imageData = UIImagePNGRepresentation(image) {
-            let mapDataID = NSUUID().uuidString
-            let storageRef = Storage.storage().reference().child("run_data").child(mapDataID)
-            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
-                if error != nil {
-                    return
-                }
-                storageRef.downloadURL { (url, error) in
-                    guard let downloadUrl = url else {return}
-                    let urlString = downloadUrl.absoluteString
-                    print(urlString)
-                    self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: urlString)
-                }
-            }
-        }
-        else {
-            print("error will robinson, imageData couldn't be converted to UIIMagePNGRep")
-        }
-    }
-    
-    func sendDataToDatabase(uid: String, distance: String, duration: String, date: String, pace: String, mapUrl: String) {
-        let databaseRef = Database.database().reference()
-        let postRef = databaseRef.child("run_data")
-        let postId = postRef.childByAutoId().key
-        let newPostRef = postRef.child(postId)
-        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl]
-        newPostRef.setValue(runDict, withCompletionBlock: {
-            error, ref in
-            if error != nil {
-                print("Error saving map image to firebase!")
-                return
-            }
-            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(uid).child(postId)
-            myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
-                if error != nil {
-                    return
-                }
-            })
-        })
+        //HelperService Instance Methods Go Here
+        HelperService.uploadDataToStorage(image: image, distance: stringDistance, duration: stringDuration, date: stringDate, pace: stringPace)
     }
     
     func runCoinEarned() {
@@ -285,3 +239,4 @@ extension StartRunViewController: SegueHandlerType {
         }
     }
 }
+
