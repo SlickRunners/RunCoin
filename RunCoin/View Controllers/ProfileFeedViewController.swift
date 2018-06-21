@@ -69,7 +69,6 @@ class ProfileFeedViewController: UIViewController {
     func fetchUser(uid: String, completed: @escaping ()-> Void){
         Api.User.observeUser(withId: uid) { (user) in
             self.users.append(user)
-            self.title = user.username
             completed()
         }
     }

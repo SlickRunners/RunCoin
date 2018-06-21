@@ -10,7 +10,7 @@ import Foundation
 import FirebaseDatabase
 
 class PostApi {
-    var REF_POSTS = Database.database().reference().child("run_data")
+    var REF_POSTS = Database.database().reference().child("run_posts")
     
     func observePosts(completion: @escaping (FeedPost) -> Void){
         REF_POSTS.observe(.childAdded) { (snapshot) in

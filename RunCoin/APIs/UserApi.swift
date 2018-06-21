@@ -16,7 +16,7 @@ class UserApi {
     func observeUser(withId uid: String, completion: @escaping (User) -> Void ) {
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
-                let user = User.transformUser(dict: dict)
+                let user = User.transformUser(dict: dict, key: snapshot.key)
                 completion(user)
             }
         }
@@ -25,7 +25,7 @@ class UserApi {
     func observeAllUsers(completion: @escaping (User) -> Void){
         REF_USERS.observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
-                let user = User.transformUser(dict: dict)
+                let user = User.transformUser(dict: dict, key: snapshot.key)
                 completion(user)
             }
         }

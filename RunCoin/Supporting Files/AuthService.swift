@@ -31,7 +31,7 @@ class AuthService {
             }
             guard let user = user else {return}
             let uid = user.user.uid
-            let storageRef = Storage.storage().reference(forURL: "gs://runcoin-c565b.appspot.com").child("profile_image").child(uid)
+            let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("profile_image").child(uid)
             storageRef.putData(imageData, metadata: nil) { (metadata, error) in
                 if error != nil {
                     return
