@@ -25,8 +25,6 @@ class ProfileFeedViewController: UIViewController {
         super.viewDidLoad()
         loadFeedData()
         setUpView()
-//        fetchMyPosts()
-        
         tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -56,13 +54,20 @@ class ProfileFeedViewController: UIViewController {
     }
     
     func loadFeedData(){
-//        guard let user = Auth.auth().currentUser else {return}
-//        let uid = user.uid
-        Api.Post.observePosts { (post) in
-            self.fetchUser(uid: post.uid!, completed: {
+        Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
+            guard let postId = post.uid else {
+                return
+            }
+            self.fetchUser(uid: postId, completed: {
                 self.posts.append(post)
                 self.tableView.reloadData()
             })
+        }
+        
+        Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (key) in
+            //code below filters out posts not matching post.uid and key
+            self.posts = self.posts.filter { $0.id != key }
+            self.tableView.reloadData()
         }
     }
     
@@ -79,7 +84,7 @@ extension ProfileFeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! ProfileFeedTableViewCell
-        let post = posts.reversed()[indexPath.row]
+        let post = posts[indexPath.row]
         let user = users[indexPath.row]
         cell.post = post
         cell.user = user

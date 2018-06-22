@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -903,8 +902,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="387.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5f-2O-Txg">
-                                                    <rect key="frame" x="54" y="32" width="156" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="date label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5f-2O-Txg">
+                                                    <rect key="frame" x="54" y="32" width="57" height="20"/>
                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                                                     <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -976,10 +975,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="5Im-rp-PV1" userLabel="Top Mileage Stack View">
-                                                    <rect key="frame" x="321" y="25" width="37" height="27.5"/>
+                                                    <rect key="frame" x="319" y="25" width="39" height="27"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WBP-r7-Eve">
-                                                            <rect key="frame" x="0.0" y="0.0" width="37" height="27.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="39" height="27"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="21"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1017,6 +1016,12 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j9b-ci-CDr">
+                                                    <rect key="frame" x="131" y="28" width="113" height="21"/>
+                                                    <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
+                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="2Xt-dK-SXw" firstAttribute="top" secondItem="ROd-pg-vGs" secondAttribute="bottom" constant="20" id="1C9-Am-xYK"/>
@@ -1024,13 +1029,16 @@
                                                 <constraint firstItem="Bft-5D-4A8" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="8" id="Akc-cV-dN0"/>
                                                 <constraint firstItem="wYi-8O-2wd" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="47" id="EN5-2a-b9l"/>
                                                 <constraint firstItem="ROd-pg-vGs" firstAttribute="top" secondItem="pLR-ir-0UV" secondAttribute="top" constant="60" id="Iny-YH-7b7"/>
+                                                <constraint firstItem="5Im-rp-PV1" firstAttribute="leading" relation="lessThanOrEqual" secondItem="j9b-ci-CDr" secondAttribute="trailing" constant="75" id="JMs-4g-Sza"/>
                                                 <constraint firstAttribute="trailing" secondItem="DYz-i5-Zm8" secondAttribute="trailing" constant="47" id="Kcc-k0-xOh"/>
                                                 <constraint firstAttribute="trailing" secondItem="y37-am-dJX" secondAttribute="trailing" id="Lfd-g2-Nvw"/>
+                                                <constraint firstItem="j9b-ci-CDr" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="13" id="QgL-NP-O5w"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bft-5D-4A8" secondAttribute="trailing" constant="331" id="Qgr-z8-QtF"/>
                                                 <constraint firstAttribute="trailing" secondItem="5Im-rp-PV1" secondAttribute="trailing" constant="17" id="UVs-mn-6UW"/>
                                                 <constraint firstItem="wYi-8O-2wd" firstAttribute="top" secondItem="Bft-5D-4A8" secondAttribute="bottom" constant="11" id="W2n-vF-JO0"/>
+                                                <constraint firstItem="j9b-ci-CDr" firstAttribute="centerX" secondItem="y37-am-dJX" secondAttribute="centerX" id="Wk2-22-gEm"/>
                                                 <constraint firstItem="y37-am-dJX" firstAttribute="leading" secondItem="pLR-ir-0UV" secondAttribute="leading" id="ZtU-Nl-Jqz"/>
-                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="S5f-2O-Txg" secondAttribute="trailing" constant="150" id="dcB-cw-qlB"/>
+                                                <constraint firstItem="ROd-pg-vGs" firstAttribute="top" secondItem="j9b-ci-CDr" secondAttribute="bottom" constant="11" id="cqz-cl-s9Q"/>
                                                 <constraint firstItem="S5f-2O-Txg" firstAttribute="leading" secondItem="Bft-5D-4A8" secondAttribute="trailing" constant="10" id="epG-xK-Klv"/>
                                                 <constraint firstItem="Bft-5D-4A8" firstAttribute="leading" secondItem="pLR-ir-0UV" secondAttribute="leading" constant="16" id="joH-i7-s4L"/>
                                                 <constraint firstItem="5Im-rp-PV1" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="10" id="mTD-2w-yC1"/>
@@ -1041,6 +1049,7 @@
                                                 <constraint firstItem="S5f-2O-Txg" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="16.5" id="tzi-jT-83L"/>
                                                 <constraint firstItem="y37-am-dJX" firstAttribute="top" secondItem="pLR-ir-0UV" secondAttribute="top" id="uBt-ee-0Ht"/>
                                                 <constraint firstAttribute="bottom" secondItem="2Xt-dK-SXw" secondAttribute="bottom" constant="10" id="x3R-H9-J2d"/>
+                                                <constraint firstItem="j9b-ci-CDr" firstAttribute="leading" secondItem="S5f-2O-Txg" secondAttribute="trailing" constant="20" id="x7a-Ss-xB4"/>
                                                 <constraint firstItem="ROd-pg-vGs" firstAttribute="top" secondItem="5Im-rp-PV1" secondAttribute="bottom" constant="8" id="xJw-MT-lFq"/>
                                                 <constraint firstItem="DYz-i5-Zm8" firstAttribute="top" secondItem="ROd-pg-vGs" secondAttribute="bottom" constant="20" id="xs5-EZ-nvN"/>
                                                 <constraint firstItem="ROd-pg-vGs" firstAttribute="top" secondItem="S5f-2O-Txg" secondAttribute="bottom" constant="8" symbolic="YES" id="zu5-nT-AEK"/>
@@ -1054,6 +1063,7 @@
                                             <outlet property="runDistanceLabel" destination="WBP-r7-Eve" id="WbM-Yx-VAX"/>
                                             <outlet property="runDurationLabel" destination="Swc-DF-r2m" id="Tas-Ti-ngv"/>
                                             <outlet property="runMapImageView" destination="wYi-8O-2wd" id="QDK-AC-94f"/>
+                                            <outlet property="usernameLabel" destination="j9b-ci-CDr" id="vFZ-Yh-eHs"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1364,7 +1374,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchTableViewCell" rowHeight="101" id="er6-NN-dzS" customClass="SearchTableViewCell" customModule="RunCoin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchTableViewCell" rowHeight="101" id="er6-NN-dzS" customClass="SearchTableViewCell" customModule="RunCoin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="er6-NN-dzS" id="fvy-0d-S0X">
@@ -1406,7 +1416,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="divider" translatesAutoresizingMaskIntoConstraints="NO" id="cYl-vE-A70" userLabel="Separator">
-                                                    <rect key="frame" x="0.0" y="100" width="375" height="2"/>
+                                                    <rect key="frame" x="0.0" y="100" width="375" height="0.5"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -1417,7 +1427,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="Y1R-mT-CFl" secondAttribute="bottom" constant="20.5" id="KGm-SQ-Ai1"/>
                                                 <constraint firstItem="cYl-vE-A70" firstAttribute="leading" secondItem="fvy-0d-S0X" secondAttribute="leading" id="VIB-2V-1fR"/>
                                                 <constraint firstItem="EuS-7S-Af2" firstAttribute="leading" relation="lessThanOrEqual" secondItem="I5k-dg-iXK" secondAttribute="trailing" constant="100" id="YTr-y0-45q"/>
-                                                <constraint firstAttribute="bottom" secondItem="cYl-vE-A70" secondAttribute="bottom" constant="-1.5" id="d84-YR-pvm"/>
+                                                <constraint firstAttribute="bottom" secondItem="cYl-vE-A70" secondAttribute="bottom" id="d84-YR-pvm"/>
                                                 <constraint firstItem="EuS-7S-Af2" firstAttribute="centerY" secondItem="Y1R-mT-CFl" secondAttribute="centerY" id="gYb-xH-VUd"/>
                                                 <constraint firstItem="I5k-dg-iXK" firstAttribute="leading" secondItem="Y1R-mT-CFl" secondAttribute="trailing" constant="25" id="wBZ-uJ-3gt"/>
                                                 <constraint firstItem="cYl-vE-A70" firstAttribute="top" secondItem="Y1R-mT-CFl" secondAttribute="bottom" constant="20" id="ySL-ii-xEb"/>

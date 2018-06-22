@@ -83,6 +83,7 @@
 		B04F855720DA992D002DE382 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855620DA992D002DE382 /* FollowApi.swift */; };
 		B04F855920DAC84B002DE382 /* HelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855820DAC84B002DE382 /* HelperService.swift */; };
 		B04F855B20DAF6B9002DE382 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855A20DAF6B9002DE382 /* Config.swift */; };
+		B04F855D20DD333B002DE382 /* FeedApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F855C20DD333B002DE382 /* FeedApi.swift */; };
 		B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06F9CB220C88223006AB649 /* AccountViewController.swift */; };
 		B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07A7D042065675B00DE33DE /* StartRunViewController.swift */; };
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
@@ -182,6 +183,7 @@
 		B04F855620DA992D002DE382 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
 		B04F855820DAC84B002DE382 /* HelperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperService.swift; sourceTree = "<group>"; };
 		B04F855A20DAF6B9002DE382 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		B04F855C20DD333B002DE382 /* FeedApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedApi.swift; sourceTree = "<group>"; };
 		B06F9CB220C88223006AB649 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B07A7D042065675B00DE33DE /* StartRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunViewController.swift; sourceTree = "<group>"; };
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 		B0C5D5FC20D2DF5200970FE0 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				B04F855C20DD333B002DE382 /* FeedApi.swift */,
 				B04F855620DA992D002DE382 /* FollowApi.swift */,
 				B04F854620D2E793002DE382 /* Api.swift */,
 				B04F855020D7FE73002DE382 /* MyPostsApi.swift */,
@@ -652,6 +655,7 @@
 				B04F855520D94CA6002DE382 /* SearchTableViewCell.swift in Sources */,
 				B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */,
 				B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */,
+				B04F855D20DD333B002DE382 /* FeedApi.swift in Sources */,
 				B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */,
 				B07A7D052065675B00DE33DE /* StartRunViewController.swift in Sources */,
 				B04F854720D2E793002DE382 /* Api.swift in Sources */,
