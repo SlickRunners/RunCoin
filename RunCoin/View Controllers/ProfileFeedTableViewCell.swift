@@ -16,6 +16,7 @@ class ProfileFeedTableViewCell: UITableViewCell {
     @IBOutlet weak var runDurationLabel: UILabel!
     @IBOutlet weak var runAveragePaceLabel: UILabel!
     @IBOutlet weak var runCoinEarnedLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     var user : User? {
         didSet{
@@ -36,6 +37,7 @@ class ProfileFeedTableViewCell: UITableViewCell {
         runAveragePaceLabel.text = ""
         runCoinEarnedLabel.text = ""
         runDurationLabel.text = ""
+        usernameLabel.text = ""
     }
     
     override func prepareForReuse() {
@@ -60,6 +62,7 @@ class ProfileFeedTableViewCell: UITableViewCell {
     }
     
     func setUpUserInfo() {
+        usernameLabel.text = user?.username
         if let photoURLString = user?.profileImageUrl {
             let photoURL = URL(string: photoURLString)
             profileImageView.sd_setImage(with: photoURL, placeholderImage: UIImage(named: "blankProfileImage"))

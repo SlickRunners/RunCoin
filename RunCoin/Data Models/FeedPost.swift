@@ -16,6 +16,7 @@ class FeedPost {
     var runMap : String?
     var uid : String?
     var key : String?
+    var id : String?
 }
 
 extension FeedPost {
@@ -27,6 +28,7 @@ extension FeedPost {
         post.duration = dict["duration"] as? String
         post.date = dict["date"] as? String
         post.uid = dict["uid"] as? String
+        post.id = key
         return post
     }
 }

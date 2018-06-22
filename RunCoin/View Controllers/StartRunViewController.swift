@@ -106,12 +106,6 @@ class StartRunViewController: UIViewController {
     private func stopRun() {
         locationManager.stopUpdatingLocation()
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        timer?.invalidate()
-//        locationManager.stopUpdatingLocation()
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -133,6 +127,8 @@ class StartRunViewController: UIViewController {
         distanceLabel.text = "\(formattedDistance)"
         timeDurationLabel.text = "\(formattedTime)"
         paceLabel.text = "\(formattedPace)"
+        print(distanceLabel)
+        
     }
     
     func goToHomeScreen() {

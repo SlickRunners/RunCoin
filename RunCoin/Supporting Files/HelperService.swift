@@ -27,12 +27,6 @@ class HelperService {
                     self.sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl)
                 }
             }
-//            storageRef.downloadURL { (url, error) in
-//                guard let downloadUrl = url else {return}
-//                let mapUrl = downloadUrl.absoluteString
-//
-//                self.sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl)
-//            }
         }
     }
     
