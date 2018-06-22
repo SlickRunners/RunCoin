@@ -39,7 +39,7 @@ class RunStatsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
+        loadMap()
         container = NSPersistentContainer(name: "RunCoin")
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
@@ -65,25 +65,6 @@ class RunStatsViewController: UIViewController {
         let snapshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return snapshot
-    }
-    
-    //Convert run data into proper units
-    private func configureView() {
-//        let distance = Measurement(value: (run.distance), unit: UnitLength.meters)
-//        let seconds = Int(run.duration)
-//        //To re convert firebase distance: FormatDisplay.distance(distanceInFirebase)
-//        let formattedDistance = FormatDisplay.distance(distance)
-//        let formattedDate = FormatDisplay.date(run.timestamp)
-//        let formattedTime = FormatDisplay.time(seconds)
-//        let formattedPace = FormatDisplay.pace(distance: distance,
-//                                               seconds: seconds,
-//                                               outputUnit: UnitSpeed.minutesPerMile)
-//
-//        distanceLabel.text = "Distance:  \(formattedDistance)"
-//        dateLabel.text = formattedDate
-//        timeLabel.text = "Time:  \(formattedTime)"
-//        paceLabel.text = "Pace:  \(formattedPace)"
-        loadMap()
     }
     
     private func mapRegion() -> MKCoordinateRegion? {

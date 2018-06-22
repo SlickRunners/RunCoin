@@ -43,9 +43,9 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-        let userLocation = mapView.userLocation.coordinate
-        let region = MKCoordinateRegionMakeWithDistance(userLocation, 500, 500)
-        mapView.setRegion(region, animated: true)
+//        let userLocation = mapView.userLocation.coordinate
+//        let region = MKCoordinateRegionMakeWithDistance(userLocation, 500, 500)
+//        mapView.setRegion(region, animated: true)
     }
     
     private func startLocationUpdates() {
@@ -154,6 +154,7 @@ class StartRunViewController: UIViewController {
     }
     
     private func saveRun() {
+        mapView.showsUserLocation = false
         let newRun = Run(context: CoreDataStack.context)
         newRun.distance = distance.value
         newRun.duration = Int16(seconds)
