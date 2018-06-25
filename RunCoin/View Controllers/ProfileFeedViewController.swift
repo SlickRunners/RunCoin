@@ -42,17 +42,6 @@ class ProfileFeedViewController: UIViewController {
         }
     }
     
-
-    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        AuthService.logout(onSuccess: {
-            self.performSegue(withIdentifier: "unwindToLogin", sender: self)
-        }) { (error) in
-            if error != nil {
-                return
-            }
-        }
-    }
-    
     func loadFeedData(){
         Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
             guard let postId = post.uid else {
