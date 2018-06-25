@@ -8,10 +8,8 @@
 
 import UIKit
 import SDWebImage
-import Firebase
 import SVProgressHUD
-import FirebaseDatabase
-import FirebaseAuth
+
 
 class AccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //Variables
@@ -23,7 +21,6 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var emailTextField: UITextField!
     
     var user = User()
-    var newSelectedImage : UIImage?
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Choose new profile photo.", message: "Pick a new photo from your photo library.", preferredStyle: .actionSheet)
@@ -39,27 +36,25 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        loadUserData()
+        fetchCurrentUser()
     }
-
+    
+    func fetchCurrentUser(){
+        Api.User.oberserveCurrentUser { (user) in
+            self.userNameLabel.text = user.username
+            self.nameTextField.text = user.username
+            self.emailTextField.text = user.email
+            
+            if let photoUrl = URL(string: user.profileImageUrl!) {
+                self.profilePhoto.sd_setImage(with: photoUrl)
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func loadUserData(){
-        guard let currentUser = Auth.auth().currentUser else {return}
-        let uid = currentUser.uid
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let username = value?["username"] as? String ?? ""
-            let profileImage = value?["profileImageUrl"] as? String ?? ""
-            let imageUrl = URL(string: profileImage)
-            self.profilePhoto.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "blankProfileImage"))
-            print(username)
-            self.userNameLabel.text = username
-            
-        }
-    }
     @objc func handleSelectProfileImage(){
         SVProgressHUD.show()
         let pickerController = UIImagePickerController()
@@ -70,13 +65,11 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
-            newSelectedImage = image
             profilePhoto.image = image
-            profilePhoto.layer.cornerRadius = 68
+            profilePhoto.layer.cornerRadius = 65
             profilePhoto.clipsToBounds = true
         }
         dismiss(animated: true, completion: nil)
-        saveImageData()
     }
     
     func setupView(){
@@ -95,49 +88,33 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
         nameTextField.layer.borderWidth = 1.0
     }
     
-    func saveImageData() {
-        if profilePhoto != newSelectedImage {
-            newSelectedImage = UIImage(named: "blankProfileImage")
-        }
-        if let profileImage = newSelectedImage, let imageData = UIImagePNGRepresentation(profileImage){
-            guard let currentUser = Auth.auth().currentUser else {return}
-            let uid = currentUser.uid
-            let storageRef = Storage.storage().reference().child("profile_image").child(uid)
-            storageRef.putData(imageData, metadata: nil) { (metadata, error) in
-                if error != nil {
-                    return
-                }
-                storageRef.downloadURL(completion: { (url, error) in
-                    if error != nil {
-                        return
-                    }
-                    guard let downloadedUrl = url else {return}
-                    let profileUrlString = downloadedUrl.absoluteString
-                    self.updateProfileImage(imageUrl: profileUrlString)
-                })
-                print("Done editing and updating user profile photo.")
-            }
-        }
-    }
-    
-    
-    func updateProfileImage(imageUrl: String){
-        guard let currentUser = Auth.auth().currentUser else {return}
-        let uid = currentUser.uid
-        let databaseRef = Database.database().reference().child("profileImageUrl").child(uid)
-        databaseRef.updateChildValues(["profileImageUrl": imageUrl])
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         AuthService.logout(onSuccess: {
-             self.performSegue(withIdentifier: "unwindToLogin", sender: self)
+            self.performSegue(withIdentifier: "unwindToLogin", sender: self)
         }) { (error) in
             if error != nil {
                 return
+            }
+        }
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        SVProgressHUD.show()
+        if let profileImage = profilePhoto.image {
+            let profileImageData = UIImagePNGRepresentation(profileImage)
+            AuthService.updateUserInfo(email: emailTextField.text!, username: nameTextField.text!, profileImageData: profileImageData!, onSuccess: {
+                SVProgressHUD.dismiss()
+                print("successfully updated user info data and stuff")
+            }) { (errorString) in
+                if errorString != nil {
+                    print(errorString!)
+                    SVProgressHUD.dismiss()
+                    return
+                }
             }
         }
     }

@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 import CoreData
-import Firebase
-import FacebookShare
 
 class RunStatsViewController: UIViewController {
 

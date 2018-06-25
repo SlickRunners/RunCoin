@@ -44,4 +44,14 @@ class UserApi {
         }
         return REF_USERS.child(currentUser.uid)
     }
+    
+    func oberserveCurrentUser(completion: @escaping (User) -> Void){
+        guard let currentUser = CURRENT_USER else {return}
+        REF_USERS.child(currentUser.uid).observe(.value) { (snapshot) in
+            if let dict = snapshot.value as? [String : Any] {
+                let user = User.transformUser(dict: dict, key: snapshot.key)
+                completion(user)
+            }
+        }
+    }
 }
