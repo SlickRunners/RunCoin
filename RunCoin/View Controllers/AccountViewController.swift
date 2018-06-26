@@ -10,6 +10,10 @@ import UIKit
 import SDWebImage
 import SVProgressHUD
 
+protocol AccountViewControllerDelegate {
+    func updateUserInformation()
+}
+
 
 class AccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //Variables
@@ -21,6 +25,7 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var emailTextField: UITextField!
     
     var user = User()
+    var delegate : AccountViewControllerDelegate?
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: "Choose new profile photo.", message: "Pick a new photo from your photo library.", preferredStyle: .actionSheet)
@@ -37,6 +42,8 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidLoad()
         setupView()
         fetchCurrentUser()
+        nameTextField.delegate = self
+        emailTextField.delegate = self
     }
     
     func fetchCurrentUser(){
@@ -108,6 +115,7 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
             let profileImageData = UIImagePNGRepresentation(profileImage)
             AuthService.updateUserInfo(email: emailTextField.text!, username: nameTextField.text!, profileImageData: profileImageData!, onSuccess: {
                 SVProgressHUD.dismiss()
+                self.delegate?.updateUserInformation()
                 print("successfully updated user info data and stuff")
             }) { (errorString) in
                 if errorString != nil {
@@ -117,5 +125,12 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
                 }
             }
         }
+    }
+}
+
+extension AccountViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
