@@ -57,7 +57,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         genderTextField.text = myPickerData[row]
     }
     @objc func pickerViewDoneButton(){
-        genderTextField.resignFirstResponder()
+        view.endEditing(true)
     }
     
     @objc func editingChanged(_ textField: UITextField){
@@ -85,7 +85,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLoginScreen()
-        
+        self.hideKeyboard()
         saveButton.isEnabled = false
         saveButton.titleLabel?.isEnabled = false
         emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -99,6 +99,8 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         photoImage.addGestureRecognizer(photoTapped)
         
         newSelectedImage = photoImage.image
+        
+        configureDatPicker()
     }
     
     @objc func handleSelectProfileImage(){
@@ -113,8 +115,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             newSelectedImage = image
             photoImage.image = image
-            photoImage.layer.cornerRadius = 68
             photoImage.clipsToBounds = true
+            photoImage.layer.cornerRadius = photoImage.frame.size.height/2
+            photoImage.layer.cornerRadius = photoImage.frame.size.width/2
         }
         dismiss(animated: true, completion: nil)
     }
@@ -173,14 +176,14 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         genderTextField.layer.borderColor = UIColor.coolGrey.cgColor
         passwordTextField.layer.borderColor = UIColor.coolGrey.cgColor
         genderTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        
+        //datePickerSetup
+        donePickingDate()
     }
     
     
     func saveImageData() {
         SVProgressHUD.show()
-//        if photoImage != newSelectedImage {
-//            newSelectedImage = UIImage(named: "blankProfileImage")
-//        }
         if let profileImage = newSelectedImage, let imageData = UIImagePNGRepresentation(profileImage){
             AuthService.signUp(email: emailTextField.text!, username: userNameTextField.text!, password: passwordTextField.text!, imageData: imageData, birthday: birthdayTextField.text!, gender: genderTextField.text!, onSuccess: {
                 print("Successful creation of firebase user.")
@@ -206,7 +209,56 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
 extension EmailLogInViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        birthdayTextField.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
+    }
+}
+
+extension EmailLogInViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(EmailLogInViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+}
+
+extension EmailLogInViewController {
+    
+    @objc func dateSelectedDoneButton(){
+        view.endEditing(true)
+    }
+    
+    func donePickingDate(){
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        let donePickingDate = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dateSelectedDoneButton))
+        toolBar.setItems([donePickingDate], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        birthdayTextField.inputAccessoryView = toolBar
+        
+    }
+    
+    @objc func dateChanged(datePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        birthdayTextField.text = dateFormatter.string(from: datePicker.date)
+    }
+    
+    func configureDatPicker() {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        birthdayTextField.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(EmailLogInViewController.dateChanged(datePicker:)), for: .valueChanged)
     }
 }
