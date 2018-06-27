@@ -11,12 +11,14 @@ import UIKit
 class SearchFriendsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var users : [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUsers()
+        setUpSearchBar()
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -41,8 +43,28 @@ class SearchFriendsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setUpSearchBar(){
+        searchBar.autocapitalizationType = .none
+        searchBar.autocorrectionType = .no
+        searchBar.delegate = self
+        searchBar.searchBarStyle = .minimal
+        searchBar.placeholder = "Search"
+    }
+    
+    func searchUsers(){
+        if let searchText = searchBar.text?.lowercased() {
+            self.users.removeAll()
+            self.tableView.reloadData()
+            Api.User.queryUser(withText: searchText) { (user) in
+                self.isFollowing(userId: user.id!, completed: { (value) in
+                    user.isFollowing = value
+                    self.users.append(user)
+                    self.tableView.reloadData()
+                })
+            }
+        }
+    }
 }
-
 
 extension SearchFriendsViewController : UITableViewDataSource {
     
@@ -57,4 +79,16 @@ extension SearchFriendsViewController : UITableViewDataSource {
         return cell
     }
     
+}
+
+extension SearchFriendsViewController : UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchUsers()
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchUsers()
+    }
 }

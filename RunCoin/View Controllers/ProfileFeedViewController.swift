@@ -40,9 +40,10 @@ class ProfileFeedViewController: UIViewController {
             })
         }
         
-        Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (key) in
+        Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (post) in
             //code below filters out posts not matching post.uid and key
-            self.posts = self.posts.filter { $0.id != key }
+            self.posts = self.posts.filter { $0.id != post.id }
+            self.users = self.users.filter { $0.id != post.uid }
             self.tableView.reloadData()
         }
     }

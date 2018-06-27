@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 import MobileCoreServices
 
-class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     //variables
     @IBOutlet weak var emailTextField: UITextField!
@@ -202,4 +202,11 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         SVProgressHUD.dismiss()
     }
     
+}
+
+extension EmailLogInViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        birthdayTextField.resignFirstResponder()
+        return true
+    }
 }
