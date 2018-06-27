@@ -26,6 +26,9 @@
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
         </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Login View Controller-->
@@ -131,9 +134,9 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Oh3-ti-VnV">
-                                <rect key="frame" x="33" y="227" width="309" height="49"/>
+                                <rect key="frame" x="33" y="296" width="309" height="49"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="eN0-8O-PEc"/>
+                                    <constraint firstAttribute="height" constant="49" id="0o4-EH-Psk"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
@@ -144,15 +147,35 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppb-qr-9s5">
+                                <rect key="frame" x="33" y="128" width="309" height="138"/>
+                                <string key="text">Enter your email and hit send. You'll receive a confirmation email and from there, you can reset your password to your RunCoin account. Its as easy as that!</string>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
+                                <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password Reset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kn9-Se-jJZ">
+                                <rect key="frame" x="33" y="107" width="242" height="25.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="21"/>
+                                <color key="textColor" red="0.59215686270000001" green="0.61568627450000002" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="W6u-B3-Z3h" firstAttribute="top" secondItem="Oh3-ti-VnV" secondAttribute="bottom" constant="99" id="4Rr-sE-b72"/>
-                            <constraint firstItem="KcT-Fe-tic" firstAttribute="trailing" secondItem="Oh3-ti-VnV" secondAttribute="trailing" constant="33" id="Lso-lW-Bzf"/>
-                            <constraint firstItem="Oh3-ti-VnV" firstAttribute="top" secondItem="KcT-Fe-tic" secondAttribute="top" constant="163" id="fyR-gz-S7C"/>
+                            <constraint firstItem="W6u-B3-Z3h" firstAttribute="top" secondItem="Oh3-ti-VnV" secondAttribute="bottom" constant="30" id="9WA-W7-qMd"/>
+                            <constraint firstItem="KcT-Fe-tic" firstAttribute="bottom" secondItem="W6u-B3-Z3h" secondAttribute="bottom" constant="243" id="P1D-MJ-Ksd"/>
+                            <constraint firstItem="Ppb-qr-9s5" firstAttribute="top" secondItem="KcT-Fe-tic" secondAttribute="top" constant="64" id="Ybn-bX-2Fx"/>
+                            <constraint firstItem="Oh3-ti-VnV" firstAttribute="trailing" secondItem="W6u-B3-Z3h" secondAttribute="trailing" id="bl9-e1-5dU"/>
+                            <constraint firstItem="Kn9-Se-jJZ" firstAttribute="leading" secondItem="Ppb-qr-9s5" secondAttribute="leading" id="cft-fc-Fca"/>
                             <constraint firstItem="W6u-B3-Z3h" firstAttribute="leading" secondItem="KcT-Fe-tic" secondAttribute="leading" constant="33" id="iD9-uK-DyD"/>
+                            <constraint firstItem="Ppb-qr-9s5" firstAttribute="leading" secondItem="KcT-Fe-tic" secondAttribute="leading" constant="33" id="m1S-NS-Svs"/>
+                            <constraint firstItem="Oh3-ti-VnV" firstAttribute="top" secondItem="Ppb-qr-9s5" secondAttribute="bottom" constant="30" id="r3j-kr-pFS"/>
+                            <constraint firstItem="Oh3-ti-VnV" firstAttribute="leading" secondItem="W6u-B3-Z3h" secondAttribute="leading" id="sg6-CR-BdI"/>
+                            <constraint firstItem="KcT-Fe-tic" firstAttribute="trailing" secondItem="Ppb-qr-9s5" secondAttribute="trailing" constant="33" id="uaJ-F2-xkJ"/>
                             <constraint firstItem="KcT-Fe-tic" firstAttribute="trailing" secondItem="W6u-B3-Z3h" secondAttribute="trailing" constant="33" id="vTW-JT-rTI"/>
-                            <constraint firstItem="Oh3-ti-VnV" firstAttribute="leading" secondItem="KcT-Fe-tic" secondAttribute="leading" constant="33" id="vXo-I7-nIg"/>
+                            <constraint firstItem="Kn9-Se-jJZ" firstAttribute="top" secondItem="KcT-Fe-tic" secondAttribute="top" constant="43" id="w17-ea-ujA"/>
+                            <constraint firstItem="KcT-Fe-tic" firstAttribute="trailing" secondItem="Kn9-Se-jJZ" secondAttribute="trailing" constant="100" id="x4R-zD-Yw1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KcT-Fe-tic"/>
                     </view>
@@ -162,7 +185,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uFX-oP-gTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2190" y="-1034"/>
+            <point key="canvasLocation" x="2189.5999999999999" y="-1034.0329835082459"/>
         </scene>
         <!--Account Login View Controller-->
         <scene sceneID="Yg1-Ar-oN5">
@@ -495,24 +518,24 @@
                                                             <action selector="uploadPhotoPressed:" destination="1BT-5h-lSE" eventType="touchUpInside" id="gIq-5c-jJh"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blankProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="8d5-jV-SJp">
-                                                        <rect key="frame" x="119" y="62" width="136" height="136"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blankProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="rK2-pa-nXd">
+                                                        <rect key="frame" x="119" y="61" width="136" height="136"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="8d5-jV-SJp" secondAttribute="height" multiplier="1:1" id="Ufh-ks-dXO"/>
+                                                            <constraint firstAttribute="height" constant="136" id="9Kb-7H-0MF"/>
+                                                            <constraint firstAttribute="width" constant="136" id="n3w-m5-KnU"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.23529411759999999" green="0.62352941179999999" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="gaI-7w-Bhu" firstAttribute="leading" secondItem="i4Q-bi-AUN" secondAttribute="leading" constant="32" id="6Lb-hM-30V"/>
-                                                    <constraint firstItem="8d5-jV-SJp" firstAttribute="centerX" secondItem="i4Q-bi-AUN" secondAttribute="centerX" id="9Js-kK-35H"/>
-                                                    <constraint firstItem="8d5-jV-SJp" firstAttribute="top" secondItem="i4Q-bi-AUN" secondAttribute="top" constant="62" id="GgO-8X-ISn"/>
                                                     <constraint firstItem="ihL-aV-8jJ" firstAttribute="leading" secondItem="i4Q-bi-AUN" secondAttribute="leading" constant="150" id="LHY-fl-X93"/>
                                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="gaI-7w-Bhu" secondAttribute="trailing" constant="84" id="QE3-7V-wHl"/>
-                                                    <constraint firstAttribute="bottom" secondItem="8d5-jV-SJp" secondAttribute="bottom" constant="62" id="diW-PK-7OV"/>
+                                                    <constraint firstItem="rK2-pa-nXd" firstAttribute="centerX" secondItem="i4Q-bi-AUN" secondAttribute="centerX" id="arX-Qf-o0l"/>
                                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ihL-aV-8jJ" secondAttribute="trailing" constant="150" id="pDI-Mz-tbX"/>
                                                     <constraint firstItem="gaI-7w-Bhu" firstAttribute="top" secondItem="i4Q-bi-AUN" secondAttribute="top" constant="13" id="t4z-0Y-6bT"/>
                                                     <constraint firstAttribute="bottom" secondItem="ihL-aV-8jJ" secondAttribute="bottom" constant="25" id="tdP-2X-EvE"/>
+                                                    <constraint firstItem="ihL-aV-8jJ" firstAttribute="top" secondItem="rK2-pa-nXd" secondAttribute="bottom" constant="8" symbolic="YES" id="wta-nl-cm2"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -560,7 +583,7 @@
                         <outlet property="emailTextField" destination="irF-hk-BEx" id="Kyl-fi-gaH"/>
                         <outlet property="genderTextField" destination="Djd-Uo-njG" id="Fqb-gq-WjF"/>
                         <outlet property="passwordTextField" destination="5VN-Hb-qOU" id="GFm-Nh-w9J"/>
-                        <outlet property="photoImage" destination="8d5-jV-SJp" id="cbm-Zn-QYv"/>
+                        <outlet property="photoImage" destination="rK2-pa-nXd" id="a1T-lA-L7t"/>
                         <outlet property="saveButton" destination="TUK-SJ-KGh" id="T5E-b6-F7X"/>
                         <outlet property="topView" destination="CG6-PQ-k85" id="i3J-FY-a30"/>
                         <outlet property="userNameTextField" destination="E2T-Dh-IJd" id="TGw-rv-EUU"/>
@@ -1252,28 +1275,40 @@
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEc-vy-HVq">
-                                                        <rect key="frame" x="167" y="213" width="41" height="33"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
-                                                        <state key="normal" title="Save">
-                                                            <color key="titleColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="saveButtonPressed:" destination="OKC-jT-STT" eventType="touchUpInside" id="VJH-NQ-7Bp"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJj-Dh-zBg">
-                                                        <rect key="frame" x="154" y="266" width="67" height="33"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
-                                                        <state key="normal" title="Log Out">
-                                                            <color key="titleColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="logoutButtonPressed:" destination="OKC-jT-STT" eventType="touchUpInside" id="dYB-Dt-XyT"/>
-                                                        </connections>
-                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ziy-7a-QiB" userLabel="Save Stack View">
+                                                        <rect key="frame" x="33" y="222" width="309" height="83"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEc-vy-HVq">
+                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="40"/>
+                                                                <color key="backgroundColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="2u5-1W-wnV"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
+                                                                <state key="normal" title="Save">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="20"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="saveButtonPressed:" destination="OKC-jT-STT" eventType="touchUpInside" id="VJH-NQ-7Bp"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJj-Dh-zBg">
+                                                                <rect key="frame" x="0.0" y="50" width="309" height="33"/>
+                                                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
+                                                                <state key="normal" title="Log Out">
+                                                                    <color key="titleColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="logoutButtonPressed:" destination="OKC-jT-STT" eventType="touchUpInside" id="dYB-Dt-XyT"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -1282,7 +1317,10 @@
                                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="LVc-hj-tdx" secondAttribute="trailing" constant="250" id="DUb-JR-mK9"/>
                                                     <constraint firstAttribute="trailing" secondItem="hpI-tc-HR3" secondAttribute="trailing" constant="33" id="Gn2-aV-CAv"/>
                                                     <constraint firstItem="n1c-95-f67" firstAttribute="leading" secondItem="erG-VJ-bGu" secondAttribute="leading" constant="33" id="KPm-aS-cG2"/>
+                                                    <constraint firstItem="Ziy-7a-QiB" firstAttribute="leading" secondItem="erG-VJ-bGu" secondAttribute="leading" constant="33" id="Rfy-g0-JtA"/>
                                                     <constraint firstItem="LVc-hj-tdx" firstAttribute="leading" secondItem="erG-VJ-bGu" secondAttribute="leading" constant="32" id="Via-cn-9mA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ziy-7a-QiB" secondAttribute="trailing" constant="33" id="aOF-UL-r5j"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ziy-7a-QiB" secondAttribute="bottom" constant="15" id="dwe-Av-zsD"/>
                                                     <constraint firstItem="n1c-95-f67" firstAttribute="top" secondItem="hpI-tc-HR3" secondAttribute="bottom" constant="15" id="e4u-UH-K7M"/>
                                                     <constraint firstItem="hpI-tc-HR3" firstAttribute="leading" secondItem="erG-VJ-bGu" secondAttribute="leading" constant="33" id="ebl-IZ-e0i"/>
                                                     <constraint firstItem="LVc-hj-tdx" firstAttribute="top" secondItem="erG-VJ-bGu" secondAttribute="top" constant="13" id="fRY-DB-D40"/>
@@ -1358,6 +1396,8 @@
                         <outlet property="emailTextField" destination="kBS-kv-VfA" id="6eu-OC-Igw"/>
                         <outlet property="nameTextField" destination="w2N-gF-uqn" id="l2K-Ug-232"/>
                         <outlet property="profilePhoto" destination="8tf-wY-rWL" id="Vq1-Zx-58h"/>
+                        <outlet property="saveButton" destination="wEc-vy-HVq" id="f0o-Wg-tLX"/>
+                        <outlet property="scrollView" destination="Gry-Fk-Vkh" id="rbv-cq-nHR"/>
                         <outlet property="topView" destination="Eda-5Z-07p" id="nf6-PD-J0J"/>
                         <outlet property="userNameLabel" destination="QO7-MH-VXn" id="MaX-gE-acd"/>
                         <segue destination="AY0-S8-xqp" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithSegue:" id="yq1-qr-6EI"/>
@@ -1789,6 +1829,6 @@
         <image name="runCoinRing_profile" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zkE-Qh-bDn"/>
+        <segue reference="JvV-79-9Bh"/>
     </inferredMetricsTieBreakers>
 </document>

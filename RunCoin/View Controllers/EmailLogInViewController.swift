@@ -85,7 +85,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpLoginScreen()
-        
+        self.hideKeyboard()
         saveButton.isEnabled = false
         saveButton.titleLabel?.isEnabled = false
         emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
@@ -113,8 +113,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             newSelectedImage = image
             photoImage.image = image
-            photoImage.layer.cornerRadius = 68
             photoImage.clipsToBounds = true
+            photoImage.layer.cornerRadius = photoImage.frame.size.height/2
+            photoImage.layer.cornerRadius = photoImage.frame.size.width/2
         }
         dismiss(animated: true, completion: nil)
     }
@@ -178,9 +179,6 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func saveImageData() {
         SVProgressHUD.show()
-//        if photoImage != newSelectedImage {
-//            newSelectedImage = UIImage(named: "blankProfileImage")
-//        }
         if let profileImage = newSelectedImage, let imageData = UIImagePNGRepresentation(profileImage){
             AuthService.signUp(email: emailTextField.text!, username: userNameTextField.text!, password: passwordTextField.text!, imageData: imageData, birthday: birthdayTextField.text!, gender: genderTextField.text!, onSuccess: {
                 print("Successful creation of firebase user.")
@@ -206,7 +204,24 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
 
 extension EmailLogInViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        birthdayTextField.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
+    }
+}
+
+extension EmailLogInViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(EmailLogInViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
     }
 }
