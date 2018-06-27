@@ -37,10 +37,6 @@ class AuthService {
                     return
                 }
                 storageRef.downloadURL { (url, error) in
-                    if error != nil {
-                        print("error with signin url dL method", error!.localizedDescription)
-                        return
-                    }
                     guard let downloadUrl = url else {return}
                     let profileUrl = downloadUrl.absoluteString
                     self.setUserInformation(email: email, username: username, birthday: birthday, gender: gender, profileImageUrl: profileUrl, uid: uid, onSuccess: onSuccess)
@@ -50,10 +46,8 @@ class AuthService {
     }
     
     static func setUserInformation(email: String, username: String, birthday: String, gender: String, profileImageUrl: String, uid: String, onSuccess: @escaping () -> Void){
-        let ref = Database.database().reference()
-        let userRef = ref.child("users")
-        let newUserRef = userRef.child(uid)
-        newUserRef.setValue(["email": email, "username": username, "birthday": birthday, "gender": gender, "profileImageUrl": profileImageUrl])
+        let newUserRef = Api.User.REF_USERS.child(uid)
+        newUserRef.setValue(["email": email, "username": username, "username_lowercase": username.lowercased(), "birthday": birthday, "gender": gender, "profileImageUrl": profileImageUrl])
         onSuccess()
     }
     
