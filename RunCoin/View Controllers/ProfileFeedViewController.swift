@@ -64,7 +64,7 @@ class ProfileFeedViewController: UIViewController {
         tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
-        title = "Activity"
+        navigationItem.title = "Activity"
         
         tableView.layer.shadowColor = UIColor.black.cgColor
         tableView.layer.shadowRadius = 5.0

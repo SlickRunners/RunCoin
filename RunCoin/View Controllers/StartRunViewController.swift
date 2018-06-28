@@ -79,10 +79,11 @@ class StartRunViewController: UIViewController {
         finishButton.isHidden = true
         stopButton.isHidden = true
         paceLabel.text = "--"
+        stopRun()
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-        stopRun()
+//        stopRun()
         saveRun()
         performSegue(withIdentifier: .details, sender: nil)
     }
@@ -101,6 +102,11 @@ class StartRunViewController: UIViewController {
     
     private func stopRun() {
         locationManager.stopUpdatingLocation()
+        
+        let stopAnnotation = CustomPointAnnotation()
+        stopAnnotation.coordinate = (locationList.last?.coordinate)!
+        stopAnnotation.imageName = "stop"
+        mapView.addAnnotation(stopAnnotation)
     }
     
     func eachSecond() {
@@ -197,8 +203,10 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 mapView.setRegion(region, animated: true)
             }
             locationList.append(newLocation)
-            let startAnnotation = MKPointAnnotation()
+            
+            let startAnnotation = CustomPointAnnotation()
             startAnnotation.coordinate = (locationList.first?.coordinate)!
+            startAnnotation.imageName = "start"
             mapView.addAnnotation(startAnnotation)
         }
     }
@@ -217,15 +225,28 @@ extension StartRunViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is MKUserLocation {
+        if !(annotation is CustomPointAnnotation) {
             return nil
         }
-            
-        else {
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
-            annotationView.image = UIImage(named: "start")
-            return annotationView
+        
+        let reuseId = "annotationId"
+        
+        var anView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+        if anView == nil {
+            anView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            anView?.canShowCallout = true
         }
+        else {
+            anView?.annotation = annotation
+        }
+        
+        //Set annotation-specific properties **AFTER**
+        //the view is dequeued or created...
+        
+        let cpa = annotation as! CustomPointAnnotation
+        anView?.image = UIImage(named:cpa.imageName)
+        
+        return anView
     }
     
 }
