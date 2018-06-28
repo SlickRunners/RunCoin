@@ -8,8 +8,6 @@
 
 import UIKit
 import MapKit
-import CoreLocation
-
 
 class InitiateRunViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
