@@ -38,7 +38,10 @@ class HelperService {
         let uid = currentUser.uid
         let newPostId = Api.Post.REF_POSTS.childByAutoId().key
         let newPostRef = Api.Post.REF_POSTS.child(newPostId)
-        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl]
+        
+        let timestamp = Int(Date().timeIntervalSince1970)
+        
+        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl, "timestamp": timestamp] as [String : Any]
         newPostRef.setValue(runDict, withCompletionBlock: {
             error, ref in
             if error != nil {
@@ -46,10 +49,10 @@ class HelperService {
                 return
             }
             
-            Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(true)
+            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(["timestamp": timestamp])
             
             let myPostRef = Api.MyPosts.REF_MYPOSTS.child(uid).child(newPostId)
-            myPostRef.setValue(true, withCompletionBlock: { (error, ref) in
+            myPostRef.setValue(["timestamp": timestamp], withCompletionBlock: { (error, ref) in
                 if error != nil {
                     return
                 }

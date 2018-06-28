@@ -18,7 +18,10 @@ class FollowApi {
         Api.MyPosts.REF_MYPOSTS.child(id).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
                 for key in dict.keys {
-                    Database.database().reference().child("feed").child(Api.User.CURRENT_USER!.uid).child(key).setValue(true)
+                    if let value = dict[key] as? [String : Any]{
+                        let timestampdate = value["timestamp"] as! Int
+                        Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(key).setValue(["timestamp": timestampdate])
+                    }
                 }
             }
         }

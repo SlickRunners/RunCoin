@@ -53,10 +53,38 @@ class ProfileFeedTableViewCell: UITableViewCell {
         runDistanceLabel.text = post?.distance
         runDurationLabel.text = post?.duration
         runAveragePaceLabel.text = post?.pace
-        DateLabel.text = post?.date
         if let photoURLString = post?.runMap {
             let photoURL = URL(string: photoURLString)
             runMapImageView.sd_setImage(with: photoURL)
+        }
+        DateLabel.text = post?.date
+        
+        if let timestamp = post?.timestamp {
+            let timestampDate = Date(timeIntervalSince1970: Double(timestamp))
+            let now = Date()
+            let components = Set<Calendar.Component>([.second, .minute, .hour, .day, .weekOfMonth])
+            let diff = Calendar.current.dateComponents(components, from: timestampDate, to: now)
+            
+            var timeText = ""
+            if diff.second! <= 0 {
+                timeText = "Now"
+            }
+            if diff.second! > 0 && diff.minute! == 0 {
+                timeText = (diff.second == 1) ? "\(diff.second!) second ago" : "\(diff.second!) seconds ago"
+            }
+            if diff.minute! > 0 && diff.hour! == 0 {
+                timeText = (diff.minute == 1) ? "\(diff.minute!) minute ago" : "\(diff.minute!) minutes ago"
+            }
+            if diff.hour! > 0 && diff.day! == 0 {
+                timeText = (diff.hour == 1) ? "\(diff.hour!) hour ago" : "\(diff.hour!) hours ago"
+            }
+            if diff.day! > 0 && diff.weekOfMonth! == 0 {
+                timeText = (diff.day == 1) ? "\(diff.day!) day ago" : "\(diff.day!) days ago"
+            }
+            if diff.weekOfMonth! > 0 {
+                timeText = (diff.weekOfMonth == 1) ? "\(diff.weekOfMonth!) week ago" : "\(diff.weekOfMonth!) weeks ago"
+            }
+            DateLabel.text = timeText
         }
         setUpUserInfo()
     }

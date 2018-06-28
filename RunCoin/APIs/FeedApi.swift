@@ -13,7 +13,7 @@ class FeedApi {
     var REF_FEED = Database.database().reference().child("feed")
     
     func observeFeed(withId Id: String, completion: @escaping (FeedPost) -> Void){
-        REF_FEED.child(Id).observe(.childAdded) { (snapshot) in
+        REF_FEED.child(Id).queryOrdered(byChild: "timestamp").observe(.childAdded) { (snapshot) in
             let key = snapshot.key
             Api.Post.observePost(withId: key, completion: { (post) in
                 completion(post)

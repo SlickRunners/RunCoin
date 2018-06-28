@@ -83,7 +83,7 @@ class StartRunViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-//        stopRun()
+
         saveRun()
         performSegue(withIdentifier: .details, sender: nil)
     }
@@ -124,8 +124,6 @@ class StartRunViewController: UIViewController {
         distanceLabel.text = "\(formattedDistance)"
         timeDurationLabel.text = "\(formattedTime)"
         paceLabel.text = "\(formattedPace)"
-        print(distanceLabel)
-        
     }
     
     func goToHomeScreen() {

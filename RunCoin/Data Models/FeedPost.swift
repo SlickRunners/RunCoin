@@ -17,6 +17,7 @@ class FeedPost {
     var uid : String?
     var key : String?
     var id : String?
+    var timestamp : Int?
 }
 
 extension FeedPost {
@@ -28,6 +29,7 @@ extension FeedPost {
         post.duration = dict["duration"] as? String
         post.date = dict["date"] as? String
         post.uid = dict["uid"] as? String
+        post.timestamp = dict["timestamp"] as? Int
         post.id = key
         return post
     }
