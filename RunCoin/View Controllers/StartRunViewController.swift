@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 import MapKit
-import GameplayKit
 
 class StartRunViewController: UIViewController {
     
@@ -23,7 +22,6 @@ class StartRunViewController: UIViewController {
     var runCoinsEarned : Int = 0
     private var coins : RunCoins?
     
-    
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapContainerView: UIView!
@@ -35,7 +33,8 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var finishResumeStackView: UIStackView!
-    
+    @IBOutlet weak var runCoinLabel: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +42,6 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-//        let userLocation = mapView.userLocation.coordinate
-//        let region = MKCoordinateRegionMakeWithDistance(userLocation, 500, 500)
-//        mapView.setRegion(region, animated: true)
     }
     
     private func startLocationUpdates() {
@@ -106,11 +102,6 @@ class StartRunViewController: UIViewController {
     private func stopRun() {
         locationManager.stopUpdatingLocation()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func eachSecond() {
         seconds += 1
@@ -136,14 +127,6 @@ class StartRunViewController: UIViewController {
         let navController = UINavigationController(rootViewController: VC1)
         self.present(navController, animated:true, completion: nil)
     }
-    
-//    private func startLocationUpdates() {
-//        locationManager.delegate = self
-//        locationManager.activityType = .fitness
-//        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-//        locationManager.startUpdatingLocation()
-//        locationManager.allowsBackgroundLocationUpdates = true
-//    }
     
     func imageScreenshot(view: UIView) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
@@ -185,8 +168,15 @@ class StartRunViewController: UIViewController {
     }
     
     func runCoinEarned() {
+        if distanceLabel.text == "5.00" {
+            runCoinLabel.text = "1"
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        locationManager.stopUpdatingLocation()
+    }
     
 }
 //MARK: Extensions
@@ -207,8 +197,12 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 mapView.setRegion(region, animated: true)
             }
             locationList.append(newLocation)
+            let startAnnotation = MKPointAnnotation()
+            startAnnotation.coordinate = (locationList.first?.coordinate)!
+            mapView.addAnnotation(startAnnotation)
         }
     }
+    
 }
 
 extension StartRunViewController: MKMapViewDelegate {
@@ -221,6 +215,19 @@ extension StartRunViewController: MKMapViewDelegate {
         renderer.lineWidth = 4
         return renderer
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+            
+        else {
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "start")
+            return annotationView
+        }
+    }
+    
 }
 
 extension StartRunViewController: SegueHandlerType {

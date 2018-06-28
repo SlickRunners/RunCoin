@@ -70,8 +70,8 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
         guard
             let email = emailTextField.text, !email.isEmpty,
             let password = passwordTextField.text, !password.isEmpty,
-            let username = userNameTextField.text, !username.isEmpty,
-            let birthday = birthdayTextField.text, !birthday.isEmpty
+            let username = userNameTextField.text, !username.isEmpty
+//            let birthday = birthdayTextField.text, !birthday.isEmpty
 //            let gender = genderTextField.text, !gender.isEmpty
             else {
                 self.saveButton.isEnabled = false
