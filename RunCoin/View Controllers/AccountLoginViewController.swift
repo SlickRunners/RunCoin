@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import SVProgressHUD
 
 class AccountLoginViewController: UIViewController {
@@ -15,6 +14,11 @@ class AccountLoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    
+    @IBAction func forgotPasswordPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "GoToForgotPassword", sender: self)
+    }
     
     @IBAction func LoginButtonPressed(_ sender: UIButton) {
         SVProgressHUD.show()
@@ -57,10 +61,18 @@ class AccountLoginViewController: UIViewController {
         loginButton.titleLabel?.isEnabled = false
         emailTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
+        configureView()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
+    
+    func configureView(){
+        emailTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        emailTextField.layer.borderWidth = 1.0
+        passwordTextField.layer.borderColor = UIColor.coolGrey.cgColor
+        passwordTextField.layer.borderWidth = 1.0
+    }
 }

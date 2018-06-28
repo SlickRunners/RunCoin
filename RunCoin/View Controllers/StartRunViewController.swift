@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import GoogleSignIn
 import CoreLocation
 import MapKit
 
@@ -21,10 +19,8 @@ class StartRunViewController: UIViewController {
     private var timer: Timer?
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     private var locationList: [CLLocation] = []
-    var databaseRef: DatabaseReference!
     var runCoinsEarned : Int = 0
     private var coins : RunCoins?
-    
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
@@ -37,6 +33,24 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var finishResumeStackView: UIStackView!
+    @IBOutlet weak var runCoinLabel: UILabel!
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        startRun()
+        finishButton.layer.borderWidth = 0.5
+        finishButton.layer.borderColor = UIColor.offBlue.cgColor
+        mapView.showsUserLocation = true
+    }
+    
+    private func startLocationUpdates() {
+        locationManager.delegate = self
+        locationManager.activityType = .fitness
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
+        locationManager.allowsBackgroundLocationUpdates = true
+    }
     
     @IBAction func stopButtonPressed(_ sender: UIButton) {
         stopButton.isHidden = true
@@ -44,6 +58,12 @@ class StartRunViewController: UIViewController {
         resumeButton.isHidden = false
         finishButton.isHidden = false
     }
+    
+    @IBAction func discardButtonPressed(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+        locationManager.stopUpdatingLocation()
+    }
+    
     
     @IBAction func resumeButtonPressed(_ sender: UIButton) {
         stopButton.isHidden = false
@@ -64,7 +84,6 @@ class StartRunViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         stopRun()
         saveRun()
-//        screenShotMethod()
         performSegue(withIdentifier: .details, sender: nil)
     }
     
@@ -78,42 +97,10 @@ class StartRunViewController: UIViewController {
             self.eachSecond()
         }
         startLocationUpdates()
-        runCoinEarned()
     }
     
     private func stopRun() {
         locationManager.stopUpdatingLocation()
-    }
-    
-    
-    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
-        GIDSignIn.sharedInstance().signOut()
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            print("Successfully logged out of Firebase from home screen!")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        goToHomeScreen()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        startRun()
-        finishButton.layer.borderWidth = 0.5
-        finishButton.layer.borderColor = UIColor.offBlue.cgColor
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        timer?.invalidate()
-        locationManager.stopUpdatingLocation()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func eachSecond() {
@@ -131,6 +118,8 @@ class StartRunViewController: UIViewController {
         distanceLabel.text = "\(formattedDistance)"
         timeDurationLabel.text = "\(formattedTime)"
         paceLabel.text = "\(formattedPace)"
+        print(distanceLabel)
+        
     }
     
     func goToHomeScreen() {
@@ -139,14 +128,16 @@ class StartRunViewController: UIViewController {
         self.present(navController, animated:true, completion: nil)
     }
     
-    private func startLocationUpdates() {
-        locationManager.delegate = self
-        locationManager.activityType = .fitness
-        locationManager.distanceFilter = 10
-        locationManager.startUpdatingLocation()
+    func imageScreenshot(view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return snapshot
     }
     
     private func saveRun() {
+        mapView.showsUserLocation = false
         let newRun = Run(context: CoreDataStack.context)
         newRun.distance = distance.value
         newRun.duration = Int16(seconds)
@@ -159,78 +150,36 @@ class StartRunViewController: UIViewController {
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
         }
+        
         CoreDataStack.saveContext()
         run = newRun
-        let newDistance = FormatDisplay.distance(newRun.distance).description
-        let newDuration = FormatDisplay.time(seconds).description
-        let newDate = FormatDisplay.date(newRun.timestamp).description
-        let newPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
-        guard let currentUser = Auth.auth().currentUser else {return}
-        let currentUserId = currentUser.uid
-        guard let image = imageScreenshot(view: mapContainerView) else {return}
-        if let imageData = UIImagePNGRepresentation(image){
-            let mapDataID = NSUUID().uuidString
-            let storageRef = Storage.storage().reference().child("run_data").child(mapDataID)
-            storageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print("something went wrong uploading map image to firebase")
-                    return
-                }
-                let mapUrl = metadata?.downloadURL()?.absoluteString
-                self.sendDataToDatabase(uid: currentUserId, distance: newDistance, duration: newDuration, date: newDate, pace: newPace, mapUrl: mapUrl!)
-            })
-        } else {
-            print("error will robinson")
+        
+        let stringDistance = FormatDisplay.distance(newRun.distance).description
+        let stringDuration = FormatDisplay.time(seconds).description
+        let stringDate = FormatDisplay.date(newRun.timestamp).description
+        let stringPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
+        
+        guard let image = imageScreenshot(view: mapContainerView) else {
+            print("image screenshot method did not work")
+            return
+        }
+        //HelperService Instance Methods Go Here
+        HelperService.uploadDataToStorage(image: image, distance: stringDistance, duration: stringDuration, date: stringDate, pace: stringPace)
+    }
+    
+    func runCoinEarned() {
+        if distanceLabel.text == "5.00" {
+            runCoinLabel.text = "1"
         }
     }
     
-    func imageScreenshot(view: UIView) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
-        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        let snapshot = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return snapshot
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        locationManager.stopUpdatingLocation()
     }
-    
-    func sendDataToDatabase(uid: String, distance: String, duration: String, date: String, pace: String, mapUrl: String) {
-        let databaseRef = Database.database().reference()
-        let postRef = databaseRef.child("run_data")
-        let postId = postRef.childByAutoId().key
-        let newPostRef = postRef.child(postId)
-        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl]
-        newPostRef.setValue(runDict, withCompletionBlock: {
-            error, ref in
-            if error != nil {
-                print("Error saving map image to firebase!")
-                return
-            }
-        })
-    }
-    
-    private func runCoinEarned(){
-        if run?.distance == 1 {
-            runCoinsEarned = 1
-            print("You've earned 1 RunCoin!")
-        }
-    }
-
     
 }
 //MARK: Extensions
-extension StartRunViewController: SegueHandlerType {
-    enum SegueIdentifier: String {
-        case details = "GoToRunStats"
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segueIdentifier(for: segue) {
-        case .details:
-            let destination = segue.destination as! RunStatsViewController
-            destination.run = run
-        }
-    }
-}
-
 extension StartRunViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -247,10 +196,13 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500)
                 mapView.setRegion(region, animated: true)
             }
-            
             locationList.append(newLocation)
+            let startAnnotation = MKPointAnnotation()
+            startAnnotation.coordinate = (locationList.first?.coordinate)!
+            mapView.addAnnotation(startAnnotation)
         }
     }
+    
 }
 
 extension StartRunViewController: MKMapViewDelegate {
@@ -263,4 +215,32 @@ extension StartRunViewController: MKMapViewDelegate {
         renderer.lineWidth = 4
         return renderer
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation {
+            return nil
+        }
+            
+        else {
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") ?? MKAnnotationView()
+            annotationView.image = UIImage(named: "start")
+            return annotationView
+        }
+    }
+    
 }
+
+extension StartRunViewController: SegueHandlerType {
+    enum SegueIdentifier: String {
+        case details = "GoToRunStats"
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segueIdentifier(for: segue) {
+        case .details:
+            let destination = segue.destination as! RunStatsViewController
+            destination.run = run
+        }
+    }
+}
+

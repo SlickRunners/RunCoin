@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 import CoreData
-import Firebase
-import FacebookShare
 
 class RunStatsViewController: UIViewController {
 
@@ -24,38 +22,22 @@ class RunStatsViewController: UIViewController {
     var run : Run!
     var container: NSPersistentContainer!
     
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+    @IBAction func skipButtonPressed(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeVC = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
+        present(homeVC, animated: true, completion: nil)
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         guard let image = imageScreenshot(view: mapViewContainer) else {return}
-        let photo = Photo(image: image, userGenerated: true)
-        let content = PhotoShareContent(photos: [photo])
-        let shareDialog = ShareDialog(content: content)
-        shareDialog.mode = .shareSheet
-        shareDialog.failsOnInvalidData = true
-        shareDialog.completion = { result in
-            // Handle share results
-            print("share to facebook successfull")
-        }
-        try! shareDialog.show()
-        
-        
-//        guard let image = imageScreenshot(view: mapViewContainer) else {return}
-//        let vc = UIViewController(nibName: "RunStatsViewController", bundle: nil)
-//        let photo = Photo(image: image, userGenerated: true)
-//        let content = PhotoShareContent(photos: [photo])
-//        do {
-//          try ShareDialog.show(from: vc, content: content)
-//        }
-//        catch {
-//            print("error with share button", error.localizedDescription)
-//        }
+        //let caption = [dateLabel.text, distanceLabel.text, paceLabel.text, timeLabel.text]
+        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        present(activityController, animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
+        loadMap()
         container = NSPersistentContainer(name: "RunCoin")
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
@@ -81,25 +63,6 @@ class RunStatsViewController: UIViewController {
         let snapshot = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return snapshot
-    }
-    
-    //Convert run data into proper units
-    private func configureView() {
-        let distance = Measurement(value: (run.distance), unit: UnitLength.meters)
-        let seconds = Int(run.duration)
-        //To re convert firebase distance: FormatDisplay.distance(distanceInFirebase)
-        let formattedDistance = FormatDisplay.distance(distance)
-        let formattedDate = FormatDisplay.date(run.timestamp)
-        let formattedTime = FormatDisplay.time(seconds)
-        let formattedPace = FormatDisplay.pace(distance: distance,
-                                               seconds: seconds,
-                                               outputUnit: UnitSpeed.minutesPerMile)
-        
-        distanceLabel.text = "Distance:  \(formattedDistance)"
-        dateLabel.text = formattedDate
-        timeLabel.text = "Time:  \(formattedTime)"
-        paceLabel.text = "Pace:  \(formattedPace)"
-        loadMap()
     }
     
     private func mapRegion() -> MKCoordinateRegion? {
@@ -234,7 +197,7 @@ extension RunStatsViewController: MKMapViewDelegate {
         }
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = polyline.color
-        renderer.lineWidth = 3
+        renderer.lineWidth = 4
         return renderer
     }
 }
