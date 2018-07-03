@@ -47,7 +47,8 @@ class AuthService {
     
     static func setUserInformation(email: String, username: String, birthday: String, gender: String, profileImageUrl: String, uid: String, onSuccess: @escaping () -> Void){
         let newUserRef = Api.User.REF_USERS.child(uid)
-        newUserRef.setValue(["email": email, "username": username, "username_lowercase": username.lowercased(), "birthday": birthday, "gender": gender, "profileImageUrl": profileImageUrl])
+        let dict = ["email": email, "username": username, "username_lowercase": username.lowercased(), "birthday": birthday, "gender": gender, "profileImageUrl": profileImageUrl, "globalRunCoin" : 0, "globalDistance": 0, "globalDuration": 0] as [String : Any]
+        newUserRef.setValue(dict)
         onSuccess()
     }
     

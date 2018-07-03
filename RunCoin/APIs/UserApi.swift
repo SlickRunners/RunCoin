@@ -12,6 +12,7 @@ import FirebaseAuth
 
 class UserApi {
     var REF_USERS = Database.database().reference().child("users")
+    var REF_GLOBAL_DISTANCE = Database.database().reference().child("users").child("globalDistance")
     
     func observeUser(withId uid: String, completion: @escaping (User) -> Void ) {
         REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in

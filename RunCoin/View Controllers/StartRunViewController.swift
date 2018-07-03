@@ -19,8 +19,6 @@ class StartRunViewController: UIViewController {
     private var timer: Timer?
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     private var locationList: [CLLocation] = []
-    var runCoinsEarned : Int = 0
-    private var coins : RunCoins?
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
@@ -52,7 +50,7 @@ class StartRunViewController: UIViewController {
         locationManager.allowsBackgroundLocationUpdates = true
     }
     
-    @IBAction func stopButtonPressed(_ sender: UIButton) {
+    @IBAction func stopButtonPressed(_ sender: Any) {
         stopButton.isHidden = true
         finishResumeStackView.isHidden = false
         resumeButton.isHidden = false
@@ -73,6 +71,7 @@ class StartRunViewController: UIViewController {
     }
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
+//        locationManager.stopUpdatingLocation()
         saveButton.isHidden = false
         finishResumeStackView.isHidden = true
         resumeButton.isHidden = true
@@ -83,7 +82,6 @@ class StartRunViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
-
         saveRun()
         performSegue(withIdentifier: .details, sender: nil)
     }
@@ -103,8 +101,14 @@ class StartRunViewController: UIViewController {
     private func stopRun() {
         locationManager.stopUpdatingLocation()
         
+        let newRun = Run(context: CoreDataStack.context)
+        newRun.distance = distance.value
+        print("runrunrunrun", newRun.distance)
+        
+        mapView.showsUserLocation = false
+        guard let lastLocation = locationList.last?.coordinate else {return}
         let stopAnnotation = CustomPointAnnotation()
-        stopAnnotation.coordinate = (locationList.last?.coordinate)!
+        stopAnnotation.coordinate = lastLocation
         stopAnnotation.imageName = "stop"
         mapView.addAnnotation(stopAnnotation)
     }
@@ -158,27 +162,57 @@ class StartRunViewController: UIViewController {
         CoreDataStack.saveContext()
         run = newRun
         
-        let stringDistance = FormatDisplay.distance(newRun.distance).description
-        let stringDuration = FormatDisplay.time(seconds).description
-        let stringDate = FormatDisplay.date(newRun.timestamp).description
-        let stringPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile).description
+        let formattedDistance = FormatDisplay.distance(newRun.distance)
+        let formattedDuration = FormatDisplay.time(seconds)
+        let formattedDate = FormatDisplay.date(newRun.timestamp)
+        let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
         
         guard let image = imageScreenshot(view: mapContainerView) else {
             print("image screenshot method did not work")
             return
         }
+        Api.User.oberserveCurrentUser { (user) in
+        let oldGlobalDistance = user.globalDistance
+            let newGlobalDistance = oldGlobalDistance! + self.distance.value
+            print("1", self.distance.value)
+            print("2", newGlobalDistance)
+            print("3", formattedDistance)
+        
         //HelperService Instance Methods Go Here
-        HelperService.uploadDataToStorage(image: image, distance: stringDistance, duration: stringDuration, date: stringDate, pace: stringPace)
-    }
-    
-    func runCoinEarned() {
-        if distanceLabel.text == "5.00" {
-            runCoinLabel.text = "1"
+        HelperService.uploadDataToStorage(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace, globalRunCoin: 0, globalDistance: newGlobalDistance, globalDuration: 0)
         }
     }
     
+    func runCoinEarned(){
+        if distance.value < 8000.00 {
+            UserDefaults.standard.set(distance.value, forKey: "globalDistance")
+        }
+        if distance.value >= 8000.00 {
+            Api.User.oberserveCurrentUser { (user) in
+                user.globalRunCoin = user.globalRunCoin! + 1
+            }
+        }
+    }
+    
+    
+    
+//    func runCoinTest(RunCoin: Int, newDistance: Double, newDuration: Int16) {
+//        let runStats = Run(context: CoreDataStack.context)
+//        runStats.distance = distance.value
+//        if runStats.distance < 8000.00 {
+//            UserDefaults.standard.set(runStats.distance, forKey: "globalDistance")
+//        }
+//        Api.User.oberserveCurrentUser { (user) in
+//            if let oldGlobalDistance = user.globalDistance {
+//                let newGolbalDistance = oldGlobalDistance + newDistance
+//                HelperService.updateGlobalStats(globalRunCoin: RunCoin, globalDistance: newGolbalDistance, globalDuration: 0)
+//            }
+//        }
+//    }
+    
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillDisappear(animated)
+        timer?.invalidate()
         locationManager.stopUpdatingLocation()
     }
     
@@ -203,7 +237,8 @@ extension StartRunViewController: CLLocationManagerDelegate {
             locationList.append(newLocation)
             
             let startAnnotation = CustomPointAnnotation()
-            startAnnotation.coordinate = (locationList.first?.coordinate)!
+            guard let startLocation = locationList.first?.coordinate else {return}
+            startAnnotation.coordinate = startLocation
             startAnnotation.imageName = "start"
             mapView.addAnnotation(startAnnotation)
         }

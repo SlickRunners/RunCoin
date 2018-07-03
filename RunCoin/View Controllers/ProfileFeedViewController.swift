@@ -13,8 +13,9 @@ class ProfileFeedViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var aggregateDistanceLabel: UILabel!
-    @IBOutlet weak var aggregateDurationLabel: UILabel!
+    @IBOutlet weak var globalDistanceLabel: UILabel!
+    @IBOutlet weak var globaleDurationLabel: UILabel!
+    @IBOutlet weak var globalRunCoinLabel: UILabel!
     @IBAction func unwindToVC1(segue:UIStoryboardSegue){}
     
     var posts = [FeedPost]()
@@ -27,6 +28,7 @@ class ProfileFeedViewController: UIViewController {
         setUpView()
         tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
+        configureGlobalStats()
     }
         
     func loadFeedData(){
@@ -72,11 +74,26 @@ class ProfileFeedViewController: UIViewController {
         tableView.layer.backgroundColor = UIColor.white.cgColor
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        if let accountVC = (self.tabBarController?.viewControllers![2] as? UINavigationController)?.viewControllers[0] as? AccountViewController {
-            //access your VC here
-            accountVC.delegate = self
+    func configureGlobalStats(){
+        Api.User.oberserveCurrentUser { (user) in
+            let formattedRunCoin = user.globalRunCoin?.description
+            self.globalRunCoinLabel.text = formattedRunCoin
+            
+            let formattedDistance = FormatDisplay.distance(user.globalDistance!)
+            print(formattedDistance)
+            print(user.globalDistance!)
+            self.globalDistanceLabel.text = formattedDistance
+            
+            self.globaleDurationLabel.text = user.globaleDuration?.description
         }
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        if let accountVC = (self.tabBarController?.viewControllers![2] as? UINavigationController)?.viewControllers[0] as? AccountViewController {
+//            //access your VC here
+//            accountVC.delegate = self
+//        }
     }
 }
 

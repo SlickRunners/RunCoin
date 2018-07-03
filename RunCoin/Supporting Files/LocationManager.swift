@@ -6,7 +6,6 @@
 //  Copyright © 2018 Roland Christensen. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
 
 class LocationManager {

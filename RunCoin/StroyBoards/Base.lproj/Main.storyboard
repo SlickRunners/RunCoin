@@ -1112,8 +1112,9 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="aggregateDistanceLabel" destination="VKs-gu-0PA" id="g6j-M4-h1j"/>
-                        <outlet property="aggregateDurationLabel" destination="pDO-Su-7eC" id="cxI-2X-wiN"/>
+                        <outlet property="globalDistanceLabel" destination="VKs-gu-0PA" id="SGc-i7-DOq"/>
+                        <outlet property="globalRunCoinLabel" destination="rhC-XR-9Iq" id="qlE-J3-Lnu"/>
+                        <outlet property="globaleDurationLabel" destination="pDO-Su-7eC" id="Xt7-sV-1k3"/>
                         <outlet property="headerView" destination="H2m-yu-tcO" id="30z-8g-PGF"/>
                         <outlet property="tableView" destination="CzI-PW-8R4" id="raH-sO-RD1"/>
                         <segue destination="7qx-28-ktr" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLoginWithSegue:" id="mYj-sv-PI8"/>

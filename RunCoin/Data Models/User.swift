@@ -14,14 +14,20 @@ class User {
     var username : String?
     var id : String?
     var isFollowing : Bool?
+    var globalRunCoin : Int?
+    var globalDistance : Double?
+    var globaleDuration: Int16?
 }
 
 extension User {
-    static func transformUser(dict: [String : Any], key: String) -> User{
+    static func transformUser(dict: [String : Any], key: String) -> User {
         let user = User()
         user.email = dict["email"] as? String
         user.profileImageUrl = dict["profileImageUrl"] as? String
         user.username = dict["username"] as? String
+        user.globalDistance = dict["globalDistance"] as? Double
+        user.globalRunCoin = dict["globalRunCoin"] as? Int
+        user.globaleDuration = dict["globalDuration"] as? Int16
         user.id = key
         return user
     }

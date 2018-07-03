@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class InitiateRunViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class InitiateRunViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -18,7 +18,6 @@ class InitiateRunViewController: UIViewController, CLLocationManagerDelegate, MK
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
         mapView.mapType = .mutedStandard
         mapView.showsUserLocation = true
     }

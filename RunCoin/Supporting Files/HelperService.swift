@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class HelperService {
     
-    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String){
+    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String, globalRunCoin: Int, globalDistance: Double, globalDuration: Int16){
         if let imageData = UIImagePNGRepresentation(image) {
             let mapDataID = NSUUID().uuidString
             let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("run_posts").child(mapDataID)
@@ -25,6 +25,7 @@ class HelperService {
                     let mapUrl = downloadUrl.absoluteString
                     
                     self.sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl)
+                    self.updateGlobalStats(globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
                 }
             }
         }
@@ -59,4 +60,17 @@ class HelperService {
             })
         })
     }
+    
+    static func updateGlobalStats(globalRunCoin: Int, globalDistance: Double, globalDuration: Int16 ){
+        let globalDict = ["globalRunCoin": globalRunCoin, "globalDistance": globalDistance, "globalDuration": globalDuration] as [String : Any]
+        
+        Api.User.REF_CURRENT_USER?.updateChildValues(globalDict, withCompletionBlock: { (error, ref) in
+            if error != nil {
+                return
+            }
+            ref.removeAllObservers()
+        })
+    }
+    
+    
 }
