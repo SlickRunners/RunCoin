@@ -101,10 +101,6 @@ class StartRunViewController: UIViewController {
     private func stopRun() {
         locationManager.stopUpdatingLocation()
         
-        let newRun = Run(context: CoreDataStack.context)
-        newRun.distance = distance.value
-        print("runrunrunrun", newRun.distance)
-        
         mapView.showsUserLocation = false
         guard let lastLocation = locationList.last?.coordinate else {return}
         let stopAnnotation = CustomPointAnnotation()
@@ -166,6 +162,7 @@ class StartRunViewController: UIViewController {
         let formattedDuration = FormatDisplay.time(seconds)
         let formattedDate = FormatDisplay.date(newRun.timestamp)
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
+
         
         guard let image = imageScreenshot(view: mapContainerView) else {
             print("image screenshot method did not work")
@@ -216,6 +213,15 @@ class StartRunViewController: UIViewController {
         locationManager.stopUpdatingLocation()
     }
     
+    func speedFailSafe(){
+            let ac = UIAlertController(title: "You're moving too fast!", message: "You've reached speeds above human capabilities! Either, you're in a car or you need to enter the Olympics. Please restart your run.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .destructive) { (action) in
+             _ = self.navigationController?.popToRootViewController(animated: true)
+            }
+            ac.addAction(action)
+            present(ac, animated: true)
+    }
+    
 }
 //MARK: Extensions
 extension StartRunViewController: CLLocationManagerDelegate {
@@ -233,6 +239,17 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 mapView.add(MKPolyline(coordinates: coordinates, count: 2))
                 let region = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 500, 500)
                 mapView.setRegion(region, animated: true)
+                
+                let pace = delta / Double(seconds)
+                let formatPace = Measurement(value: pace, unit: UnitSpeed.metersPerSecond)
+                let topSpeed = Measurement(value: 8.00, unit: UnitSpeed.metersPerSecond)
+                print("formatPace!!!!!", formatPace)
+                
+                if formatPace >= topSpeed {
+                    speedFailSafe()
+                }
+                
+                
             }
             locationList.append(newLocation)
             
