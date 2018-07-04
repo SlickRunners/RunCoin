@@ -94,6 +94,9 @@ class ProfileFeedTableViewCell: UITableViewCell {
         if let photoURLString = user?.profileImageUrl {
             let photoURL = URL(string: photoURLString)
             profileImageView.sd_setImage(with: photoURL, placeholderImage: UIImage(named: "blankProfileImage"))
+            profileImageView.layer.cornerRadius = profileImageView.frame.size.height/2
+            profileImageView.layer.borderColor = UIColor.offBlue.cgColor
+            profileImageView.layer.borderWidth = 2
         }
     }
 }

@@ -149,7 +149,7 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppb-qr-9s5">
                                 <rect key="frame" x="33" y="128" width="309" height="138"/>
-                                <string key="text">Enter your email and hit send. You'll receive a confirmation email and from there, you can reset your password to your RunCoin account. Its as easy as that!</string>
+                                <string key="text">Enter your email and hit send. You'll receive a confirmation email and from there, you can reset your password to your RunCoin account. It's as easy as that!</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                 <color key="textColor" red="0.59215686270000001" green="0.61568627450000002" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -966,11 +966,6 @@
                                                         <constraint firstAttribute="width" constant="35" id="7nP-nB-5jr"/>
                                                         <constraint firstAttribute="height" constant="35" id="i3x-6i-IpH"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="14"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop-shadow-divider" translatesAutoresizingMaskIntoConstraints="NO" id="y37-am-dJX">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="15"/>
@@ -1177,11 +1172,6 @@
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8tf-wY-rWL">
                                                         <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="65"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
@@ -1785,6 +1775,6 @@
         <image name="runCoinRing_profile" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="JvV-79-9Bh"/>
+        <segue reference="zkE-Qh-bDn"/>
     </inferredMetricsTieBreakers>
 </document>

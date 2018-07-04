@@ -25,6 +25,9 @@ class SearchTableViewCell: UITableViewCell {
         if let photoUrlString = user?.profileImageUrl {
             let photoUrl = URL(string: photoUrlString)
             profileImage.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "blankProfileImage"))
+            profileImage.layer.cornerRadius = profileImage.frame.size.height / 2
+            profileImage.layer.borderColor = UIColor.offBlue.cgColor
+            profileImage.layer.borderWidth = 2
         }
         if user!.isFollowing! == true {
             configureUnFollowButton()

@@ -97,6 +97,10 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
         nameTextField.layer.borderColor = UIColor.coolGrey.cgColor
         emailTextField.layer.borderWidth = 1.0
         nameTextField.layer.borderWidth = 1.0
+        
+        profilePhoto.layer.cornerRadius = profilePhoto.frame.size.height/2
+        profilePhoto.layer.borderColor = UIColor.offBlue.cgColor
+        profilePhoto.layer.borderWidth = 4
     }
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
