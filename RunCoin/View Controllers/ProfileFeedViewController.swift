@@ -26,7 +26,7 @@ class ProfileFeedViewController: UIViewController {
         super.viewDidLoad()
         loadFeedData()
         setUpView()
-        tableView.estimatedRowHeight = 600
+        tableView.estimatedRowHeight = 418
         tableView.rowHeight = UITableViewAutomaticDimension
         configureGlobalStats()
     }
@@ -72,6 +72,11 @@ class ProfileFeedViewController: UIViewController {
         tableView.layer.shadowRadius = 5.0
         tableView.layer.shadowOpacity = 0.25
         tableView.layer.backgroundColor = UIColor.white.cgColor
+        
+        //gradient border for globalruncoinlabel
+        globalRunCoinLabel.layer.borderColor = UIColor.offBlue.cgColor
+        globalRunCoinLabel.layer.cornerRadius = globalRunCoinLabel.frame.size.height/2
+        globalRunCoinLabel.layer.borderWidth = 3
     }
     
     func configureGlobalStats(){

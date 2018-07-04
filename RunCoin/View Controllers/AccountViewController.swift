@@ -17,7 +17,6 @@ protocol AccountViewControllerDelegate {
 
 class AccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //Variables
-    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -93,10 +92,6 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
         bottomView.layer.shadowRadius = 5.0
         bottomView.layer.shadowOpacity = 0.25
         bottomView.layer.backgroundColor = UIColor.white.cgColor
-        topView.layer.backgroundColor = UIColor.white.cgColor
-        topView.layer.shadowColor = UIColor.black.cgColor
-        topView.layer.shadowRadius = 5.0
-        topView.layer.shadowOpacity = 0.25
         //textfields
         emailTextField.layer.borderColor = UIColor.coolGrey.cgColor
         nameTextField.layer.borderColor = UIColor.coolGrey.cgColor
