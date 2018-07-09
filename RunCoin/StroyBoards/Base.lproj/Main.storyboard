@@ -871,7 +871,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="L7R-uS-TrE" userLabel="Top Mile Stack View">
                                             <rect key="frame" x="171" y="43" width="33" height="45"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="128" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKs-gu-0PA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="128" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VKs-gu-0PA">
                                                     <rect key="frame" x="0.0" y="0.0" width="33" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
                                                     <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -913,7 +913,7 @@
                                         <constraint firstItem="fz0-8X-H8I" firstAttribute="top" secondItem="H2m-yu-tcO" secondAttribute="top" constant="43" id="LXi-g6-kEt"/>
                                         <constraint firstItem="rhC-XR-9Iq" firstAttribute="leading" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="42" id="LuV-mQ-dzl"/>
                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="a5F-AI-KQp" secondAttribute="trailing" constant="84" id="NeU-Cj-XGm"/>
-                                        <constraint firstItem="L7R-uS-TrE" firstAttribute="leading" secondItem="rhC-XR-9Iq" secondAttribute="trailing" constant="89" id="OCn-PZ-F3o"/>
+                                        <constraint firstItem="L7R-uS-TrE" firstAttribute="leading" relation="lessThanOrEqual" secondItem="rhC-XR-9Iq" secondAttribute="trailing" constant="89" id="OCn-PZ-F3o"/>
                                         <constraint firstItem="xkX-vp-f0U" firstAttribute="top" secondItem="rhC-XR-9Iq" secondAttribute="bottom" constant="8" id="Pin-uT-8ec"/>
                                         <constraint firstItem="L7R-uS-TrE" firstAttribute="leading" secondItem="xkX-vp-f0U" secondAttribute="trailing" constant="65" id="PxC-8l-96d"/>
                                         <constraint firstItem="a5F-AI-KQp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="84" id="WNY-a4-eWs"/>
@@ -1409,7 +1409,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5k-dg-iXK">
-                                                    <rect key="frame" x="100" y="40" width="140" height="21"/>
+                                                    <rect key="frame" x="100" y="40.5" width="140" height="20"/>
                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="17"/>
                                                     <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>

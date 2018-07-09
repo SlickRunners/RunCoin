@@ -92,6 +92,7 @@ class RunStatsViewController: UIViewController {
                                             longitude: (minLong + maxLong) / 2)
         let span = MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3,
                                     longitudeDelta: (maxLong - minLong) * 1.3)
+        
         return MKCoordinateRegion(center: center, span: span)
     }
     

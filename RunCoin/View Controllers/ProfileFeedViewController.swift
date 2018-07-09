@@ -85,11 +85,11 @@ class ProfileFeedViewController: UIViewController {
             self.globalRunCoinLabel.text = formattedRunCoin
             
             let formattedDistance = FormatDisplay.distance(user.globalDistance!)
-            print(formattedDistance)
-            print(user.globalDistance!)
             self.globalDistanceLabel.text = formattedDistance
             
-            self.globaleDurationLabel.text = user.globaleDuration?.description
+            let formattedDuration = FormatDisplay.time(user.globaleDuration!)
+            
+            self.globaleDurationLabel.text = formattedDuration
         }
     }
     

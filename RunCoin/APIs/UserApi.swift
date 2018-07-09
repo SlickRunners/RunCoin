@@ -70,4 +70,14 @@ class UserApi {
             }
         }
     }
+    
+    func observeGlobalStats(completion: @escaping (User) -> Void){
+        guard let currentUser = CURRENT_USER else {return}
+        REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dict = snapshot.value as? [String : Any] {
+                let user = User.transformUser(dict: dict, key: snapshot.key)
+                completion(user)
+            }
+        })
+    }
 }

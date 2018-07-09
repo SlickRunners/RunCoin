@@ -16,7 +16,7 @@ class User {
     var isFollowing : Bool?
     var globalRunCoin : Int?
     var globalDistance : Double?
-    var globaleDuration: Int16?
+    var globaleDuration: Int?
 }
 
 extension User {
@@ -27,7 +27,7 @@ extension User {
         user.username = dict["username"] as? String
         user.globalDistance = dict["globalDistance"] as? Double
         user.globalRunCoin = dict["globalRunCoin"] as? Int
-        user.globaleDuration = dict["globalDuration"] as? Int16
+        user.globaleDuration = dict["globalDuration"] as? Int
         user.id = key
         return user
     }

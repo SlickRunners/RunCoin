@@ -40,6 +40,7 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
+//        runCoinEarned()
     }
     
     private func startLocationUpdates() {
@@ -71,7 +72,6 @@ class StartRunViewController: UIViewController {
     }
     
     @IBAction func finishButtonPressed(_ sender: UIButton) {
-//        locationManager.stopUpdatingLocation()
         saveButton.isHidden = false
         finishResumeStackView.isHidden = true
         resumeButton.isHidden = true
@@ -79,6 +79,10 @@ class StartRunViewController: UIViewController {
         stopButton.isHidden = true
         paceLabel.text = "--"
         stopRun()
+    }
+    
+    func setVisibleMapArea(polyline: MKPolyline, edgeInsets: UIEdgeInsets, animated: Bool = false) {
+        mapView.setVisibleMapRect(polyline.boundingMapRect, edgePadding: edgeInsets, animated: animated)
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -162,50 +166,50 @@ class StartRunViewController: UIViewController {
         let formattedDuration = FormatDisplay.time(seconds)
         let formattedDate = FormatDisplay.date(newRun.timestamp)
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
-
+        print("formattedDistance", formattedDistance)
         
         guard let image = imageScreenshot(view: mapContainerView) else {
             print("image screenshot method did not work")
             return
         }
-        Api.User.oberserveCurrentUser { (user) in
-        let oldGlobalDistance = user.globalDistance
-            let newGlobalDistance = oldGlobalDistance! + self.distance.value
-            print("1", self.distance.value)
-            print("2", newGlobalDistance)
-            print("3", formattedDistance)
-        
-        //HelperService Instance Methods Go Here
-        HelperService.uploadDataToStorage(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace, globalRunCoin: 0, globalDistance: newGlobalDistance, globalDuration: 0)
-        }
+        configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace)
     }
     
-    func runCoinEarned(){
-        if distance.value < 8000.00 {
-            UserDefaults.standard.set(distance.value, forKey: "globalDistance")
-        }
-        if distance.value >= 8000.00 {
-            Api.User.oberserveCurrentUser { (user) in
-                user.globalRunCoin = user.globalRunCoin! + 1
-            }
-        }
+    func configureGlobalStats(image: UIImage, distance: String, duration: String, date: String, pace: String){
+        Api.User.observeGlobalStats(completion: { (user) in
+            let finalRun = Run(context: CoreDataStack.context)
+            finalRun.distance = self.distance.value
+            let globalDistance = user.globalDistance! + finalRun.distance
+            let globalDuration = user.globaleDuration! + self.seconds
+            //HelperService Instance Methods Go Here
+            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, globalRunCoin: 0, globalDistance: globalDistance, globalDuration: globalDuration)
+        })
     }
     
-    
-    
-//    func runCoinTest(RunCoin: Int, newDistance: Double, newDuration: Int16) {
-//        let runStats = Run(context: CoreDataStack.context)
-//        runStats.distance = distance.value
-//        if runStats.distance < 8000.00 {
-//            UserDefaults.standard.set(runStats.distance, forKey: "globalDistance")
+//    func runCoinEarned(){
+//        let newRun = Run(context: CoreDataStack.context)
+//        newRun.distance = distance.value
+////        print(newRun.distance)
+//        if newRun.distance < 8000.00 {
+//            UserDefaults.standard.set(newRun.distance, forKey: "globalDistance")
 //        }
-//        Api.User.oberserveCurrentUser { (user) in
-//            if let oldGlobalDistance = user.globalDistance {
-//                let newGolbalDistance = oldGlobalDistance + newDistance
-//                HelperService.updateGlobalStats(globalRunCoin: RunCoin, globalDistance: newGolbalDistance, globalDuration: 0)
+//        if distance.value >= 8000.00 {
+//            Api.User.oberserveCurrentUser { (user) in
+//                let oldRunCoin = user.globalRunCoin
+//                let newRunCoin = oldRunCoin! + 1
+//                let runCoinDict = ["globalRunCoin": newRunCoin]
+//                Api.User.REF_CURRENT_USER?.updateChildValues(runCoinDict, withCompletionBlock: { (error, ref) in
+//                    if error != nil {return}
+//                })
 //            }
 //        }
 //    }
+    
+    func runCoinTest() {
+        let runStats = Run(context: CoreDataStack.context)
+        runStats.distance = distance.value
+        
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -242,14 +246,11 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 
                 let pace = delta / Double(seconds)
                 let formatPace = Measurement(value: pace, unit: UnitSpeed.metersPerSecond)
-                let topSpeed = Measurement(value: 8.00, unit: UnitSpeed.metersPerSecond)
-                print("formatPace!!!!!", formatPace)
+                let topSpeed = Measurement(value: 9.00, unit: UnitSpeed.metersPerSecond)
                 
-                if formatPace >= topSpeed {
-                    speedFailSafe()
-                }
-                
-                
+//                if formatPace >= topSpeed {
+//                    speedFailSafe()
+//                }
             }
             locationList.append(newLocation)
             
@@ -260,7 +261,6 @@ extension StartRunViewController: CLLocationManagerDelegate {
             mapView.addAnnotation(startAnnotation)
         }
     }
-    
 }
 
 extension StartRunViewController: MKMapViewDelegate {

@@ -11,8 +11,8 @@ import FirebaseStorage
 import FirebaseDatabase
 
 class HelperService {
-    
-    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String, globalRunCoin: Int, globalDistance: Double, globalDuration: Int16){
+    //globalRunCoin: Int, globalDistance: Double, globalDuration: Int16
+    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String, globalRunCoin: Int, globalDistance: Double, globalDuration: Int){
         if let imageData = UIImagePNGRepresentation(image) {
             let mapDataID = NSUUID().uuidString
             let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("run_posts").child(mapDataID)
@@ -24,8 +24,8 @@ class HelperService {
                     guard let downloadUrl = url else {return}
                     let mapUrl = downloadUrl.absoluteString
                     
-                    self.sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl)
-                    self.updateGlobalStats(globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
+                    sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl)
+                    updateGlobalStats(globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
                 }
             }
         }
@@ -43,6 +43,7 @@ class HelperService {
         let timestamp = Int(Date().timeIntervalSince1970)
         
         let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl, "timestamp": timestamp] as [String : Any]
+        
         newPostRef.setValue(runDict, withCompletionBlock: {
             error, ref in
             if error != nil {
@@ -61,16 +62,12 @@ class HelperService {
         })
     }
     
-    static func updateGlobalStats(globalRunCoin: Int, globalDistance: Double, globalDuration: Int16 ){
+    static func updateGlobalStats(globalRunCoin: Int, globalDistance: Double, globalDuration: Int){
+        
         let globalDict = ["globalRunCoin": globalRunCoin, "globalDistance": globalDistance, "globalDuration": globalDuration] as [String : Any]
         
-        Api.User.REF_CURRENT_USER?.updateChildValues(globalDict, withCompletionBlock: { (error, ref) in
-            if error != nil {
-                return
-            }
-            ref.removeAllObservers()
-        })
+        Api.User.REF_CURRENT_USER?.updateChildValues(globalDict)
     }
-    
-    
 }
+
+
