@@ -45,8 +45,9 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-        fetchRunData()
-        print(pastRunData.last?.distance)
+        fetchPastRunData()
+        earnRunCoin()
+        coreDataDistanceCheck()
     }
     
     private func startLocationUpdates() {
@@ -157,6 +158,7 @@ class StartRunViewController: UIViewController {
         newRun.duration = Int16(seconds)
         newRun.timestamp = Date()
         
+        
         for location in locationList {
             let locationObject = Location(context: CoreDataStack.context)
             locationObject.timestamp = location.timestamp as NSDate
@@ -181,7 +183,7 @@ class StartRunViewController: UIViewController {
         configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace)
     }
     
-    func fetchRunData(){
+    func fetchPastRunData(){
         let request = Run.createFetchRequest()
         let sort = NSSortDescriptor(key: "timestamp", ascending: true)
         request.sortDescriptors = [sort]
@@ -210,6 +212,49 @@ class StartRunViewController: UIViewController {
         timer?.invalidate()
         locationManager.stopUpdatingLocation()
     }
+    
+    
+    func earnRunCoin(){
+        let runData = pastRunData.map { (run) -> Double in
+            run.distance
+        }
+        let previousRuns = runData.suffix(5)
+        let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
+        print("SumPastRuns", sumPastRuns)
+        
+        if sumPastRuns < 8000 {
+            let sumDistance = sumPastRuns + distance.value
+            print("SUMDISTANCE", sumDistance)
+            if sumDistance > 8000 {
+                print("USER HAS EARNED A RUNCOIN")
+                runCoinLabel.text = "1"
+            }
+        }
+    }
+    
+    func coreDataDistanceCheck(){
+        //deletes core data for Run entity when distance property is past 8000 meteres
+        let runData = pastRunData.map { (run) -> Double in
+            run.distance
+        }
+        let previousRuns = runData.suffix(5)
+        let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
+        
+        if sumPastRuns > 8000.00 {
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
+            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+            do {
+                try CoreDataStack.context.execute(batchDeleteRequest)
+                print(runData)
+            } catch {
+                print("error deleting persistent store from Core Data", error.localizedDescription)
+            }
+        }
+    }
+
+    
+    
 }
 
 
