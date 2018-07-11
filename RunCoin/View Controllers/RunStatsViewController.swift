@@ -20,7 +20,6 @@ class RunStatsViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapViewContainer: UIView!
     var run : Run!
-    var container: NSPersistentContainer!
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -38,23 +37,6 @@ class RunStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMap()
-        container = NSPersistentContainer(name: "RunCoin")
-        container.loadPersistentStores { storeDescription, error in
-            if let error = error {
-                print("Unresolved error for NSPERSISTCONTAINER \(error)")
-            }
-        }
-    }
-    
-    func saveData(){
-        if container.viewContext.hasChanges {
-            do {
-                try container.viewContext.save()
-            }
-            catch {
-                print("An error occurred while saving to container: \(error)")
-            }
-        }
     }
     
     func imageScreenshot(view: UIView) -> UIImage? {
@@ -66,11 +48,9 @@ class RunStatsViewController: UIViewController {
     }
     
     private func mapRegion() -> MKCoordinateRegion? {
-        guard
-            let locations = run.locations,
-            locations.count > 0
-            else {
-                return nil
+        let locations = run.locations
+        if locations.count < 1 {
+            return nil
         }
         
         let latitudes = locations.map { location -> Double in
@@ -99,7 +79,7 @@ class RunStatsViewController: UIViewController {
     private func polyLine() -> [MulticolorPolyline] {
         
         // 1
-        let locations = run.locations?.array as! [Location]
+        let locations = run.locations.array as! [Location]
         var coordinates: [(CLLocation, CLLocation)] = []
         var speeds: [Double] = []
         var minSpeed = Double.greatestFiniteMagnitude
@@ -113,7 +93,7 @@ class RunStatsViewController: UIViewController {
             
             //3
             let distance = end.distance(from: start)
-            let time = second.timestamp!.timeIntervalSince(first.timestamp! as Date)
+            let time = second.timestamp.timeIntervalSince(first.timestamp as Date)
             let speed = time > 0 ? distance / time : 0
             speeds.append(speed)
             minSpeed = min(minSpeed, speed)
@@ -139,23 +119,20 @@ class RunStatsViewController: UIViewController {
     
     
     private func loadMap() {
-        guard
-            let locations = run.locations,
-            locations.count > 0,
+        let locations = run.locations
+        if locations.count > 0 {
             let region = mapRegion()
-            else {
-                let alert = UIAlertController(title: "Error",
-                                              message: "Sorry, this run has no locations saved",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-                present(alert, animated: true)
-                return
+            mapView.setRegion(region!, animated: true)
+            mapView.addOverlays(polyLine())
         }
-        
-        mapView.setRegion(region, animated: true)
-        mapView.addOverlays(polyLine())
+        else {
+            let alert = UIAlertController(title: "Error",
+                                          message: "Sorry, this run has no locations saved",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            present(alert, animated: true)
+        }
     }
-    
     private func segmentColor(speed: Double, midSpeed: Double, slowestSpeed: Double, fastestSpeed: Double) -> UIColor {
         enum BaseColors {
             static let r_red: CGFloat = 1

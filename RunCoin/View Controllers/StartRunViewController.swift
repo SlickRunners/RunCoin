@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import CoreData
 
 class StartRunViewController: UIViewController {
     
@@ -19,6 +20,10 @@ class StartRunViewController: UIViewController {
     private var timer: Timer?
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     private var locationList: [CLLocation] = []
+    var pastRunData = [Run]()
+    var container: NSPersistentContainer!
+    var runPredicate: NSPredicate?
+    
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
@@ -40,7 +45,8 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-//        runCoinEarned()
+        fetchRunData()
+        print(pastRunData.last?.distance)
     }
     
     private func startLocationUpdates() {
@@ -153,7 +159,7 @@ class StartRunViewController: UIViewController {
         
         for location in locationList {
             let locationObject = Location(context: CoreDataStack.context)
-            locationObject.timestamp = location.timestamp
+            locationObject.timestamp = location.timestamp as NSDate
             locationObject.latitude = location.coordinate.latitude
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
@@ -175,6 +181,19 @@ class StartRunViewController: UIViewController {
         configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace)
     }
     
+    func fetchRunData(){
+        let request = Run.createFetchRequest()
+        let sort = NSSortDescriptor(key: "timestamp", ascending: true)
+        request.sortDescriptors = [sort]
+        request.predicate = runPredicate
+        do {
+            pastRunData = try CoreDataStack.context.fetch(request)
+            print("got \(pastRunData.count) for past runData.")
+        } catch {
+            print("error with fetch request for pastRunData")
+        }
+    }
+    
     func configureGlobalStats(image: UIImage, distance: String, duration: String, date: String, pace: String){
         Api.User.observeGlobalStats(completion: { (user) in
             let finalRun = Run(context: CoreDataStack.context)
@@ -186,47 +205,15 @@ class StartRunViewController: UIViewController {
         })
     }
     
-//    func runCoinEarned(){
-//        let newRun = Run(context: CoreDataStack.context)
-//        newRun.distance = distance.value
-////        print(newRun.distance)
-//        if newRun.distance < 8000.00 {
-//            UserDefaults.standard.set(newRun.distance, forKey: "globalDistance")
-//        }
-//        if distance.value >= 8000.00 {
-//            Api.User.oberserveCurrentUser { (user) in
-//                let oldRunCoin = user.globalRunCoin
-//                let newRunCoin = oldRunCoin! + 1
-//                let runCoinDict = ["globalRunCoin": newRunCoin]
-//                Api.User.REF_CURRENT_USER?.updateChildValues(runCoinDict, withCompletionBlock: { (error, ref) in
-//                    if error != nil {return}
-//                })
-//            }
-//        }
-//    }
-    
-    func runCoinTest() {
-        let runStats = Run(context: CoreDataStack.context)
-        runStats.distance = distance.value
-        
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
         locationManager.stopUpdatingLocation()
     }
-    
-    func speedFailSafe(){
-            let ac = UIAlertController(title: "You're moving too fast!", message: "You've reached speeds above human capabilities! Either, you're in a car or you need to enter the Olympics. Please restart your run.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .destructive) { (action) in
-             _ = self.navigationController?.popToRootViewController(animated: true)
-            }
-            ac.addAction(action)
-            present(ac, animated: true)
-    }
-    
 }
+
+
+
 //MARK: Extensions
 extension StartRunViewController: CLLocationManagerDelegate {
     
@@ -260,6 +247,15 @@ extension StartRunViewController: CLLocationManagerDelegate {
             startAnnotation.imageName = "start"
             mapView.addAnnotation(startAnnotation)
         }
+    }
+    
+    func speedFailSafe(){
+        let ac = UIAlertController(title: "You're moving too fast!", message: "You've reached speeds above human capabilities! Either, you're in a car or you need to enter the Olympics. Please restart your run.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .destructive) { (action) in
+            _ = self.navigationController?.popToRootViewController(animated: true)
+        }
+        ac.addAction(action)
+        present(ac, animated: true)
     }
 }
 

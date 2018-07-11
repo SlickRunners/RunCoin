@@ -88,7 +88,6 @@ class ProfileFeedViewController: UIViewController {
             self.globalDistanceLabel.text = formattedDistance
             
             let formattedDuration = FormatDisplay.time(user.globaleDuration!)
-            
             self.globaleDurationLabel.text = formattedDuration
         }
     }
