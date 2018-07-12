@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import CoreData
+import AVFoundation
 
 class StartRunViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class StartRunViewController: UIViewController {
     var pastRunData = [Run]()
     var container: NSPersistentContainer!
     var runPredicate: NSPredicate?
+    var globalRunCoin : Int?
+    var coinSound : AVAudioPlayer!
     
     
     //Buttons & Actions
@@ -46,7 +49,6 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
         fetchPastRunData()
-        earnRunCoin()
         coreDataDistanceCheck()
     }
     
@@ -107,6 +109,7 @@ class StartRunViewController: UIViewController {
             self.eachSecond()
         }
         startLocationUpdates()
+        earnRunCoin()
     }
     
     private func stopRun() {
@@ -135,6 +138,7 @@ class StartRunViewController: UIViewController {
         distanceLabel.text = "\(formattedDistance)"
         timeDurationLabel.text = "\(formattedTime)"
         paceLabel.text = "\(formattedPace)"
+        earnRunCoin()
     }
     
     func goToHomeScreen() {
@@ -158,7 +162,6 @@ class StartRunViewController: UIViewController {
         newRun.duration = Int16(seconds)
         newRun.timestamp = Date()
         
-        
         for location in locationList {
             let locationObject = Location(context: CoreDataStack.context)
             locationObject.timestamp = location.timestamp as NSDate
@@ -174,7 +177,6 @@ class StartRunViewController: UIViewController {
         let formattedDuration = FormatDisplay.time(seconds)
         let formattedDate = FormatDisplay.date(newRun.timestamp)
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
-        print("formattedDistance", formattedDistance)
         
         guard let image = imageScreenshot(view: mapContainerView) else {
             print("image screenshot method did not work")
@@ -213,26 +215,27 @@ class StartRunViewController: UIViewController {
         locationManager.stopUpdatingLocation()
     }
     
-    
     func earnRunCoin(){
+        let runCoinDistance = 8000.00
+        let runDist = Run(context: CoreDataStack.context)
+        runDist.distance = distance.value
         let runData = pastRunData.map { (run) -> Double in
             run.distance
         }
         let previousRuns = runData.suffix(5)
         let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
-        print("SumPastRuns", sumPastRuns)
-        
-        if sumPastRuns < 8000 {
-            let sumDistance = sumPastRuns + distance.value
-            print("SUMDISTANCE", sumDistance)
-            if sumDistance > 8000 {
-                print("USER HAS EARNED A RUNCOIN")
+        print("sumPastRuns BRO", sumPastRuns)
+        if sumPastRuns < runCoinDistance {
+            let sumDistance = sumPastRuns + runDist.distance
+            if sumDistance > runCoinDistance {
+                playCoinSound()
                 runCoinLabel.text = "1"
             }
         }
     }
     
     func coreDataDistanceCheck(){
+        let runCoinDistance = 8000.00
         //deletes core data for Run entity when distance property is past 8000 meteres
         let runData = pastRunData.map { (run) -> Double in
             run.distance
@@ -240,7 +243,7 @@ class StartRunViewController: UIViewController {
         let previousRuns = runData.suffix(5)
         let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
         
-        if sumPastRuns > 8000.00 {
+        if sumPastRuns > runCoinDistance {
             
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -252,12 +255,20 @@ class StartRunViewController: UIViewController {
             }
         }
     }
-
+    
+    func playCoinSound(){
+        let audioFilePath = Bundle.main.path(forResource: "coins", ofType: ".m4r")
+        let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
+            do {
+                try coinSound = AVAudioPlayer(contentsOf: audioFileUrl)
+                coinSound.play()
+            }catch {
+                print("error with playing coins.m4r sound")
+            }
+    }
     
     
 }
-
-
 
 //MARK: Extensions
 extension StartRunViewController: CLLocationManagerDelegate {

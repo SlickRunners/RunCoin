@@ -91,6 +91,7 @@
 		B07A7D072069612E00DE33DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B07A7D062069612E00DE33DE /* GoogleService-Info.plist */; };
 		B08A10B320B604F50019DA8C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B220B604F50019DA8C /* User.swift */; };
 		B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */; };
+		B09E9E7520F7A84B003BEC69 /* coins.m4r in Resources */ = {isa = PBXBuildFile; fileRef = B09E9E7420F7A84A003BEC69 /* coins.m4r */; };
 		B0AB320420E56C88004B66F3 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB320320E56C88004B66F3 /* CustomPointAnnotation.swift */; };
 		B0C5D5F720D19AEE00970FE0 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */; };
 		B0C5D5F920D2DC9000970FE0 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D5F820D2DC9000970FE0 /* PostApi.swift */; };
@@ -194,6 +195,7 @@
 		B07A7D062069612E00DE33DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B08A10B220B604F50019DA8C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunStatsViewController.swift; sourceTree = "<group>"; };
+		B09E9E7420F7A84A003BEC69 /* coins.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = coins.m4r; sourceTree = "<group>"; };
 		B0AB320320E56C88004B66F3 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-Regular.ttf"; path = "../../../../Documents/RunCoin/RunCoin/Image Assets/nunito/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		B0C5D5F820D2DC9000970FE0 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 		B023D8062050412A00491C39 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B09E9E7620F7A852003BEC69 /* Sounds */,
 				B037D0A020AC7A9E005AE2E0 /* Fonts */,
 				B023D7F020503DA600491C39 /* Products */,
 			);
@@ -367,6 +370,14 @@
 				B037D0BB20AC7B05005AE2E0 /* SF-Pro-Text-SemiboldItalic.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B09E9E7620F7A852003BEC69 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B09E9E7420F7A84A003BEC69 /* coins.m4r */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		B0C5D5FC20D2DF5200970FE0 /* APIs */ = {
@@ -548,6 +559,7 @@
 				B037D0C020AC7B0C005AE2E0 /* SF-Pro-Display-Regular.otf in Resources */,
 				B037D0D820AC7B0C005AE2E0 /* SF-Pro-Text-Regular.otf in Resources */,
 				B037D0D720AC7B0C005AE2E0 /* SF-Pro-Text-Semibold.otf in Resources */,
+				B09E9E7520F7A84B003BEC69 /* coins.m4r in Resources */,
 				B037D10620AC7BA9005AE2E0 /* SFCompactDisplay-Ultralight.otf in Resources */,
 				B037D0F320AC7BA9005AE2E0 /* SFCompactText-LightItalic.otf in Resources */,
 				B037D0CD20AC7B0C005AE2E0 /* SF-Pro-Display-ThinItalic.otf in Resources */,
