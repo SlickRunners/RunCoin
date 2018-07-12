@@ -766,19 +766,29 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5OE-VG-BN7" userLabel="Pace Stack View">
-                                                        <rect key="frame" x="37" y="134" width="39" height="74"/>
+                                                        <rect key="frame" x="18.5" y="134" width="75.5" height="74"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PACE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pG0-a8-8G9">
-                                                                <rect key="frame" x="0.0" y="0.0" width="39" height="17"/>
+                                                                <rect key="frame" x="18.5" y="0.0" width="39" height="17"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="14"/>
                                                                 <color key="textColor" red="0.33333333329999998" green="0.43137254899999999" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OHo-aD-Lsc">
-                                                                <rect key="frame" x="4" y="37" width="30.5" height="37"/>
-                                                                <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="31"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hOc-9F-JaV">
+                                                                <rect key="frame" x="0.0" y="37" width="75.5" height="37"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zF1-Vp-zMl">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="30.5" height="37"/>
+                                                                        <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="31"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mi/h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OHo-aD-Lsc">
+                                                                        <rect key="frame" x="35.5" y="0.0" width="40" height="37"/>
+                                                                        <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -857,13 +867,13 @@
                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="t9M-xH-Guw">
-                                            <rect key="frame" x="24" y="26" width="306" height="65.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="t9M-xH-Guw">
+                                            <rect key="frame" x="27" y="27" width="320.5" height="65.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="z1o-zc-SZi" userLabel="Global RunCoin Stack View">
                                                     <rect key="frame" x="0.0" y="0.0" width="86.5" height="65.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhC-XR-9Iq">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhC-XR-9Iq">
                                                             <rect key="frame" x="23.5" y="0.0" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="SEa-Tl-sgp"/>
@@ -882,16 +892,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="L7R-uS-TrE" userLabel="Top Mile Stack View">
-                                                    <rect key="frame" x="146.5" y="0.0" width="33" height="65.5"/>
+                                                    <rect key="frame" x="126.5" y="0.0" width="87.5" height="65.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="128" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VKs-gu-0PA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="33" height="52"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="128.00 mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VKs-gu-0PA">
+                                                            <rect key="frame" x="0.0" y="0.0" width="87.5" height="52"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-Co-Z94">
-                                                            <rect key="frame" x="3" y="52" width="27.5" height="13.5"/>
+                                                            <rect key="frame" x="30" y="52" width="27.5" height="13.5"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -899,7 +909,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fz0-8X-H8I" userLabel="Top Time Stack View">
-                                                    <rect key="frame" x="239.5" y="0.0" width="66.5" height="65.5"/>
+                                                    <rect key="frame" x="254" y="0.0" width="66.5" height="65.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:36:15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="70" translatesAutoresizingMaskIntoConstraints="NO" id="pDO-Su-7eC">
                                                             <rect key="frame" x="0.0" y="0.0" width="66.5" height="52"/>
@@ -920,13 +930,13 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="t9M-xH-Guw" secondAttribute="trailing" constant="45" id="6gu-vw-96X"/>
-                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="leading" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="24" id="G4W-Wl-IYh"/>
-                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="top" secondItem="H2m-yu-tcO" secondAttribute="top" constant="26" id="H3L-wT-b2E"/>
+                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="leading" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="27" id="CV6-YT-DnH"/>
                                         <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="a5F-AI-KQp" secondAttribute="trailing" constant="84" id="NeU-Cj-XGm"/>
                                         <constraint firstItem="a5F-AI-KQp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="84" id="WNY-a4-eWs"/>
+                                        <constraint firstAttribute="trailing" secondItem="t9M-xH-Guw" secondAttribute="trailing" constant="27.5" id="eOR-qw-6ZM"/>
+                                        <constraint firstAttribute="bottom" secondItem="t9M-xH-Guw" secondAttribute="bottom" constant="7.5" id="fK5-0l-CF4"/>
                                         <constraint firstItem="a5F-AI-KQp" firstAttribute="top" secondItem="H2m-yu-tcO" secondAttribute="top" constant="8" id="mck-Cb-rqv"/>
-                                        <constraint firstAttribute="bottom" secondItem="t9M-xH-Guw" secondAttribute="bottom" constant="8.5" id="t23-7l-1ng"/>
+                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="top" secondItem="H2m-yu-tcO" secondAttribute="top" constant="27" id="vaa-QM-nfx"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
