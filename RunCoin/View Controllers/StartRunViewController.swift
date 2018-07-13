@@ -26,6 +26,7 @@ class StartRunViewController: UIViewController {
     var runPredicate: NSPredicate?
     var globalRunCoin : Int?
     var coinSound : AVAudioPlayer!
+    var earnedCoin : Bool!
     
     
     //Buttons & Actions
@@ -45,11 +46,10 @@ class StartRunViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startRun()
+        fetchPastRunData()
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-        fetchPastRunData()
-        coreDataDistanceCheck()
     }
     
     private func startLocationUpdates() {
@@ -88,10 +88,47 @@ class StartRunViewController: UIViewController {
         stopButton.isHidden = true
         paceLabel.text = "--"
         stopRun()
+        setVisibleMapArea()
     }
     
-    func setVisibleMapArea(polyline: MKPolyline, edgeInsets: UIEdgeInsets, animated: Bool = false) {
-        mapView.setVisibleMapRect(polyline.boundingMapRect, edgePadding: edgeInsets, animated: animated)
+    func setVisibleMapArea() {
+        let runRect = Run(context: CoreDataStack.context)
+        for location in locationList {
+            let locationObject = Location(context: CoreDataStack.context)
+            locationObject.latitude = location.coordinate.latitude
+            locationObject.longitude = location.coordinate.longitude
+            runRect.addToLocations(locationObject)
+        }
+        
+        let locations = runRect.locations
+        print("LOCATIONSCOUNT",locations.count)
+        if locations.count > 1 {
+            
+            let latitudes = locations.map { location -> Double in
+                let location = location as! Location
+                return location.latitude
+            }
+            
+            let longitudes = locations.map { location -> Double in
+                let location = location as! Location
+                return location.longitude
+            }
+            
+            let maxLat = latitudes.max()!
+            let minLat = latitudes.min()!
+            let maxLong = longitudes.max()!
+            let minLong = longitudes.min()!
+            
+            let coord1 = CLLocationCoordinate2DMake(maxLat, maxLong)
+            let coord2 = CLLocationCoordinate2DMake(minLat, minLong)
+            let point1 = MKMapPointForCoordinate(coord1)
+            let point2 = MKMapPointForCoordinate(coord2)
+            
+            let mapRect = MKMapRectMake(fmin(point1.x, point2.x), fmin(point1.y, point2.y), fabs(point1.x-point2.x), fabs(point1.y-point2.y))
+            let edgeInsets = UIEdgeInsetsMake(50, 50, 50, 50)
+            
+            mapView.setVisibleMapRect(mapRect, edgePadding: edgeInsets, animated: true)
+        }
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
@@ -139,6 +176,9 @@ class StartRunViewController: UIViewController {
         timeDurationLabel.text = "\(formattedTime)"
         paceLabel.text = "\(formattedPace)"
         earnRunCoin()
+        if earnedCoin == true {
+            playCoinSound()
+        }
     }
     
     func goToHomeScreen() {
@@ -216,19 +256,21 @@ class StartRunViewController: UIViewController {
     }
     
     func earnRunCoin(){
-        let runCoinDistance = 8000.00
+        coreDataDistanceCheck()
+        let runCoinDistance = 8000.00000000000000
         let runDist = Run(context: CoreDataStack.context)
         runDist.distance = distance.value
         let runData = pastRunData.map { (run) -> Double in
             run.distance
         }
         let previousRuns = runData.suffix(5)
+        print("PREVIOUS RUNS", previousRuns)
         let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
-        print("sumPastRuns BRO", sumPastRuns)
+        print("SUM PAST RUNS", sumPastRuns)
         if sumPastRuns < runCoinDistance {
             let sumDistance = sumPastRuns + runDist.distance
             if sumDistance > runCoinDistance {
-                playCoinSound()
+                earnedCoin = true
                 runCoinLabel.text = "1"
             }
         }
@@ -242,7 +284,6 @@ class StartRunViewController: UIViewController {
         }
         let previousRuns = runData.suffix(5)
         let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
-        
         if sumPastRuns > runCoinDistance {
             
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
@@ -259,15 +300,16 @@ class StartRunViewController: UIViewController {
     func playCoinSound(){
         let audioFilePath = Bundle.main.path(forResource: "coins", ofType: ".m4r")
         let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
-            do {
-                try coinSound = AVAudioPlayer(contentsOf: audioFileUrl)
-                coinSound.play()
-            }catch {
-                print("error with playing coins.m4r sound")
-            }
+        do {
+            try coinSound = AVAudioPlayer(contentsOf: audioFileUrl)
+            coinSound.play()
+            coinSound.volume = 1.0
+            coinSound.numberOfLoops = 0
+        }catch {
+            print("error with playing coins.m4r sound")
+            
+        }
     }
-    
-    
 }
 
 //MARK: Extensions
