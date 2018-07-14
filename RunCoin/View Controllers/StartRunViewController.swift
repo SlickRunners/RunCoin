@@ -46,10 +46,11 @@ class StartRunViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         startRun()
-        fetchPastRunData()
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
+        coreDataDistanceCheck()
+        earnRunCoin()
     }
     
     private func startLocationUpdates() {
@@ -101,7 +102,6 @@ class StartRunViewController: UIViewController {
         }
         
         let locations = runRect.locations
-        print("LOCATIONSCOUNT",locations.count)
         if locations.count > 1 {
             
             let latitudes = locations.map { location -> Double in
@@ -125,7 +125,7 @@ class StartRunViewController: UIViewController {
             let point2 = MKMapPointForCoordinate(coord2)
             
             let mapRect = MKMapRectMake(fmin(point1.x, point2.x), fmin(point1.y, point2.y), fabs(point1.x-point2.x), fabs(point1.y-point2.y))
-            let edgeInsets = UIEdgeInsetsMake(50, 50, 50, 50)
+            let edgeInsets = UIEdgeInsetsMake(70, 50, 70, 50)
             
             mapView.setVisibleMapRect(mapRect, edgePadding: edgeInsets, animated: true)
         }
@@ -176,9 +176,6 @@ class StartRunViewController: UIViewController {
         timeDurationLabel.text = "\(formattedTime)"
         paceLabel.text = "\(formattedPace)"
         earnRunCoin()
-        if earnedCoin == true {
-            playCoinSound()
-        }
     }
     
     func goToHomeScreen() {
@@ -204,11 +201,15 @@ class StartRunViewController: UIViewController {
         
         for location in locationList {
             let locationObject = Location(context: CoreDataStack.context)
-            locationObject.timestamp = location.timestamp as NSDate
+            locationObject.timestamp = location.timestamp
             locationObject.latitude = location.coordinate.latitude
             locationObject.longitude = location.coordinate.longitude
             newRun.addToLocations(locationObject)
         }
+        
+        let finalDistance = distance.value
+        print("finalDistance", finalDistance)
+        newRun.distance = finalDistance
         
         CoreDataStack.saveContext()
         run = newRun
@@ -223,19 +224,6 @@ class StartRunViewController: UIViewController {
             return
         }
         configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace)
-    }
-    
-    func fetchPastRunData(){
-        let request = Run.createFetchRequest()
-        let sort = NSSortDescriptor(key: "timestamp", ascending: true)
-        request.sortDescriptors = [sort]
-        request.predicate = runPredicate
-        do {
-            pastRunData = try CoreDataStack.context.fetch(request)
-            print("got \(pastRunData.count) for past runData.")
-        } catch {
-            print("error with fetch request for pastRunData")
-        }
     }
     
     func configureGlobalStats(image: UIImage, distance: String, duration: String, date: String, pace: String){
@@ -255,42 +243,56 @@ class StartRunViewController: UIViewController {
         locationManager.stopUpdatingLocation()
     }
     
+    
+    //MARK: CoreData
+    func fetchPastRunData(){
+        let request = Run.createFetchRequest()
+        let sort = NSSortDescriptor(key: "timestamp", ascending: false)
+        request.sortDescriptors = [sort]
+        do {
+            pastRunData = try CoreDataStack.context.fetch(request)
+            print("PASTRUNDATA",pastRunData)
+        } catch {
+            print("error with fetch request for pastRunData")
+        }
+    }
+    
     func earnRunCoin(){
-        coreDataDistanceCheck()
         let runCoinDistance = 8000.00000000000000
         let runDist = Run(context: CoreDataStack.context)
         runDist.distance = distance.value
         let runData = pastRunData.map { (run) -> Double in
             run.distance
         }
-        let previousRuns = runData.suffix(5)
-        print("PREVIOUS RUNS", previousRuns)
-        let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
-        print("SUM PAST RUNS", sumPastRuns)
-        if sumPastRuns < runCoinDistance {
-            let sumDistance = sumPastRuns + runDist.distance
-            if sumDistance > runCoinDistance {
-                earnedCoin = true
-                runCoinLabel.text = "1"
-            }
-        }
+        print("dkjfakl;djfklad;",runData.suffix(2))
+        
+        let previousRuns = runData.suffix(10)
+        
+        
+        let sumPastRuns = previousRuns.reduce(0, +)
+        let runningDistance = sumPastRuns + distance.value
+        print("runningDistance for my func",runningDistance)
     }
     
     func coreDataDistanceCheck(){
+        fetchPastRunData()
+        let running = Run(context: CoreDataStack.context)
+        running.distance = distance.value
+        
         let runCoinDistance = 8000.00
         //deletes core data for Run entity when distance property is past 8000 meteres
         let runData = pastRunData.map { (run) -> Double in
             run.distance
         }
-        let previousRuns = runData.suffix(5)
+        let previousRuns = runData.reversed()
+        
         let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
+        print("sumPastRUNS", sumPastRuns)
         if sumPastRuns > runCoinDistance {
-            
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             do {
                 try CoreDataStack.context.execute(batchDeleteRequest)
-                print(runData)
             } catch {
                 print("error deleting persistent store from Core Data", error.localizedDescription)
             }

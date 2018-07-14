@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 
+
 class UserApi {
     var REF_USERS = Database.database().reference().child("users")
     var REF_GLOBAL_DISTANCE = Database.database().reference().child("users").child("globalDistance")
@@ -27,9 +28,10 @@ class UserApi {
         REF_USERS.observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
+                print("SNAPSHOTKEY",snapshot.key)
                 if user.id! != Api.User.CURRENT_USER?.uid {
                     completion(user)
-                } 
+                }
             }
         }
     }
@@ -47,7 +49,7 @@ class UserApi {
         })
     }
     
-    var CURRENT_USER : UserInfo? {
+    var CURRENT_USER : FirebaseAuth.User? {
         if let currentUser = Auth.auth().currentUser {
             return currentUser
         }

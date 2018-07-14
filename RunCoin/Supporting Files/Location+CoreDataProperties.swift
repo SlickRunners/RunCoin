@@ -19,7 +19,7 @@ extension Location {
 
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
-    @NSManaged public var timestamp: NSDate
+    @NSManaged public var timestamp: Date
     @NSManaged public var run: Run
 
 }

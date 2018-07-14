@@ -21,15 +21,16 @@ class SearchFriendsViewController: UIViewController {
         setUpSearchBar()
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
+        print(Api.User.CURRENT_USER!.uid)
     }
     
     
     func loadUsers(){
         Api.User.observeAllUsers { (user) in
             self.isFollowing(userId: user.id!, completed: { (value) in
-                user.isFollowing = value
-                self.users.append(user)
-                self.tableView.reloadData()
+                    user.isFollowing = value
+                    self.users.append(user)
+                    self.tableView.reloadData()
             })
         }
     }
@@ -59,6 +60,8 @@ class SearchFriendsViewController: UIViewController {
                 self.isFollowing(userId: user.id!, completed: { (value) in
                     user.isFollowing = value
                     self.users.append(user)
+                    let filterUsers = self.users.filter{$0.email != Api.User.CURRENT_USER?.email}
+                    self.users = filterUsers
                     self.tableView.reloadData()
                 })
             }

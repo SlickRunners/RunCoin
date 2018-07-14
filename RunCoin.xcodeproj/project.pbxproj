@@ -383,9 +383,9 @@
 		B0C5D5FC20D2DF5200970FE0 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				B04F854620D2E793002DE382 /* Api.swift */,
 				B04F855C20DD333B002DE382 /* FeedApi.swift */,
 				B04F855620DA992D002DE382 /* FollowApi.swift */,
-				B04F854620D2E793002DE382 /* Api.swift */,
 				B04F855020D7FE73002DE382 /* MyPostsApi.swift */,
 				B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */,
 				B0C5D5F820D2DC9000970FE0 /* PostApi.swift */,
