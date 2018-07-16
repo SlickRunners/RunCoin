@@ -245,20 +245,21 @@ class StartRunViewController: UIViewController {
     
     
     //MARK: CoreData
-    func fetchPastRunData(){
+    func fetchPastRunData() -> [NSManagedObject]{
         let request = Run.createFetchRequest()
         let sort = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [sort]
         do {
             pastRunData = try CoreDataStack.context.fetch(request)
             print("PASTRUNDATA",pastRunData)
-        } catch {
-            print("error with fetch request for pastRunData")
+        } catch let error as NSError{
+            print("error with fetch request for pastRunData", error.localizedDescription)
         }
+        return []
     }
     
     func earnRunCoin(){
-        let runCoinDistance = 8000.00000000000000
+        let runCoinDistance = 4000.00
         let runDist = Run(context: CoreDataStack.context)
         runDist.distance = distance.value
         let runData = pastRunData.map { (run) -> Double in
@@ -279,7 +280,7 @@ class StartRunViewController: UIViewController {
         let running = Run(context: CoreDataStack.context)
         running.distance = distance.value
         
-        let runCoinDistance = 8000.00
+        let runCoinDistance = 4000.00
         //deletes core data for Run entity when distance property is past 8000 meteres
         let runData = pastRunData.map { (run) -> Double in
             run.distance

@@ -21,9 +21,11 @@ class ProfileFeedViewController: UIViewController {
     var posts = [FeedPost]()
     var users = [User]()
     var myPosts : [FeedPost]!
+    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadFeedData()
         setUpView()
         tableView.estimatedRowHeight = 418
@@ -32,14 +34,29 @@ class ProfileFeedViewController: UIViewController {
     }
         
     func loadFeedData(){
-        Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
-            guard let postId = post.uid else {
-                return
+//        Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
+//            guard let postId = post.uid else {
+//                return
+//            }
+//            self.fetchUser(uid: postId, completed: {
+//                self.posts.insert(post, at: 0)
+//                self.tableView.reloadData()
+//            })
+//        }
+        self.posts.removeAll()
+        self.users.removeAll()
+        self.tableView.reloadData()
+        
+        isLoading = true
+        Api.Feed.getRecentFeed(withId: Api.User.CURRENT_USER!.uid, start: posts.first?.timestamp, limit: 5) { (results) in
+            if results.count > 0 {
+                results.forEach({ (result) in
+                    self.posts.append(result.0)
+                    self.users.append(result.1)
+                })
             }
-            self.fetchUser(uid: postId, completed: {
-                self.posts.insert(post, at: 0)
-                self.tableView.reloadData()
-            })
+            self.isLoading = false
+            self.tableView.reloadData()
         }
         
         Api.Feed.observeFeedRemoved(withId: Api.User.CURRENT_USER!.uid) { (post) in
@@ -50,10 +67,32 @@ class ProfileFeedViewController: UIViewController {
         }
     }
     
-    func fetchUser(uid: String, completed: @escaping ()-> Void){
-        Api.User.observeUser(withId: uid) { (user) in
-            self.users.insert(user, at: 0)
-            completed()
+//    func fetchUser(uid: String, completed: @escaping ()-> Void){
+//        Api.User.observeUser(withId: uid) { (user) in
+//            self.users.insert(user, at: 0)
+//            completed()
+//        }
+//    }
+    
+    func loadMorePosts(){
+        guard !isLoading else {
+            return
+        }
+        isLoading = true
+        guard let latestPostTimestamp = self.posts.last?.timestamp else {
+            isLoading = false
+            return
+        }
+        Api.Feed.getOlderFeed(withId: Api.User.CURRENT_USER!.uid, start: latestPostTimestamp, limit: 5) { (results) in
+            if results.count == 0 {
+                return
+            }
+            for result in results {
+                self.posts.append(result.0)
+                self.users.append(result.1)
+            }
+            self.isLoading = false
+            self.tableView.reloadData()
         }
     }
     
@@ -66,6 +105,7 @@ class ProfileFeedViewController: UIViewController {
         tableView.estimatedRowHeight = 600
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = self
+        tableView.delegate = self
         navigationItem.title = "Activity"
         
         tableView.layer.shadowColor = UIColor.black.cgColor
@@ -98,6 +138,14 @@ class ProfileFeedViewController: UIViewController {
 //            //access your VC here
 //            accountVC.delegate = self
 //        }
+    }
+}
+
+extension ProfileFeedViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y + self.view.frame.size.height >= scrollView.contentSize.height {
+            loadMorePosts()
+        }
     }
 }
 
