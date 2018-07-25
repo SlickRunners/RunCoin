@@ -33,15 +33,13 @@ class FeedApi {
         feedQuery.observeSingleEvent(of: .value) { (snapshot) in
             let items = snapshot.children.allObjects as! [DataSnapshot]
             let myGroup = DispatchGroup()
-            for (index, item) in items.enumerated() {
+            for (item) in items {
                 myGroup.enter()
                 Api.Post.observePost(withId: item.key, completion: { (post) in
                     Api.User.observeUser(withId: post.uid!, completion: { (user) in
                         if post.uid! == user.id {
                             results.append((post, user))
-//                            results.insert((post, user), at: index)
                         }
-                        print(index)
                         myGroup.leave()
                     })
                 })
@@ -62,11 +60,13 @@ class FeedApi {
             let items = snapshot.children.allObjects as! [DataSnapshot]
             let myGroup = DispatchGroup()
             var results : [(post: FeedPost, user: User)] = []
-            for (index, item) in items.enumerated() {
+            for (item) in items {
                 myGroup.enter()
                 Api.Post.observePost(withId: item.key, completion: { (post) in
                     Api.User.observeUser(withId: post.uid!, completion: { (user) in
-                        results.insert((post, user), at: index)
+                        if post.uid! == user.id {
+                            results.append((post, user))
+                        }
                         myGroup.leave()
                     })
                 })

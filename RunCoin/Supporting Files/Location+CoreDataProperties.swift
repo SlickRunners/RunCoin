@@ -13,7 +13,7 @@ import CoreData
 
 extension Location {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Location> {
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Location> {
         return NSFetchRequest<Location>(entityName: "Location")
     }
 

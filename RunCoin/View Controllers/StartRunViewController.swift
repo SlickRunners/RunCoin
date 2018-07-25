@@ -21,13 +21,13 @@ class StartRunViewController: UIViewController {
     private var timer: Timer?
     private var distance = Measurement(value: 0, unit: UnitLength.meters)
     private var locationList: [CLLocation] = []
-    var pastRunData = [Run]()
+    var sumPastRunDistance : Double!
     var container: NSPersistentContainer!
     var runPredicate: NSPredicate?
-    var globalRunCoin : Int?
+    var usersRunCoin : Int = 0
     var coinSound : AVAudioPlayer!
-    var earnedCoin : Bool!
-    
+    let finalRun = Run(context: CoreDataStack.context)
+    var earnedRunCoin = false
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
@@ -41,7 +41,7 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var finishResumeStackView: UIStackView!
     @IBOutlet weak var runCoinLabel: UILabel!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +49,9 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-        coreDataDistanceCheck()
         earnRunCoin()
+        print("pastRunDistance passed to vc", sumPastRunDistance)
+        runCoinLabel.text = "0"
     }
     
     private func startLocationUpdates() {
@@ -87,7 +88,7 @@ class StartRunViewController: UIViewController {
         resumeButton.isHidden = true
         finishButton.isHidden = true
         stopButton.isHidden = true
-        paceLabel.text = "--"
+        
         stopRun()
         setVisibleMapArea()
     }
@@ -141,17 +142,16 @@ class StartRunViewController: UIViewController {
         seconds = 0
         distance = Measurement(value: 0, unit: UnitLength.meters)
         locationList.removeAll()
-        updateDisplay()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.eachSecond()
         }
         startLocationUpdates()
-        earnRunCoin()
     }
     
     private func stopRun() {
         locationManager.stopUpdatingLocation()
         
+        timer?.invalidate()
         mapView.showsUserLocation = false
         guard let lastLocation = locationList.last?.coordinate else {return}
         let stopAnnotation = CustomPointAnnotation()
@@ -168,9 +168,7 @@ class StartRunViewController: UIViewController {
     private func updateDisplay() {
         let formattedDistance = FormatDisplay.distance(distance)
         let formattedTime = FormatDisplay.time(seconds)
-        let formattedPace = FormatDisplay.pace(distance: distance,
-                                               seconds: seconds,
-                                               outputUnit: UnitSpeed.minutesPerMile)
+        let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
         
         distanceLabel.text = "\(formattedDistance)"
         timeDurationLabel.text = "\(formattedTime)"
@@ -194,29 +192,24 @@ class StartRunViewController: UIViewController {
     
     private func saveRun() {
         mapView.showsUserLocation = false
-        let newRun = Run(context: CoreDataStack.context)
-        newRun.distance = distance.value
-        newRun.duration = Int16(seconds)
-        newRun.timestamp = Date()
+        finalRun.setValue(distance.value, forKey: "distance")
+        finalRun.duration = Int16(seconds)
+        finalRun.timestamp = Date()
         
         for location in locationList {
             let locationObject = Location(context: CoreDataStack.context)
             locationObject.timestamp = location.timestamp
             locationObject.latitude = location.coordinate.latitude
             locationObject.longitude = location.coordinate.longitude
-            newRun.addToLocations(locationObject)
+            finalRun.addToLocations(locationObject)
         }
         
-        let finalDistance = distance.value
-        print("finalDistance", finalDistance)
-        newRun.distance = finalDistance
-        
         CoreDataStack.saveContext()
-        run = newRun
+        run = finalRun
         
-        let formattedDistance = FormatDisplay.distance(newRun.distance)
+        let formattedDistance = FormatDisplay.distance(finalRun.distance)
         let formattedDuration = FormatDisplay.time(seconds)
-        let formattedDate = FormatDisplay.date(newRun.timestamp)
+        let formattedDate = FormatDisplay.date(finalRun.timestamp)
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
         
         guard let image = imageScreenshot(view: mapContainerView) else {
@@ -228,12 +221,17 @@ class StartRunViewController: UIViewController {
     
     func configureGlobalStats(image: UIImage, distance: String, duration: String, date: String, pace: String){
         Api.User.observeGlobalStats(completion: { (user) in
-            let finalRun = Run(context: CoreDataStack.context)
-            finalRun.distance = self.distance.value
-            let globalDistance = user.globalDistance! + finalRun.distance
+            //            let finalRun = Run(context: CoreDataStack.context)
+            self.finalRun.distance = self.distance.value
+            let globalDistance = user.globalDistance! + self.finalRun.distance
             let globalDuration = user.globaleDuration! + self.seconds
+            
+            if self.earnedRunCoin == true {
+                self.usersRunCoin = 1
+            }
+            
             //HelperService Instance Methods Go Here
-            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, globalRunCoin: 0, globalDistance: globalDistance, globalDuration: globalDuration)
+            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, globalRunCoin: self.usersRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
         })
     }
     
@@ -245,58 +243,19 @@ class StartRunViewController: UIViewController {
     
     
     //MARK: CoreData
-    func fetchPastRunData() -> [NSManagedObject]{
-        let request = Run.createFetchRequest()
-        let sort = NSSortDescriptor(key: "timestamp", ascending: false)
-        request.sortDescriptors = [sort]
-        do {
-            pastRunData = try CoreDataStack.context.fetch(request)
-            print("PASTRUNDATA",pastRunData)
-        } catch let error as NSError{
-            print("error with fetch request for pastRunData", error.localizedDescription)
-        }
-        return []
-    }
-    
     func earnRunCoin(){
-        let runCoinDistance = 4000.00
-        let runDist = Run(context: CoreDataStack.context)
-        runDist.distance = distance.value
-        let runData = pastRunData.map { (run) -> Double in
-            run.distance
+        let audioFilePath = Bundle.main.path(forResource: "coins", ofType: ".m4r")
+        let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
+        do {
+            try coinSound = AVAudioPlayer(contentsOf: audioFileUrl)
+        }catch {
+            print("error with playing coins.m4r sound")
         }
-        print("dkjfakl;djfklad;",runData.suffix(2))
-        
-        let previousRuns = runData.suffix(10)
-        
-        
-        let sumPastRuns = previousRuns.reduce(0, +)
-        let runningDistance = sumPastRuns + distance.value
-        print("runningDistance for my func",runningDistance)
-    }
-    
-    func coreDataDistanceCheck(){
-        fetchPastRunData()
-        let running = Run(context: CoreDataStack.context)
-        running.distance = distance.value
-        
-        let runCoinDistance = 4000.00
-        //deletes core data for Run entity when distance property is past 8000 meteres
-        let runData = pastRunData.map { (run) -> Double in
-            run.distance
-        }
-        let previousRuns = runData.reversed()
-        
-        let sumPastRuns = previousRuns.reduce(0) { $0 + $1 }
-        print("sumPastRUNS", sumPastRuns)
-        if sumPastRuns > runCoinDistance {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Run")
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            do {
-                try CoreDataStack.context.execute(batchDeleteRequest)
-            } catch {
-                print("error deleting persistent store from Core Data", error.localizedDescription)
-            }
+        let runCoinDistance = 1000.00
+        let runningDistance = sumPastRunDistance + distance.value
+        if runningDistance > runCoinDistance {
+            earnedRunCoin = true
+            runCoinLabel.text = "1"
         }
     }
     
@@ -305,12 +264,19 @@ class StartRunViewController: UIViewController {
         let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
         do {
             try coinSound = AVAudioPlayer(contentsOf: audioFileUrl)
+//            coinSound.play()
+//            coinSound.volume = 1.0
+//            coinSound.numberOfLoops = 0
+        }catch {
+            print("error with playing coins.m4r sound")
+        }
+        if earnedRunCoin == true {
             coinSound.play()
             coinSound.volume = 1.0
             coinSound.numberOfLoops = 0
-        }catch {
-            print("error with playing coins.m4r sound")
-            
+            earnedRunCoin = false
+        } else {
+            coinSound.pause()
         }
     }
 }
@@ -351,7 +317,7 @@ extension StartRunViewController: CLLocationManagerDelegate {
     }
     
     func speedFailSafe(){
-        let ac = UIAlertController(title: "You're moving too fast!", message: "You've reached speeds above human capabilities! Either, you're in a car or you need to enter the Olympics. Please restart your run.", preferredStyle: .alert)
+        let ac = UIAlertController(title: "You're moving too fast!", message: "You've reached speeds above human capabilities! Either, you're in a car or on a bike. Please restart your run.", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .destructive) { (action) in
             _ = self.navigationController?.popToRootViewController(animated: true)
         }

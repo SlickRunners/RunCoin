@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import CoreData
 
 class RunStatsViewController: UIViewController {
 
@@ -29,7 +28,6 @@ class RunStatsViewController: UIViewController {
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
         guard let image = imageScreenshot(view: mapViewContainer) else {return}
-        //let caption = [dateLabel.text, distanceLabel.text, paceLabel.text, timeLabel.text]
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activityController, animated: true)
     }
@@ -108,10 +106,7 @@ class RunStatsViewController: UIViewController {
         for ((start, end), speed) in zip(coordinates, speeds) {
             let coords = [start.coordinate, end.coordinate]
             let segment = MulticolorPolyline(coordinates: coords, count: 2)
-            segment.color = segmentColor(speed: speed,
-                                         midSpeed: midSpeed,
-                                         slowestSpeed: minSpeed,
-                                         fastestSpeed: maxSpeed)
+            segment.color = segmentColor(speed: speed, midSpeed: midSpeed, slowestSpeed: minSpeed, fastestSpeed: maxSpeed)
             segments.append(segment)
         }
         return segments
@@ -126,9 +121,7 @@ class RunStatsViewController: UIViewController {
             mapView.addOverlays(polyLine())
         }
         else {
-            let alert = UIAlertController(title: "Error",
-                                          message: "Sorry, this run has no locations saved",
-                                          preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Sorry, this run has no locations saved.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel))
             present(alert, animated: true)
         }

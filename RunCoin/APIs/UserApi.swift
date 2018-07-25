@@ -28,7 +28,6 @@ class UserApi {
         REF_USERS.observe(.childAdded) { (snapshot) in
             if let dict = snapshot.value as? [String : Any] {
                 let user = User.transformUser(dict: dict, key: snapshot.key)
-                print("SNAPSHOTKEY",snapshot.key)
                 if user.id! != Api.User.CURRENT_USER?.uid {
                     completion(user)
                 }
