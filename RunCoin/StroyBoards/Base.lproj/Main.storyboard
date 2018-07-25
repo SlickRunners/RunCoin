@@ -943,11 +943,11 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCell" rowHeight="418" id="pV9-Kf-UNL" customClass="ProfileFeedTableViewCell" customModule="RunCoin" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="128" width="375" height="418"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCell" rowHeight="423" id="pV9-Kf-UNL" customClass="ProfileFeedTableViewCell" customModule="RunCoin" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="128" width="375" height="423"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pV9-Kf-UNL" id="pLR-ir-0UV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="417.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="422.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="eEr-r6-Pcq" userLabel="Map/Separator Stack View">
@@ -987,52 +987,6 @@
                                                         <constraint firstAttribute="height" constant="15" id="Jx1-LA-8A3"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runCoinRing_profile" translatesAutoresizingMaskIntoConstraints="NO" id="JNr-mB-8c5">
-                                                    <rect key="frame" x="50" y="350" width="35" height="35"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Run Coin Earned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXf-xs-Qny">
-                                                    <rect key="frame" x="24" y="389" width="86.5" height="14"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="14" id="AkJ-NH-O3v"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
-                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddn-jQ-vLX">
-                                                    <rect key="frame" x="58" y="359" width="17.5" height="17"/>
-                                                    <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="14"/>
-                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="2Xt-dK-SXw" userLabel="Pace Stack View">
-                                                    <rect key="frame" x="152" y="358" width="70.5" height="45"/>
-                                                    <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qqx-Ar-OQP" userLabel="Pace Per Mile Stack View">
-                                                            <rect key="frame" x="0.5" y="0.0" width="69.5" height="20.5"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8zX-dR-LJN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="40.5" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
-                                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5w-9H-kc8">
-                                                                    <rect key="frame" x="40.5" y="0.0" width="29" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
-                                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Pace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIT-5V-Ltd">
-                                                            <rect key="frame" x="0.0" y="31.5" width="70.5" height="13.5"/>
-                                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
-                                                            <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23.2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WBP-r7-Eve">
                                                     <rect key="frame" x="250" y="35" width="89" height="26"/>
                                                     <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="21"/>
@@ -1056,21 +1010,90 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="DYz-i5-Zm8" userLabel="Bottom Time Stack View">
-                                                    <rect key="frame" x="280.5" y="358" width="66.5" height="45"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="lwP-sS-XM2" userLabel="Cell Stats Stack View">
+                                                    <rect key="frame" x="35" y="352" width="303.5" height="50.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:36:15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Swc-DF-r2m">
-                                                            <rect key="frame" x="0.0" y="0.0" width="66.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
-                                                            <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bG4-Sw-hnc">
-                                                            <rect key="frame" x="20.5" y="31.5" width="25.5" height="13.5"/>
-                                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
-                                                            <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ZWh-a2-zy3" userLabel="RunCoin Stack View">
+                                                            <rect key="frame" x="0.0" y="0.0" width="70" height="50.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddn-jQ-vLX">
+                                                                    <rect key="frame" x="20" y="0.0" width="30" height="30"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="WMN-eU-zgZ"/>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="pPk-J1-dHQ"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="14"/>
+                                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="RunCoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXf-xs-Qny">
+                                                                    <rect key="frame" x="13" y="42" width="44" height="8.5"/>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
+                                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="25X-8M-Fo3"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="2Xt-dK-SXw" userLabel="Pace Stack View">
+                                                            <rect key="frame" x="110" y="0.0" width="83.5" height="50.5"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qqx-Ar-OQP" userLabel="Pace Per Mile Stack View">
+                                                                    <rect key="frame" x="7" y="0.0" width="69.5" height="26"/>
+                                                                    <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7:05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8zX-dR-LJN">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="40.5" height="26"/>
+                                                                            <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
+                                                                            <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5w-9H-kc8">
+                                                                            <rect key="frame" x="40.5" y="0.0" width="29" height="26"/>
+                                                                            <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
+                                                                            <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="26" id="StX-Di-B9d"/>
+                                                                    </constraints>
+                                                                </stackView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Pace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIT-5V-Ltd">
+                                                                    <rect key="frame" x="6.5" y="37" width="70.5" height="13.5"/>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
+                                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="84" id="0vf-e5-6db"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="DYz-i5-Zm8" userLabel="Time Stack View">
+                                                            <rect key="frame" x="233.5" y="0.0" width="70" height="50.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="1:36:15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Swc-DF-r2m">
+                                                                    <rect key="frame" x="2" y="0.0" width="66.5" height="26"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="26" id="BeY-7i-vqr"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
+                                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bG4-Sw-hnc">
+                                                                    <rect key="frame" x="22.5" y="37" width="25.5" height="13.5"/>
+                                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
+                                                                    <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="70" id="vyM-kE-aa1"/>
+                                                            </constraints>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -1078,30 +1101,21 @@
                                                 <constraint firstItem="WBP-r7-Eve" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="20" id="0Ae-g9-N1B"/>
                                                 <constraint firstItem="Bft-5D-4A8" firstAttribute="leading" secondItem="pLR-ir-0UV" secondAttribute="leading" constant="16" id="0kV-Sf-6YE"/>
                                                 <constraint firstItem="y37-am-dJX" firstAttribute="top" secondItem="pLR-ir-0UV" secondAttribute="top" id="19i-le-Exd"/>
-                                                <constraint firstItem="ddn-jQ-vLX" firstAttribute="leading" secondItem="pLR-ir-0UV" secondAttribute="leading" constant="58" id="1gs-XM-MyD"/>
                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="WBP-r7-Eve" secondAttribute="trailing" constant="36" id="5Qc-JC-Qy3"/>
-                                                <constraint firstItem="DYz-i5-Zm8" firstAttribute="top" secondItem="eEr-r6-Pcq" secondAttribute="bottom" constant="22" id="6TV-fK-dZg"/>
-                                                <constraint firstItem="dXf-xs-Qny" firstAttribute="centerX" secondItem="ddn-jQ-vLX" secondAttribute="centerX" id="792-6o-oav"/>
+                                                <constraint firstItem="lwP-sS-XM2" firstAttribute="top" secondItem="eEr-r6-Pcq" secondAttribute="bottom" constant="16" id="8qW-0g-FfK"/>
                                                 <constraint firstItem="eEr-r6-Pcq" firstAttribute="top" secondItem="WBP-r7-Eve" secondAttribute="bottom" constant="22" id="BoP-s3-Gt6"/>
                                                 <constraint firstItem="eEr-r6-Pcq" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="68" id="IQ7-Sg-kGx"/>
                                                 <constraint firstItem="eEr-r6-Pcq" firstAttribute="top" secondItem="Bft-5D-4A8" secondAttribute="bottom" constant="19" id="JVC-6O-93J"/>
-                                                <constraint firstAttribute="bottom" secondItem="DYz-i5-Zm8" secondAttribute="bottom" constant="14" id="MmC-XN-7Gq"/>
-                                                <constraint firstItem="dXf-xs-Qny" firstAttribute="top" secondItem="JNr-mB-8c5" secondAttribute="bottom" constant="4" id="Mxp-j6-rmD"/>
-                                                <constraint firstItem="ddn-jQ-vLX" firstAttribute="top" secondItem="eEr-r6-Pcq" secondAttribute="bottom" constant="23" id="P3T-Oc-OqT"/>
                                                 <constraint firstItem="TcF-dT-336" firstAttribute="leading" secondItem="Bft-5D-4A8" secondAttribute="trailing" constant="15" id="R4V-0z-MPM"/>
-                                                <constraint firstItem="DYz-i5-Zm8" firstAttribute="leading" secondItem="2Xt-dK-SXw" secondAttribute="trailing" constant="58" id="Vrf-nW-qRG"/>
                                                 <constraint firstItem="eEr-r6-Pcq" firstAttribute="top" secondItem="TcF-dT-336" secondAttribute="bottom" constant="15" id="WRi-Lp-wUC"/>
+                                                <constraint firstItem="lwP-sS-XM2" firstAttribute="leading" secondItem="pLR-ir-0UV" secondAttribute="leading" constant="35" id="Wts-1b-3XL"/>
                                                 <constraint firstItem="Bft-5D-4A8" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="14" id="e9z-nH-2cC"/>
-                                                <constraint firstItem="2Xt-dK-SXw" firstAttribute="leading" secondItem="JNr-mB-8c5" secondAttribute="trailing" constant="66.5" id="fLx-Yl-osh"/>
                                                 <constraint firstItem="TcF-dT-336" firstAttribute="top" secondItem="y37-am-dJX" secondAttribute="bottom" constant="13" id="fwQ-kO-jAc"/>
                                                 <constraint firstAttribute="trailing" secondItem="TcF-dT-336" secondAttribute="trailing" constant="150" id="gZt-ME-WiW"/>
-                                                <constraint firstAttribute="trailing" secondItem="DYz-i5-Zm8" secondAttribute="trailing" constant="28" id="gjI-x3-JJ1"/>
                                                 <constraint firstItem="WBP-r7-Eve" firstAttribute="leading" secondItem="TcF-dT-336" secondAttribute="trailing" constant="25" id="h8B-mv-ED7"/>
-                                                <constraint firstItem="JNr-mB-8c5" firstAttribute="leading" secondItem="pLR-ir-0UV" secondAttribute="leading" constant="50" id="i5W-R4-WEV"/>
-                                                <constraint firstAttribute="bottom" secondItem="2Xt-dK-SXw" secondAttribute="bottom" constant="15" id="meW-Pv-zF4"/>
-                                                <constraint firstItem="JNr-mB-8c5" firstAttribute="top" secondItem="eEr-r6-Pcq" secondAttribute="bottom" constant="14" id="oGZ-C1-e0T"/>
+                                                <constraint firstAttribute="bottom" secondItem="lwP-sS-XM2" secondAttribute="bottom" constant="20" id="ozz-zC-7Xy"/>
                                                 <constraint firstItem="y37-am-dJX" firstAttribute="leading" secondItem="eEr-r6-Pcq" secondAttribute="leading" id="rDp-Yh-o5M"/>
-                                                <constraint firstItem="2Xt-dK-SXw" firstAttribute="top" secondItem="eEr-r6-Pcq" secondAttribute="bottom" constant="22" id="tsI-19-zzY"/>
+                                                <constraint firstAttribute="trailing" secondItem="lwP-sS-XM2" secondAttribute="trailing" constant="36.5" id="uvF-z2-3Rf"/>
                                                 <constraint firstItem="eEr-r6-Pcq" firstAttribute="leading" secondItem="pLR-ir-0UV" secondAttribute="leading" id="xZz-Sw-3mg"/>
                                                 <constraint firstAttribute="trailing" secondItem="eEr-r6-Pcq" secondAttribute="trailing" id="yq1-BD-MCj"/>
                                             </constraints>
@@ -1791,7 +1805,6 @@
         <image name="gradientOutlinesUnselected" width="30" height="30"/>
         <image name="profile_settings" width="27" height="26"/>
         <image name="runCoinLogo" width="235" height="235"/>
-        <image name="runCoinRing_profile" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zkE-Qh-bDn"/>

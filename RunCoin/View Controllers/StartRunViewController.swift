@@ -211,27 +211,29 @@ class StartRunViewController: UIViewController {
         let formattedDuration = FormatDisplay.time(seconds)
         let formattedDate = FormatDisplay.date(finalRun.timestamp)
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
+        if earnedRunCoin == true {
+            usersRunCoin = 1
+        }
+        let formattedRunCoin = usersRunCoin
         
         guard let image = imageScreenshot(view: mapContainerView) else {
             print("image screenshot method did not work")
             return
         }
-        configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace)
+        configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace, singleRunCoin: formattedRunCoin)
     }
     
-    func configureGlobalStats(image: UIImage, distance: String, duration: String, date: String, pace: String){
+    func configureGlobalStats(image: UIImage, distance: String, duration: String, date: String, pace: String, singleRunCoin: Int){
         Api.User.observeGlobalStats(completion: { (user) in
-            //            let finalRun = Run(context: CoreDataStack.context)
             self.finalRun.distance = self.distance.value
             let globalDistance = user.globalDistance! + self.finalRun.distance
             let globalDuration = user.globaleDuration! + self.seconds
-            
+            let globalRunCoin = user.globalRunCoin! + self.usersRunCoin
             if self.earnedRunCoin == true {
                 self.usersRunCoin = 1
             }
-            
             //HelperService Instance Methods Go Here
-            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, globalRunCoin: self.usersRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
+            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, singleRunCoin: singleRunCoin, globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
         })
     }
     

@@ -34,19 +34,7 @@ class ProfileFeedViewController: UIViewController {
     }
         
     func loadFeedData(){
-//        Api.Feed.observeFeed(withId: Api.User.CURRENT_USER!.uid) { (post) in
-//            guard let postId = post.uid else {
-//                return
-//            }
-//            self.fetchUser(uid: postId, completed: {
-//                self.posts.insert(post, at: 0)
-//                self.tableView.reloadData()
-//            })
-//        }
-        self.posts.removeAll()
-        self.users.removeAll()
-        self.tableView.reloadData()
-        
+        tableView.reloadData()
         isLoading = true
         Api.Feed.getRecentFeed(withId: Api.User.CURRENT_USER!.uid, start: posts.first?.timestamp, limit: 5) { (results) in
             if results.count > 0 {
@@ -66,13 +54,6 @@ class ProfileFeedViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-    
-//    func fetchUser(uid: String, completed: @escaping ()-> Void){
-//        Api.User.observeUser(withId: uid) { (user) in
-//            self.users.insert(user, at: 0)
-//            completed()
-//        }
-//    }
     
     func loadMorePosts(){
         guard !isLoading else {

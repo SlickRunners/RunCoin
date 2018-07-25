@@ -60,12 +60,11 @@ class InitiateRunViewController: UIViewController, MKMapViewDelegate {
             do {
                 try CoreDataStack.context.execute(batchDeleteRequest)
                 try CoreDataStack.context.execute(batchLocationRequest)
-                CoreDataStack.context.automaticallyMergesChangesFromParent = true
-                CoreDataStack.saveContext()
+                CoreDataStack.context.reset()
+                sumPastRuns = 0.0
             } catch {
                 print("error deleting persistent store from Core Data", error.localizedDescription)
             }
-            CoreDataStack.context.refreshAllObjects()
         }
     }
     

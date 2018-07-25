@@ -53,6 +53,15 @@ class ProfileFeedTableViewCell: UITableViewCell {
         runDistanceLabel.text = post?.distance
         runDurationLabel.text = post?.duration
         runAveragePaceLabel.text = post?.pace
+        if post?.runCoin == 0 {
+            runCoinEarnedLabel.text = "0"
+        }
+        runCoinEarnedLabel.text = post?.runCoin?.description
+        
+        runCoinEarnedLabel.layer.borderColor = UIColor.offBlue.cgColor
+        runCoinEarnedLabel.layer.cornerRadius = runCoinEarnedLabel.frame.size.height/2
+        runCoinEarnedLabel.layer.borderWidth = 2
+        
         if let photoURLString = post?.runMap {
             let photoURL = URL(string: photoURLString)
             runMapImageView.sd_setImage(with: photoURL)

@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class HelperService {
     //globalRunCoin: Int, globalDistance: Double, globalDuration: Int16
-    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String, globalRunCoin: Int, globalDistance: Double, globalDuration: Int){
+    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String, singleRunCoin: Int, globalRunCoin: Int, globalDistance: Double, globalDuration: Int){
         if let imageData = UIImagePNGRepresentation(image) {
             let mapDataID = NSUUID().uuidString
             let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("run_posts").child(mapDataID)
@@ -24,14 +24,14 @@ class HelperService {
                     guard let downloadUrl = url else {return}
                     let mapUrl = downloadUrl.absoluteString
                     
-                    sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl)
+                    sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl, singleRunCoin: singleRunCoin)
                     updateGlobalStats(globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
                 }
             }
         }
     }
     
-    static func sendDataToDatabase(distance: String, duration: String, date: String, pace: String, mapUrl: String){
+    static func sendDataToDatabase(distance: String, duration: String, date: String, pace: String, mapUrl: String, singleRunCoin: Int){
         guard let currentUser = Api.User.CURRENT_USER else {
             print("No current firebase user")
             return
@@ -42,7 +42,7 @@ class HelperService {
         
         let timestamp = Int(Date().timeIntervalSince1970)
         
-        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl, "timestamp": timestamp] as [String : Any]
+        let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl, "timestamp": timestamp, "runCoin": singleRunCoin] as [String : Any]
         
         newPostRef.setValue(runDict, withCompletionBlock: {
             error, ref in
