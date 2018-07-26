@@ -12,15 +12,6 @@ import FirebaseDatabase
 class FeedApi {
     var REF_FEED = Database.database().reference().child("feed")
     
-//    func observeFeed(withId Id: String, completion: @escaping (FeedPost) -> Void){
-//        REF_FEED.child(Id).queryOrdered(byChild: "timestamp").observe(.childAdded) { (snapshot) in
-//            let key = snapshot.key
-//            Api.Post.observePost(withId: key, completion: { (post) in
-//                completion(post)
-//            })
-//        }
-//    }
-    
     func getRecentFeed(withId Id: String, start timestamp: Int? = nil, limit: UInt, completion: @escaping ([(FeedPost, User)]) -> Void){
         var feedQuery = REF_FEED.child(Id).queryOrdered(byChild: "timestamp")
         if let latestPostTimestamp = timestamp, latestPostTimestamp > 0 {

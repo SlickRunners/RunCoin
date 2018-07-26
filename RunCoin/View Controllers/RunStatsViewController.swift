@@ -9,6 +9,10 @@
 import UIKit
 import MapKit
 
+protocol loadNewPostsToProfileFeedDelegate {
+    func loadNewPosts()
+}
+
 class RunStatsViewController: UIViewController {
 
     //Variables
@@ -19,11 +23,19 @@ class RunStatsViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapViewContainer: UIView!
     var run : Run!
+    var delegate : loadNewPostsToProfileFeedDelegate?
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeVC = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
         present(homeVC, animated: true, completion: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("NotificationIdentifier"), object: nil)
+        
+//        let rootVC = self.presentingViewController
+//        present(rootVC!, animated: true)
+        
+        
+        
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
@@ -35,6 +47,7 @@ class RunStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMap()
+        self.delegate?.loadNewPosts()
     }
     
     func imageScreenshot(view: UIView) -> UIImage? {
@@ -172,3 +185,5 @@ extension RunStatsViewController: MKMapViewDelegate {
         return renderer
     }
 }
+
+

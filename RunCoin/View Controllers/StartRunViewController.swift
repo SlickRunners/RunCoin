@@ -23,11 +23,11 @@ class StartRunViewController: UIViewController {
     private var locationList: [CLLocation] = []
     var sumPastRunDistance : Double!
     var container: NSPersistentContainer!
-    var runPredicate: NSPredicate?
     var usersRunCoin : Int = 0
     var coinSound : AVAudioPlayer!
     let finalRun = Run(context: CoreDataStack.context)
     var earnedRunCoin = false
+    
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
@@ -134,7 +134,7 @@ class StartRunViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         saveRun()
-        performSegue(withIdentifier: .details, sender: nil)
+//        performSegue(withIdentifier: .details, sender: nil)
     }
     
     private func startRun() {
@@ -233,8 +233,14 @@ class StartRunViewController: UIViewController {
                 self.usersRunCoin = 1
             }
             //HelperService Instance Methods Go Here
-            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, singleRunCoin: singleRunCoin, globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
+            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, singleRunCoin: singleRunCoin, globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration, onSuccess: {
+                self.goToStats()
+            })
         })
+    }
+    
+    func goToStats(){
+        performSegue(withIdentifier: .details, sender: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -277,8 +283,6 @@ class StartRunViewController: UIViewController {
             coinSound.volume = 1.0
             coinSound.numberOfLoops = 0
             earnedRunCoin = false
-        } else {
-            coinSound.pause()
         }
     }
 }

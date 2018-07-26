@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class HelperService {
     //globalRunCoin: Int, globalDistance: Double, globalDuration: Int16
-    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String, singleRunCoin: Int, globalRunCoin: Int, globalDistance: Double, globalDuration: Int){
+    static func uploadDataToStorage(image: UIImage, distance: String, duration: String, date: String, pace: String, singleRunCoin: Int, globalRunCoin: Int, globalDistance: Double, globalDuration: Int, onSuccess: @escaping () -> Void){
         if let imageData = UIImagePNGRepresentation(image) {
             let mapDataID = NSUUID().uuidString
             let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("run_posts").child(mapDataID)
@@ -24,14 +24,14 @@ class HelperService {
                     guard let downloadUrl = url else {return}
                     let mapUrl = downloadUrl.absoluteString
                     
-                    sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl, singleRunCoin: singleRunCoin)
-                    updateGlobalStats(globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration)
+                    sendDataToDatabase(distance: distance, duration: duration, date: date, pace: pace, mapUrl: mapUrl, singleRunCoin: singleRunCoin, globalDuration: globalDuration, globalDistance: globalDistance, globalRunCoin: globalRunCoin, onSuccess: onSuccess)
+                    onSuccess()
                 }
             }
         }
     }
     
-    static func sendDataToDatabase(distance: String, duration: String, date: String, pace: String, mapUrl: String, singleRunCoin: Int){
+    static func sendDataToDatabase(distance: String, duration: String, date: String, pace: String, mapUrl: String, singleRunCoin: Int, globalDuration: Int, globalDistance: Double, globalRunCoin: Int, onSuccess: @escaping () -> Void){
         guard let currentUser = Api.User.CURRENT_USER else {
             print("No current firebase user")
             return
@@ -51,6 +51,10 @@ class HelperService {
                 return
             }
             
+            let globalDict = ["globalRunCoin": globalRunCoin, "globalDistance": globalDistance, "globalDuration": globalDuration] as [String : Any]
+            
+            Api.User.REF_CURRENT_USER?.updateChildValues(globalDict)
+            
             Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(["timestamp": timestamp])
             
             let myPostRef = Api.MyPosts.REF_MYPOSTS.child(uid).child(newPostId)
@@ -58,9 +62,12 @@ class HelperService {
                 if error != nil {
                     return
                 }
+                onSuccess()
             })
         })
     }
+    
+    
     
     static func updateGlobalStats(globalRunCoin: Int, globalDistance: Double, globalDuration: Int){
         

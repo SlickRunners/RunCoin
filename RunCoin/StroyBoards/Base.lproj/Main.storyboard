@@ -864,14 +864,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Global Stats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5F-AI-KQp">
-                                            <rect key="frame" x="84" y="8" width="207" height="20.5"/>
-                                            <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
-                                            <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="t9M-xH-Guw">
-                                            <rect key="frame" x="27" y="27" width="320.5" height="65.5"/>
+                                            <rect key="frame" x="27" y="17" width="320.5" height="65.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="z1o-zc-SZi" userLabel="Global RunCoin Stack View">
                                                     <rect key="frame" x="0.0" y="0.0" width="86.5" height="65.5"/>
@@ -933,13 +927,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="leading" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="27" id="CV6-YT-DnH"/>
-                                        <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="a5F-AI-KQp" secondAttribute="trailing" constant="84" id="NeU-Cj-XGm"/>
-                                        <constraint firstItem="a5F-AI-KQp" firstAttribute="leading" relation="lessThanOrEqual" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="84" id="WNY-a4-eWs"/>
-                                        <constraint firstAttribute="trailing" secondItem="t9M-xH-Guw" secondAttribute="trailing" constant="27.5" id="eOR-qw-6ZM"/>
-                                        <constraint firstAttribute="bottom" secondItem="t9M-xH-Guw" secondAttribute="bottom" constant="7.5" id="fK5-0l-CF4"/>
-                                        <constraint firstItem="a5F-AI-KQp" firstAttribute="top" secondItem="H2m-yu-tcO" secondAttribute="top" constant="8" id="mck-Cb-rqv"/>
-                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="top" secondItem="H2m-yu-tcO" secondAttribute="top" constant="27" id="vaa-QM-nfx"/>
+                                        <constraint firstAttribute="bottom" secondItem="t9M-xH-Guw" secondAttribute="bottom" constant="17.5" id="ULc-Gn-DqO"/>
+                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="leading" secondItem="H2m-yu-tcO" secondAttribute="leading" constant="27" id="g41-E5-2fg"/>
+                                        <constraint firstAttribute="trailing" secondItem="t9M-xH-Guw" secondAttribute="trailing" constant="27.5" id="j5u-sw-mwc"/>
+                                        <constraint firstItem="t9M-xH-Guw" firstAttribute="top" secondItem="H2m-yu-tcO" secondAttribute="top" constant="17" id="xCp-DU-y99"/>
                                     </constraints>
                                 </view>
                                 <prototypes>

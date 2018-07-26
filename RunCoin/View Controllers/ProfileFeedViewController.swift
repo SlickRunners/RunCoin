@@ -25,7 +25,6 @@ class ProfileFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadFeedData()
         setUpView()
         tableView.estimatedRowHeight = 418
@@ -34,7 +33,6 @@ class ProfileFeedViewController: UIViewController {
     }
         
     func loadFeedData(){
-        tableView.reloadData()
         isLoading = true
         Api.Feed.getRecentFeed(withId: Api.User.CURRENT_USER!.uid, start: posts.first?.timestamp, limit: 5) { (results) in
             if results.count > 0 {
@@ -112,14 +110,6 @@ class ProfileFeedViewController: UIViewController {
             self.globaleDurationLabel.text = formattedDuration
         }
     }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-//        if let accountVC = (self.tabBarController?.viewControllers![2] as? UINavigationController)?.viewControllers[0] as? AccountViewController {
-//            //access your VC here
-//            accountVC.delegate = self
-//        }
-    }
 }
 
 extension ProfileFeedViewController: UITableViewDelegate {
@@ -151,5 +141,11 @@ extension ProfileFeedViewController : AccountViewControllerDelegate {
     
     func updateUserInformation() {
  
+    }
+}
+
+extension ProfileFeedViewController : loadNewPostsToProfileFeedDelegate {
+    func loadNewPosts(){
+        print("Protocol INITIALIZED!")
     }
 }
