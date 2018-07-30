@@ -16,9 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //onboarding
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var viewController : UIViewController
+        if (UserDefaults.standard.value(forKey: "onBoardingCompleted") as? Bool) == nil {
+            viewController = storyboard.instantiateViewController(withIdentifier: "PageViewController")
+        } else {
+            viewController = storyboard.instantiateInitialViewController()!
+        }
+        
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
+        
         //UITabBar
         UITabBar.appearance().tintColor = .black
-        
         
         FirebaseApp.configure()
         

@@ -76,6 +76,7 @@
 		B03E7CA620A37E730018B43A /* ProfileFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CA520A37E730018B43A /* ProfileFeedViewController.swift */; };
 		B03E7CA820A3A2A80018B43A /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CA720A3A2A80018B43A /* FeedPost.swift */; };
 		B03E7CAC20A6222C0018B43A /* ProfileFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */; };
+		B040C0C4210FB60B00CEEDA7 /* OnBoardingFinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B040C0C3210FB60B00CEEDA7 /* OnBoardingFinalViewController.swift */; };
 		B04F854720D2E793002DE382 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854620D2E793002DE382 /* Api.swift */; };
 		B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */; };
 		B04F854F20D455A1002DE382 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B04F854E20D455A1002DE382 /* MapKit.framework */; };
@@ -96,6 +97,7 @@
 		B0C5D5F720D19AEE00970FE0 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */; };
 		B0C5D5F920D2DC9000970FE0 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D5F820D2DC9000970FE0 /* PostApi.swift */; };
 		B0C5D5FB20D2DF4800970FE0 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */; };
+		B0CF5DD9210F97A800EBAED5 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CF5DD8210F97A800EBAED5 /* PageViewController.swift */; };
 		B0FB1E2A20978189009BB784 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2920978189009BB784 /* CoreDataStack.swift */; };
 		B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2C20978256009BB784 /* RunCoin.xcdatamodeld */; };
 		B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */; };
@@ -180,6 +182,7 @@
 		B03E7CA520A37E730018B43A /* ProfileFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedViewController.swift; sourceTree = "<group>"; };
 		B03E7CA720A3A2A80018B43A /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
 		B03E7CAB20A6222C0018B43A /* ProfileFeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedTableViewCell.swift; sourceTree = "<group>"; };
+		B040C0C3210FB60B00CEEDA7 /* OnBoardingFinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingFinalViewController.swift; sourceTree = "<group>"; };
 		B04F854620D2E793002DE382 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		B04F854820D414F9002DE382 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B04F854E20D455A1002DE382 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -200,6 +203,7 @@
 		B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-Regular.ttf"; path = "../../../../Documents/RunCoin/RunCoin/Image Assets/nunito/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		B0C5D5F820D2DC9000970FE0 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
 		B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		B0CF5DD8210F97A800EBAED5 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		B0FB1E2920978189009BB784 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B0FB1E2D20978256009BB784 /* RunCoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RunCoin.xcdatamodel; sourceTree = "<group>"; };
 		B0FB1E2F20978E3D009BB784 /* UnitConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversions.swift; sourceTree = "<group>"; };
@@ -249,6 +253,7 @@
 				B0FB1E2B209781A5009BB784 /* Supporting Files */,
 				B0C5D5FC20D2DF5200970FE0 /* APIs */,
 				B037D09D20AB6237005AE2E0 /* Data Models */,
+				B0CF5DDA210F97DF00EBAED5 /* OnBoarding Files */,
 				B023D8052050410600491C39 /* StroyBoards */,
 				B023D804205040EF00491C39 /* Image Assets */,
 				B023D7FE20503DA600491C39 /* Info.plist */,
@@ -391,6 +396,15 @@
 				B0C5D5F820D2DC9000970FE0 /* PostApi.swift */,
 			);
 			path = APIs;
+			sourceTree = "<group>";
+		};
+		B0CF5DDA210F97DF00EBAED5 /* OnBoarding Files */ = {
+			isa = PBXGroup;
+			children = (
+				B040C0C3210FB60B00CEEDA7 /* OnBoardingFinalViewController.swift */,
+				B0CF5DD8210F97A800EBAED5 /* PageViewController.swift */,
+			);
+			path = "OnBoarding Files";
 			sourceTree = "<group>";
 		};
 		B0FB1E2B209781A5009BB784 /* Supporting Files */ = {
@@ -650,6 +664,7 @@
 				B03E7CA820A3A2A80018B43A /* FeedPost.swift in Sources */,
 				B023D82520509D6500491C39 /* LoginViewController.swift in Sources */,
 				B023D7F520503DA600491C39 /* EmailLogInViewController.swift in Sources */,
+				B040C0C4210FB60B00CEEDA7 /* OnBoardingFinalViewController.swift in Sources */,
 				B023D7F320503DA600491C39 /* AppDelegate.swift in Sources */,
 				B03E7CA620A37E730018B43A /* ProfileFeedViewController.swift in Sources */,
 				B04F855920DAC84B002DE382 /* HelperService.swift in Sources */,
@@ -669,6 +684,7 @@
 				B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */,
 				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
 				B08A10B320B604F50019DA8C /* User.swift in Sources */,
+				B0CF5DD9210F97A800EBAED5 /* PageViewController.swift in Sources */,
 				B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */,
 				B037D10820AC9ADA005AE2E0 /* InitiateRunViewController.swift in Sources */,
 				B031720820F42DD800894F55 /* Location+CoreDataClass.swift in Sources */,

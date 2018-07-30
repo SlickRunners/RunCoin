@@ -77,4 +77,12 @@ class FeedApi {
             })
         }
     }
+    
+    func observeUserInfoChange(withId Id: String, completion: @escaping (User) -> Void){
+        REF_FEED.child(Id).observe(.childChanged) { (snapshot) in
+            Api.User.observeUser(withId: Id, completion: { (user) in
+                completion(user)
+            })
+        }
+    }
 }
