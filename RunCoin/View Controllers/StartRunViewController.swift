@@ -27,6 +27,7 @@ class StartRunViewController: UIViewController {
     var coinSound : AVAudioPlayer!
     let finalRun = Run(context: CoreDataStack.context)
     var earnedRunCoin = false
+    let runCoinDistance = 4023.36
     
     
     //Buttons & Actions
@@ -134,7 +135,6 @@ class StartRunViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         saveRun()
-//        performSegue(withIdentifier: .details, sender: nil)
     }
     
     private func startRun() {
@@ -249,7 +249,6 @@ class StartRunViewController: UIViewController {
         locationManager.stopUpdatingLocation()
     }
     
-    
     //MARK: CoreData
     func earnRunCoin(){
         let audioFilePath = Bundle.main.path(forResource: "coins", ofType: ".m4r")
@@ -259,11 +258,10 @@ class StartRunViewController: UIViewController {
         }catch {
             print("error with playing coins.m4r sound")
         }
-        let runCoinDistance = 1000.00
         let runningDistance = sumPastRunDistance + distance.value
-        if runningDistance > runCoinDistance {
-            earnedRunCoin = true
+        if runningDistance >= runCoinDistance {
             runCoinLabel.text = "1"
+            earnedRunCoin = true
         }
     }
     
@@ -272,18 +270,12 @@ class StartRunViewController: UIViewController {
         let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
         do {
             try coinSound = AVAudioPlayer(contentsOf: audioFileUrl)
-//            coinSound.play()
-//            coinSound.volume = 1.0
-//            coinSound.numberOfLoops = 0
         }catch {
             print("error with playing coins.m4r sound")
         }
-        if earnedRunCoin == true {
-            coinSound.play()
-            coinSound.volume = 1.0
-            coinSound.numberOfLoops = 0
-            earnedRunCoin = false
-        }
+        coinSound.play()
+        coinSound.volume = 1.0
+        coinSound.numberOfLoops = 0
     }
 }
 
@@ -306,11 +298,11 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 
                 let pace = delta / Double(seconds)
                 let formatPace = Measurement(value: pace, unit: UnitSpeed.metersPerSecond)
-                let topSpeed = Measurement(value: 9.00, unit: UnitSpeed.metersPerSecond)
+                let topSpeed = Measurement(value: 12.00, unit: UnitSpeed.metersPerSecond)
                 
-//                if formatPace >= topSpeed {
-//                    speedFailSafe()
-//                }
+                if formatPace >= topSpeed {
+                    speedFailSafe()
+                }
             }
             locationList.append(newLocation)
             

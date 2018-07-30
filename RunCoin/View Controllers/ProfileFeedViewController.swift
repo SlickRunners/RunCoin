@@ -135,17 +135,24 @@ extension ProfileFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-}
-
-extension ProfileFeedViewController : AccountViewControllerDelegate {
     
-    func updateUserInformation() {
- 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoToUserSettings" {
+            let accountVC = segue.destination as! AccountViewController
+            accountVC.delegate = self
+        }
     }
 }
 
-extension ProfileFeedViewController : loadNewPostsToProfileFeedDelegate {
-    func loadNewPosts(){
-        print("Protocol INITIALIZED!")
+extension ProfileFeedViewController : AccountViewControllerDelegate {
+    func updateUserInformation() {
+        Api.User.CURRENT_USER?.reload(completion: { (error) in
+            if error != nil {
+                return
+            }
+        })
+        self.tableView.reloadData()
+        self.loadFeedData()
+        print("protocol called successfully")
     }
 }

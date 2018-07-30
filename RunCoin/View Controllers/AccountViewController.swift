@@ -125,7 +125,9 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
             AuthService.updateUserInfo(email: emailTextField.text!, username: nameTextField.text!, profileImageData: profileImageData!, onSuccess: {
                 SVProgressHUD.dismiss()
                 self.delegate?.updateUserInformation()
-                print("successfully updated user info data and stuff")
+                self.saveButton.titleLabel?.isEnabled = false
+                self.saveButton.isEnabled = false
+                
             }) { (errorString) in
                 if errorString != nil {
                     print(errorString!)
