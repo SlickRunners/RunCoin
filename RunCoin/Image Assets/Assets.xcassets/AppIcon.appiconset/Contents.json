@@ -33,13 +33,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "runcoin-app-icon-60@2x.png",
+      "filename" : "runcoin120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "runcoin-app-icon-60@3x.png",
+      "filename" : "runcoin180.png",
       "scale" : "3x"
     },
     {
@@ -90,7 +90,7 @@
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "runcoin-app-icon-1024.png",
+      "filename" : "runcoin1024.png",
       "scale" : "1x"
     }
   ],

@@ -146,6 +146,8 @@ extension ProfileFeedViewController: UITableViewDataSource {
 
 extension ProfileFeedViewController : AccountViewControllerDelegate {
     func updateUserInformation() {
+        self.tableView.reloadData()
+        self.loadFeedData()
         print("protocol called successfully")
     }
 }

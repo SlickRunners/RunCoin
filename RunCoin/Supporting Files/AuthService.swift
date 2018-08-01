@@ -72,43 +72,44 @@ class AuthService {
         }
     }
     
-    static func updateUserInfo(email: String, username: String, profileImageData: Data, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
+    static func updateUserInfo(email: String, username: String, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
         Auth.auth().currentUser?.updateEmail(to: email, completion: { (error) in
             if error != nil {
                 onError(error!.localizedDescription)
             } else {
-                guard let currentUser = Api.User.CURRENT_USER else {return}
-                let uid = currentUser.uid
-                
-                let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("profile_image").child(uid)
-                storageRef.putData(profileImageData, metadata: nil) { (metadata, error) in
-                    if error != nil {
-                        return
-                    }
-                    storageRef.downloadURL { (url, error) in
-                        if error != nil {
-                            print("error with signin url dL method", error!.localizedDescription)
-                            return
-                        }
-                        let profileImageUrl = url?.absoluteString
-                        
-                        self.updateUserInfoDatabase(email: email, username: username, profileImageUrl: profileImageUrl!, onSuccess: onSuccess, onError: onError)
-                    }
-                }
+                self.updateUserInfo(email: email, username: username, onSuccess: onSuccess, onError: onError)
             }
         })
     }
     
-    static func updateUserInfoDatabase(email: String, username: String, profileImageUrl: String, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
-        let dict = ["email": email, "username": username, "username_lowercase": username.lowercased(), "profileImageUrl": profileImageUrl]
-        Api.User.REF_CURRENT_USER?.updateChildValues(dict, withCompletionBlock: { (error, ref) in
+    static func updateUserProfilePicture(profileImageData: Data, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {
+        guard let currentUser = Api.User.CURRENT_USER else {return}
+        let uid = currentUser.uid
+        
+        let storageRef = Storage.storage().reference(forURL: Config.STORAGE_ROOT_REF).child("profile_image").child(uid)
+        storageRef.putData(profileImageData, metadata: nil) { (metadata, error) in
             if error != nil {
-                onError(error!.localizedDescription)
+                return
+            }
+            storageRef.downloadURL { (url, error) in
+                if error != nil {
+                    print("error with signin url dL method", error!.localizedDescription)
+                    return
+                }
+                guard let profileImageUrl = url?.absoluteString else {return}
+                self.sendPhotoDataToDatabase(profileImageUrl: profileImageUrl, onSuccess: onSuccess)
+            }
+        }
+    }
+    
+    static func sendPhotoDataToDatabase(profileImageUrl: String, onSuccess: @escaping () -> Void){
+        let photoDict = ["profileImageUrl": profileImageUrl]
+        Api.User.REF_CURRENT_USER?.updateChildValues(photoDict, withCompletionBlock: { (error, ref) in
+            if error != nil {
+                print("error sendPhotoDataToDatabase", error!.localizedDescription)
             } else {
                 onSuccess()
             }
-            
         })
-    
     }
 }

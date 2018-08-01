@@ -61,7 +61,8 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
             self.emailTextField.text = user.email
             
             if let photoUrl = URL(string: user.profileImageUrl!) {
-                self.profilePhoto.sd_setImage(with: photoUrl)
+                let placeHolder = UIImage(named: "blankProfileImage")
+                self.profilePhoto.sd_setImage(with: photoUrl, placeholderImage: placeHolder)
             }
         }
     }
@@ -71,20 +72,24 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @objc func handleSelectProfileImage(){
-        SVProgressHUD.show()
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
-        SVProgressHUD.dismiss()
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
-            profilePhoto.image = image
-            profilePhoto.layer.cornerRadius = 65
-            profilePhoto.clipsToBounds = true
-        }
-        dismiss(animated: true, completion: nil)
+        guard let image = info["UIImagePickerControllerOriginalImage"] as? UIImage else {return}
+        dismiss(animated: true, completion: {
+            if let profileImageData = UIImagePNGRepresentation(image) {
+                AuthService.updateUserProfilePicture(profileImageData: profileImageData, onSuccess: {
+                    self.profilePhoto.image = image
+                    self.profilePhoto.layer.cornerRadius = 65
+                    self.profilePhoto.clipsToBounds = true
+                }) { (error) in
+                    print("error updating users profile image \(error!)")
+                }
+            }
+        })
     }
     
     func setupView(){
@@ -120,20 +125,16 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         SVProgressHUD.show()
-        if let profileImage = profilePhoto.image {
-            let profileImageData = UIImagePNGRepresentation(profileImage)
-            AuthService.updateUserInfo(email: emailTextField.text!, username: nameTextField.text!, profileImageData: profileImageData!, onSuccess: {
+        AuthService.updateUserInfo(email: emailTextField.text!, username: nameTextField.text!, onSuccess: {
+            SVProgressHUD.dismiss()
+            self.delegate?.updateUserInformation()
+            self.saveButton.titleLabel?.isEnabled = false
+            self.saveButton.isEnabled = false
+        }) { (errorString) in
+            if errorString != nil {
+                print(errorString!)
                 SVProgressHUD.dismiss()
-                self.delegate?.updateUserInformation()
-                self.saveButton.titleLabel?.isEnabled = false
-                self.saveButton.isEnabled = false
-                
-            }) { (errorString) in
-                if errorString != nil {
-                    print(errorString!)
-                    SVProgressHUD.dismiss()
-                    return
-                }
+                return
             }
         }
     }

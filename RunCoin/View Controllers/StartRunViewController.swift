@@ -135,6 +135,7 @@ class StartRunViewController: UIViewController {
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         saveRun()
+        saveButton.isEnabled = false
     }
     
     private func startRun() {
@@ -213,6 +214,7 @@ class StartRunViewController: UIViewController {
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
         if earnedRunCoin == true {
             usersRunCoin = 1
+            playCoinSound()
         }
         let formattedRunCoin = usersRunCoin
         

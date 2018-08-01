@@ -113,8 +113,9 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage{
-            newSelectedImage = image
+//            newSelectedImage = image
             photoImage.image = image
+            photoImage.contentMode = .scaleAspectFill
             photoImage.clipsToBounds = true
             photoImage.layer.cornerRadius = photoImage.frame.size.height/2
             photoImage.layer.cornerRadius = photoImage.frame.size.width/2
