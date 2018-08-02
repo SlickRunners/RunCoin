@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0940"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3BE2FB4626D23E7212DCA3C074CD10C3"
+               BlueprintIdentifier = "047FC94F1BE8383C2F0E5AB518B1F4BE"
                BuildableName = "Pods_RunCoin.framework"
                BlueprintName = "Pods-RunCoin"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3BE2FB4626D23E7212DCA3C074CD10C3"
+            BlueprintIdentifier = "047FC94F1BE8383C2F0E5AB518B1F4BE"
             BuildableName = "Pods_RunCoin.framework"
             BlueprintName = "Pods-RunCoin"
             ReferencedContainer = "container:Pods.xcodeproj">

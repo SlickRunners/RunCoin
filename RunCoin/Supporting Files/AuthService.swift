@@ -73,11 +73,22 @@ class AuthService {
     }
     
     static func updateUserInfo(email: String, username: String, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
-        Auth.auth().currentUser?.updateEmail(to: email, completion: { (error) in
+        Api.User.CURRENT_USER?.updateEmail(to: email, completion: { (error) in
             if error != nil {
                 onError(error!.localizedDescription)
             } else {
-                self.updateUserInfo(email: email, username: username, onSuccess: onSuccess, onError: onError)
+                self.updateUsersDatabase(email: email, username: username, onSuccess: onSuccess, onError: onError)
+            }
+        })
+    }
+    
+    static func updateUsersDatabase(email: String, username: String, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void){
+        let updateDict = ["email": email, "username": username, "username_lowercased": username.lowercased()]
+        Api.User.REF_CURRENT_USER?.updateChildValues(updateDict, withCompletionBlock: { (error, ref) in
+            if error != nil {
+                onError("error with updateUsersDatabase method \(error!.localizedDescription)")
+            } else {
+                onSuccess()
             }
         })
     }

@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import SVProgressHUD
+import ProgressHUD
 
 protocol AccountViewControllerDelegate {
     func updateUserInformation()
@@ -124,16 +125,15 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        SVProgressHUD.show()
+        ProgressHUD.show("Saving Info...")
         AuthService.updateUserInfo(email: emailTextField.text!, username: nameTextField.text!, onSuccess: {
-            SVProgressHUD.dismiss()
             self.delegate?.updateUserInformation()
             self.saveButton.titleLabel?.isEnabled = false
             self.saveButton.isEnabled = false
+            ProgressHUD.showSuccess()
         }) { (errorString) in
             if errorString != nil {
-                print(errorString!)
-                SVProgressHUD.dismiss()
+                ProgressHUD.showError(errorString!)
                 return
             }
         }

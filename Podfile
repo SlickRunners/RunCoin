@@ -15,4 +15,5 @@ target 'RunCoin' do
     pod 'FirebaseStorage'
     pod 'SDWebImage'
     pod 'Bolts'
+    pod 'ProgressHUD'
 end
