@@ -17,11 +17,13 @@ class ProfileFeedViewController: UIViewController {
     @IBOutlet weak var globaleDurationLabel: UILabel!
     @IBOutlet weak var globalRunCoinLabel: UILabel!
     @IBAction func unwindToVC1(segue:UIStoryboardSegue){}
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
     var posts = [FeedPost]()
     var users = [User]()
     var myPosts : [FeedPost]!
     var isLoading = false
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,9 @@ class ProfileFeedViewController: UIViewController {
         tableView.estimatedRowHeight = 418
         tableView.rowHeight = UITableViewAutomaticDimension
         configureGlobalStats()
+        refreshControl.addTarget(self, action:#selector(refresh),for: .valueChanged)
+        tableView.addSubview(refreshControl)
+        activityIndicatorView.startAnimating()
     }
         
     func loadFeedData(){
@@ -42,6 +47,10 @@ class ProfileFeedViewController: UIViewController {
                 })
             }
             self.isLoading = false
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            self.activityIndicatorView.stopAnimating()
             self.tableView.reloadData()
         }
         
@@ -73,6 +82,12 @@ class ProfileFeedViewController: UIViewController {
             self.isLoading = false
             self.tableView.reloadData()
         }
+    }
+    
+    @objc func refresh() {
+        self.posts.removeAll()
+        self.users.removeAll()
+        loadFeedData()
     }
     
     func setUpView(){
