@@ -65,11 +65,11 @@
 		<string>MKDirectionsModePedestrian</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow RunCoin to access your phone&apos;s camera.</string>
+	<string>Allow RunCoin to access your phone's camera.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>RunCoin needs to use your location to map the route that you&apos;re running.</string>
+	<string>RunCoin needs to use your location to map the route that you're running.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>RunCoin needs to use your location to map the route that you&apos;re running.</string>
+	<string>RunCoin needs to use your location to map the route that you're running.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow RunCoin to import a photo for your profile.</string>
 	<key>UIAppFonts</key>
@@ -121,6 +121,7 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

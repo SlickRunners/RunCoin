@@ -11,11 +11,6 @@ import SDWebImage
 import SVProgressHUD
 import ProgressHUD
 
-protocol AccountViewControllerDelegate {
-    func updateUserInformation()
-}
-
-
 class AccountViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //Variables
     @IBOutlet weak var bottomView: UIView!
@@ -27,7 +22,6 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var scrollView: UIScrollView!
     
     var user = User()
-    var delegate : AccountViewControllerDelegate?
     var activeField : UITextField?
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
@@ -127,7 +121,6 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func saveButtonPressed(_ sender: Any) {
         ProgressHUD.show("Saving Info...")
         AuthService.updateUserInfo(email: emailTextField.text!, username: nameTextField.text!, onSuccess: {
-            self.delegate?.updateUserInformation()
             self.saveButton.titleLabel?.isEnabled = false
             self.saveButton.isEnabled = false
             ProgressHUD.showSuccess()

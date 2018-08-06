@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,13 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runCoinLogo" translatesAutoresizingMaskIntoConstraints="NO" id="B1o-eu-CuE">
-                                <rect key="frame" x="70" y="120" width="235" height="235"/>
+                                <rect key="frame" x="70" y="100" width="235" height="235"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="235" id="UAM-pS-2aK"/>
+                                    <constraint firstAttribute="width" constant="235" id="jx8-oc-HcC"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="B1o-eu-CuE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AdR-eZ-Fey"/>
-                            <constraint firstItem="B1o-eu-CuE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="ybJ-N3-fy2"/>
+                            <constraint firstItem="B1o-eu-CuE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Qdc-4V-JLD"/>
+                            <constraint firstItem="B1o-eu-CuE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="QyB-GH-DoK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

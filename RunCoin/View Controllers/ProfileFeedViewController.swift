@@ -150,19 +150,4 @@ extension ProfileFeedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoToUserSettings" {
-            let accountVC = segue.destination as! AccountViewController
-            accountVC.delegate = self
-        }
-    }
-}
-
-extension ProfileFeedViewController : AccountViewControllerDelegate {
-    func updateUserInformation() {
-        self.tableView.reloadData()
-        self.loadFeedData()
-        print("protocol called successfully")
-    }
 }

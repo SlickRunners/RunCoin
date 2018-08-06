@@ -15,6 +15,7 @@ class InitiateRunViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var sumPastRuns : Double!
+    var status = CLLocationManager.authorizationStatus()
     
     @IBAction func startButton(_ sender: UIButton) {
         performSegue(withIdentifier: "StartRun", sender: self)
@@ -25,6 +26,9 @@ class InitiateRunViewController: UIViewController, MKMapViewDelegate {
         mapView.mapType = .mutedStandard
         mapView.showsUserLocation = true
         fetchPastRunData()
+        if status == .notDetermined || status == .denied || status == .authorizedWhenInUse {
+//            let alert = UIAlertController(title: "<#T##String?#>", message: <#T##String?#>, preferredStyle: <#T##UIAlertControllerStyle#>)
+        }
     }
     
     func fetchPastRunData(){
