@@ -75,10 +75,12 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info["UIImagePickerControllerOriginalImage"] as? UIImage else {return}
         dismiss(animated: true, completion: {
+            ProgressHUD.show("Saving profile image.")
             if let profileImageData = UIImagePNGRepresentation(image) {
                 AuthService.updateUserProfilePicture(profileImageData: profileImageData, onSuccess: {
+                    ProgressHUD.showSuccess()
                     self.profilePhoto.image = image
-                    self.profilePhoto.layer.cornerRadius = 65
+                    self.profilePhoto.layer.cornerRadius = self.profilePhoto.frame.size.height/2
                     self.profilePhoto.clipsToBounds = true
                 }) { (error) in
                     print("error updating users profile image \(error!)")
@@ -179,8 +181,8 @@ extension AccountViewController : UITextFieldDelegate {
     @objc func keyboardWillBeHidden(notification: NSNotification){
         //Once keyboard disappears, restore original positions
         var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
-        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        guard let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size else {return}
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize.height, 0.0)
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
         self.view.endEditing(true)
