@@ -51,6 +51,7 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
         earnRunCoin()
+        print("USER LOCATION", locationManager.location)
         print("pastRunDistance passed to vc", sumPastRunDistance)
         runCoinLabel.text = "0"
     }
@@ -61,6 +62,7 @@ class StartRunViewController: UIViewController {
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
         locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.requestWhenInUseAuthorization()
     }
     
     @IBAction func stopButtonPressed(_ sender: Any) {
@@ -287,7 +289,9 @@ extension StartRunViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for newLocation in locations {
             let howRecent = newLocation.timestamp.timeIntervalSinceNow
-            guard newLocation.horizontalAccuracy < 20 && abs(howRecent) < 10 else { continue }
+            guard newLocation.horizontalAccuracy < 100 && abs(howRecent) < 10 else {
+                continue
+            }
             
             if let lastLocation = locationList.last {
                 let delta = newLocation.distance(from: lastLocation)
