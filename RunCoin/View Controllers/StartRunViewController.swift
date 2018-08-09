@@ -42,18 +42,22 @@ class StartRunViewController: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var finishResumeStackView: UIStackView!
     @IBOutlet weak var runCoinLabel: UILabel!
+    @IBOutlet weak var runCoinEarnedImage: UIImageView!
+    @IBOutlet weak var runCoinZeroPlaceholder: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startRun()
+        earnRunCoin()
+        configureView()
+    }
+    
+    func configureView(){
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-        earnRunCoin()
-        print("USER LOCATION", locationManager.location)
-        print("pastRunDistance passed to vc", sumPastRunDistance)
-        runCoinLabel.text = "0"
+        runCoinEarnedImage.isHidden = true
     }
     
     private func startLocationUpdates() {
@@ -264,7 +268,8 @@ class StartRunViewController: UIViewController {
         }
         let runningDistance = sumPastRunDistance + distance.value
         if runningDistance >= runCoinDistance {
-            runCoinLabel.text = "1"
+            runCoinLabel.isHidden = true
+            runCoinEarnedImage.isHidden = false
             earnedRunCoin = true
         }
     }
@@ -306,9 +311,9 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 let formatPace = Measurement(value: pace, unit: UnitSpeed.metersPerSecond)
                 let topSpeed = Measurement(value: 12.00, unit: UnitSpeed.metersPerSecond)
                 
-                if formatPace >= topSpeed {
-                    speedFailSafe()
-                }
+//                if formatPace >= topSpeed {
+//                    speedFailSafe()
+//                }
             }
             locationList.append(newLocation)
             

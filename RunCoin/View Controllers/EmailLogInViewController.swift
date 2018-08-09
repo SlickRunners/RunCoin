@@ -185,7 +185,7 @@ class EmailLogInViewController: UIViewController, UIPickerViewDelegate, UIPicker
     
     func saveImageData() {
         SVProgressHUD.show()
-        if let profileImage = newSelectedImage, let imageData = UIImagePNGRepresentation(profileImage){
+        if let profileImage = newSelectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 1.0){
             AuthService.signUp(email: emailTextField.text!, username: userNameTextField.text!, password: passwordTextField.text!, imageData: imageData, birthday: birthdayTextField.text!, gender: genderTextField.text!, onSuccess: {
                 print("Successful creation of firebase user.")
                 self.goToHomeScreen()

@@ -76,7 +76,7 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate, 
         guard let image = info["UIImagePickerControllerOriginalImage"] as? UIImage else {return}
         dismiss(animated: true, completion: {
             ProgressHUD.show("Saving profile image.")
-            if let profileImageData = UIImagePNGRepresentation(image) {
+            if let profileImageData = UIImageJPEGRepresentation(image, 1.0) {
                 AuthService.updateUserProfilePicture(profileImageData: profileImageData, onSuccess: {
                     ProgressHUD.showSuccess()
                     self.profilePhoto.image = image
