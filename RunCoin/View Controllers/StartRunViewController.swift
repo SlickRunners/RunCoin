@@ -4,7 +4,17 @@
 //
 //  Created by Roland Christensen on 3/23/18.
 //  Copyright © 2018 Roland Christensen. All rights reserved.
-//
+// * Copyright (c) 2017 Razeware LLC
+// *
+// * Permission is hereby granted, free of charge, to any person obtaining a copy
+// * of this software and associated documentation files (the "Software"), to deal
+// * in the Software without restriction, including without limitation the rights
+// * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// * copies of the Software, and to permit persons to whom the Software is
+// * furnished to do so, subject to the following conditions:
+// *
+// * The above copyright notice and this permission notice shall be included in
+// * all copies or substantial portions of the Software.
 
 import UIKit
 import CoreLocation
@@ -31,6 +41,7 @@ class StartRunViewController: UIViewController {
     
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var buttonStackView: UIStackView!
     @IBOutlet weak var mapContainerView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var timeDurationLabel: UILabel!
@@ -56,7 +67,7 @@ class StartRunViewController: UIViewController {
         finishButton.layer.borderWidth = 0.5
         finishButton.layer.borderColor = UIColor.offBlue.cgColor
         mapView.showsUserLocation = true
-        runCoinEarnedImage.isHidden = true
+//        runCoinEarnedImage.isHidden = true
     }
     
     private func startLocationUpdates() {
@@ -221,13 +232,12 @@ class StartRunViewController: UIViewController {
         if earnedRunCoin == true {
             playCoinSound()
         }
-        let formattedRunCoin = usersRunCoin
         
         guard let image = imageScreenshot(view: mapContainerView) else {
             print("image screenshot method did not work")
             return
         }
-        configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace, singleRunCoin: formattedRunCoin)
+        configureGlobalStats(image: image, distance: formattedDistance, duration: formattedDuration, date: formattedDate, pace: formattedPace, singleRunCoin: usersRunCoin)
     }
     
     func configureGlobalStats(image: UIImage, distance: String, duration: String, date: String, pace: String, singleRunCoin: Int){

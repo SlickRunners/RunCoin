@@ -13,6 +13,7 @@ import CoreData
 class InitiateRunViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var startButton: UIButton!
     
     var sumPastRuns : Double!
     var status = CLLocationManager.authorizationStatus()
@@ -26,9 +27,7 @@ class InitiateRunViewController: UIViewController, MKMapViewDelegate {
         mapView.mapType = .mutedStandard
         mapView.showsUserLocation = true
         fetchPastRunData()
-        if status == .notDetermined || status == .denied || status == .authorizedWhenInUse {
-//            let alert = UIAlertController(title: "<#T##String?#>", message: <#T##String?#>, preferredStyle: <#T##UIAlertControllerStyle#>)
-        }
+        startButton.layer.cornerRadius = startButton.frame.size.height / 2
     }
     
     func fetchPastRunData(){
