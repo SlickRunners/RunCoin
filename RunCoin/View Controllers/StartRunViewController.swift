@@ -29,7 +29,6 @@ class StartRunViewController: UIViewController {
     var earnedRunCoin = false
     let runCoinDistance = 4023.36
     
-    
     //Buttons & Actions
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapContainerView: UIView!
@@ -98,6 +97,7 @@ class StartRunViewController: UIViewController {
         
         stopRun()
         setVisibleMapArea()
+        checkFinalDistance()
     }
     
     func setVisibleMapArea() {
@@ -219,7 +219,6 @@ class StartRunViewController: UIViewController {
         let formattedDate = FormatDisplay.date(finalRun.timestamp)
         let formattedPace = FormatDisplay.pace(distance: distance, seconds: seconds, outputUnit: UnitSpeed.minutesPerMile)
         if earnedRunCoin == true {
-            usersRunCoin = 1
             playCoinSound()
         }
         let formattedRunCoin = usersRunCoin
@@ -237,10 +236,6 @@ class StartRunViewController: UIViewController {
             let globalDistance = user.globalDistance! + self.finalRun.distance
             let globalDuration = user.globaleDuration! + self.seconds
             let globalRunCoin = user.globalRunCoin! + self.usersRunCoin
-            if self.earnedRunCoin == true {
-                self.usersRunCoin = 1
-            }
-            //HelperService Instance Methods Go Here
             HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, singleRunCoin: singleRunCoin, globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration, onSuccess: {
                 self.goToStats()
             })
@@ -259,13 +254,6 @@ class StartRunViewController: UIViewController {
     
     //MARK: CoreData
     func earnRunCoin(){
-        let audioFilePath = Bundle.main.path(forResource: "coins", ofType: ".m4r")
-        let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
-        do {
-            try coinSound = AVAudioPlayer(contentsOf: audioFileUrl)
-        }catch {
-            print("error with playing coins.m4r sound")
-        }
         let runningDistance = sumPastRunDistance + distance.value
         if runningDistance >= runCoinDistance {
             runCoinLabel.isHidden = true
@@ -285,6 +273,16 @@ class StartRunViewController: UIViewController {
         coinSound.play()
         coinSound.volume = 1.0
         coinSound.numberOfLoops = 0
+    }
+    
+    func checkFinalDistance(){
+        let distanceArray = [4023.0, 8046.0, 12070.0, 14484.0, 18507.0, 22530.0, 26554.0]
+        for (index, number) in distanceArray.enumerated() {
+            if number < distance.value.rounded() {
+                usersRunCoin = index + 1
+                print("usersRunCoin", usersRunCoin)
+            }
+        }
     }
 }
 
