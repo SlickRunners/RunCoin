@@ -44,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="357.66666666666669"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="284" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="runCoinLogo" translatesAutoresizingMaskIntoConstraints="NO" id="VdO-Pq-6pE">
-                                        <rect key="frame" x="70" y="61" width="235" height="235"/>
+                                        <rect key="frame" x="70.333333333333314" y="61.333333333333314" width="235" height="235"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="VdO-Pq-6pE" secondAttribute="height" multiplier="1:1" id="q0c-LQ-0bL"/>
                                         </constraints>
@@ -958,13 +958,13 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="t9M-xH-Guw">
-                                            <rect key="frame" x="16" y="17" width="342.66666666666669" height="65.666666666666671"/>
+                                            <rect key="frame" x="16" y="17" width="287.66666666666669" height="65.666666666666671"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="z1o-zc-SZi" userLabel="Global RunCoin Stack View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="87.666666666666671" height="65.666666666666671"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="69.333333333333329" height="65.666666666666671"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhC-XR-9Iq">
-                                                            <rect key="frame" x="23.666666666666664" y="0.0" width="40" height="40"/>
+                                                            <rect key="frame" x="14.666666666666671" y="0.0" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="SEa-Tl-sgp"/>
                                                                 <constraint firstAttribute="width" constant="40" id="eWY-uj-GKb"/>
@@ -974,7 +974,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="RunCoin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="xkX-vp-f0U">
-                                                            <rect key="frame" x="21.999999999999996" y="52" width="43.666666666666657" height="13.666666666666671"/>
+                                                            <rect key="frame" x="12.666666666666668" y="52" width="43.666666666666657" height="13.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -982,16 +982,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="L7R-uS-TrE" userLabel="Top Mile Stack View">
-                                                    <rect key="frame" x="127.66666666666666" y="0.0" width="87.333333333333343" height="65.666666666666671"/>
+                                                    <rect key="frame" x="109.33333333333331" y="0.0" width="69" height="65.666666666666671"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="128.00 mi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VKs-gu-0PA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="87.333333333333329" height="52.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="69" height="52.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Miles" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B9c-Co-Z94">
-                                                            <rect key="frame" x="0.0" y="52.333333333333329" width="87.333333333333329" height="13.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="52.333333333333329" width="69" height="13.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -999,16 +999,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fz0-8X-H8I" userLabel="Top Time Stack View">
-                                                    <rect key="frame" x="254.99999999999997" y="0.0" width="87.666666666666657" height="65.666666666666671"/>
+                                                    <rect key="frame" x="218.33333333333334" y="0.0" width="69.333333333333343" height="65.666666666666671"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:36:15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="70" translatesAutoresizingMaskIntoConstraints="NO" id="pDO-Su-7eC">
-                                                            <rect key="frame" x="10.666666666666686" y="0.0" width="66.666666666666671" height="52.333333333333336"/>
+                                                            <rect key="frame" x="1.3333333333333144" y="0.0" width="66.666666666666671" height="52.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1q-VD-e70">
-                                                            <rect key="frame" x="31" y="52.333333333333329" width="25.666666666666671" height="13.333333333333329"/>
+                                                            <rect key="frame" x="21.666666666666657" y="52.333333333333329" width="25.666666666666671" height="13.333333333333329"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1027,7 +1027,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCell" rowHeight="423" id="pV9-Kf-UNL" customClass="ProfileFeedTableViewCell" customModule="RunCoin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedCell" rowHeight="423" id="pV9-Kf-UNL" customClass="ProfileFeedTableViewCell" customModule="RunCoin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="375" height="423"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pV9-Kf-UNL" id="pLR-ir-0UV">
@@ -1311,22 +1311,22 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="309" height="178.66666666666666"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hpI-tc-HR3" userLabel="Name Stack View">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="309" height="96.666666666666671"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="309" height="97"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LVc-hj-tdx">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="25.333333333333332"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="25.666666666666668"/>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                                                                 <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-PT-nkG">
-                                                                                <rect key="frame" x="0.0" y="30.333333333333371" width="309" height="21.333333333333329"/>
+                                                                                <rect key="frame" x="0.0" y="30.666666666666686" width="309" height="21.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w2N-gF-uqn">
-                                                                                <rect key="frame" x="0.0" y="56.666666666666686" width="309" height="40"/>
+                                                                                <rect key="frame" x="0.0" y="57" width="309" height="40"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="40" id="jOu-iC-paW"/>
                                                                                 </constraints>
@@ -1342,16 +1342,16 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="n1c-95-f67" userLabel="eMail Stack View">
-                                                                        <rect key="frame" x="0.0" y="111.66666666666669" width="309" height="67"/>
+                                                                        <rect key="frame" x="0.0" y="112" width="309" height="66.666666666666686"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HnP-GI-hBf">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="22"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="309" height="21.666666666666668"/>
                                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                                                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kBS-kv-VfA">
-                                                                                <rect key="frame" x="0.0" y="27" width="309" height="40"/>
+                                                                                <rect key="frame" x="0.0" y="26.666666666666686" width="309" height="40"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="40" id="2eo-ib-j2f"/>
                                                                                 </constraints>
@@ -1484,7 +1484,7 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchTableViewCell" rowHeight="101" id="er6-NN-dzS" customClass="SearchTableViewCell" customModule="RunCoin" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchTableViewCell" rowHeight="101" id="er6-NN-dzS" customClass="SearchTableViewCell" customModule="RunCoin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="101"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="er6-NN-dzS" id="fvy-0d-S0X">
@@ -1731,7 +1731,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="161.33333333333334"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to RunCoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="39l-a2-G9s">
-                                        <rect key="frame" x="70.666666666666686" y="67.333333333333329" width="235" height="27"/>
+                                        <rect key="frame" x="70.666666666666686" y="67.666666666666671" width="235" height="27"/>
                                         <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="22"/>
                                         <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2002,7 +2002,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="161.33333333333334"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Run With Purpose" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="T82-gd-VLA">
-                                        <rect key="frame" x="86" y="67.333333333333329" width="204" height="27"/>
+                                        <rect key="frame" x="86" y="67.666666666666671" width="204" height="27"/>
                                         <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="22"/>
                                         <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2017,11 +2017,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFv-RT-FIX" userLabel="Bottom Container View">
                                 <rect key="frame" x="0.0" y="535.66666666666663" width="375" height="243.33333333333337"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What’s special about RunCoin? As you use the app to track your daily runs, you’ll earn digital “currency” called RunCoin." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i0v-IR-3Ed">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="i0v-IR-3Ed">
                                         <rect key="frame" x="8" y="73.666666666666742" width="359" height="96"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="96" id="9Rj-QN-zfn"/>
                                         </constraints>
+                                        <string key="text">What’s special about RunCoin? As you use the app to track your daily runs, you’ll earn digital “currency” called RunCoin. 2.5 Miles = 1 RunCoin.</string>
                                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="16"/>
                                         <color key="textColor" red="0.59215686270000001" green="0.61568627450000002" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2095,7 +2096,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="161.33333333333334"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make Your Miles Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="08F-9m-KYh">
-                                        <rect key="frame" x="58.666666666666657" y="67.333333333333329" width="259.33333333333337" height="27"/>
+                                        <rect key="frame" x="58.666666666666657" y="67.666666666666671" width="259.33333333333337" height="27"/>
                                         <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="22"/>
                                         <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2110,12 +2111,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zB2-vo-2x4" userLabel="Bottom Container View">
                                 <rect key="frame" x="0.0" y="535.66666666666663" width="375" height="243.33333333333337"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ceQ-OO-97t">
-                                        <rect key="frame" x="8" y="74.666666666666742" width="359" height="96"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Every RunCoin you earn, we donate to charity. Earn your miles. We'll give back on your behalf. " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ceQ-OO-97t">
+                                        <rect key="frame" x="8" y="61.666666666666742" width="359" height="96"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="96" id="5NA-bU-9m2"/>
                                         </constraints>
-                                        <string key="text">For every 2.5 miles you run using the app, you’ll earn a RunCoin. As you continue to earn RunCoin, we’ll donate to charity on your behalf! The more you run, the more you give back.</string>
                                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="16"/>
                                         <color key="textColor" red="0.59215686270000001" green="0.61568627450000002" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2127,7 +2127,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZG-Y0-MXD">
-                                        <rect key="frame" x="50" y="210.33333333333337" width="275" height="33"/>
+                                        <rect key="frame" x="50" y="192.33333333333337" width="275" height="33"/>
                                         <color key="backgroundColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                                         <state key="normal" title="Start Running">
@@ -2146,14 +2146,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="4cb-fN-2T9" firstAttribute="centerX" secondItem="ceQ-OO-97t" secondAttribute="centerX" id="0pE-Zg-DNM"/>
-                                    <constraint firstItem="ceQ-OO-97t" firstAttribute="centerY" secondItem="zB2-vo-2x4" secondAttribute="centerY" constant="1" id="AGG-0V-owq"/>
+                                    <constraint firstItem="ceQ-OO-97t" firstAttribute="centerY" secondItem="zB2-vo-2x4" secondAttribute="centerY" constant="-12" id="AGG-0V-owq"/>
                                     <constraint firstItem="ceQ-OO-97t" firstAttribute="centerX" secondItem="zB2-vo-2x4" secondAttribute="centerX" id="FPV-aB-cXD"/>
                                     <constraint firstItem="jZG-Y0-MXD" firstAttribute="leading" secondItem="zB2-vo-2x4" secondAttribute="leading" constant="50" id="Ly2-cM-bab"/>
-                                    <constraint firstItem="ceQ-OO-97t" firstAttribute="top" secondItem="4cb-fN-2T9" secondAttribute="bottom" constant="1" id="MRa-s9-Gej"/>
+                                    <constraint firstItem="ceQ-OO-97t" firstAttribute="top" secondItem="4cb-fN-2T9" secondAttribute="bottom" constant="-12" id="MRa-s9-Gej"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ceQ-OO-97t" secondAttribute="bottom" constant="5" id="T4p-eR-INJ"/>
                                     <constraint firstItem="ceQ-OO-97t" firstAttribute="trailing" secondItem="zB2-vo-2x4" secondAttribute="trailingMargin" id="Wgl-WZ-Hzi"/>
                                     <constraint firstItem="ceQ-OO-97t" firstAttribute="leading" secondItem="zB2-vo-2x4" secondAttribute="leadingMargin" id="pfh-qB-VWp"/>
-                                    <constraint firstAttribute="bottom" secondItem="jZG-Y0-MXD" secondAttribute="bottom" id="ttL-iA-V5O"/>
+                                    <constraint firstAttribute="bottom" secondItem="jZG-Y0-MXD" secondAttribute="bottom" constant="18" id="ttL-iA-V5O"/>
                                     <constraint firstAttribute="trailing" secondItem="jZG-Y0-MXD" secondAttribute="trailing" constant="50" id="zlL-Hb-OHm"/>
                                 </constraints>
                             </view>
