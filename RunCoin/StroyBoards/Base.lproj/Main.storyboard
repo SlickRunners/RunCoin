@@ -1002,7 +1002,7 @@
                                                     <rect key="frame" x="254.99999999999997" y="0.0" width="87.666666666666657" height="65.666666666666671"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1:36:15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="70" translatesAutoresizingMaskIntoConstraints="NO" id="pDO-Su-7eC">
-                                                            <rect key="frame" x="10.333333333333314" y="0.0" width="66.666666666666671" height="52.333333333333336"/>
+                                                            <rect key="frame" x="10.666666666666686" y="0.0" width="66.666666666666671" height="52.333333333333336"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Heavy" family="SF Pro Text" pointSize="17"/>
                                                             <color key="textColor" red="0.33725490200000002" green="0.43529411759999997" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2191,6 +2191,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hFZ-PO-ylj"/>
                     </view>
+                    <connections>
+                        <segue destination="bej-YR-a8D" kind="show" identifier="ExitOnBoarding" id="cpD-Ix-xzx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CjJ-Lt-6ZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
