@@ -319,9 +319,9 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 let formatPace = Measurement(value: pace, unit: UnitSpeed.metersPerSecond)
                 let topSpeed = Measurement(value: 12.00, unit: UnitSpeed.metersPerSecond)
                 
-//                if formatPace >= topSpeed {
-//                    speedFailSafe()
-//                }
+                if formatPace >= topSpeed {
+                    speedFailSafe()
+                }
             }
             locationList.append(newLocation)
             
