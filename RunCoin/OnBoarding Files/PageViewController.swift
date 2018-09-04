@@ -13,7 +13,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     var pageControl = UIPageControl()
     
     lazy var orderedViewControllers: [UIViewController] = {
-        return [self.newVC(viewController: "OnBoarding1"), self.newVC(viewController: "OnBoarding2"), self.newVC(viewController: "OnBoarding3")]
+        return [self.newVC(viewController: "OnBoardingOne"), self.newVC(viewController: "OnBoardingTwo"), self.newVC(viewController: "OnBoardingThree"), self.newVC(viewController: "OnBoardingFinal")]
     }()
 
     override func viewDidLoad() {
@@ -82,5 +82,6 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
         pageControl.currentPageIndicatorTintColor = UIColor.offBlue
         self.view.addSubview(pageControl)
     }
+    
 
 }

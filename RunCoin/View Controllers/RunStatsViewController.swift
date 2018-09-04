@@ -29,8 +29,12 @@ class RunStatsViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapViewContainer: UIView!
     @IBOutlet weak var shareButton: UIButton!
-    
+    @IBOutlet weak var charityLabel: UILabel!
+
+    let defaults = UserDefaults.standard
     var run : Run!
+    
+    
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -49,6 +53,14 @@ class RunStatsViewController: UIViewController {
         super.viewDidLoad()
         loadMap()
         shareButton.layer.cornerRadius = shareButton.frame.size.height / 2
+        
+        if defaults.integer(forKey: "charity") == 1 {
+            charityLabel.text = "Road Home"
+        } else if defaults.integer(forKey: "charity") == 2 {
+            charityLabel.text = "Image Reborn"
+        } else if defaults.integer(forKey: "charity") == 3 {
+            charityLabel.text = "NAC"
+        }
     }
     
     func imageScreenshot(view: UIView) -> UIImage? {

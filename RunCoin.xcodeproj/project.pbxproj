@@ -94,6 +94,10 @@
 		B08A10B520BDC9620019DA8C /* RunStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */; };
 		B09E9E7520F7A84B003BEC69 /* coins.m4r in Resources */ = {isa = PBXBuildFile; fileRef = B09E9E7420F7A84A003BEC69 /* coins.m4r */; };
 		B0AB320420E56C88004B66F3 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB320320E56C88004B66F3 /* CustomPointAnnotation.swift */; };
+		B0BB5536213C5FB40051A238 /* OnBoardingOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BB5535213C5FB40051A238 /* OnBoardingOneViewController.swift */; };
+		B0BB5538213C5FBF0051A238 /* OnBoardingTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BB5537213C5FBF0051A238 /* OnBoardingTwoViewController.swift */; };
+		B0BB553A213C5FD40051A238 /* OnBoardingThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BB5539213C5FD40051A238 /* OnBoardingThreeViewController.swift */; };
+		B0BB553C213C6F710051A238 /* CharitySettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BB553B213C6F710051A238 /* CharitySettingsViewController.swift */; };
 		B0C5D5F720D19AEE00970FE0 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */; };
 		B0C5D5F920D2DC9000970FE0 /* PostApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D5F820D2DC9000970FE0 /* PostApi.swift */; };
 		B0C5D5FB20D2DF4800970FE0 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */; };
@@ -200,6 +204,10 @@
 		B08A10B420BDC9610019DA8C /* RunStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunStatsViewController.swift; sourceTree = "<group>"; };
 		B09E9E7420F7A84A003BEC69 /* coins.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = coins.m4r; sourceTree = "<group>"; };
 		B0AB320320E56C88004B66F3 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		B0BB5535213C5FB40051A238 /* OnBoardingOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingOneViewController.swift; sourceTree = "<group>"; };
+		B0BB5537213C5FBF0051A238 /* OnBoardingTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingTwoViewController.swift; sourceTree = "<group>"; };
+		B0BB5539213C5FD40051A238 /* OnBoardingThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingThreeViewController.swift; sourceTree = "<group>"; };
+		B0BB553B213C6F710051A238 /* CharitySettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharitySettingsViewController.swift; sourceTree = "<group>"; };
 		B0C5D5F620D19AEA00970FE0 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Nunito-Regular.ttf"; path = "../../../../Documents/RunCoin/RunCoin/Image Assets/nunito/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		B0C5D5F820D2DC9000970FE0 /* PostApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostApi.swift; sourceTree = "<group>"; };
 		B0C5D5FA20D2DF4800970FE0 /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
@@ -305,6 +313,7 @@
 				B06F9CB220C88223006AB649 /* AccountViewController.swift */,
 				B04F855220D94C26002DE382 /* SearchFriendsViewController.swift */,
 				B04F855420D94CA6002DE382 /* SearchTableViewCell.swift */,
+				B0BB553B213C6F710051A238 /* CharitySettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -401,6 +410,9 @@
 		B0CF5DDA210F97DF00EBAED5 /* OnBoarding Files */ = {
 			isa = PBXGroup;
 			children = (
+				B0BB5535213C5FB40051A238 /* OnBoardingOneViewController.swift */,
+				B0BB5537213C5FBF0051A238 /* OnBoardingTwoViewController.swift */,
+				B0BB5539213C5FD40051A238 /* OnBoardingThreeViewController.swift */,
 				B040C0C3210FB60B00CEEDA7 /* OnBoardingFinalViewController.swift */,
 				B0CF5DD8210F97A800EBAED5 /* PageViewController.swift */,
 			);
@@ -661,6 +673,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B03293E22087B16200284BAF /* AccountLoginViewController.swift in Sources */,
+				B0BB5536213C5FB40051A238 /* OnBoardingOneViewController.swift in Sources */,
 				B03E7CAC20A6222C0018B43A /* ProfileFeedTableViewCell.swift in Sources */,
 				B0FB1E322097A19D009BB784 /* MetricDefinitions.swift in Sources */,
 				B03E7CA820A3A2A80018B43A /* FeedPost.swift in Sources */,
@@ -675,6 +688,7 @@
 				B04F855520D94CA6002DE382 /* SearchTableViewCell.swift in Sources */,
 				B04F854920D414F9002DE382 /* ForgotPasswordViewController.swift in Sources */,
 				B06F9CB320C88223006AB649 /* AccountViewController.swift in Sources */,
+				B0BB553C213C6F710051A238 /* CharitySettingsViewController.swift in Sources */,
 				B04F855D20DD333B002DE382 /* FeedApi.swift in Sources */,
 				B0FB1E2E20978256009BB784 /* RunCoin.xcdatamodeld in Sources */,
 				B0AB320420E56C88004B66F3 /* CustomPointAnnotation.swift in Sources */,
@@ -683,6 +697,7 @@
 				B04F854720D2E793002DE382 /* Api.swift in Sources */,
 				B0FB1E342097A244009BB784 /* LocationManager.swift in Sources */,
 				B04F855320D94C26002DE382 /* SearchFriendsViewController.swift in Sources */,
+				B0BB5538213C5FBF0051A238 /* OnBoardingTwoViewController.swift in Sources */,
 				B0FB1E3A2097BF58009BB784 /* MulticolorPolyline.swift in Sources */,
 				B0FB1E3020978E3D009BB784 /* UnitConversions.swift in Sources */,
 				B08A10B320B604F50019DA8C /* User.swift in Sources */,
@@ -692,6 +707,7 @@
 				B031720820F42DD800894F55 /* Location+CoreDataClass.swift in Sources */,
 				B04F855720DA992D002DE382 /* FollowApi.swift in Sources */,
 				B03293E4208A5A3200284BAF /* AuthService.swift in Sources */,
+				B0BB553A213C5FD40051A238 /* OnBoardingThreeViewController.swift in Sources */,
 				B04F855120D7FE73002DE382 /* MyPostsApi.swift in Sources */,
 				B031720920F42DD800894F55 /* Location+CoreDataProperties.swift in Sources */,
 				B04F855B20DAF6B9002DE382 /* Config.swift in Sources */,
