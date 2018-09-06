@@ -42,14 +42,13 @@ class OnBoardingThreeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         self.present(controller, animated: true, completion: nil)
-        //        UserDefaults.standard.setValue(true, forKey: "onBoardingCompleted")
+        defaults.setValue(true, forKey: "onBoardingCompleted")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imageRebornButton.layer.cornerRadius = imageRebornButton.frame.size.height/2
         // Do any additional setup after loading the view.
-        print("HEY")
     }
 
     override func didReceiveMemoryWarning() {
