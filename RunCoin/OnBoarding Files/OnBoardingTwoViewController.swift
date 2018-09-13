@@ -63,5 +63,11 @@ class OnBoardingTwoViewController: UIViewController {
     func deselectButton(){
         chosen = false
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        roadHomeButton.layer.backgroundColor = UIColor.white.cgColor
+        roadHomeButton.setTitle("Choose Cause", for: .normal)
+        roadHomeButton.setTitleColor(UIColor.offBlue, for: .normal)
+        startRunningButton.isHidden = true
+    }
 }

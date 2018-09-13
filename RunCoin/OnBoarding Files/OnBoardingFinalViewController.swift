@@ -54,4 +54,11 @@ class OnBoardingFinalViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NACbutton.layer.backgroundColor = UIColor.white.cgColor
+        NACbutton.setTitle("Choose Cause", for: .normal)
+        NACbutton.setTitleColor(UIColor.offBlue, for: .normal)
+        startRunningButton.isHidden = true
+    }
 }

@@ -17,19 +17,6 @@ class OnBoardingOneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIView.setAnimationRepeatCount(10)
-        imageRebornImage.layer.borderColor = UIColor.greyish.cgColor
-        imageRebornImage.layer.borderWidth = 4.0
-        NACImage.layer.borderColor = UIColor.greyish.cgColor
-        NACImage.layer.borderWidth = 4.0
-        roadHomeImage.layer.borderColor = UIColor.greyish.cgColor
-        roadHomeImage.layer.borderWidth = 4.0
-        
-        imageRebornImage.layer.cornerRadius = imageRebornImage.frame.height / 2
-        NACImage.layer.cornerRadius = NACImage.frame.height / 2
-        roadHomeImage.layer.cornerRadius = roadHomeImage.frame.height / 2
-        
-//        arrowImage.center.x = view.center.x
     }
 
     override func viewWillAppear(_ animated: Bool) {

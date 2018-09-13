@@ -38,7 +38,7 @@ class HelperService {
         }
         let uid = currentUser.uid
         let newPostId = Api.Post.REF_POSTS.childByAutoId().key
-        let newPostRef = Api.Post.REF_POSTS.child(newPostId)
+        let newPostRef = Api.Post.REF_POSTS.child(newPostId!)
         let timestamp = Int(Date().timeIntervalSince1970)
         
         let runDict = ["uid": uid, "distance": distance, "duration": duration, "date": date, "pace": pace, "mapUrl": mapUrl, "timestamp": timestamp, "runCoin": singleRunCoin, "charity": charity] as [String : Any]
@@ -54,9 +54,9 @@ class HelperService {
             
             Api.User.REF_CURRENT_USER?.updateChildValues(globalDict)
             
-            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId).setValue(["timestamp": timestamp])
+            Api.Feed.REF_FEED.child(Api.User.CURRENT_USER!.uid).child(newPostId!).setValue(["timestamp": timestamp])
             
-            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(uid).child(newPostId)
+            let myPostRef = Api.MyPosts.REF_MYPOSTS.child(uid).child(newPostId!)
             myPostRef.setValue(["timestamp": timestamp], withCompletionBlock: { (error, ref) in
                 if error != nil {
                     return
@@ -79,7 +79,7 @@ class HelperService {
         let globalRunCoinRef = ["globalRunCoin" : globalRunCoin]
         let singleRunCoinRef = ["singleRunCoin" : singleRunCoin]
         let postId = Api.Post.REF_POSTS.childByAutoId().key
-        let postRef = Api.Post.REF_POSTS.child(postId).child("runCoin")
+        let postRef = Api.Post.REF_POSTS.child(postId!).child("runCoin")
         postRef.setValue(singleRunCoinRef)
         
         Api.User.REF_CURRENT_USER?.updateChildValues(globalRunCoinRef)

@@ -55,5 +55,12 @@ class OnBoardingThreeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        imageRebornButton.layer.backgroundColor = UIColor.white.cgColor
+        imageRebornButton.setTitle("Choose Cause", for: .normal)
+        imageRebornButton.setTitleColor(UIColor.offBlue, for: .normal)
+        startRunningButton.isHidden = true
+    }
 
 }
