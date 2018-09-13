@@ -10,26 +10,56 @@ import UIKit
 
 class OnBoardingOneViewController: UIViewController {
 
+    @IBOutlet weak var imageRebornImage: UIImageView!
+    @IBOutlet weak var NACImage: UIImageView!
+    @IBOutlet weak var roadHomeImage: UIImageView!
+    @IBOutlet weak var arrowImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        UIView.setAnimationRepeatCount(10)
+        imageRebornImage.layer.borderColor = UIColor.greyish.cgColor
+        imageRebornImage.layer.borderWidth = 4.0
+        NACImage.layer.borderColor = UIColor.greyish.cgColor
+        NACImage.layer.borderWidth = 4.0
+        roadHomeImage.layer.borderColor = UIColor.greyish.cgColor
+        roadHomeImage.layer.borderWidth = 4.0
+        
+        imageRebornImage.layer.cornerRadius = imageRebornImage.frame.height / 2
+        NACImage.layer.cornerRadius = NACImage.frame.height / 2
+        roadHomeImage.layer.cornerRadius = roadHomeImage.frame.height / 2
+        
+//        arrowImage.center.x = view.center.x
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        imageRebornImage.center.x -= view.bounds.width
+        NACImage.center.x -= view.bounds.width
+        roadHomeImage.center.x -= view.bounds.width
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 2) {
+            self.imageRebornImage.center.x += self.view.bounds.width
+        }
+        
+        UIView.animate(withDuration: 2, delay: 0.7, options: [], animations: {
+            self.NACImage.center.x += self.view.bounds.width
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 2, delay: 1.4, options: [], animations: {
+            self.roadHomeImage.center.x += self.view.bounds.width
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.85, delay: 5.0, options: [.repeat, .autoreverse], animations: {
+            self.arrowImage.center.x += 16
+            UIView.setAnimationDelay(1.5)
+            UIView.setAnimationRepeatCount(4.0)
+            UIView.setAnimationRepeatAutoreverses(true)
+        })
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -39,8 +39,6 @@ class OnBoardingTwoViewController: UIViewController {
             roadHomeButton.layer.borderWidth = 2.0
             startRunningButton.isHidden = false
         }
-        print(chosen, "CHOSEN")
-        print(roadHomeButton.titleLabel?.text)
     }
     
     
@@ -49,7 +47,7 @@ class OnBoardingTwoViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
         self.present(controller, animated: true, completion: nil)
-        //        UserDefaults.standard.setValue(true, forKey: "onBoardingCompleted")
+        defaults.setValue(true, forKey: "onBoardingCompleted")
     }
     
     override func viewDidLoad() {
@@ -64,7 +62,6 @@ class OnBoardingTwoViewController: UIViewController {
 
     func deselectButton(){
         chosen = false
-        print("SUCCESSFULTRANSFER of data")
     }
 
 }

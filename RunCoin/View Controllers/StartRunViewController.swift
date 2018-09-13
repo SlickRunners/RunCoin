@@ -246,7 +246,10 @@ class StartRunViewController: UIViewController {
             let globalDistance = user.globalDistance! + self.finalRun.distance
             let globalDuration = user.globaleDuration! + self.seconds
             let globalRunCoin = user.globalRunCoin! + self.usersRunCoin
-            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, singleRunCoin: singleRunCoin, globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration, onSuccess: {
+            let defaults = UserDefaults.standard
+            let usersCharity = defaults.integer(forKey: "charity")
+            
+            HelperService.uploadDataToStorage(image: image, distance: distance, duration: duration, date: date, pace: pace, singleRunCoin: singleRunCoin, charity: usersCharity, globalRunCoin: globalRunCoin, globalDistance: globalDistance, globalDuration: globalDuration, onSuccess: {
                 self.goToStats()
             })
         })
@@ -319,9 +322,9 @@ extension StartRunViewController: CLLocationManagerDelegate {
                 let formatPace = Measurement(value: pace, unit: UnitSpeed.metersPerSecond)
                 let topSpeed = Measurement(value: 12.00, unit: UnitSpeed.metersPerSecond)
                 
-                if formatPace >= topSpeed {
-                    speedFailSafe()
-                }
+//                if formatPace >= topSpeed {
+//                    speedFailSafe()
+//                }
             }
             locationList.append(newLocation)
             
@@ -378,7 +381,6 @@ extension StartRunViewController: MKMapViewDelegate {
         
         return anView
     }
-    
 }
 
 extension StartRunViewController: SegueHandlerType {
@@ -391,6 +393,7 @@ extension StartRunViewController: SegueHandlerType {
         case .details:
             let destination = segue.destination as! RunStatsViewController
             destination.run = run
+            destination.passedData = usersRunCoin
         }
     }
 }

@@ -30,11 +30,12 @@ class RunStatsViewController: UIViewController {
     @IBOutlet weak var mapViewContainer: UIView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var charityLabel: UILabel!
-
+    @IBOutlet weak var charityImage: UIImageView!
+    
     let defaults = UserDefaults.standard
     var run : Run!
-    
-    
+    var passedData : Int!
+    var charityName : String!
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -52,15 +53,8 @@ class RunStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMap()
+        configureCharityImage()
         shareButton.layer.cornerRadius = shareButton.frame.size.height / 2
-        
-        if defaults.integer(forKey: "charity") == 1 {
-            charityLabel.text = "Road Home"
-        } else if defaults.integer(forKey: "charity") == 2 {
-            charityLabel.text = "Image Reborn"
-        } else if defaults.integer(forKey: "charity") == 3 {
-            charityLabel.text = "NAC"
-        }
     }
     
     func imageScreenshot(view: UIView) -> UIImage? {
@@ -183,7 +177,24 @@ class RunStatsViewController: UIViewController {
         
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
-
+    
+    func configureCharityImage(){
+        let charityInt = defaults.integer(forKey: "charity")
+        
+        if charityInt == 1 {
+            charityName = "The Road Home"
+            charityImage.image = UIImage(named: "RoadHome-Choose")
+            charityLabel.text = "Nice Job! You've earned \(passedData!) RunCoin for \(charityName!)! Tap below and show off to your friends."
+        } else if charityInt == 2 {
+            charityName = "The Image Reborn Foundation"
+            charityImage.image = UIImage(named: "ImageReborn-Choose")
+            charityLabel.text = "Nice Job! You've earned \(passedData!) RunCoin for \(charityName!)! Tap below and show off to your friends."
+        } else {
+            charityName = "The National Ability Center"
+            charityImage.image = UIImage(named: "NAC-Choose")
+            charityLabel.text = "Nice Job! You've earned \(passedData!) RunCoin for \(charityName!)! Tap below and show off to your friends."
+        }
+    }
 }
 
 //Extensions
