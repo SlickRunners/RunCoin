@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import StoreKit
 
 class ProfileFeedViewController: UIViewController {
     
@@ -24,6 +25,7 @@ class ProfileFeedViewController: UIViewController {
     var myPosts : [FeedPost]!
     var isLoading = false
     let refreshControl = UIRefreshControl()
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,7 @@ class ProfileFeedViewController: UIViewController {
         refreshControl.addTarget(self, action:#selector(refresh),for: .valueChanged)
         tableView.addSubview(refreshControl)
         activityIndicatorView.startAnimating()
+        checkAndRequestReview()
     }
         
     func loadFeedData(){
@@ -123,6 +126,23 @@ class ProfileFeedViewController: UIViewController {
             
             let formattedDuration = FormatDisplay.time(user.globaleDuration!)
             self.globaleDurationLabel.text = formattedDuration
+        }
+    }
+    
+    
+    func checkAndRequestReview(){
+        let runCount = defaults.integer(forKey: "RUN_COUNT")
+        let infoDictionaryKey = kCFBundleVersionKey as String
+        guard let currentVersion = Bundle.main.object(forInfoDictionaryKey: infoDictionaryKey) as? String
+            else { fatalError("Expected to find a bundle version in the info dictionary") }
+        let lastVersionPromptedForReview = defaults.string(forKey: "lastVersionPromptedForReviewKey")
+        
+        if runCount >= 5 && currentVersion != lastVersionPromptedForReview {
+            let twoSecondsFromNow = DispatchTime.now() + 2.0
+            DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow){
+                SKStoreReviewController.requestReview()
+                self.defaults.set(currentVersion, forKey: "lastVersionPromptedForReviewKey")
+            }
         }
     }
 }

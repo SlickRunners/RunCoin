@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FF8B6E7E174765AEBCB431CE9C670854"
+               BlueprintIdentifier = "375B91BEE66B27544CC2264160A96D86"
                BuildableName = "Pods_RunCoin.framework"
                BlueprintName = "Pods-RunCoin"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FF8B6E7E174765AEBCB431CE9C670854"
+            BlueprintIdentifier = "375B91BEE66B27544CC2264160A96D86"
             BuildableName = "Pods_RunCoin.framework"
             BlueprintName = "Pods-RunCoin"
             ReferencedContainer = "container:Pods.xcodeproj">

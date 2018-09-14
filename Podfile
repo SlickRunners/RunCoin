@@ -16,4 +16,6 @@ target 'RunCoin' do
     pod 'SDWebImage'
     pod 'Bolts'
     pod 'ProgressHUD'
+    pod 'Firebase/Invites'
+    pod 'Firebase/DynamicLinks'
 end

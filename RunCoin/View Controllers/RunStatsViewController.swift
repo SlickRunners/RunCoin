@@ -42,6 +42,10 @@ class RunStatsViewController: UIViewController {
         let homeVC = storyboard.instantiateViewController(withIdentifier: "UITabBarController")
         present(homeVC, animated: true, completion: nil)
         NotificationCenter.default.post(name: NSNotification.Name("NotificationIdentifier"), object: nil)
+        var runCount = defaults.integer(forKey: "RUN_COUNT")
+        runCount += 1
+        defaults.setValue(runCount, forKey: "RUN_COUNT")
+        print("runCount value", runCount)
     }
     
     @IBAction func shareButtonPressed(_ sender: UIButton) {
@@ -55,6 +59,7 @@ class RunStatsViewController: UIViewController {
         loadMap()
         configureCharityImage()
         shareButton.layer.cornerRadius = shareButton.frame.size.height / 2
+
     }
     
     func imageScreenshot(view: UIView) -> UIImage? {

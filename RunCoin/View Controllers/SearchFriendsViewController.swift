@@ -15,6 +15,14 @@ class SearchFriendsViewController: UIViewController {
     
     var users : [User] = []
     
+    @IBAction func shareButtonPressed(_ sender: Any) {
+        let myDynamicLink = "https://runcoin.page.link/welcome"
+        let msg = "Hey, check out this charity running app called RunCoin: " + myDynamicLink
+        let shareSheet = UIActivityViewController(activityItems: [ msg ], applicationActivities: nil)
+        shareSheet.popoverPresentationController?.sourceView = self.view
+        self.present(shareSheet, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUsers()
@@ -23,6 +31,8 @@ class SearchFriendsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         print(Api.User.CURRENT_USER!.uid)
     }
+    
+    
     
     
     func loadUsers(){
